@@ -8,7 +8,7 @@ class dbConnection extends configs{
     private $dbname = 'Siga_web';
     
     private function Connect(){
-        $conn = new PDO("mysql:host=this->host;dbname=$this->database",$this->user,$this->senha);
+        $conn = new PDO("mysql:host=$this->host;dbname=$this->dbname",$this->user,$this->senha);
         return $conn;
     }
     private function RunQuery($sql){
