@@ -12,4 +12,4 @@ $smarty->debugging = false;
 $smarty->caching = true;
 $smarty->cache_lifetime = 120;
 
-$smarty->display('./ADM/login.html');
+$smarty->display('./Login/login.html');
