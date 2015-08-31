@@ -1,7 +1,7 @@
 <?php
 
-require_once 'aUsuarios.php';
-echo 'Autenticando!!!';
+require_once './aUsuarios.php';
+
 $usuario = new aUsuarios();
 
 if (isset($_POST['Login'])) {
@@ -10,7 +10,7 @@ if (isset($_POST['Login'])) {
     echo 'Login' + $_POST['Username'];
     echo 'Login' + $Password;
     if ($usuario->login($Username, $Password)) {
-        header('location:../index_admin.php');
+        header('location:../admin.php');
         echo 'Login Efetuado com sucesso!';
         
     } else {
