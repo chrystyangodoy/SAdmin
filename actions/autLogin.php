@@ -10,7 +10,7 @@ if (isset($_POST['Login'])) {
     echo 'Login' + $_POST['Username'];
     echo 'Login' + $Password;
     if ($usuario->login($Username, $Password)) {
-        header('location:../ADM/teste.php');
+        header('location:../index_admin.php');
         echo 'Login Efetuado com sucesso!';
         
     } else {
