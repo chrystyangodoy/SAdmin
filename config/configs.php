@@ -10,6 +10,5 @@ class configs{
         $d = explode('-',$dataBrasil);
         $dam = $d[2].'/'.$d[1].'/'.$d[0];
         return $dam;
-        }
-    
+        }    
 }

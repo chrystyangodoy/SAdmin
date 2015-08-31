@@ -1,5 +1,5 @@
 <?php
-require_once 'config/configs.php';
+require_once '../config/configs.php';
 
 class dbConnection extends configs{
     private $user = 'root';
@@ -11,16 +11,23 @@ class dbConnection extends configs{
         $conn = new PDO("mysql:host=$this->host;dbname=$this->dbname",$this->user,$this->senha);
         return $conn;
     }
-    private function RunQuery($sql){
+    //Executa uma query. Retorna a quantidade de linha executada(True).
+    public function RunQuery($sql){
         $stm = $this->Connect()->prepare($sql);
         return $stm->execute();
     }
     
-    private function RunSelect($sql){
+    //Executa uma select
+    public function RunSelect($sql){
         $stm = $this->Connect()->prepare($sql);
         $stm->execute();
         return $stm->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function RunLogin($sql){
+        $stm = $this->Connect()->prepare($sql);
+        $stm->execute();
+        return $stm->fetch();
+    }
 }
 
