@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-01 04:18:50
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-01 04:03:43
          compiled from "C:\xampp\htdocs\SAdmin\ADM\panel-body.html" */ ?>
 <?php /*%%SmartyHeaderCode:1388755e50765c85d21-23474116%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1947f05b154a1bb7f75134826c3e547224df0d12' => 
     array (
       0 => 'C:\\xampp\\htdocs\\SAdmin\\ADM\\panel-body.html',
-      1 => 1441073927,
+      1 => 1441073021,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body">
-TESTE TEMPLATE
+asdasd
             </div>
         </div>
     </div><?php }} ?>
