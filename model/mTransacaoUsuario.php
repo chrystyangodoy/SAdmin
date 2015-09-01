@@ -11,19 +11,19 @@ class mTransUsuario extends dbConnection {
     private $ID_SEG_Usuario;
     private $DSC_Login_Transacao;
 
-    public function setDetalhe_Transacao($ID_Detalhe_Transacao) {
+    public function setIDDetalhe_Transacao($ID_Detalhe_Transacao) {
         $this->ID_Detalhe_Transacao = $ID_Detalhe_Transacao;
     }
 
-    public function getDetalhe_Transacao() {
+    public function getID_Detalhe_Transacao() {
         $this->ID_Detalhe_Transacao;
     }
 
-    public function setTIPO_Origem_Transacao($COD_TIPO_Origem_Transacao) {
+    public function setCOD_TIPO_Origem_Transacao($COD_TIPO_Origem_Transacao) {
         $this->COD_TIPO_Origem_Transacao = $COD_TIPO_Origem_Transacao;
     }
 
-    public function getTIPO_Origem_Transacao() {
+    public function getCOD_TIPO_Origem_Transacao() {
         $this->COD_TIPO_Origem_Transacao;
     }
 
