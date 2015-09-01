@@ -1,8 +1,8 @@
 <?php
 
-require_once 'aUsuarios.php';
+require_once 'aUsuario.php';
 
-$usuario = new aUsuarios();
+$usuario = new aUsuario();
 
 if (isset($_POST['Login'])) {
     $Username = $_POST['Username'];

@@ -6,7 +6,7 @@ class aUsuario extends mUsuario{
     protected $sqlInsert = "INSERT INTO seg_usuario(DSC_Login, DSC_Senha, DTM_Inicio, DTM_Fim, ID_SEG_Grupo) VALUES ('%s',MD5('%s'),'%s','%s','%s')";
     protected $sqlUpdate = "update seg_usuario set DSC_Login = '%s',DSC_Senha= '%s',DTM_Inicio= '%s' as DTM_Inicio,DTM_Fim= '%s' as DTM_Fim, ID_SEG_Grupo='%s' where ID_Usuario = '%s'";
     protected $sqlDelete = "delete from seg_usuario where ID_Usuario = '%s'";
-    protected $sqlSelect = "select * from seg_usuario"; 
+    protected $sqlSelect = "select * from seg_usuario where 1=1 %s %s"; 
     
     protected $sqlSelectInnerGrupo = "select *,seg_grupo.DSC_Nome from seg_usuario inner join seg_grupo on (seg_usuario.ID_SEG_Grupo = seg_grupo.ID_Grupo) where 1=1 %s %s";
 
