@@ -1,6 +1,6 @@
 <?php
 
-require_once './aUsuarios.php';
+require_once 'aUsuarios.php';
 
 $usuario = new aUsuarios();
 

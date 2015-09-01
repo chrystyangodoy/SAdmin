@@ -5,115 +5,126 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bb13d11f5fe105d81283a8d563cc36f70f1eca75' => 
     array (
       0 => '.\\ADM\\teste2.html',
-      1 => 1441052699,
+      1 => 1441072434,
       2 => 'file',
     ),
-    '34b8fba4fe46cf2611a1c0ae383b9e3b894f175e' => 
+    '78719ea17e6a9d042d5059a8fdd263f02826abee' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\SAdmin\\ADM\\template.html',
-      1 => 1441052344,
+      0 => 'C:\\xampp\\htdocs\\SAdmin\\ADM\\Header_Nav.html',
+      1 => 1441071630,
+      2 => 'file',
+    ),
+    '6f607cc43ed9fd3cef2b7939e7d072bf8f05d51e' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\SAdmin\\ADM\\Header_Logout.html',
+      1 => 1441071766,
+      2 => 'file',
+    ),
+    '3c5781104cbace7e72e6c387b610074adbd1e61a' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\SAdmin\\ADM\\menu_Lateral.html',
+      1 => 1441071903,
+      2 => 'file',
+    ),
+    '0aa10ee5f353fea98883e65f3fcf66d166544725' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\SAdmin\\ADM\\page_Wrapper.html',
+      1 => 1441072314,
       2 => 'file',
     ),
   ),
   'nocache_hash' => '2387355e4b40e190d79-12838473',
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_55e4bac5515640_69620190',
-  'has_nocache_code' => false,
   'cache_lifetime' => 120,
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_55e50535f1cf36_30406235',
+  'has_nocache_code' => false,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55e4bac5515640_69620190')) {function content_55e4bac5515640_69620190($_smarty_tpl) {?><!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php if ($_valid && !is_callable('content_55e50535f1cf36_30406235')) {function content_55e50535f1cf36_30406235($_smarty_tpl) {?><!DOCTYPE html>
 <html>
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title> Administração - Siga Web </title>
+        <title> Administração - Siga Web </title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap Core CSS -->
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="./css/sb-admin.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="./css/sb-admin.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="./css/plugins/morris.css" rel="stylesheet">
+        <!-- Morris Charts CSS -->
+        <link href="./css/plugins/morris.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- Custom Fonts -->
+        <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
-</head>
-<body>
+    </head>
+    <body>
+        <div id="wrapper">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-    <div id="wrapper">
+                <div class="navbar-header">
+    <!--Botão Home Administração-->
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index_admin.php">Siga Web</a>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <!--Botão Home Administração-->
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index_admin.php">Siga Web</a>
-                
-            </div>
-            <!--Desabilitado Temporáriamente (Sem Função) -->
-            <!--Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="index_admin.php"><i class="fa fa-fw fa-dashboard"></i> Administração </a>
-                    </li>
-                    <li>
-                        <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
-                    </li>
-                    <li>
-                        <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
-                    </li>
-                    <li>
-                        <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
-                    </li>
-                    <li>
-                        <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
+</div>
 
-        <div id="page-wrapper">
+
+                <!--Top Menu Items -->
+<ul class="nav navbar-right top-nav">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li class="divider"></li>
+            <li>
+                <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+
+                <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav side-nav">
+        <li class="active">
+            <a href="index_admin.php"><i class="fa fa-fw fa-dashboard"></i> Administração </a>
+        </li>
+        <li>
+            <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
+        </li>
+        <li>
+            <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
+        </li>
+        <li>
+            <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
+        </li>
+        <li>
+            <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
+        </li>
+    </ul>
+</div>
+<!-- /.navbar-collapse -->
+                <div id="page-wrapper">
+                            <div id="page-wrapper">
 
             <div class="container-fluid">
 
@@ -230,7 +241,7 @@ and open the template in the editor.
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                Testando modo Template!!!
+
                             </div>
                         </div>
                     </div>
@@ -240,22 +251,22 @@ and open the template in the editor.
             <!-- /.container-fluid -->
 
         </div>
-        <!-- /#page-wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
+                </div>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+            </nav>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+        </div>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
-
-</body>
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- Morris Charts JavaScript -->
+        <script src="js/plugins/morris/raphael.min.js"></script>
+        <script src="js/plugins/morris/morris.min.js"></script>
+        <script src="js/plugins/morris/morris-data.js"></script>
+    </body>
 </html>
 <?php }} ?>

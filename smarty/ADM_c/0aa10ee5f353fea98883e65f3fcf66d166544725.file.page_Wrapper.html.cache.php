@@ -1,119 +1,25 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-08-31 22:42:01
-         compiled from ".\ADM\index.php" */ ?>
-<?php /*%%SmartyHeaderCode:812455e49e16e0f493-81210674%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-01 03:53:08
+         compiled from "C:\xampp\htdocs\SAdmin\ADM\page_Wrapper.html" */ ?>
+<?php /*%%SmartyHeaderCode:276955e505047ef700-00243834%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '23854cb51f0e4f0a47aac1eee3f7f467ed9af8c8' => 
+    '0aa10ee5f353fea98883e65f3fcf66d166544725' => 
     array (
-      0 => '.\\ADM\\index.php',
-      1 => 1441053719,
+      0 => 'C:\\xampp\\htdocs\\SAdmin\\ADM\\page_Wrapper.html',
+      1 => 1441072314,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '812455e49e16e0f493-81210674',
+  'nocache_hash' => '276955e505047ef700-00243834',
   'function' => 
   array (
   ),
-  'cache_lifetime' => 120,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_55e49e16e53963_43871661',
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_55e505047f9097_97349477',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55e49e16e53963_43871661')) {function content_55e49e16e53963_43871661($_smarty_tpl) {?><!DOCTYPE html>
-<html lang="br">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title> Administração - Siga Web </title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="./css/sb-admin.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="./css/plugins/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <?php echo '<script'; ?>
- src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"><?php echo '</script'; ?>
->
-        <?php echo '<script'; ?>
- src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"><?php echo '</script'; ?>
->
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <!--Botão Home Administração-->
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index_admin.php">Siga Web</a>
-                
-            </div>
-            <!--Desabilitado Temporáriamente (Sem Função) -->
-            <!--Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="index_admin.php"><i class="fa fa-fw fa-dashboard"></i> Administração </a>
-                    </li>
-                    <li>
-                        <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
-                    </li>
-                    <li>
-                        <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
-                    </li>
-                    <li>
-                        <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
-                    </li>
-                    <li>
-                        <a href="usuario.php"><i class="fa fa-fw fa-bar-chart-o"></i> Usuários<i class="fa fa-fw fa-caret-down"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
-
-        <div id="page-wrapper">
+<?php if ($_valid && !is_callable('content_55e505047f9097_97349477')) {function content_55e505047f9097_97349477($_smarty_tpl) {?>        <div id="page-wrapper">
 
             <div class="container-fluid">
 
@@ -240,33 +146,4 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <!-- /.container-fluid -->
 
         </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <?php echo '<script'; ?>
- src="js/jquery.js"><?php echo '</script'; ?>
->
-
-    <!-- Bootstrap Core JavaScript -->
-    <?php echo '<script'; ?>
- src="js/bootstrap.min.js"><?php echo '</script'; ?>
->
-
-    <!-- Morris Charts JavaScript -->
-    <?php echo '<script'; ?>
- src="js/plugins/morris/raphael.min.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- src="js/plugins/morris/morris.min.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- src="js/plugins/morris/morris-data.js"><?php echo '</script'; ?>
->
-
-</body>
-
-</html>
 <?php }} ?>

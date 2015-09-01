@@ -1,9 +1,6 @@
 <?php
 
 include './corp/Smarty/libs/Smarty.class.php';
-require_once 'aUsuarios.php';
-echo 'Autenticando!!!';
-$usuario = new aUsuarios();
 
 $smarty = new Smarty();
 
@@ -15,4 +12,4 @@ $smarty->debugging = false;
 $smarty->caching = true;
 $smarty->cache_lifetime = 120;
 
-$smarty->display('./ADM/teste.php');
+$smarty->display('./ADM/index.php');

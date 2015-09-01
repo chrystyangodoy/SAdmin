@@ -204,7 +204,7 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                {$pagina}
+
                             </div>
                         </div>
                     </div>
