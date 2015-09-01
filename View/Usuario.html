@@ -1,5 +1,12 @@
 {include file="./Template/header.html"}
 
+<script> 
+$(document).ready(function(){
+    $('#myTable').DataTable();
+});
+</script>
+
+<div id="myTable" >
 <table border="1" cellpadding="1">
     <thead>
         <tr>
@@ -11,9 +18,9 @@
             <th>Ações</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="myTabContent">
         {foreach from=$lista item=row}
-        <tr>
+        <tr >
             <td>{$row.ID_Usuario}</td>
             <td>{$row.DSC_Login}</td>
             <td>{$row.DTM_Inicio}</td>
@@ -24,5 +31,6 @@
         {/foreach}
     </tbody>
 </table>
+</div>
 
 {include file="./Template/footer.html"}
