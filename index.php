@@ -14,7 +14,7 @@ if (isset($_POST['Login'])) {
     if ($usuario->login($Username, $Password)) {
         
         
-        header('location:admin.php');
+        header('location:Usuario.php');
         
         echo 'Login Efetuado com sucesso!';
     } else {

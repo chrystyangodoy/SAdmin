@@ -3,35 +3,45 @@
         <title>Cadastro de Usuários</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        
     </head>
     <body>
-        <div class="box">
+        <div class="col-xs-12 col-md-8">
             <h1>Cadastro de Usuários</h1>
+
             <form id="Cadastrar" form method="post" action="">
-                <fieldset>
-                    <label>
-                        <span>Login:</span>
-                        <input name="login" class="input_text" type="text">
-                    </label>
-                    <label>
-                        <span>Senha:</span>
-                        <input name="senha" class="input_text" type="password">
-                    </label>
-                    <label>
-                        <span>Data Inicial:</span>
-                        <input name="dataini" class="input_text" type="text">
-                    </label>
-                    <label>
-                        <span>Data Final:</span>
-                        <input  name="datafim" class="input_text" type="text">
-                    </label>
-                    <label>
-                        <span>Grupo:</span>
-                        <input  name="grupo" value="1" class="input_text" type="text">
-                    </label>
-                    <button><input type="submit" name="Cadastrar" value="Cadastrar" class="button"></button>
-                </fieldset>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Login</label>
+                    <input type="text" class="form-control" name="login" placeholder="Login">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Senha</label>
+                    <input type="password" class="form-control" name="senha" placeholder="Senha">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Data Inicial</label>
+                    <input type="date" class="form-control" name="dataini" placeholder="Data Inicial">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Data Final</label>
+                    <input type="date" class="form-control" name="datafin" placeholder="Data Final">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Grupo</label>
+                    <select name="Grupo">
+                        <option value=1>muito bom</option>
+                        <option value=2>bom</option>
+                        <option value=3>razoavel</option>
+                        <option value=4>mau</option>
+                    </select>
+                </div>
+
+
+                <button type="submit" class="btn btn-default" name="Cadastrar" value="Cadastrar">Submit</button>
             </form>
+
         </div>   
 
 
