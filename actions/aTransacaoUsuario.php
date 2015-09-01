@@ -28,6 +28,11 @@ class aTransUsuario extends mTransUsuario {
         return $this->RunSelect($sql);
     }
     
+    public function selectInner($where='',$order=''){
+        $sql = sprintf($this->sqlSelectInner, $where, $order);
+        return $this->RunSelect($sql);
+    }
+    
     public function load(){
         $rs = $this->select(sprintf("and ID_SEG_Usuario='%s'",  $this->getID_SEG_Usuario()));
         $this->setUser_ID($rs[0]['ID_Detalhe_Transacao']);

@@ -1,5 +1,5 @@
 <?php
-require_once '../config/configs.php';
+require_once './config/configs.php';
 
 class dbConnection extends configs{
     private $user = 'root';

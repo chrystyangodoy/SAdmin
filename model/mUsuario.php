@@ -1,75 +1,69 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-require '../db/dbConnection.php';
+require './db/dbConnection.php';
 
 class mUsuario extends dbConnection {
 
-    private $user_ID;
-    private $Login;
-    private $Senha;
-    private $DTInicio;
-    private $DTFim;
-    private $Grupo;
+    private $ID_Usuario;
+    private $DSC_Login;
+    private $DSC_Senha;
+    private $DTM_Inicio;
+    private $DTM_Fim;
+    private $ID_SEG_Grupo;
 
-    public function setUser_ID($user_ID) {
-        $this->user_ID = $user_ID;
+    public function setID_Usuario($ID_Usuario) {
+        $this->ID_Usuario = $ID_Usuario;
     }
 
-    public function getUser_ID() {
-        $this->user_ID;
+    public function getID_Usuario() {
+        $this->ID_Usuario;
     }
 
-    public function setLogin($Login) {
-        $this->login = $Login;
+    public function setDSC_Login($DSC_Login) {
+        $this->DSC_Login = $DSC_Login;
     }
 
-    public function getLogin() {
-        return $this->login;
+    public function getDSC_Login() {
+        return $this->DSC_Login;
     }
 
-    public function setSenha($Senha) {
-        $this->senha = $Senha;
+    public function setDSC_Senha($DSC_Senha) {
+        $this->DSC_Senha = $DSC_Senha;
     }
 
-    public function getSenha() {
-        return $this->senha;
+    public function getDSC_Senha() {
+        return $this->DSC_Senha;
     }
 
-    public function setDataIni($DTInicio) {
-        $this->data_inicio = $this->dateToUS($DTInicio);
+    public function setDTM_Inicio($DTM_Inicio) {
+        $this->DTM_Inicio = $this->dateToUS($DTM_Inicio);
     }
 
-    public function getDataIni($us = false) {
+    public function getDTM_Inicio($us = false) {
         if ($us) {
-            return $this->data_inicio;
+            return $this->DTM_Inicio;
         } else {
-            return $this->dateToBR(data_inicio);
+            return $this->dateToBR(DTM_Inicio);
         }
     }
 
-    public function setDatafim($DTFim) {
-        $this->data_fim = $this->dateToUS($DTFim);
+    public function setDTM_Fim($DTM_Fim) {
+        $this->DTM_Fim = $this->dateToUS($DTM_Fim);
     }
 
-    public function getDatafim($us = false) {
+    public function getDTM_Fim($us = false) {
         if ($us) {
-            return $this->data_fim;
+            return $this->DTM_Fim;
         } else {
-            return $this->dateToBR(data_fim);
+            return $this->dateToBR(DTM_Fim);
         }
     }
 
-    public function setGrupo($Grupo) {
-        $this->grupo = $Grupo;
+    public function setID_SEG_Grupo($ID_SEG_Grupo) {
+        $this->ID_SEG_Grupo = $ID_SEG_Grupo;
     }
 
-    public function getGrupo() {
-        return $this->grupo;
+    public function getID_SEG_Grupo() {
+        return $this->ID_SEG_Grupo;
     }
 
 }

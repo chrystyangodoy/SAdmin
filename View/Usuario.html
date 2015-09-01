@@ -1,0 +1,28 @@
+{include file="./Template/header.html"}
+
+<table border="1" cellpadding="1">
+    <thead>
+        <tr>
+            <th>ID_Usuario</th>
+            <th>DSC_Login</th>
+            <th>DTM_Inicio</th>
+            <th>DTM_Fim</th>
+            <th>ID_SEG_Grupo</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach from=$lista item=row}
+        <tr>
+            <td>{$row.ID_Usuario}</td>
+            <td>{$row.DSC_Login}</td>
+            <td>{$row.DTM_Inicio}</td>
+            <td>{$row.DTM_Fim}</td>
+            <td>{$row.ID_SEG_Grupo}</td>
+            <td>Incluir | Alterar | Excluir</td>
+        </tr>
+        {/foreach}
+    </tbody>
+</table>
+
+{include file="./Template/footer.html"}
