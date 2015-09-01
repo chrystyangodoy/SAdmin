@@ -13,19 +13,14 @@ if (isset($_POST['Login'])) {
     echo 'Login' + $Password;
     if ($usuario->login($Username, $Password)) {
         
-        
-        header('location:Usuario.php');
+        $smarty->display('./View/Administracao.html');
         
         echo 'Login Efetuado com sucesso!';
     } else {
         header('location:index.php');
         echo 'Usuário ou Senha incorretos!';
     }
-} else {
-
-    $smarty->display('./View/login.html');
-}
-
-//$smarty->display('./Login/login.html');
+}else{
 
 $smarty->display('./View/login.html');
+}
