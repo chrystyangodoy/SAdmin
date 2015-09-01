@@ -8,6 +8,7 @@
 require '../db/dbConnection.php';
 
 class mUsuario extends dbConnection {
+
     private $user_ID;
     private $Login;
     private $Senha;
@@ -15,14 +16,14 @@ class mUsuario extends dbConnection {
     private $DTFim;
     private $Grupo;
 
-    public function setUser_ID($user_ID){
+    public function setUser_ID($user_ID) {
         $this->user_ID = $user_ID;
     }
-    
+
     public function getUser_ID() {
         $this->user_ID;
     }
-    
+
     public function setLogin($Login) {
         $this->login = $Login;
     }
@@ -40,19 +41,27 @@ class mUsuario extends dbConnection {
     }
 
     public function setDataIni($DTInicio) {
-        $this->data_inicio = $DTInicio;
+        $this->data_inicio = $this->dateToUS($DTInicio);
     }
 
-    public function getDataIni() {
-        return $this->data_inicio;
+    public function getDataIni($us = false) {
+        if ($us) {
+            return $this->data_inicio;
+        } else {
+            return $this->dateToBR(data_inicio);
+        }
     }
 
     public function setDatafim($DTFim) {
-        $this->data_fim = $DTFim;
+        $this->data_fim = $this->dateToUS($DTFim);
     }
 
-    public function getDatafim() {
-        return $this->data_fim;
+    public function getDatafim($us = false) {
+        if ($us) {
+            return $this->data_fim;
+        } else {
+            return $this->dateToBR(data_fim);
+        }
     }
 
     public function setGrupo($Grupo) {
