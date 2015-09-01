@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-01 04:04:58
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-01 04:36:35
          compiled from ".\ADM\Template.html" */ ?>
 <?php /*%%SmartyHeaderCode:2036455e507caa6da64-29474764%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8a6cba48c4c05faa4a53130b1cee3dc17b37c912' => 
     array (
       0 => '.\\ADM\\Template.html',
-      1 => 1441072992,
+      1 => 1441074991,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
+  'cache_lifetime' => 120,
   'version' => 'Smarty-3.1.21-dev',
   'unifunc' => 'content_55e507caac3b82_51455697',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_55e507caac3b82_51455697')) {function content_55e507caac3b82_51455697($_smarty_tpl) {?><!DOCTYPE html>
 <html>
@@ -59,7 +60,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <div id="wrapper">
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-                <?php echo $_smarty_tpl->getSubTemplate ("./Header_Nav.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+                <?php echo $_smarty_tpl->getSubTemplate ("./Template/Header_Nav.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
 
                 <?php echo $_smarty_tpl->getSubTemplate ("./Header_Logout.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
