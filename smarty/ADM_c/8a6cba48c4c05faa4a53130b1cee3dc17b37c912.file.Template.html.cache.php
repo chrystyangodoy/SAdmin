@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-01 04:36:35
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-01 04:44:41
          compiled from ".\ADM\Template.html" */ ?>
 <?php /*%%SmartyHeaderCode:2036455e507caa6da64-29474764%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8a6cba48c4c05faa4a53130b1cee3dc17b37c912' => 
     array (
       0 => '.\\ADM\\Template.html',
-      1 => 1441074991,
+      1 => 1441075477,
       2 => 'file',
     ),
   ),
@@ -60,21 +60,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <div id="wrapper">
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-                <?php echo $_smarty_tpl->getSubTemplate ("./Template/Header_Nav.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
-
-
-                <?php echo $_smarty_tpl->getSubTemplate ("./Header_Logout.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
-
-
-                <?php echo $_smarty_tpl->getSubTemplate ("./menu_Lateral.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+                
+                
+                <?php echo $_smarty_tpl->getSubTemplate ("./Template/menus.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
             </nav>
 
             <div id="page-wrapper">
-                <?php echo $_smarty_tpl->getSubTemplate ("./page_Wrapper.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+                <?php echo $_smarty_tpl->getSubTemplate ("./Template/page_Wrapper.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
                 <div class="row">
-                    <?php echo $_smarty_tpl->getSubTemplate ("./panel-body.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+                    <?php echo $_smarty_tpl->getSubTemplate ("./Template/panel-body.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
                 </div>
                 
