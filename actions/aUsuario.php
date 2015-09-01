@@ -8,8 +8,7 @@ class aUsuario extends mUsuario{
     protected $sqlDelete = "delete from seg_usuario where ID_Usuario = '%s'";
     protected $sqlSelect = "select * from seg_usuario"; 
     
-    protected $sqlSelectInnerGrupo = "select *,seg_grupo.DSC_Nome from seg_usuario inner join seg_grupo on "
-                         . "(seg_usuario.ID_SEG_Grupo = seg_grupo.ID_Grupo) where 1=1 %s %s";
+    protected $sqlSelectInnerGrupo = "select *,seg_grupo.DSC_Nome from seg_usuario inner join seg_grupo on (seg_usuario.ID_SEG_Grupo = seg_grupo.ID_Grupo) where 1=1 %s %s";
 
     protected $sqlSelectInnerTrans = "select *,seg_detalhe_transacao.COD_TIPO_Origem_Transacao"
                                 . "seg_detalhe_transacao.COD_Tipo_Sistema_Transacao,seg_detalhe_transacao.DSC_Login_Transacao"
