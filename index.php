@@ -26,6 +26,4 @@ if (isset($_POST['Login'])) {
     $smarty->display('./View/login.html');
 }
 
-//$smarty->display('./Login/login.html');
-
 $smarty->display('./View/login.html');
