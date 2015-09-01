@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-01 03:53:57
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-01 04:03:43
          compiled from ".\ADM\teste2.html" */ ?>
 <?php /*%%SmartyHeaderCode:2387355e4b40e190d79-12838473%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bb13d11f5fe105d81283a8d563cc36f70f1eca75' => 
     array (
       0 => '.\\ADM\\teste2.html',
-      1 => 1441072434,
+      1 => 1441072992,
       2 => 'file',
     ),
   ),
@@ -68,12 +68,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
                 <?php echo $_smarty_tpl->getSubTemplate ("./menu_Lateral.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
-                <div id="page-wrapper">
-                    <?php echo $_smarty_tpl->getSubTemplate ("./page_Wrapper.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+            </nav>
+
+            <div id="page-wrapper">
+                <?php echo $_smarty_tpl->getSubTemplate ("./page_Wrapper.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
+
+                <div class="row">
+                    <?php echo $_smarty_tpl->getSubTemplate ("./panel-body.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 9999, null, array(), 0);?>
 
                 </div>
-
-            </nav>
+                
+            </div>
 
         </div>
 

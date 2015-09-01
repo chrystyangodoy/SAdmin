@@ -5,7 +5,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bb13d11f5fe105d81283a8d563cc36f70f1eca75' => 
     array (
       0 => '.\\ADM\\teste2.html',
-      1 => 1441072434,
+      1 => 1441072992,
       2 => 'file',
     ),
     '78719ea17e6a9d042d5059a8fdd263f02826abee' => 
@@ -29,17 +29,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0aa10ee5f353fea98883e65f3fcf66d166544725' => 
     array (
       0 => 'C:\\xampp\\htdocs\\SAdmin\\ADM\\page_Wrapper.html',
-      1 => 1441072314,
+      1 => 1441072905,
+      2 => 'file',
+    ),
+    '1947f05b154a1bb7f75134826c3e547224df0d12' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\SAdmin\\ADM\\panel-body.html',
+      1 => 1441073021,
       2 => 'file',
     ),
   ),
   'nocache_hash' => '2387355e4b40e190d79-12838473',
   'cache_lifetime' => 120,
   'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_55e50535f1cf36_30406235',
+  'unifunc' => 'content_55e5077f4cac86_93483946',
   'has_nocache_code' => false,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55e50535f1cf36_30406235')) {function content_55e50535f1cf36_30406235($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_55e5077f4cac86_93483946')) {function content_55e5077f4cac86_93483946($_smarty_tpl) {?><!DOCTYPE html>
 <html>
     <head>
 
@@ -123,10 +129,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </ul>
 </div>
 <!-- /.navbar-collapse -->
-                <div id="page-wrapper">
-                            <div id="page-wrapper">
+            </nav>
 
-            <div class="container-fluid">
+            <div id="page-wrapper">
+                            <div class="container-fluid">
 
                 <!-- Page Heading -->
                 <div class="row">
@@ -235,26 +241,24 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     </div>
                 </div>
 
-<!--Quadros de Ação -->
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
             <!-- /.container-fluid -->
 
+                <div class="row">
+                    <!DOCTYPE html>
+<!--Quadros de Ação -->
+<!-- /.row -->
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+asdasd
+            </div>
         </div>
-
+    </div>
                 </div>
-
-            </nav>
+                
+            </div>
 
         </div>
 

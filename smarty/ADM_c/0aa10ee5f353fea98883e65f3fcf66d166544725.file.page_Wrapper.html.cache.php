@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-01 03:53:08
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-01 04:03:17
          compiled from "C:\xampp\htdocs\SAdmin\ADM\page_Wrapper.html" */ ?>
 <?php /*%%SmartyHeaderCode:276955e505047ef700-00243834%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0aa10ee5f353fea98883e65f3fcf66d166544725' => 
     array (
       0 => 'C:\\xampp\\htdocs\\SAdmin\\ADM\\page_Wrapper.html',
-      1 => 1441072314,
+      1 => 1441072905,
       2 => 'file',
     ),
   ),
@@ -15,12 +15,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.21-dev',
   'unifunc' => 'content_55e505047f9097_97349477',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55e505047f9097_97349477')) {function content_55e505047f9097_97349477($_smarty_tpl) {?>        <div id="page-wrapper">
-
+<?php if ($_valid && !is_callable('content_55e505047f9097_97349477')) {function content_55e505047f9097_97349477($_smarty_tpl) {?>
             <div class="container-fluid">
 
                 <!-- Page Heading -->
@@ -130,20 +129,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     </div>
                 </div>
 
-<!--Quadros de Ação -->
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
             <!-- /.container-fluid -->
-
-        </div>
 <?php }} ?>
