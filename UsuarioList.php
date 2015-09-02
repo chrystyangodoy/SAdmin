@@ -3,12 +3,12 @@ require_once 'smarty.php';
 require_once './actions/aUsuario.php';
 $user = new aUsuario();
 
-if(isset($_GET['exc'])){
-    $user->setID_Usuario($_GET['exc']);
+if(isset($_GET['del'])){
+    $user->setID_Usuario($_GET['del']);
     if($user->delete()){
-        print("Registro excluído com sucesso!");
+        echo "Registro excluído com sucesso!";
     }else{
-        print("Erro na excluído!");
+        echo("Erro na excluído!");
     }
         
 }
