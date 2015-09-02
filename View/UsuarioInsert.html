@@ -1,32 +1,31 @@
 {include file="./Template/header.html"}
 
-<form id="Cadastrar" method="post" action="">
+<form id="Cadastrar" form method="post">
     <div class="form-group">
         <label for="exampleInputEmail1">Login</label>
-        <input type="text" class="form-control" name="login" placeholder="Login">
+        <input type="text" class="form-control" name="DSC_Login" placeholder="Login">
     </div>
     <div class="form-group">
         <label for="exampleInputPassword1">Senha</label>
-        <input type="password" class="form-control" name="senha" placeholder="Senha">
+        <input type="password" class="form-control" name="DSC_Senha" placeholder="Senha">
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Data Inicial</label>
-        <input type="date" class="form-control" name="dataini" placeholder="Data Inicial">
+        <input type="date" class="form-control" name="DTM_Inicio" placeholder="Data Inicial">
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Data Final</label>
-        <input type="date" class="form-control" name="datafin" placeholder="Data Final">
+        <input type="date" class="form-control" name="DTM_Fim" placeholder="Data Final">
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Grupo</label>
         
         <select name="listGrupo">
             {foreach from=$listGrupo item=row}
-            <option value="">{$row.DSC_Descricao}</option>
+            <option name="ID_SEG_Grupo" value="{$row.ID_Grupo}">{$row.DSC_Descricao}</option>
             {/foreach}
         </select>
-        
     </div>
-    <button type="submit" class="btn" name="Cadastrar" value="Cadastrar">Submit</button>
+    <button type="submit" class="btn" name="Cadastrar" value="Cadastrar">Cadastrar</button>
 </form>
 {include file="./Template/footer.html"}
