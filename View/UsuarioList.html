@@ -23,7 +23,7 @@
             <td>{$row.DSC_Descricao}</td>
             <td>
                 <a href="?alt={$row.ID_Usuario}"><button class="btn">Alterar</button></a> 
-                <a href="?del={$row.ID_Usuario}"><button class="btn">Excluir</button></a>
+                <a href="?del={$row.ID_Usuario}&del2={$row.ID_Grupo}"><button class="btn">Excluir</button></a>
             </td>
         </tr>
         {/foreach}
