@@ -21,4 +21,3 @@ if (isset($_GET['del'])) {
 
 $smarty->assign("lista", $user->selectInnerGrupo());
 
-$smarty->display('./View/UsuarioList.html');
