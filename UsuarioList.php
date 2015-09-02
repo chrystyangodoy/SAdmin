@@ -11,12 +11,8 @@ $user = new aUsuario();
 
 if (isset($_GET['del'])) {
     $user->setID_Usuario($_GET['del']);
-    
-    if ($user->delete()) {
-        echo "Registro excluído com sucesso!";
-    } else {
-        echo("Erro na excluído!");
-    }
+    $user->delete();
+
 }
 
 $smarty->assign("lista", $user->selectInnerGrupo());

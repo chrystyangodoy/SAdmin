@@ -15,7 +15,7 @@ class mUsuario extends dbConnection {
     }
 
     public function getID_Usuario() {
-        $this->ID_Usuario;
+        return $this->ID_Usuario;
     }
 
     public function setDSC_Login($DSC_Login) {
