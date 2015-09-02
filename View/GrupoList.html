@@ -1,0 +1,30 @@
+{include file="./Template/header.html"}
+
+<div>
+    <a href="CadastroGrupo.php"><button class="btn">Novo</button></a>
+    <table id="myTable" border="1" cellpadding="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody id="myTabContent">
+        {foreach from=$lista item=row}
+        <tr >
+            <td>{$row.ID_Grupo}</td>
+            <td>{$row.DSC_Nome}</td>
+            <td>{$row.DSC_Descricao}</td>
+            <td>
+                <a href="?alt={$row.ID_Grupo}"><button class="btn">Alterar</button></a> 
+                <a href="?del={$row.ID_Grupo}"><button class="btn">Excluir</button></a>
+            </td>
+        </tr>
+        {/foreach}
+    </tbody>
+</table>
+</div>
+
+{include file="./Template/footer.html"}
