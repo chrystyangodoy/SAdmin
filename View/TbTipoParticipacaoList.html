@@ -1,0 +1,31 @@
+{include file="./Template/header.html"}
+<div class="row">
+    <a href="CadastroUsuario.php"><button class="btn">Novo</button></a>
+</div>
+<div class="row">
+    <table id="myTable" class="table table-striped table-bordered" >
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="myTabContent">
+            {foreach from=$lista item=row}
+            <tr >
+                <td>{$row.COD_Tipo_Participacao}</td>
+                <td>{$row.DSC_Nome}</td>
+                <td>{$row.DSC_Descricao}</td>
+                <td>
+                    <a href="?alt={$row.COD_Tipo_Participacao}"><button class="btn">Alterar</button></a> 
+                    <a href="?exc={$row.COD_Tipo_Participacao}"><button class="btn">Excluir</button></a> 
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</div>
+
+{include file="./Template/footer.html"}

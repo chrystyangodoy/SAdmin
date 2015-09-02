@@ -1,6 +1,6 @@
 <?php
 
-require './model/mTbTipoParticipacao';
+require './model/mTbTipoParticipacao.php';
 
 class aTbTipoParticipacao extends mTbTipoParticipacao {
 
