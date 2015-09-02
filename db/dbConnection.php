@@ -26,5 +26,12 @@ class dbConnection extends configs {
         $stm->execute();
         return $stm->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public function RunLog($sql) {
+        $stm = $this->Connect()->prepare($sql);
+        $stm->execute();
+        //return $stm->execute();
+        return $stm->fetch(PDO::FETCH_ASSOC);
+    }
 
 }
