@@ -6,7 +6,6 @@ require ('./actions/aGrupoUsuario.php');
 $grupo = new aGrupoUsuario();
 $TpPart = new aUsuario();
 
-
 if(isset($_POST['Cadastrar'])){
     $TpPart->setDSC_Login($_POST['DSC_Login']);
     $TpPart->setDSC_Senha($_POST['DSC_Senha']);
