@@ -3,8 +3,11 @@ require_once 'smarty.php';
 require_once './actions/aUsuario.php';
 $user = new aUsuario();
 
-//$smarty -> assign("lista",$user->select()); 
-$smarty -> assign("lista",$user->selectInnerGrupo());
-//$smarty->display('./Login/login.html');
+if(isset($_GET['del'])){
+    $user->setID_Usuario($_GET['del']);
+    $user->delete();
+}
 
-$smarty->display('./View/usuario.html');
+$smarty -> assign("lista",$user->selectInnerGrupo());
+
+$smarty->display('./View/UsuarioList.html');

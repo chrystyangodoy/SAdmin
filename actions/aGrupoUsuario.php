@@ -1,6 +1,6 @@
 <?php
 
-require '../model/mGrupoUsuario.php';
+require './model/mGrupoUsuario.php';
 
 class aGrupoUsuario extends mGrupoUsuario{
     protected $sqlInsert = "INSERT INTO seg_grupo(ID_Grupo, DSC_Nome, DSC_Descricao) VALUES ('%s','%s','%s')";

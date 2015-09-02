@@ -30,4 +30,3 @@ class dbConnection extends configs{
         return $stm->fetch();
     }
 }
-

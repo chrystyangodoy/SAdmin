@@ -8,10 +8,11 @@
             <th>Descrição</th>
             <th>Data Inicio</th>
             <th>Data Fim</th>
-            <th>Descricao_Grupo</th>
+            <th>Descrição Grupo</th>
             <th>Ações</th>
         </tr>
     </thead>
+    <a href="CadastroUsuario.php"><button class="btn">Novo</button></a>
     <tbody id="myTabContent">
         {foreach from=$lista item=row}
         <tr >
@@ -20,7 +21,10 @@
             <td>{$row.DTM_Inicio}</td>
             <td>{$row.DTM_Fim}</td>
             <td>{$row.DSC_Descricao}</td>
-            <td>Incluir | Alterar | Excluir</td>
+            <td>
+                <a href="?alt={$row.ID_Usuario}"><button class="btn">Alterar</button></a> 
+                <a href="?exc={$row.ID_Usuario}"><button class="btn">Excluir</button></a> 
+            </td>
         </tr>
         {/foreach}
     </tbody>
