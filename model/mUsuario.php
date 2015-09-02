@@ -35,27 +35,27 @@ class mUsuario extends dbConnection {
     }
 
     public function setDTM_Inicio($DTM_Inicio) {
-        $this->DTM_Inicio = $this->dateToUS($DTM_Inicio);
+        $this->DTM_Inicio;// = $this->dateToUS($DTM_Inicio);
     }
 
     public function getDTM_Inicio($us = false) {
-        if ($us) {
+        //if ($us) {
             return $this->DTM_Inicio;
-        } else {
-            return $this->dateToBR(DTM_Inicio);
-        }
+        //} else {
+        //    return $this->dateToBR(DTM_Inicio);
+       // }
     }
 
     public function setDTM_Fim($DTM_Fim) {
-        $this->DTM_Fim = $this->dateToUS($DTM_Fim);
+        $this->DTM_Fim;// = $this->dateToUS($DTM_Fim);
     }
 
     public function getDTM_Fim($us = false) {
-        if ($us) {
+     //   if ($us) {
             return $this->DTM_Fim;
-        } else {
-            return $this->dateToBR(DTM_Fim);
-        }
+    //    } else {
+    //        return $this->dateToBR(DTM_Fim);
+    //    }
     }
 
     public function setID_SEG_Grupo($ID_SEG_Grupo) {

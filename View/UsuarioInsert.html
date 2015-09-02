@@ -20,9 +20,9 @@
     <div class="form-group">
         <label for="exampleInputEmail1">Grupo</label>
         
-        <select name="listGrupo">
+        <select name="ID_SEG_Grupo">
             {foreach from=$listGrupo item=row}
-            <option name="ID_SEG_Grupo" value="{$row.ID_Grupo}">{$row.DSC_Descricao}</option>
+            <option value="{$row.ID_Grupo}">{$row.DSC_Descricao}</option>
             {/foreach}
         </select>
     </div>
