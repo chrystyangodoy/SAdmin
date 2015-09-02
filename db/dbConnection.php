@@ -26,6 +26,7 @@ class dbConnection extends configs{
     
     public function RunLogin($sql){
         $stm = $this->Connect()->prepare($sql);
-        return $stm->execute();
+        $stm->execute();
+        return $stm->fetch();
     }
 }
