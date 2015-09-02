@@ -23,7 +23,7 @@ if (isset($_POST['Login'])) {
 	unset ($_SESSION['senha']);
         
         echo 'Usuário ou Senha incorretos!';
-        //  header('location:index.php');
+          header('location:index.php');
     }
 } else {
 

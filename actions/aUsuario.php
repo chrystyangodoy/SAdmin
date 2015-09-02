@@ -56,9 +56,8 @@ class aUsuario extends mUsuario {
     }
 
     public function login($login, $senha) {
-        $sql = $this->select(sprintf("and DSC_Login='%s' and DSC_Senha=md5('%s')", $login, $senha));
-        return $sql;
-        //return $this->RunQuery($sql);
+        $sql = $this->select(sprintf("and DSC_Login=%s and DSC_Senha=md5(%s)", $login, $senha));
+        return $this;
     }
 
 }
