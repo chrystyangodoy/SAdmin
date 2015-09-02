@@ -2,7 +2,7 @@
 
 require_once 'smarty.php';
 require_once './actions/aUsuario.php';
-$TpPart = new aUsuario();
+$user = new aUsuario();
 
 if (isset($_GET['del'])) {
     $user->setID_Usuario($_GET['del']);

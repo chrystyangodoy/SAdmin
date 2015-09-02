@@ -3,7 +3,7 @@ require_once 'smarty.php';
 
 require ('./actions/aUsuario.php');
 require ('./actions/aGrupoUsuario.php');
-$grupo = new aGrupoUsuario();
+$TpPart = new aGrupoUsuario();
 $TpPart = new aUsuario();
 
 if(isset($_POST['Cadastrar'])){
@@ -17,6 +17,6 @@ if(isset($_POST['Cadastrar'])){
 }else {
     echo "Não foi possível inserir usuário!";
 }
-$smarty -> assign("listGrupo",$grupo->select());
+$smarty -> assign("listGrupo",$TpPart->select());
 
 $smarty->display('./View/UsuarioInsert.html');

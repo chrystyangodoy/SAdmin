@@ -4,7 +4,7 @@ require './model/mTbTipoParticipacao.php';
 
 class aTbTipoParticipacao extends mTbTipoParticipacao {
 
-    protected $sqlInsert = "INSERT INTO tb_tipo_participacao ( DSC_Nome, DSC_Descricao)  VALUES ('%s','%s','%s')";
+    protected $sqlInsert = "INSERT INTO tb_tipo_participacao ( DSC_Nome, DSC_Descricao)  VALUES ('%s','%s')";
     protected $sqlUpdate = "UPDATE tb_tipo_participacao SET DSC_Nome='%s',DSC_Descricao = '%s' WHERE COD_Tipo_Participacao = '%s'";
     protected $sqlDelete = "DELETE FROM tb_tipo_participacao WHERE COD_Tipo_Participacao = '%s'";
     protected $sqlSelect = "select * from tb_tipo_participacao where 1=1 %s %s";
