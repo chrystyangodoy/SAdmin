@@ -1,5 +1,5 @@
 <?php
-require './db/dbConnection.php';
+require_once './db/dbConnection.php';
 
 class mGrupoUsuario extends dbConnection {
     private $ID_Grupo;

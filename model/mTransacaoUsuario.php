@@ -1,6 +1,6 @@
 <?php
 
-require '../db/dbConnection.php';
+require_once '../db/dbConnection.php';
 
 class mTransUsuario extends dbConnection {
 
