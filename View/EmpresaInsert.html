@@ -1,0 +1,52 @@
+{include file="./Template/header.html"}
+
+<form id="Cadastrar" form method="post">
+    <div class="form-group">
+        <label>CNPJ</label>
+        <input type="text" class="form-control" name="COD_CNPJ" placeholder="Código CNPJ">
+    </div>
+    <div class="form-group">
+        <label >Razão Social</label>
+        <input type="text" class="form-control"  name="DSC_RazaoSocial" placeholder="Razão Social">
+    </div>
+    <div class="form-group">
+        <label >Endereço</label>
+        <input type="text" class="form-control" name="DSC_Endereco" placeholder="Endereço">
+    </div>
+    <div class="form-group">
+        <label>Bairro</label>
+        <input type="text" class="form-control" name="DSC_Bairro" placeholder="Bairro">
+    </div>
+    <div class="form-group">
+        <label >Cidade</label>
+        <input type="text" class="form-control" name="DSC_Cidade" placeholder="Cidade">
+    </div>
+
+    <div class="form-group">
+        <label >CEP</label>
+        <input type="text" class="form-control" name="NUM_CEP" placeholder="CEP">
+    </div>
+    <div class="form-group">
+        <label >Inscrição Estadual</label>
+        <input type="text" class="form-control" name="NUM_InscricaoEstadual" placeholder="Inscrição Estadual">
+    </div>
+    <div class="form-group">
+        <label >Telefone</label>
+        <input type="text" class="form-control" name="NUM_Fone" placeholder="Nº Telefone">
+    </div>
+    <div class="form-group">
+        <label >Nº Fax</label>
+        <input type="text" class="form-control" name="NUM_FAX" placeholder="Nº Fax">
+    </div>
+    <div class="form-group">
+        <label >Email</label>
+        <input type="text" class="form-control" name="DSC_EMAIL" placeholder="Email">
+    </div>
+    <div class="form-group">
+        <label >Estado</label>
+        <input type="text" class="form-control" name="COD_TipoEstado" placeholder="Estado">
+    </div>
+    <button type="submit" class="btn" name="Cadastrar" value="Cadastrar">Cadastrar</button>    
+</form>
+
+{include file="./Template/footer.html"}
