@@ -1,4 +1,25 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-03 20:28:21
+         compiled from "C:\wamp\www\SAdmin\View\Template\header.html" */ ?>
+<?php /*%%SmartyHeaderCode:3108455e891452806a0-29829466%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '091dc6240eabfe904f8102b47a1f220689e69477' => 
+    array (
+      0 => 'C:\\wamp\\www\\SAdmin\\View\\Template\\header.html',
+      1 => 1441303658,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '3108455e891452806a0-29829466',
+  'function' => 
+  array (
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_55e8914528c228_96428785',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_55e8914528c228_96428785')) {function content_55e8914528c228_96428785($_smarty_tpl) {?><!DOCTYPE html>
 <html>
     <head>
 
@@ -21,29 +42,51 @@
         <link href="./DataTables-1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- fancybox 1.3.4 -->
-        <script src="./View/fancybox/jquery-1.4.3.min.js" type="text/javascript"></script>
-        <script src="./View/fancybox/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
+        <?php echo '<script'; ?>
+ src="./View/fancybox/jquery-1.4.3.min.js" type="text/javascript"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="./View/fancybox/jquery.fancybox-1.3.4.pack.js" type="text/javascript"><?php echo '</script'; ?>
+>
         <link href="./View/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" media="screen"/>
         <!-- Arquivo para Abrir fancybox Próprio-->
-        <script src="./View/general.js" type="text/javascript"></script>
+        <?php echo '<script'; ?>
+ src="./View/general.js" type="text/javascript"><?php echo '</script'; ?>
+>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- jQuery -->
-        <script src="js/jquery.js"></script>
+        <?php echo '<script'; ?>
+ src="js/jquery.js"><?php echo '</script'; ?>
+>
         <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+        <?php echo '<script'; ?>
+ src="js/bootstrap.min.js"><?php echo '</script'; ?>
+>
         <!-- Morris Charts JavaScript 
-        <script src="js/plugins/morris/raphael.min.js"></script>
-        <script src="js/plugins/morris/morris.min.js"></script>
-        <script src="js/plugins/morris/morris-data.js"></script>
+        <?php echo '<script'; ?>
+ src="js/plugins/morris/raphael.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="js/plugins/morris/morris.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="js/plugins/morris/morris-data.js"><?php echo '</script'; ?>
+>
         -->
         <!-- Custom JQuery -->
-        <script src="./DataTables-1.10.9/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <?php echo '<script'; ?>
+ src="./DataTables-1.10.9/js/jquery.dataTables.min.js" type="text/javascript"><?php echo '</script'; ?>
+>
 
 
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <?php echo '<script'; ?>
+ src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"><?php echo '</script'; ?>
+>
+            <?php echo '<script'; ?>
+ src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"><?php echo '</script'; ?>
+>
         <![endif]-->
     </head>
     <body>
@@ -115,4 +158,4 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
-                            <div class="panel-body">
+                            <div class="panel-body"><?php }} ?>
