@@ -3,7 +3,9 @@
 require_once 'smarty.php';
 
 require ('./actions/aBsc_Participante.php');
+require_once './actions/aBsc_Empresa.php';
 $partic = new aBsc_Participante();
+$emp = new aBsc_Empresa();
 
 if (isset($_POST['Cadastrar'])) {
     $partic->setDSC_Login($_POST['ID_Participante']);
@@ -28,5 +30,6 @@ if (isset($_POST['Cadastrar'])) {
 } else {
     echo "Não foi possível inserir participante!";
 }
+$smarty -> assign("listEmp",$emp->select());
 
 $smarty->display('./View/ParticipanteInsert.html');

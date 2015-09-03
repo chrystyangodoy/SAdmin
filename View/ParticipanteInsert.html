@@ -68,7 +68,11 @@
     </div>
     <div class="form-group">
         <label>Empresa</label>
-        <input type="text" class="form-control" name="ID_BSC_Empresa" placeholder="Empresa">
+        <select name="ID_BSC_Empresa">
+            {foreach from=$listEmp item=row}
+            <option value="{$row.ID_Empresa}">{$row.DSC_RazaoSocial}</option>
+            {/foreach}
+        </select>
     </div>
     <div class="form-group">
         <label>Profissão</label>
