@@ -1,0 +1,52 @@
+{include file="./Template/header.html"}
+
+<form id="Salvar" form method="post">
+    <div class="form-group">
+        <label>CNPJ</label>
+        <input type="text" class="form-control" name="COD_CNPJ" value="{regEmp.COD_CNPJ}" placeholder="Código CNPJ">
+    </div>
+    <div class="form-group">
+        <label >Razão Social</label>
+        <input type="text" class="form-control"  name="DSC_RazaoSocial" value="{regEmp.DSC_RazaoSocial}" placeholder="Razão Social">
+    </div>
+    <div class="form-group">
+        <label >Endereço</label>
+        <input type="text" class="form-control" name="DSC_Endereco" value="{regEmp.DSC_Endereco}" placeholder="Endereço">
+    </div>
+    <div class="form-group">
+        <label>Bairro</label>
+        <input type="text" class="form-control" name="DSC_Bairro" value="{regEmp.DSC_Bairro}" placeholder="Bairro">
+    </div>
+    <div class="form-group">
+        <label >Cidade</label>
+        <input type="text" class="form-control" name="DSC_Cidade" value="{regEmp.DSC_Cidade}" placeholder="Cidade">
+    </div>
+
+    <div class="form-group">
+        <label >CEP</label>
+        <input type="text" class="form-control" name="NUM_CEP" value="{regEmp.NUM_CEP}" placeholder="CEP">
+    </div>
+    <div class="form-group">
+        <label >Inscrição Estadual</label>
+        <input type="text" class="form-control" name="NUM_InscricaoEstadual" value="{regEmp.NUM_InscricaoEstadual}" placeholder="Inscrição Estadual">
+    </div>
+    <div class="form-group">
+        <label >Telefone</label>
+        <input type="text" class="form-control" name="NUM_Fone" value="{regEmp.NUM_Fone}" placeholder="Nº Telefone">
+    </div>
+    <div class="form-group">
+        <label >Nº Fax</label>
+        <input type="text" class="form-control" name="NUM_FAX" value="{regEmp.NUM_FAX}" placeholder="Nº Fax">
+    </div>
+    <div class="form-group">
+        <label >Email</label>
+        <input type="text" class="form-control" name="DSC_EMAIL" value="{regEmp.DSC_EMAIL}" placeholder="Email">
+    </div>
+    <div class="form-group">
+        <label >Estado</label>
+        <input type="text" class="form-control" name="COD_TipoEstado" value="{regEmp.COD_TipoEstado}" placeholder="Estado">
+    </div>
+    <button type="submit" class="btn" name="Salvar" value="Salvar">Salvar</button>    
+</form>
+
+{include file="./Template/footer.html"}
