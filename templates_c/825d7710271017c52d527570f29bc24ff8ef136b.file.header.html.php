@@ -1,4 +1,25 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-03 22:22:10
+         compiled from "C:\xampp\htdocs\SAdmin\View\Template\header.html" */ ?>
+<?php /*%%SmartyHeaderCode:1754955e8a927580b78-47002233%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '825d7710271017c52d527570f29bc24ff8ef136b' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\SAdmin\\View\\Template\\header.html',
+      1 => 1441311724,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1754955e8a927580b78-47002233',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_55e8a927589f42_13178013',
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_55e8a927589f42_13178013')) {function content_55e8a927589f42_13178013($_smarty_tpl) {?><!DOCTYPE html>
 <html>
     <head>
 
@@ -21,36 +42,60 @@
         <link href="./DataTables-1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
         <!-- fancybox 1.3.4 -->
-        <script src="./View/fancybox/jquery-1.4.3.min.js" type="text/javascript"></script>
-        <script src="./View/fancybox/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
+        <?php echo '<script'; ?>
+ src="./View/fancybox/jquery-1.4.3.min.js" type="text/javascript"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="./View/fancybox/jquery.fancybox-1.3.4.pack.js" type="text/javascript"><?php echo '</script'; ?>
+>
         <link href="./View/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" media="screen"/>
         <!-- Arquivo para Abrir fancybox Próprio-->
-        <script src="./View/general.js" type="text/javascript"></script>
+        <?php echo '<script'; ?>
+ src="./View/general.js" type="text/javascript"><?php echo '</script'; ?>
+>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- jQuery -->
-        <script src="js/jquery.js"></script>
+        <?php echo '<script'; ?>
+ src="js/jquery.js"><?php echo '</script'; ?>
+>
         <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+        <?php echo '<script'; ?>
+ src="js/bootstrap.min.js"><?php echo '</script'; ?>
+>
         <!-- Morris Charts JavaScript 
-        <script src="js/plugins/morris/raphael.min.js"></script>
-        <script src="js/plugins/morris/morris.min.js"></script>
-        <script src="js/plugins/morris/morris-data.js"></script>
+        <?php echo '<script'; ?>
+ src="js/plugins/morris/raphael.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="js/plugins/morris/morris.min.js"><?php echo '</script'; ?>
+>
+        <?php echo '<script'; ?>
+ src="js/plugins/morris/morris-data.js"><?php echo '</script'; ?>
+>
         -->
         <!-- Custom JQuery -->
-        <script src="./DataTables-1.10.9/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <?php echo '<script'; ?>
+ src="./DataTables-1.10.9/js/jquery.dataTables.min.js" type="text/javascript"><?php echo '</script'; ?>
+>
 
 
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <?php echo '<script'; ?>
+ src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"><?php echo '</script'; ?>
+>
+            <?php echo '<script'; ?>
+ src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"><?php echo '</script'; ?>
+>
         <![endif]-->
     </head>
     <body>
-        <?php
+        <?php echo '<?php'; ?>
+
         session_start();
         echo 'Bem Vindo '.$_SESSION['Username'].'!';
-        ?>
+        <?php echo '?>'; ?>
+
         <div id="wrapper">
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <!--Botão Home Administração-->
@@ -119,4 +164,4 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
-                            <div class="panel-body">
+                            <div class="panel-body"><?php }} ?>

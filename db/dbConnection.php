@@ -8,12 +8,17 @@ class dbConnection extends configs {
     private $senha = '';
     private $host = 'localhost';
     private $dbname = 'Siga_web';
+
     //private $host = '192.168.1.59';
     //private $dbname = 'Siga-web';
 
     private function Connect() {
-        $conn = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->senha);
-        return $conn;
+        try {
+            $conn = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->senha);
+        return $conn;    
+        } catch (Exception $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
     }
 
     //Executa uma query. Retorna a quantidade de linha executada(True).
@@ -28,7 +33,7 @@ class dbConnection extends configs {
         $stm->execute();
         return $stm->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function RunLog($sql) {
         $stm = $this->Connect()->prepare($sql);
         $stm->execute();
