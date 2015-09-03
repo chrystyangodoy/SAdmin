@@ -4,10 +4,8 @@ require './model/mEvt_Evento.php';
 
 class aEvt_Evento extends mEvt_Evento {
 
-    protected $sqlInsert = "INSERT INTO evt_evento(DSC_Nome, DSC_Presidente, DT_Inicio, DT_Fim, COD_CNPJ_Promotora, DSC_Nome_Promotora, DSC_Presidente_Promotora, DSC_Endereco_Promotora, NUM_CEP_Promotora, DSC_Cidade_Promotora, NUM_Fone_Promotora, NUM_FAX_Promotora, DSC_EMAIL_Promotora, QTD_CargaHorariaMinima, ID_BSC_Local_Evento, COD_Tipo_Estado_promotora) "
-            . "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
-    protected $sqlUpdate = "update evt_evento set DSC_Nome= '%s', DSC_Presidente= '%s', DT_Inicio= '%s', DT_Fim= '%s', COD_CNPJ_Promotora= '%s', DSC_Nome_Promotora= '%s', DSC_Presidente_Promotora= '%s', DSC_Endereco_Promotora= '%s', NUM_CEP_Promotora= '%s', DSC_Cidade_Promotora= '%s', NUM_Fone_Promotora= '%s', NUM_FAX_Promotora= '%s', DSC_EMAIL_Promotora= '%s', QTD_CargaHorariaMinima= '%s', ID_BSC_Local_Evento= '%s', COD_Tipo_Estado_promotora= '%s'"
-            . " where ID_EVT = '%s'";
+    protected $sqlInsert = "INSERT INTO evt_evento(DSC_Nome, DSC_Presidente, DT_Inicio, DT_Fim, COD_CNPJ_Promotora, DSC_Nome_Promotora, DSC_Presidente_Promotora, DSC_Endereco_Promotora, NUM_CEP_Promotora, DSC_Cidade_Promotora, NUM_Fone_Promotora, NUM_FAX_Promotora, DSC_EMAIL_Promotora, QTD_CargaHorariaMinima, ID_BSC_Local_Evento, COD_Tipo_Estado_promotora) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
+    protected $sqlUpdate = "update evt_evento set DSC_Nome= '%s', DSC_Presidente= '%s', DT_Inicio= '%s', DT_Fim= '%s', COD_CNPJ_Promotora= '%s', DSC_Nome_Promotora= '%s', DSC_Presidente_Promotora= '%s', DSC_Endereco_Promotora= '%s', NUM_CEP_Promotora= '%s', DSC_Cidade_Promotora= '%s', NUM_Fone_Promotora= '%s', NUM_FAX_Promotora= '%s', DSC_EMAIL_Promotora= '%s', QTD_CargaHorariaMinima= '%s', ID_BSC_Local_Evento= '%s', COD_Tipo_Estado_promotora= '%s' where ID_EVT = '%s'";
     protected $sqlDelete = "delete from evt_evento where ID_EVT = '%s'";
     protected $sqlSelect = "select * from evt_evento where 1=1 %s %s";
 
