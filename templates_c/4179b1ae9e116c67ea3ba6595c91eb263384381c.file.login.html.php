@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-03 22:10:11
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-03 22:28:23
          compiled from ".\View\login.html" */ ?>
 <?php /*%%SmartyHeaderCode:1784755e8a92332fb56-35262080%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4179b1ae9e116c67ea3ba6595c91eb263384381c' => 
     array (
       0 => '.\\View\\login.html',
-      1 => 1441310517,
+      1 => 1441312101,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.21-dev',
   'unifunc' => 'content_55e8a923371782_91615851',
+  'variables' => 
+  array (
+    'msglogado' => 0,
+  ),
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_55e8a923371782_91615851')) {function content_55e8a923371782_91615851($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -72,9 +76,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 <div class="header">
                     <!--TITLE-->
                     <h1>SIGA-WEB Login</h1>
+                    <h5><?php echo $_smarty_tpl->tpl_vars['msglogado']->value;?>
+</h5>
                     <!--END TITLE-->
                     <!--DESCRIPTION-->
-                    <span>Entre com seu nome de usuário e senha.</span><!--END DESCRIPTION-->
+                    <br><span>Entre com seu nome de usuário e senha.</span></br><!--END DESCRIPTION-->
                 </div>
                 <!--END HEADER-->
 

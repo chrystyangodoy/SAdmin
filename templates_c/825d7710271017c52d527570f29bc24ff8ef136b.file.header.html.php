@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-03 22:22:10
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-03 22:33:13
          compiled from "C:\xampp\htdocs\SAdmin\View\Template\header.html" */ ?>
 <?php /*%%SmartyHeaderCode:1754955e8a927580b78-47002233%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '825d7710271017c52d527570f29bc24ff8ef136b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\SAdmin\\View\\Template\\header.html',
-      1 => 1441311724,
+      1 => 1441312390,
       2 => 'file',
     ),
   ),
@@ -90,12 +90,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <![endif]-->
     </head>
     <body>
-        <?php echo '<?php'; ?>
-
-        session_start();
-        echo 'Bem Vindo '.$_SESSION['Username'].'!';
-        <?php echo '?>'; ?>
-
         <div id="wrapper">
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <!--Botão Home Administração-->
