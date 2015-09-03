@@ -76,7 +76,11 @@
     </div>
     <div class="form-group">
         <label>Profissão</label>
-        <input type="text" class="form-control" name="ID_BSC_Profissao" placeholder="Profissão">
+        <select name="ID_BSC_Profissao">
+        {foreach from=$listProf item=row}
+        <option value="{$row.ID_Profissao}">{$row.DSC_Nome}</option>
+        {/foreach}
+        </select>
     </div>
     <button type="submit" class="btn" name="Cadastrar" value="Cadastrar">Cadastrar</button>    
 </form>

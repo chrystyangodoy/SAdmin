@@ -2,7 +2,7 @@
 
 require './model/mBsc_Profissao.php';
 
-class aBsc_Empresa extends mBsc_Profissao {
+class aBsc_Profissao extends mBsc_Profissao {
 
     protected $sqlInsert = "INSERT INTO bsc_profissao(DSC_Nome, DSC_Descricao) VALUES ('%s','%s')";
     protected $sqlUpdate = "UPDATE bsc_profissao set DSC_Nome= '%s', DSC_Descricao= '%s' WHERE ID_Profissao = '%s'";

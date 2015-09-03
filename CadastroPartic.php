@@ -4,8 +4,10 @@ require_once 'smarty.php';
 
 require ('./actions/aBsc_Participante.php');
 require_once './actions/aBsc_Empresa.php';
+require_once './actions/aBsc_Profissao.php';
 $partic = new aBsc_Participante();
 $emp = new aBsc_Empresa();
+$prof = new aBsc_Profissao();
 
 if (isset($_POST['Cadastrar'])) {
     $partic->setCOD_CPF($_POST['COD_CPF']);
@@ -30,5 +32,6 @@ if (isset($_POST['Cadastrar'])) {
     echo "Não foi possível inserir participante!";
 }
 $smarty -> assign("listEmp",$emp->select());
+$smarty -> assign("listProf",$prof->select());
 
 $smarty->display('./View/ParticipanteInsert.html');

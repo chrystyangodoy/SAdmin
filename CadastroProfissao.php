@@ -14,4 +14,4 @@ if (isset($_POST['Cadastrar'])) {
     echo "Não foi possível inserir Empresa!";
 }
 
-$smarty->display('./View/EmpresaInsert.html');
+$smarty->display('./View/ProfissaoInsert.html');
