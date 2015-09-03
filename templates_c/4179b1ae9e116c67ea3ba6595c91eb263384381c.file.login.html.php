@@ -1,4 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-09-03 19:24:57
+         compiled from ".\View\login.html" */ ?>
+<?php /*%%SmartyHeaderCode:1339355e881feec79f9-92660438%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '4179b1ae9e116c67ea3ba6595c91eb263384381c' => 
+    array (
+      0 => '.\\View\\login.html',
+      1 => 1441301096,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1339355e881feec79f9-92660438',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_55e881fef0dd37_10676405',
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_55e881fef0dd37_10676405')) {function content_55e881fef0dd37_10676405($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
  
@@ -9,9 +30,12 @@
 <link href="./css/styleLogin.css" rel="stylesheet" type="text/css" />
 
 <!--SCRIPTS-->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<?php echo '<script'; ?>
+ type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"><?php echo '</script'; ?>
+>
 <!--Slider-in icons-->
-<script type="text/javascript">
+<?php echo '<script'; ?>
+ type="text/javascript">
 $(document).ready(function() {
 	$(".username").focus(function() {
 		$(".user-icon").css("left","-48px");
@@ -27,7 +51,8 @@ $(document).ready(function() {
 		$(".pass-icon").css("left","0px");
 	});
 });
-</script>
+<?php echo '</script'; ?>
+>
 
 </head>
 <body>
@@ -76,4 +101,4 @@ $(document).ready(function() {
 <!--GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
 
 </body>
-</html>
+</html><?php }} ?>
