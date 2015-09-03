@@ -33,7 +33,7 @@ class aBsc_Empresa extends mBsc_Empresa {
         $rs = $this->select(sprintf("and ID_Empresa='%s'", $this->getID_Empresa()));
         $this->getID_Empresa($rs[0]['ID_Empresa']);
         $this->getID_Empresa($rs[0]['COD_CNPJ']);
-        $this->getID_Empresa($rs[0]['DSC_RazaoSocial']);
+        $this->getDSC_RazaoSocial($rs[0]['DSC_RazaoSocial']);
         $this->getID_Empresa($rs[0]['DSC_Endereco']);
         $this->getID_Empresa($rs[0]['DSC_Bairro']);
         $this->getID_Empresa($rs[0]['DSC_Cidade']);
