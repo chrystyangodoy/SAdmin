@@ -39,7 +39,7 @@ public function setDSC_RazaoSocial($DSC_RazaoSocial) {
     public function getDSC_RazaoSocial() {
         return $this->DSC_RazaoSocial;
     }
-    public function setDSC_DSC_Endereco($DSC_Endereco) {
+    public function setDSC_Endereco($DSC_Endereco) {
         $this->DSC_Endereco = $DSC_Endereco;
     }
 

@@ -4,7 +4,7 @@ require './model/mBsc_Empresa.php';
 
 class aBsc_Empresa extends mBsc_Empresa {
 
-    protected $sqlInsert = "INSERT INTO bsc_empresa(COD_CNPJ, DSC_RazaoSocial, DSC_Endereco, DSC_Bairro, DSC_Cidade, NUM_CEP, NUM_InscricaoEstadual, NUM_Fone, NUM_FAX, DSC_EMAIL, COD_TipoEstado) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s''%s','%s','%s')";
+    protected $sqlInsert = "INSERT INTO bsc_empresa(COD_CNPJ, DSC_RazaoSocial, DSC_Endereco, DSC_Bairro, DSC_Cidade, NUM_CEP, NUM_InscricaoEstadual, NUM_Fone, NUM_FAX, DSC_EMAIL, COD_TipoEstado) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
     protected $sqlUpdate = "update bsc_empresa set COD_CNPJ= '%s', DSC_RazaoSocial= '%s', DSC_Endereco= '%s', DSC_Bairro= '%s', DSC_Cidade= '%s', NUM_CEP= '%s', NUM_InscricaoEstadual= '%s', NUM_Fone= '%s', NUM_FAX= '%s', DSC_EMAIL= '%s', COD_TipoEstado= '%s' where ID_Empresa = '%s'";
     protected $sqlDelete = "delete from bsc_empresa where ID_Empresa = '%s'";
     protected $sqlSelect = "select * from bsc_empresa where 1=1 %s %s";
