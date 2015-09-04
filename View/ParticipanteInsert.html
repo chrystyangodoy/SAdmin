@@ -64,7 +64,7 @@
                         var validacep = /[0-9]{8}/;
 
                         //Valida o formato do CEP.
-                        if (validacep.test(cep)) {
+                        //if (validacep.test(cep)) {
 
                             //Preenche os campos com "..." enquanto consulta webservice.
                             $("#DSC_Endereco").val("...")
@@ -90,12 +90,12 @@
                                     alert("CEP não encontrado.");
                                 }
                             });
-                        } //end if.
-                        else {
+                        //} //end if.
+                       /* else {
                             //cep é inválido.
                             limpa_formulário_cep();
                             alert("Formato de CEP inválido.");
-                        }
+                        }*/
                     } //end if.
                     else {
                         //cep sem valor, limpa formulário.
