@@ -66,36 +66,36 @@
                         //Valida o formato do CEP.
                         //if (validacep.test(cep)) {
 
-                            //Preenche os campos com "..." enquanto consulta webservice.
-                            $("#DSC_Endereco").val("...")
-                            $("#DSC_Bairro").val("...")
-                            $("#DSC_Cidade").val("...")
-                            $("#uf").val("...")
-                            $("#ibge").val("...")
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#DSC_Endereco").val("...")
+                        $("#DSC_Bairro").val("...")
+                        $("#DSC_Cidade").val("...")
+                        $("#uf").val("...")
+                        $("#ibge").val("...")
 
-                            //Consulta o webservice viacep.com.br/
-                            $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
 
-                                if (!("erro" in dados)) {
-                                    //Atualiza os campos com os valores da consulta.
-                                    $("#DSC_Endereco").val(dados.logradouro);
-                                    $("#DSC_Bairro").val(dados.bairro);
-                                    $("#DSC_Cidade").val(dados.localidade);
-                                    $("#uf").val(dados.uf);
-                                    $("#ibge").val(dados.ibge);
-                                } //end if.
-                                else {
-                                    //CEP pesquisado não foi encontrado.
-                                    limpa_formulário_cep();
-                                    alert("CEP não encontrado.");
-                                }
-                            });
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#DSC_Endereco").val(dados.logradouro);
+                                $("#DSC_Bairro").val(dados.bairro);
+                                $("#DSC_Cidade").val(dados.localidade);
+                                $("#uf").val(dados.uf);
+                                $("#ibge").val(dados.ibge);
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                limpa_formulário_cep();
+                                alert("CEP não encontrado.");
+                            }
+                        });
                         //} //end if.
-                       /* else {
-                            //cep é inválido.
-                            limpa_formulário_cep();
-                            alert("Formato de CEP inválido.");
-                        }*/
+                        /* else {
+                         //cep é inválido.
+                         limpa_formulário_cep();
+                         alert("Formato de CEP inválido.");
+                         }*/
                     } //end if.
                     else {
                         //cep sem valor, limpa formulário.
@@ -141,7 +141,7 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <form id="Cadastrar" form method="post">
+                                <form id="Cadastrar" form method="post" action="ParticipanteInsert.php">
                                     <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar">Cadastrar</button>
                                     <a href="index.php" class="btn btn-default">Cancelar</a>
                                     <h3 class="page-header">Dados Pessoais</h3>
