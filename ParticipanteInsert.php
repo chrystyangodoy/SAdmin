@@ -19,7 +19,7 @@ if (isset($_POST['Cadastrar'])) {
     if ($config->validaCPF($cpf)) {
         //verifica se o CPF já foi cadastrado
         if ($partic->selectNotExistsCPF($cpf)) {
-            $partic->setCOD_CPF($_POST['COD_CPF']);
+            $partic->setCOD_CPF($cpf);
             $partic->setCOD_RG($_POST['COD_RG']);
             $partic->setDSC_Nome($_POST['DSC_Nome']);
             $partic->setDSC_Endereco($_POST['DSC_Endereco']);
