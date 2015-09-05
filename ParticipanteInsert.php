@@ -1,6 +1,7 @@
 <?php
 
 if (isset($_POST['Cadastrar'])) {
+    if ($partic->selectExists($_POST['COD_CPF'])==FALSE) {
 
     require_once './config/geraSenha.php';
     require ('./actions/aBsc_Participante.php');
@@ -75,4 +76,5 @@ if (isset($_POST['Cadastrar'])) {
     $smarty->assign("listProf", $prof->select());
 
     $smarty->display('./View/ParticipanteInsert.html');
+}
 }
