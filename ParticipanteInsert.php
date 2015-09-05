@@ -77,3 +77,4 @@ if (isset($_POST['Cadastrar'])) {
 
     $smarty->display('./View/ParticipanteInsert.html');
 }
+}
