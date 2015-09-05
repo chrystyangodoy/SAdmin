@@ -61,7 +61,7 @@ class aBsc_Participante extends mBsc_Participante {
     
     public function selectExists($COD_CPF) {
         $sql = sprintf($this->sqlSelectExist, $COD_CPF);
-        return $this->RunQuery($sql);
+        return $this->RunSelect($sql);
     }
 
 }

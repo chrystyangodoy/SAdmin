@@ -14,7 +14,7 @@ $usu = new aUsuario();
 $gerasenha = new geraSenha();
 
 if (isset($_POST['Cadastrar'])) {
-    if ($partic->selectExists($_POST['COD_CPF']) == 0) {
+    if ($partic->selectExists($_POST['COD_CPF'])==FALSE) {
 
         $partic->setCOD_CPF($_POST['COD_CPF']);
         $partic->setCOD_RG($_POST['COD_RG']);
