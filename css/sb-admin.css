@@ -7,8 +7,13 @@
 /* Global Styles */
 
 body {
-    margin-top: 100px;
-   // background-color: #FFFAF0;
+    font-size: 12px;
+    line-height: 22px;
+    color: #666;
+    border-top: 3px solid #eee;
+    background: #343434 url("./img/back.png") repeat;
+    padding-top: 37px;
+    -webkit-font-smoothing: antialiased;;
 }
 
 @media(min-width:768px) {
@@ -27,8 +32,10 @@ body {
     width: 100%;
     padding: 0;
     background-color: #fff;
-    width: 1024px;
+    max-width: 1024px;
     border-radius: 5px;
+    margin-bottom: 3.428571429rem;
+    box-shadow: 0 2px 6px rgba(100,100,100,0.3);
 }
 
 .huge {
