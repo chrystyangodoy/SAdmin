@@ -20,17 +20,15 @@
         <link href="./css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="./DataTables-1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
-        <!-- fancybox 1.3.4 -->
-        <script src="./View/fancybox/jquery-1.4.3.min.js" type="text/javascript"></script>
-        <script src="./View/fancybox/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
-        <link href="./View/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet" type="text/css" media="screen"/>
+
+        <script src="js/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
         <!-- Arquivo para Abrir fancybox Próprio-->
         <script src="./View/general.js" type="text/javascript"></script>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- jQuery -->
-        <script src="js/jquery.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
         <!-- Morris Charts JavaScript 
         <script src="js/plugins/morris/raphael.min.js"></script>
         <script src="js/plugins/morris/morris.min.js"></script>
@@ -38,74 +36,10 @@
         -->
         <!-- Custom JQuery -->
         <script src="./DataTables-1.10.9/js/jquery.dataTables.min.js" type="text/javascript"></script>
-
-        <script>
-            $(document).ready(function () {
-
-                function limpa_formulário_cep() {
-                    // Limpa valores do formulário de cep.
-                    $("#DSC_Endereco").val("");
-                    $("#DSC_Bairro").val("");
-                    $("#DSC_Cidade").val("");
-                    $("#uf").val("");
-                    $("#ibge").val("");
-                }
-
-                //Quando o campo cep perde o foco.
-                $("#NUM_CEP").blur(function () {
-
-                    //Nova variável "cep" somente com dígitos.
-                    var cep = $(this).val().replace(/\D/g, '');
-
-                    //Verifica se campo cep possui valor informado.
-                    if (cep != "") {
-
-                        //Expressão regular para validar o CEP.
-                        var validacep = /[0-9]{8}/;
-
-                        //Valida o formato do CEP.
-                        //if (validacep.test(cep)) {
-
-                        //Preenche os campos com "..." enquanto consulta webservice.
-                        $("#DSC_Endereco").val("...")
-                        $("#DSC_Bairro").val("...")
-                        $("#DSC_Cidade").val("...")
-                        $("#uf").val("...")
-                        $("#ibge").val("...")
-
-                        //Consulta o webservice viacep.com.br/
-                        $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-
-                            if (!("erro" in dados)) {
-                                //Atualiza os campos com os valores da consulta.
-                                $("#DSC_Endereco").val(dados.logradouro);
-                                $("#DSC_Bairro").val(dados.bairro);
-                                $("#DSC_Cidade").val(dados.localidade);
-                                $("#uf").val(dados.uf);
-                                $("#ibge").val(dados.ibge);
-                            } //end if.
-                            else {
-                                //CEP pesquisado não foi encontrado.
-                                limpa_formulário_cep();
-                                alert("CEP não encontrado.");
-                            }
-                        });
-                        //} //end if.
-                        /* else {
-                         //cep é inválido.
-                         limpa_formulário_cep();
-                         alert("Formato de CEP inválido.");
-                         }*/
-                    } //end if.
-                    else {
-                        //cep sem valor, limpa formulário.
-                        limpa_formulário_cep();
-                    }
-                });
-            });
-        </script>
-
-
+        <script src="./js/jquery.mask.js" type="text/javascript"></script>
+        <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="./js/additional-methods.min.js" type="text/javascript"></script>
+        <script src="./js/ParticipanteInsert.js" type="text/javascript"></script>
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -128,7 +62,7 @@
             </nav>
 
 
-            <div id="page-wrapper" class="col-lg-12 ">
+            <div id="page-wrapper" class="container">
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -141,13 +75,15 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <form id="Cadastrar" form method="post" action="ParticipanteInsert.php">
+                                
+                                
+                                <form id="Cadastrar" form method="post" action="">
                                     <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar">Cadastrar</button>
                                     <a href="index.php" class="btn btn-default">Cancelar</a>
                                     <h3 class="page-header">Dados Pessoais</h3>
                                     <div class="form-group col-lg-12 row">
                                         <label >Nome</label>
-                                        <input type="text" class="form-control col-lg-12" name="DSC_Nome" placeholder="Nome">
+                                        <input type="text" class="form-control col-lg-12" name="DSC_Nome" placeholder="Nome" required>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
@@ -156,7 +92,7 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>CPF</label>
-                                            <input type="text" class="form-control" name="COD_CPF" placeholder="CPF">
+                                            <input type="text" class="form-control" name="COD_CPF" placeholder="CPF" id="COD_CPF">
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label >RG</label>
@@ -166,7 +102,7 @@
                                     <h3 class="page-header">Endereço</h3>
                                     <div class="form-group col-lg-3 row">
                                         <label >CEP</label>
-                                        <input type="text" id="NUM_CEP" class="form-control" name="NUM_CEP" placeholder="CEP">
+                                        <input type="text" id="NUM_CEP" class="form-control" name="NUM_CEP" id="NUM_CEP" placeholder="CEP">
                                     </div>
                                     <div class="form-group col-lg-3">
                                         <label >Cidade</label>
@@ -187,20 +123,20 @@
                                     <div class="row">
                                         <div class="form-group col-lg-3">
                                             <label >Telefone Residencial</label>
-                                            <input type="text" class="form-control" name="NUM_Fone" placeholder="Telefone">
+                                            <input type="text" class="form-control" name="NUM_Fone" id="NUM_Fone" placeholder="Telefone">
                                         </div>
                                         <div class="form-group col-lg-3">
                                             <label >Celular</label>
-                                            <input type="text" class="form-control" name="NUM_Celular" placeholder="Celular">
+                                            <input type="text" class="form-control" name="NUM_Celular" id="NUM_Celular" placeholder="Celular">
                                         </div>
 
                                         <div class="form-group col-lg-3">
                                             <label >Fax</label>
-                                            <input type="text" class="form-control" name="NUM_FAX" placeholder="Fax">
+                                            <input type="text" class="form-control" name="NUM_FAX" id="NUM_FAX" placeholder="Fax">
                                         </div>
                                         <div class="form-group col-lg-3">
                                             <label >Nª Fax</label>
-                                            <input type="text" class="form-control" name="NUM_FAX_Promotora" placeholder="Nº Fax Promotora">
+                                            <input type="text" class="form-control" name="NUM_FAX_Promotora" id="NUM_FAX_Promotora" placeholder="Nº Fax Promotora">
                                         </div>
                                     </div>
 
