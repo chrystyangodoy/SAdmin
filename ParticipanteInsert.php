@@ -77,4 +77,16 @@ if (isset($_POST['Cadastrar'])) {
 
     $smarty->display('./View/ParticipanteInsert.html');
 }
+}else{
+    require_once './actions/aBsc_Empresa.php';
+    require_once './actions/aBsc_Profissao.php';
+    require_once 'smarty.php';
+
+    $emp = new aBsc_Empresa();
+    $prof = new aBsc_Profissao();
+
+    $smarty->assign("listEmp", $emp->select());
+    $smarty->assign("listProf", $prof->select());
+
+    $smarty->display('./View/ParticipanteInsert.html');
 }
