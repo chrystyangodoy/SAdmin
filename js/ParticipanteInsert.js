@@ -67,13 +67,13 @@ $(document).ready(function () {
     $('#NUM_FAX').mask('(00) 0000-0000');
     $('#NUM_FAX_Promotora').mask('(00) 0000-0000');
     $('#NUM_CEP').mask('00.000-000');
-/*
-    $('#Cadastrar').tooltipster({
-        trigger: 'custom', // default is 'hover' which is no good here
-        onlyOne: false, // allow multiple tips to be open at a time
-        position: 'right'  // display the tips to the right of the element
-    });
-*/
+    /*
+     $('#Cadastrar').tooltipster({
+     trigger: 'custom', // default is 'hover' which is no good here
+     onlyOne: false, // allow multiple tips to be open at a time
+     position: 'right'  // display the tips to the right of the element
+     });
+     */
 
     $('#Cadastrar').validate({
         rules: {
