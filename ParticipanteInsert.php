@@ -1,15 +1,14 @@
 <?php
 
 if (isset($_POST['Cadastrar'])) {
-    if ($partic->selectExists($_POST['COD_CPF'])==FALSE) {
-
+    
     require_once './config/geraSenha.php';
     require ('./actions/aBsc_Participante.php');
     require_once './actions/aUsuario.php';
     require_once './config/configs.php';
 
     $partic = new aBsc_Participante();
-    $usu = new aUsuario();
+    $user = new aUsuario();
     $gerasenha = new geraSenha();
     $config = new configs();
 
@@ -65,19 +64,6 @@ if (isset($_POST['Cadastrar'])) {
 } else {
 
 
-    require_once './actions/aBsc_Empresa.php';
-    require_once './actions/aBsc_Profissao.php';
-    require_once 'smarty.php';
-
-    $emp = new aBsc_Empresa();
-    $prof = new aBsc_Profissao();
-
-    $smarty->assign("listEmp", $emp->select());
-    $smarty->assign("listProf", $prof->select());
-
-    $smarty->display('./View/ParticipanteInsert.html');
-}
-}else{
     require_once './actions/aBsc_Empresa.php';
     require_once './actions/aBsc_Profissao.php';
     require_once 'smarty.php';
