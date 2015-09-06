@@ -1,7 +1,11 @@
 <?php
 
+require_once './smarty.php';
+$msg = "";
+$type = "";
+
 if (isset($_POST['Cadastrar'])) {
-    if ($partic->selectExists($_POST['COD_CPF'])==FALSE) {
+
 
     require_once './config/geraSenha.php';
     require ('./actions/aBsc_Participante.php');
@@ -9,7 +13,7 @@ if (isset($_POST['Cadastrar'])) {
     require_once './config/configs.php';
 
     $partic = new aBsc_Participante();
-    $usu = new aUsuario();
+    $user = new aUsuario();
     $gerasenha = new geraSenha();
     $config = new configs();
 
@@ -52,29 +56,35 @@ if (isset($_POST['Cadastrar'])) {
             $user->insert();
 
             $msg = "Participante inserido com sucesso!";
-            $smarty->assign("msg", $msg);
-            $smarty->display('./View/ParticipanteList.html');
+            $type = "success";
+            /*
+              $smarty->assign("msg", $msg);
+              $smarty->assign("msg", $msg);
+              $smarty->display('./View/ParticipanteList.html');
+             * */
         } else {
             $msg = "CPF já cadastrado!";
-            $smarty->assign("msg", $msg);
+            $type = "error";
+            
         }
     } else {
         $msg = "CPF inválido!";
-        $smarty->assign("msg", $msg);
+        $type = "error";
+        ;
     }
 } else {
 
 
     require_once './actions/aBsc_Empresa.php';
     require_once './actions/aBsc_Profissao.php';
-    require_once 'smarty.php';
+
 
     $emp = new aBsc_Empresa();
     $prof = new aBsc_Profissao();
 
     $smarty->assign("listEmp", $emp->select());
     $smarty->assign("listProf", $prof->select());
-
-    $smarty->display('./View/ParticipanteInsert.html');
 }
-}
+$smarty->assign("msg", $msg);
+$smarty->assign("type", $type);
+$smarty->display('./View/ParticipanteInsert.html');

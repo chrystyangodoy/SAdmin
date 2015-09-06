@@ -45,15 +45,15 @@ $(document).ready(function () {
                     else {
                         //CEP pesquisado não foi encontrado.
                         limpa_formulário_cep();
-                        alert("CEP não encontrado.");
+                        showAlert('error','CEP não encontrado.');
                     }
                 });
             } //end if.
             else {
                 //cep é inválido.
                 limpa_formulário_cep();
-                alert("Formato de CEP inválido.");
-            }
+                showAlert('error','Formato de CEP inválido.');
+           }
         } //end if.
         else {
             //cep sem valor, limpa formulário.
@@ -103,14 +103,19 @@ $(document).ready(function () {
          $(element).tooltipster('hide');
          },*/
         submitHandler: function (form) {
-            var dados = $(form).serialize();
-
+           
+            //var dados = $(form).serialize();
+            
             $.ajax({
                 type: "POST",
                 url: "ParticipanteInsert.php",
                 data: dados,
                 success: function (data)
-                {
+                {if(data == 1){
+                        showAlert('success','Salvo.');
+                }else{
+                    showAlert('error','falha ao salvar.');
+                }
                 }
             });
 

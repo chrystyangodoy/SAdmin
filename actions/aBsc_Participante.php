@@ -59,8 +59,9 @@ class aBsc_Participante extends mBsc_Participante {
     }
 
     public function selectNotExistsCPF($COD_CPF) {
-        $rs = sprintf($this->sqlSelectExist, $COD_CPF);
-        if ($rs[0]['COUNTCPF'] == 0) {
+        $rs = $this->RunSelect(sprintf($this->sqlSelectExist, $COD_CPF));
+        $count = $rs[0]['COUNTCPF'];
+        if ($count == 0) {
             return true;
         } else {
             return false;
