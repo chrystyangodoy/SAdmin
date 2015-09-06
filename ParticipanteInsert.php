@@ -42,17 +42,20 @@ if (isset($_POST['Cadastrar'])) {
             $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
             $partic->insert();
 
-            $data = new DateTime();
-            $datafim = new DateTime();
-            $datafim->modify("+7 day");
-
-            $gerasenha->geraSenha(14);
+            //Gera data incial e final para o cadastro de usuário
+            $datainicial = date("d/m/Y");
+            $datafim = date('d/m/Y', strtotime("+7 days"));
+            //Gera Senha Aleatória
+            $senha = $gerasenha->geraSenha(14);
+            //Gera o grupo padrão para Participantes
+            $grupo = 99;
 
             $user->setDSC_Login($cpf);
-            $user->setDSC_Senha($gerasenha);
-            $user->setDTM_Inicio($data);
+            $user->setDSC_Senha($senha);
+            $user->setDTM_Inicio($datainicial);
             $user->setDTM_Fim($datafim);
-            $user->setID_SEG_Grupo(99);
+            $user->setID_SEG_Grupo($grupo);
+
             $user->insert();
 
             $msg = "Participante inserido com sucesso!";
@@ -85,6 +88,7 @@ if (isset($_POST['Cadastrar'])) {
     $smarty->assign("listEmp", $emp->select());
     $smarty->assign("listProf", $prof->select());
 }
+
 $smarty->assign("msg", $msg);
 $smarty->assign("type", $type);
 $smarty->display('./View/ParticipanteInsert.html');
