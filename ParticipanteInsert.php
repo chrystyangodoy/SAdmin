@@ -1,6 +1,11 @@
 <?php
 
+require_once './smarty.php';
+$msg = "";
+$type = "";
+
 if (isset($_POST['Cadastrar'])) {
+
 
     require_once './config/geraSenha.php';
     require ('./actions/aBsc_Participante.php');
@@ -60,28 +65,36 @@ if (isset($_POST['Cadastrar'])) {
             $envio = $email->email("chrystyangodoy@gmail.com", $email,"Cadastro efetuado com sucesso!", "Seu usuário é ".$cpf." sua senha é ".$senha.".");
             
             $msg = "Participante inserido com sucesso!";
-            $smarty->assign("msg", $msg);
-            $smarty->display('./View/ParticipanteList.html');
+            $type = "success";
+            /*
+              $smarty->assign("msg", $msg);
+              $smarty->assign("msg", $msg);
+              $smarty->display('./View/ParticipanteList.html');
+             * */
         } else {
             $msg = "CPF já cadastrado!";
-            $smarty->assign("msg", $msg);
+            $type = "error";
+            
         }
     } else {
         $msg = "CPF inválido!";
-        $smarty->assign("msg", $msg);
+        $type = "error";
+        ;
     }
 } else {
 
 
     require_once './actions/aBsc_Empresa.php';
     require_once './actions/aBsc_Profissao.php';
-    require_once 'smarty.php';
+
 
     $emp = new aBsc_Empresa();
     $prof = new aBsc_Profissao();
 
     $smarty->assign("listEmp", $emp->select());
     $smarty->assign("listProf", $prof->select());
-
-    $smarty->display('./View/ParticipanteInsert.html');
 }
+
+$smarty->assign("msg", $msg);
+$smarty->assign("type", $type);
+$smarty->display('./View/ParticipanteInsert.html');

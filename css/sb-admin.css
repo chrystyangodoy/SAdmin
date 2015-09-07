@@ -243,3 +243,24 @@ label.error {
     border-color: #ebccd1;
     padding:1px 20px 1px 20px;
 }
+
+#alert {
+    display: none;/* O alerta deve iniciar oculto */
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: fixed;
+    z-index: 999999;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    top: 0;
+}
+
+.alert-error {
+    background-color: #e74c3c;
+}
+
+.alert-success {
+    background-color: #2ecc71;
+}
