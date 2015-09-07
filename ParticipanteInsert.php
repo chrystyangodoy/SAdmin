@@ -14,6 +14,7 @@ if (isset($_POST['Cadastrar'])) {
 
     //limpa cpf
     $cpf = $config->limpaCPF($_POST['COD_CPF']);
+    $email = $_POST['DSC_Email'];
 
     //validação do CPF
     if ($config->validaCPF($cpf)) {
@@ -30,7 +31,7 @@ if (isset($_POST['Cadastrar'])) {
             $partic->setNUM_Celular($_POST['NUM_Celular']);
             $partic->setNUM_FAX($_POST['NUM_FAX']);
             $partic->setDSC_Profissao_Especialidade($_POST['DSC_Profissao_Especialidade']);
-            $partic->setDSC_Email($_POST['DSC_Email']);
+            $partic->setDSC_Email($email);
             $partic->setNUM_Registro($_POST['NUM_Registro']);
             $partic->setCOD_Tipo_Estado($_POST['COD_Tipo_Estado']);
             $partic->setID_BSC_Empresa($_POST['ID_BSC_Empresa']);
@@ -53,6 +54,11 @@ if (isset($_POST['Cadastrar'])) {
 
             $user->insert();
 
+            require_once './config/eMail.php';
+            $email = new eMail();
+            
+            $envio = $email->email("chrystyangodoy@gmail.com", $email,"Cadastro efetuado com sucesso!", "Seu usuário é ".$cpf." sua senha é ".$senha.".");
+            
             $msg = "Participante inserido com sucesso!";
             $smarty->assign("msg", $msg);
             $smarty->display('./View/ParticipanteList.html');
