@@ -45,15 +45,15 @@ $(document).ready(function () {
                     else {
                         //CEP pesquisado não foi encontrado.
                         limpa_formulário_cep();
-                        showAlert('error','CEP não encontrado.');
+                        showAlert('error', 'CEP não encontrado.');
                     }
                 });
             } //end if.
             else {
                 //cep é inválido.
                 limpa_formulário_cep();
-                showAlert('error','Formato de CEP inválido.');
-           }
+                showAlert('error', 'Formato de CEP inválido.');
+            }
         } //end if.
         else {
             //cep sem valor, limpa formulário.
@@ -79,7 +79,7 @@ $(document).ready(function () {
         rules: {
             DSC_Nome: {required: true},
             DSC_Email: {required: true, email: true},
-            COD_CPF: {required: true},
+            COD_CPF: {required: true, cpfValidacao: true, cpfCadastrado: true},
             NUM_CEP: {required: true},
             DSC_Cidade: {required: true},
             DSC_Bairro: {required: true},
@@ -103,23 +103,36 @@ $(document).ready(function () {
          $(element).tooltipster('hide');
          },*/
         submitHandler: function (form) {
-           
+
             //var dados = $(form).serialize();
-            
+
             $.ajax({
                 type: "POST",
                 url: "ParticipanteInsert.php",
                 data: dados,
+                
                 success: function (data)
-                {if(data == 1){
-                        showAlert('success','Salvo.');
-                }else{
-                    showAlert('error','falha ao salvar.');
-                }
+                {
+                    if (data == 1) {
+                        showAlert('success', 'Salvo.');
+                    } else {
+                        showAlert('error', 'falha ao salvar.');
+                    }
                 }
             });
 
             return false;
         }
     });
+    
+    $("#COD_CPF").blur(function(){
+        cpf = $("#COD_CPF").val();
+        get = isCPFCadastrado(cpf);
+        
+        if(get == 0){
+            showAlert('error', 'CPF já Cadastrado');
+        }
+        
+    });
 });
+
