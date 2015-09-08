@@ -6,7 +6,6 @@ $type = "";
 
 if (isset($_POST['Cadastrar'])) {
 
-
     require_once './config/geraSenha.php';
     require ('./actions/aBsc_Participante.php');
     require_once './actions/aUsuario.php';
@@ -39,7 +38,6 @@ if (isset($_POST['Cadastrar'])) {
             $user->setDTM_Fim($datafim);
             $user->setID_SEG_Grupo($grupo);
             $user->insert();
-
             //Retorna o último ID inserido.
             $idLastUser = $user->LoadIDCPF($cpf);
 
@@ -62,10 +60,9 @@ if (isset($_POST['Cadastrar'])) {
             $partic->setID_Usuario($idLastUser);
             $partic->insert();
 
-            require_once './config/eMail.php';
-            $email = new eMail();
-
-            $envio = $email->email("chrystyangodoy@gmail.com", $email, "Cadastro efetuado com sucesso!", "Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
+//            require_once './config/eMail.php';
+//            $email = new eMail();
+//            $envio = $email->email("chrystyangodoy@gmail.com", $email, "Cadastro efetuado com sucesso!", "Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
 
             $msg = "Participante inserido com sucesso!";
             $type = "success";

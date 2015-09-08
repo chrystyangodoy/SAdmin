@@ -40,10 +40,11 @@ class dbConnection extends configs {
         return $stm->fetch(PDO::FETCH_ASSOC);
     }
     
-    public function RunSelectID($sql) {
+    public function RunID($sql) {
         $stm = $this->Connect()->prepare($sql);
         $stm->execute();
-        return $stm->fetch(PDO::FETCH_ASSOC);
+        $id = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return $id;
     }
 
 }

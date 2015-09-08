@@ -40,7 +40,7 @@ class aUsuario extends mUsuario {
 
     public function SelectUserID($where = '') {
         $sql = sprintf($this->sqlSelectID, $where);
-        return $this->RunSelectID($sql);
+        return $this->RunID($sql);
     }
 
     public function selectInnerGrupo($where = '', $order = '') {
@@ -55,12 +55,12 @@ class aUsuario extends mUsuario {
 
     public function load() {
         $rs = $this->select(sprintf("and ID_Usuario='%s'", $this->getUser_ID()));
-        $this->setUser_ID($rs[0]['user_ID']);
-        $this->setUser_ID($rs[0]['login']);
-        $this->setUser_ID($rs[0]['senha']);
-        $this->setUser_ID($rs[0]['dtInicio']);
-        $this->setUser_ID($rs[0]['dtFim']);
-        $this->setUser_ID($rs[0]['grupo']);
+        $this->getUser_ID($rs[0]['user_ID']);
+        $this->getUser_ID($rs[0]['login']);
+        $this->getUser_ID($rs[0]['senha']);
+        $this->getUser_ID($rs[0]['dtInicio']);
+        $this->getUser_ID($rs[0]['dtFim']);
+        $this->getUser_ID($rs[0]['grupo']);
         return $this;
     }
 
@@ -76,8 +76,7 @@ class aUsuario extends mUsuario {
 
     public function LoadIDCPF($CPF) {
         $sql = $this->SelectUserID(sprintf("and DSC_Login='%s'", $CPF));
-        $this->setID_Usuario($sql[0]['user_ID']);
-        return $this;
+        return $sql;
     }
 
 }
