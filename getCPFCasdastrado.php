@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_REQUEST["cpf"])){
+    if(isset($_REQUEST["cpf"])){
     require ('./actions/aBsc_Participante.php');
     require_once './config/configs.php';
     $partic = new aBsc_Participante();

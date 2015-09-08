@@ -25,6 +25,24 @@ if (isset($_POST['Cadastrar'])) {
     if ($config->validaCPF($cpf)) {
         //verifica se o CPF já foi cadastrado
         if ($partic->selectNotExistsCPF($cpf)) {
+            //Gera data incial e final para o cadastro de usuário
+            $datainicial = date("d/m/Y");
+            $datafim = date('d/m/Y', strtotime("+7 days"));
+            //Gera Senha Aleatória
+            $senha = $gerasenha->geraSenha(14);
+            //Gera o grupo padrão para Participantes
+            $grupo = 99;
+
+            $user->setDSC_Login($cpf);
+            $user->setDSC_Senha($senha);
+            $user->setDTM_Inicio($datainicial);
+            $user->setDTM_Fim($datafim);
+            $user->setID_SEG_Grupo($grupo);
+            $user->insert();
+
+            //Retorna o último ID inserido.
+            $idLastUser = $user->LoadIDCPF($cpf);
+
             $partic->setCOD_CPF($cpf);
             $partic->setCOD_RG($_POST['COD_RG']);
             $partic->setDSC_Nome($_POST['DSC_Nome']);
@@ -41,29 +59,14 @@ if (isset($_POST['Cadastrar'])) {
             $partic->setCOD_Tipo_Estado($_POST['COD_Tipo_Estado']);
             $partic->setID_BSC_Empresa($_POST['ID_BSC_Empresa']);
             $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
+            $partic->setID_Usuario($idLastUser);
             $partic->insert();
-
-            //Gera data incial e final para o cadastro de usuário
-            $datainicial = date("d/m/Y");
-            $datafim = date('d/m/Y', strtotime("+7 days"));
-            //Gera Senha Aleatória
-            $senha = $gerasenha->geraSenha(14);
-            //Gera o grupo padrão para Participantes
-            $grupo = 99;
-
-            $user->setDSC_Login($cpf);
-            $user->setDSC_Senha($senha);
-            $user->setDTM_Inicio($datainicial);
-            $user->setDTM_Fim($datafim);
-            $user->setID_SEG_Grupo($grupo);
-
-            $user->insert();
 
             require_once './config/eMail.php';
             $email = new eMail();
-            
-            $envio = $email->email("chrystyangodoy@gmail.com", $email,"Cadastro efetuado com sucesso!", "Seu usuário é ".$cpf." sua senha é ".$senha.".");
-            
+
+            $envio = $email->email("chrystyangodoy@gmail.com", $email, "Cadastro efetuado com sucesso!", "Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
+
             $msg = "Participante inserido com sucesso!";
             $type = "success";
             /*
@@ -74,15 +77,12 @@ if (isset($_POST['Cadastrar'])) {
         } else {
             $msg = "CPF já cadastrado!";
             $type = "error";
-            
         }
     } else {
         $msg = "CPF inválido!";
         $type = "error";
-        ;
     }
 } else {
-
 
     require_once './actions/aBsc_Empresa.php';
     require_once './actions/aBsc_Profissao.php';

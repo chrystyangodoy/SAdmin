@@ -15,7 +15,7 @@ class dbConnection extends configs {
     private function Connect() {
         try {
             $conn = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->senha);
-        return $conn;    
+            return $conn;
         } catch (Exception $e) {
             echo 'ERROR: ' . $e->getMessage();
         }
@@ -37,7 +37,12 @@ class dbConnection extends configs {
     public function RunLog($sql) {
         $stm = $this->Connect()->prepare($sql);
         $stm->execute();
-        //return $stm->execute();
+        return $stm->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public function RunSelectID($sql) {
+        $stm = $this->Connect()->prepare($sql);
+        $stm->execute();
         return $stm->fetch(PDO::FETCH_ASSOC);
     }
 
