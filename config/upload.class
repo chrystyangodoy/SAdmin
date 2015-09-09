@@ -1,0 +1,51 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+/**
+ * Description of upload
+ *
+ * @author Chrystyan Godoy <F1r3Black0ut>
+ */
+
+class Upload {
+	
+	// Guardar a pasta de onde os arquivos estarão.
+	const _FOLDER_DIR = "files/";
+
+	// Variável para guardar o array relacionado ao arquivo.
+	public $_file;
+	
+	// Método construtor que recebe o array com os arquivos via POST
+	// Verifica se já existe diretório, caso não; é criado.
+	function __construct($curFile){
+		if(!file_exists(self::_FOLDER_DIR)){
+			mkdir(self::_FOLDER_DIR);
+		}
+		$this->_file = $curFile;
+	}
+
+	function makeUpload(){
+		if(isset($this->_file)){
+			$randomName = rand(00,9999);
+			$fileName = self::_FOLDER_DIR . "_" . $randomName . "_" . $this->_file["name"];
+			if(is_uploaded_file($this->_file["tmp_name"])){
+				if(move_uploaded_file($this->_file["tmp_name"], $fileName)){
+					echo "Upload realizado com sucesso!";
+					return true;
+				}else{
+					echo "Erro, problemas no envio.";
+					return false;
+				}
+			}		
+		}	
+	}
+}
+
+
+
