@@ -10,10 +10,8 @@ class aUsuario extends mUsuario {
     protected $sqlSelect = "SELECT * FROM seg_usuario WHERE 1=1 %s %s";
     protected $sqlSelectInnerGrupo = "SELECT *,seg_grupo.ID_Grupo,seg_grupo.DSC_Nome from seg_usuario inner join seg_grupo on (seg_usuario.ID_SEG_Grupo = seg_grupo.ID_Grupo) where 1=1 %s %s";
     protected $sqlSelectInnerTrans = "SELECT *,seg_detalhe_transacao.COD_TIPO_Origem_Transacao seg_detalhe_transacao.COD_Tipo_Sistema_Transacao,seg_detalhe_transacao.DSC_Login_Transacao from seg_usuario inner join seg_detalhe_transacao on (seg_usuario.ID_Usuario = seg_detalhe_transacao.ID_SEG_Usuario) where 1=1 %s %s";
-
     protected $sqlSelectExists = "SELECT count(*) FROM seg_usuario WHERE 1=1 and DSC_Login='%s'";
-    
-    
+
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo());
         return $this->RunQuery($sql);
@@ -33,7 +31,7 @@ class aUsuario extends mUsuario {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
-    
+
     public function loginAc($where = '', $order = '') {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunLog($sql);
@@ -62,12 +60,21 @@ class aUsuario extends mUsuario {
     }
 
     public function login($login, $senha) {
-        $sql = sprintf("and DSC_Login='%s' and DSC_Senha=md5('%s')", $login, $senha);
-        return $this->loginAc($sql);
+        $rs = $this->select(sprintf("and DSC_Login='%s' and DSC_Senha=md5('%s')", $login, $senha));
+        if (!empty($rs)) {
+
+            $this->setUser_ID($rs[0]['user_ID']);
+            $this->setUser_ID($rs[0]['login']);
+            $this->setUser_ID($rs[0]['senha']);
+            $this->setUser_ID($rs[0]['dtInicio']);
+            $this->setUser_ID($rs[0]['dtFim']);
+            $this->setUser_ID($rs[0]['grupo']);
+        }
+        return $this;
     }
-    
+
     public function selectExists($login) {
-        $sql = sprintf($this->sqlSelectExists,$login);
+        $sql = sprintf($this->sqlSelectExists, $login);
         return $this->RunQuery($sql);
     }
 

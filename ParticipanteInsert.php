@@ -73,7 +73,6 @@ if (isset($_POST['Cadastrar'])) {
     } else {
         $msg = "CPF inválido!";
         $type = "error";
-        ;
     }
 } else {
 
