@@ -64,11 +64,11 @@ class aUsuario extends mUsuario {
         if (!empty($rs)) {
 
             $this->setUser_ID($rs['ID_Usuario']);
-            $this->setUser_ID($rs[0]['DSC_Login']);
-            $this->setUser_ID($rs[0]['DSC_Senha']);
-            $this->setUser_ID($rs[0]['DTM_Inicio']);
-            $this->setUser_ID($rs[0]['DTM_Fim']);
-            $this->setUser_ID($rs[0]['ID_SEG_Grupo']);
+            $this->setUser_ID($rs['DSC_Login']);
+            $this->setUser_ID($rs['DSC_Senha']);
+            $this->setUser_ID($rs['DTM_Inicio']);
+            $this->setUser_ID($rs['DTM_Fim']);
+            $this->setUser_ID($rs['ID_SEG_Grupo']);
         }
         return $this;
     }
