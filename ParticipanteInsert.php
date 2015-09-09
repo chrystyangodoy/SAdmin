@@ -6,6 +6,7 @@ $type = "";
 
 if (isset($_POST['Cadastrar'])) {
 
+
     require_once './config/geraSenha.php';
     require ('./actions/aBsc_Participante.php');
     require_once './actions/aUsuario.php';
@@ -38,8 +39,8 @@ if (isset($_POST['Cadastrar'])) {
             $user->setDTM_Fim($datafim);
             $user->setID_SEG_Grupo($grupo);
             $user->insert();
-            //Retorna o último ID inserido.
-            $idLastUser = $user->LoadIDCPF($cpf);
+            
+            //$idLastUser = $user->LoadIDCPF($cpf);
 
             $partic->setCOD_CPF($cpf);
             $partic->setCOD_RG($_POST['COD_RG']);
@@ -58,6 +59,7 @@ if (isset($_POST['Cadastrar'])) {
             $partic->setID_BSC_Empresa($_POST['ID_BSC_Empresa']);
             $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
             $partic->setID_Usuario($idLastUser);
+            //$partic->setID_Usuario($idLastUser);
             $partic->insert();
 
 //            require_once './config/eMail.php';

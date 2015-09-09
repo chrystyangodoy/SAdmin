@@ -39,12 +39,11 @@ class dbConnection extends configs {
         $stm->execute();
         return $stm->fetch(PDO::FETCH_ASSOC);
     }
-    
+
     public function RunID($sql) {
         $stm = $this->Connect()->prepare($sql);
         $stm->execute();
-        $id = $stm->fetchAll(PDO::FETCH_ASSOC);
-        return $id;
+        return $stm->fetch(PDO::FETCH_ASSOC);
     }
 
 }
