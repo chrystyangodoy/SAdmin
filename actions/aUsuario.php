@@ -91,7 +91,8 @@ class aUsuario extends mUsuario {
 
     public function SelectUserID() {
         $sql = $this->selectID(sprintf("and DSC_Login='%s'", $this->getDSC_Login()));
-        $this->setID_Usuario($sql[0]['ID_Usuario']);
+        $ID_Usuario = $sql['ID_Usuario'];
+        $this->setID_Usuario($ID_Usuario);
         return $this;
     }
 

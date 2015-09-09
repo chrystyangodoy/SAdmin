@@ -5,7 +5,7 @@ include './corp/Smarty/libs/Smarty.class.php';
 $smarty = new Smarty();
 
 $smarty->template_dir = "View";
-$smarty->compile_dir = "templates_c";
+$smarty->compile_dir = "smarty/ADM_c";
 $smarty->config_dir = 'configs';
 $smarty->cache_dir = 'cache';
 //$smarty->force_compile = true;
