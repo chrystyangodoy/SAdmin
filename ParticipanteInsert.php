@@ -40,7 +40,7 @@ if (isset($_POST['Cadastrar'])) {
             $user->setID_SEG_Grupo($grupo);
             $user->insert();
             
-            //$idLastUser = $user->LoadIDCPF($cpf);
+            $idLastUser = $user->LoadIDCPF($cpf);
 
             $partic->setCOD_CPF($cpf);
             $partic->setCOD_RG($_POST['COD_RG']);
