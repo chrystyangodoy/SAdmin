@@ -11,6 +11,7 @@ class aUsuario extends mUsuario {
     protected $sqlSelectInnerGrupo = "SELECT *,seg_grupo.ID_Grupo,seg_grupo.DSC_Nome from seg_usuario inner join seg_grupo on (seg_usuario.ID_SEG_Grupo = seg_grupo.ID_Grupo) where 1=1 %s %s";
     protected $sqlSelectInnerTrans = "SELECT *,seg_detalhe_transacao.COD_TIPO_Origem_Transacao seg_detalhe_transacao.COD_Tipo_Sistema_Transacao,seg_detalhe_transacao.DSC_Login_Transacao from seg_usuario inner join seg_detalhe_transacao on (seg_usuario.ID_Usuario = seg_detalhe_transacao.ID_SEG_Usuario) where 1=1 %s %s";
     protected $sqlSelectExists = "SELECT count(*) FROM seg_usuario WHERE 1=1 and DSC_Login='%s'";
+    protected $sqlSelectID = "SELECT ID_Usuario FROM seg_usuario WHERE 1=1 and DSC_Login=%s";
 
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo());
@@ -35,7 +36,6 @@ class aUsuario extends mUsuario {
     public function loginAc($where = '', $order = '') {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunLog($sql);
-        //return $this->RunQuery($sql);
     }
 
     public function selectInnerGrupo($where = '', $order = '') {
@@ -50,12 +50,12 @@ class aUsuario extends mUsuario {
 
     public function load() {
         $rs = $this->select(sprintf("and ID_Usuario='%s'", $this->getUser_ID()));
-        $this->setUser_ID($rs[0]['user_ID']);
-        $this->setUser_ID($rs[0]['login']);
-        $this->setUser_ID($rs[0]['senha']);
-        $this->setUser_ID($rs[0]['dtInicio']);
-        $this->setUser_ID($rs[0]['dtFim']);
-        $this->setUser_ID($rs[0]['grupo']);
+        $this->getUser_ID($rs[0]['user_ID']);
+        $this->getUser_ID($rs[0]['login']);
+        $this->getUser_ID($rs[0]['senha']);
+        $this->getUser_ID($rs[0]['dtInicio']);
+        $this->getUser_ID($rs[0]['dtFim']);
+        $this->getUser_ID($rs[0]['grupo']);
         return $this;
     }
 
@@ -76,6 +76,17 @@ class aUsuario extends mUsuario {
     public function selectExists($login) {
         $sql = sprintf($this->sqlSelectExists, $login);
         return $this->RunQuery($sql);
+    }
+
+    public function SelectUserID($where = '') {
+        $sql = sprintf($this->sqlSelectID, $where);
+        return $this->RunID($sql);
+    }
+
+    public function LoadIDCPF($CPF) {
+        $sql = $this->SelectUserID(sprintf("and DSC_Login='%s'", $CPF));
+        $this->setID_Usuario($sql[0]['UserID']);
+        return $this;
     }
 
 }

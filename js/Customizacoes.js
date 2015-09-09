@@ -45,6 +45,6 @@ function isCPFCadastrado(cpf) {
 //            }
 //    );
   // setTimeout(console.log(resultado),800);
-
+//  console.log(resultado);
     return resultado;
 }
