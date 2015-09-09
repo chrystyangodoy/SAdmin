@@ -9,8 +9,12 @@
         <link href="./css/styleLogin.css" rel="stylesheet" type="text/css" />
 
         <!--SCRIPTS-->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+        <script src="./js/jquery.js" type="text/javascript"></script>
+
         <!--Slider-in icons-->
+        <script src="./js/Customizacoes.js" type="text/javascript"></script>
+        <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
+
         <script type="text/javascript">
             $(document).ready(function () {
                 $(".username").focus(function () {
@@ -26,12 +30,13 @@
                 $(".password").blur(function () {
                     $(".pass-icon").css("left", "0px");
                 });
+                showAlert('{$type}', '{$msg}');
             });
         </script>
 
     </head>
     <body>
-
+        <div id="alert"></div>
         <!--WRAPPER-->
         <div id="wrapper">
 
@@ -41,13 +46,12 @@
             <!--END SLIDE-IN ICONS-->
 
             <!--LOGIN FORM-->
-            <form name="Login" class="login-form" action="" method="post">
+            <form name="Login" id="Login" class="login-form" action="" method="post">
 
                 <!--HEADER-->
                 <div class="header">
                     <!--TITLE-->
                     <h1>SIGA-WEB Login</h1>
-                    <h5>{$msglogado}</h5>
                     <!--END TITLE-->
                     <!--DESCRIPTION-->
                     <br><span>Entre com seu nome de usuário e senha.</span></br><!--END DESCRIPTION-->
@@ -63,7 +67,7 @@
 
                 <!--FOOTER-->
                 <div class="footer">
-                    <!--LOGIN BUTTON--><input type="submit" name="Login" value="Login" class="button"  /><!--END LOGIN BUTTON-->
+                    <!--LOGIN BUTTON--><input type="submit" name="btnLogin" value="Login" class="button"  /><!--END LOGIN BUTTON-->
                     <!--REGISTER BUTTON--><!--END REGISTER BUTTON-->
                     <div style="clear: left; padding-top: 5px;">
                         <a href="./ParticipanteInsert.php" title="Clique para cadastrar-se">Cadastre-se</a>

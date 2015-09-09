@@ -60,8 +60,17 @@ class aUsuario extends mUsuario {
     }
 
     public function login($login, $senha) {
-        $sql = sprintf("and DSC_Login='%s' and DSC_Senha=md5('%s')", $login, $senha);
-        return $this->loginAc($sql);
+        $rs = $this->select(sprintf("and DSC_Login='%s' and DSC_Senha=md5('%s')", $login, $senha));
+        if (!empty($rs)) {
+
+            $this->setUser_ID($rs[0]['user_ID']);
+            $this->setUser_ID($rs[0]['login']);
+            $this->setUser_ID($rs[0]['senha']);
+            $this->setUser_ID($rs[0]['dtInicio']);
+            $this->setUser_ID($rs[0]['dtFim']);
+            $this->setUser_ID($rs[0]['grupo']);
+        }
+        return $this;
     }
 
     public function selectExists($login) {
