@@ -11,6 +11,7 @@
  *
  * @author Chrystyan Godoy <F1r3Black0ut>
  */
+
 require './model/mEvt_Evento_Participante.php';
 
 class aEvt_Evento_Participante extends mEvt_Evento_Participante {
