@@ -50,12 +50,12 @@ class aUsuario extends mUsuario {
 
     public function load() {
         $rs = $this->select(sprintf("and ID_Usuario='%s'", $this->getUser_ID()));
-        $this->getUser_ID($rs[0]['user_ID']);
-        $this->getUser_ID($rs[0]['login']);
-        $this->getUser_ID($rs[0]['senha']);
-        $this->getUser_ID($rs[0]['dtInicio']);
-        $this->getUser_ID($rs[0]['dtFim']);
-        $this->getUser_ID($rs[0]['grupo']);
+        $this->setUser_ID($rs[0]['ID_Usuario']);
+        $this->setUser_ID($rs[0]['DSC_Login']);
+        $this->setUser_ID($rs[0]['DSC_Senha']);
+        $this->setUser_ID($rs[0]['DTM_Inicio']);
+        $this->setUser_ID($rs[0]['DTM_Fim']);
+        $this->setUser_ID($rs[0]['ID_SEG_Grupo']);
         return $this;
     }
 
@@ -63,12 +63,12 @@ class aUsuario extends mUsuario {
         $rs = $this->select(sprintf("and DSC_Login='%s' and DSC_Senha=md5('%s')", $login, $senha));
         if (!empty($rs)) {
 
-            $this->setUser_ID($rs[0]['user_ID']);
-            $this->setUser_ID($rs[0]['login']);
-            $this->setUser_ID($rs[0]['senha']);
-            $this->setUser_ID($rs[0]['dtInicio']);
-            $this->setUser_ID($rs[0]['dtFim']);
-            $this->setUser_ID($rs[0]['grupo']);
+            $this->setUser_ID($rs['ID_Usuario']);
+            $this->setUser_ID($rs[0]['DSC_Login']);
+            $this->setUser_ID($rs[0]['DSC_Senha']);
+            $this->setUser_ID($rs[0]['DTM_Inicio']);
+            $this->setUser_ID($rs[0]['DTM_Fim']);
+            $this->setUser_ID($rs[0]['ID_SEG_Grupo']);
         }
         return $this;
     }
@@ -85,7 +85,7 @@ class aUsuario extends mUsuario {
 
     public function SelectUserID() {
         $sql = $this->selectID(sprintf("and DSC_Login='%s'", $this->getDSC_Login()));
-        $this->getUser_ID($sql[0]['User_ID']);
+        $this->setUser_ID($sql[0]['ID_Usuario']);
         return $this;
     }
 
