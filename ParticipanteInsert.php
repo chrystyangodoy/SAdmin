@@ -1,17 +1,18 @@
 <?php
+
 require_once './smarty.php';
 $msg = "";
 $type = "";
 
 if (isset($_POST['Cadastrar'])) {
     require_once ('./config/configs.php');
-    require ('./config/geraSenha.php');
-    require ('./actions/aBsc_Participante.php');
-    require ('./actions/aUsuario.php');
-    $partic = new aBsc_Participante();
-    $user = new aUsuario();
-    $gerasenha = new geraSenha();
     $config = new configs();
+    require ('./config/geraSenha.php');
+    $gerasenha = new geraSenha();
+    require ('./actions/aUsuario.php');
+    $user = new aUsuario();
+    require ('./actions/aBsc_Participante.php');
+    $partic = new aBsc_Participante();
 
     //limpa cpf
     $cpf = $config->limpaCPF($_POST['COD_CPF']);
@@ -28,7 +29,6 @@ if (isset($_POST['Cadastrar'])) {
             $senha = $gerasenha->geraSenha(14);
             //Gera o grupo padrão para Participantes
             $grupo = 99;
-
 
             $user->setDSC_Login($cpf);
             $user->setDSC_Senha($senha);
