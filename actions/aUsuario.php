@@ -15,7 +15,7 @@ class aUsuario extends mUsuario {
 
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo());
-        return $this->RunQuery($sql);
+        return $this->RunInsert($sql);
     }
 
     public function update() {
