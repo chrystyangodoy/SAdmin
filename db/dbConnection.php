@@ -41,13 +41,9 @@ class dbConnection extends configs {
     }
 
     public function RunID($sql) {
-        $stm = $this->Connect()->query($sql);
+        $stm = $this->Connect()->prepare($sql);
+        $stm->execute();
         return $stm->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function RunQueryNovo($sql) {
-        $stm = $this->Connect()->prepare($sql);
-        $stm->execute();
-        return $stm->commit();
-    }
 }
