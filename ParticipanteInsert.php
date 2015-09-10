@@ -35,7 +35,10 @@ if (isset($_POST['Cadastrar'])) {
             $user->setDTM_Inicio($datainicial);
             $user->setDTM_Fim($datafim);
             $user->setID_SEG_Grupo($grupo);
-            $user->insert();
+            $id = $user->insert();
+            
+            $user->setDSC_Login($cpf);
+            $idLastUser = $user->SelectUserID();
 
 //            $user->setDSC_Login($cpf);
 //            $idLastUser = $user->SelectUserID();
