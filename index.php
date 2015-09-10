@@ -12,13 +12,14 @@ if (isset($_POST['btnLogin'])) {
     $Username = trim($_POST['Username']);
     $Password = trim($_POST['Password']);
     $usuario->login($Username, $Password);
-    
+
     if ($usuario->getID_Usuario() != null || $usuario->getID_Usuario() != 0) {
         $_SESSION['ID_Usuario'] = $usuario->getID_Usuario();
         $_SESSION['DSC_Login'] = $usuario->getDSC_Login();
-        $FeedbackMessage->setMsg("Bem Vindo," . $_SESSION['Username']);
+        $FeedbackMessage->setMsg("Bem Vindo," . $_SESSION['DSC_Login']);
         header("Location: AreaUsuario.php");
         die();
+        
     } else {
         unset($_SESSION['Username']);
         unset($_SESSION['Password']);
@@ -29,9 +30,11 @@ if (isset($_POST['btnLogin'])) {
 } else {
     $FeedbackMessage->setMsg("Bem Vindo, Visitante!");
 }
-$msg = $FeedbackMessage->getMsg();
-$type = $FeedbackMessage->getType();
+if ($usuario->getID_Usuario() == null || $usuario->getID_Usuario() == 0) {
+    $msg = $FeedbackMessage->getMsg();
+    $type = $FeedbackMessage->getType();
 
-$smarty->assign("msg", $msg);
-$smarty->assign("type", $type);
-$smarty->display('./View/login.html');
+    $smarty->assign("msg", $msg);
+    $smarty->assign("type", $type);
+    $smarty->display('./View/login.html');
+}

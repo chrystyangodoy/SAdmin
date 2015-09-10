@@ -13,7 +13,7 @@ body {
     border-top: 3px solid #eee;
     background: #343434 url("./img/back.png") repeat;
     padding-top: 37px;
-    -webkit-font-smoothing: antialiased;;
+    -webkit-font-smoothing: antialiased;
 }
 
 @media(min-width:768px) {
@@ -24,15 +24,16 @@ body {
 
 
 
+
 #wrapper {
     padding-left: 0;
 }
 
 #page-wrapper {
-    width: 100%;
+    /* width: 100%; */
     padding: 0;
     background-color: #fff;
-    max-width: 1024px;
+    /* max-width: 1024px; */
     border-radius: 5px;
     margin-bottom: 3.428571429rem;
     box-shadow: 0 2px 6px rgba(100,100,100,0.3);
@@ -45,7 +46,7 @@ body {
 
 @media(min-width:768px) {
     #wrapper {
-        padding-left: 225px;
+        /* padding-left: 225px; */
     }
 
     #page-wrapper {
