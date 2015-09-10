@@ -50,5 +50,9 @@ class aEvt_Evento extends mEvt_Evento {
         $this->setID_EVT($rs[0]['COD_Tipo_Estado_promotora']);
         return $this;
     }
+    
+    public function SelectEventosEmdia(){
+        return $this->select(" DT_Inicio > CURRENT_DATE()");
+    }
 
 }
