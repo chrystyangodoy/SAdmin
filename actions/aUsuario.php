@@ -86,14 +86,18 @@ class aUsuario extends mUsuario {
 
     public function selectID($where = '') {
         $sql = sprintf($this->sqlSelectID, $where);
-        return $this->RunSelect($sql);
+        return $this->RunID($sql);
     }
 
     public function SelectUserID() {
         $sql = $this->selectID(sprintf("and DSC_Login='%s'", $this->getDSC_Login()));
-        $ID_Usuario = $sql['ID_Usuario'];
-        $this->setID_Usuario($ID_Usuario);
-        return $this;
+        $ID_Usuario = $sql[0]['ID_Usuario'];
+        return $this->$ID_Usuario;
+    }
+
+    public function insertNovo() {
+        $sql = sprintf($this->sqlInsert, $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo());
+        return $this->RunQueryNovo($sql);
     }
 
 }
