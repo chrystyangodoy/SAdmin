@@ -48,7 +48,7 @@ class dbConnection extends configs {
 
     public function RunInsert($sql) {
 
-        $con = mysqli_connect($this->host,  $this->user, $this->senha, $this->dbname);
+        $con = mysqli_connect($this->host, $this->user, $this->senha, $this->dbname);
 // Check connection
         if (mysqli_connect_errno()) {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -64,10 +64,12 @@ class dbConnection extends configs {
 // Commit transaction
         mysqli_commit($con);
 
+        $ultID = mysqli_insert_id($con);
+
 // Close connection
         mysqli_close($con);
-        
-        return true;
+
+        return $ultID;
     }
 
 }
