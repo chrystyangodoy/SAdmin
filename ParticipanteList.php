@@ -5,7 +5,7 @@ $partic = new aBsc_Participante();
 
 
 if (isset($_GET['del'])) {
-    $partic->setID_Grupo($_GET['del']);
+    $partic->setID_Participante($_GET['del']);
     $partic->delete();
 }
 
