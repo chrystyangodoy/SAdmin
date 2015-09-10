@@ -9,7 +9,7 @@ require_once('barcode.inc.php');
 $numeroNota 		    = $_POST['Numero'];
 $nossoNumero			= $_POST['NossoNumero'];
 $NomeCobranca 			= $_POST['NomeCobranca'];
-$linhaDigitavel 		= $_POST['LinhaDigitavelBoleto'];
+$linhaDigitavel 		= $_POST['LinhaDigitavelBoleto'];//Implementar externo...
 $CodigoCobranca 		= $_POST['CodigoCobranca'];
 $dataVencimento 		= $_POST['DataVencimento'];
 $numeroDocumento 		= $numeroNota.'-'.$_POST['Parcela'];

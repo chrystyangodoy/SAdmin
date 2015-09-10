@@ -4,7 +4,7 @@ require './model/mUsuario.php';
 
 class aUsuario extends mUsuario {
 
-    protected $sqlInsert = "INSERT INTO seg_usuario(DSC_Login, DSC_Senha, DTM_Inicio, DTM_Fim, ID_SEG_Grupo) VALUES ('%s',MD5('%s'),'%s','%s','%s')";
+    protected $sqlInsert = "INSERT INTO seg_usuario(ID_Usuario,DSC_Login, DSC_Senha, DTM_Inicio, DTM_Fim, ID_SEG_Grupo) VALUES ('%s','%s',MD5('%s'),'%s','%s','%s')";
     protected $sqlUpdate = "UPDATE seg_usuario set DSC_Login = '%s',DSC_Senha= '%s',DTM_Inicio= '%s' as DTM_Inicio,DTM_Fim= '%s' as DTM_Fim, ID_SEG_Grupo='%s' where ID_Usuario = '%s'";
     protected $sqlDelete = "DELETE FROM seg_usuario WHERE ID_Usuario = '%s'";
     protected $sqlSelect = "SELECT * FROM seg_usuario WHERE 1=1 %s %s";
@@ -14,7 +14,7 @@ class aUsuario extends mUsuario {
     protected $sqlSelectID = "SELECT ID_Usuario FROM seg_usuario WHERE 1=1 and DSC_Login=%s";
 
     public function insert() {
-        $sql = sprintf($this->sqlInsert, $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo());
+        $sql = sprintf($this->sqlInsert, $this->getID_Usuario(), $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo());
         return $this->RunInsert($sql);
     }
 
@@ -91,8 +91,8 @@ class aUsuario extends mUsuario {
 
     public function SelectUserID() {
         $sql = $this->selectID(sprintf("and DSC_Login='%s'", $this->getDSC_Login()));
-        $ID_Usuario = $this->getID_Usuario();
-        return $this->$ID_Usuario;
+        $ID_Usuario = $sql[0]['ID_Usuario'];
+        return $this;
     }
 
 }

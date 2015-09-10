@@ -41,7 +41,7 @@ class dbConnection extends configs {
     }
 
     public function RunID($sql) {
-        $stm = $this->Connect()->prepare($sql);
+        $stm = $this->Connect()->que($sql);
         $stm->execute();
         return $stm->fetch(PDO::FETCH_ASSOC);
     }

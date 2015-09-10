@@ -29,37 +29,35 @@ if (isset($_POST['Cadastrar'])) {
             //Gera o grupo padrão para Participantes
             $grupo = 99;
 
-
+            //Gera e armazena ID Único Gerado.
+            $idUnico = $config->idUnico();
+            
+            $user->setID_Usuario($idUnico);
             $user->setDSC_Login($cpf);
             $user->setDSC_Senha($senha);
             $user->setDTM_Inicio($datainicial);
             $user->setDTM_Fim($datafim);
             $user->setID_SEG_Grupo($grupo);
-            $id = $user->insert();
+            $user->insert();
             
-            $user->setDSC_Login($cpf);
-            $idLastUser = $user->SelectUserID();
-
-//            $user->setDSC_Login($cpf);
-//            $idLastUser = $user->SelectUserID();
-//            $partic->setCOD_CPF($cpf);
-//            $partic->setCOD_RG($_POST['COD_RG']);
-//            $partic->setDSC_Nome($_POST['DSC_Nome']);
-//            $partic->setDSC_Endereco($_POST['DSC_Endereco']);
-//            $partic->setDSC_Bairro($_POST['DSC_Bairro']);
-//            $partic->setDSC_Cidade($_POST['DSC_Cidade']);
-//            $partic->setNUM_CEP($_POST['NUM_CEP']);
-//            $partic->setNUM_Fone($_POST['NUM_Fone']);
-//            $partic->setNUM_Celular($_POST['NUM_Celular']);
-//            $partic->setNUM_FAX($_POST['NUM_FAX']);
-//            $partic->setDSC_Profissao_Especialidade($_POST['DSC_Profissao_Especialidade']);
-//            $partic->setDSC_Email($email);
-//            $partic->setNUM_Registro($_POST['NUM_Registro']);
-//            $partic->setCOD_Tipo_Estado($_POST['COD_Tipo_Estado']);
-//            $partic->setID_BSC_Empresa($_POST['ID_BSC_Empresa']);
-//            $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
-//            $partic->setID_Usuario($idLastUser);
-//            $partic->insert();
+            $partic->setCOD_CPF($cpf);
+            $partic->setCOD_RG($_POST['COD_RG']);
+            $partic->setDSC_Nome($_POST['DSC_Nome']);
+            $partic->setDSC_Endereco($_POST['DSC_Endereco']);
+            $partic->setDSC_Bairro($_POST['DSC_Bairro']);
+            $partic->setDSC_Cidade($_POST['DSC_Cidade']);
+            $partic->setNUM_CEP($_POST['NUM_CEP']);
+            $partic->setNUM_Fone($_POST['NUM_Fone']);
+            $partic->setNUM_Celular($_POST['NUM_Celular']);
+            $partic->setNUM_FAX($_POST['NUM_FAX']);
+            $partic->setDSC_Profissao_Especialidade($_POST['DSC_Profissao_Especialidade']);
+            $partic->setDSC_Email($email);
+            $partic->setNUM_Registro($_POST['NUM_Registro']);
+            $partic->setCOD_Tipo_Estado($_POST['COD_Tipo_Estado']);
+            $partic->setID_BSC_Empresa($_POST['ID_BSC_Empresa']);
+            $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
+            $partic->setID_Usuario($idUnico);
+            $partic->insert();
 //            
 //            require_once './config/eMail.php';
 //            $email = new eMail();

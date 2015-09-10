@@ -18,6 +18,7 @@ if (isset($_POST['btnLogin'])) {
         $_SESSION['DSC_Login'] = $usuario->getDSC_Login();
         $FeedbackMessage->setMsg("Bem Vindo," . $_SESSION['DSC_Login']);
         header("Location: AreaUsuario.php");
+        
         die();
         
     } else {

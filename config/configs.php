@@ -10,8 +10,8 @@ class configs {
     }
 
     public function dateToUS($dataBrasil) {
-        $d = explode('-', $dataBrasil);
-        $dam = $d[2] . '/' . $d[1] . '/' . $d[0];
+        $d = explode('/', $dataBrasil);
+        $dam = $d[2] . '-' . $d[1] . '-' . $d[0];
         return $dam;
     }
 
@@ -81,6 +81,14 @@ class configs {
 
             return true;
         }
+    }
+
+//Gera ID Dinâmico
+    public function idUnico() {
+
+        $ID = md5(uniqid(rand(), true));
+
+        return $ID;
     }
 
 }
