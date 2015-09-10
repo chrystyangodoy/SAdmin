@@ -7,7 +7,7 @@ class dbConnection extends configs {
     private $user = 'root';
     private $senha = '';
     private $host = 'localhost';
-    private $dbname = 'Siga-web';
+    private $dbname = 'Siga_web';
 
     //private $host = '192.168.1.59';
     //private $dbname = 'Siga-web';
@@ -41,9 +41,13 @@ class dbConnection extends configs {
     }
 
     public function RunID($sql) {
-        $stm = $this->Connect()->prepare($sql);
-        $stm->execute();
+        $stm = $this->Connect()->query($sql);
         return $stm->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function RunQueryNovo($sql) {
+        $stm = $this->Connect()->prepare($sql);
+        $stm->execute();
+        return $stm->commit();
+    }
 }
