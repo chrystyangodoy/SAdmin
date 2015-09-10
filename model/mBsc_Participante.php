@@ -23,8 +23,8 @@ class mBsc_Participante extends dbConnection {
     private $ID_BSC_Profissao;
     private $ID_Usuario;
 
-    public function setID_Participantel($ID_Participante) {
-        $this->ID_ID_ParticipanteLocal = $ID_Participante;
+    public function setID_Participante($ID_Participante) {
+        $this->ID_Participante = $ID_Participante;
     }
 
     public function getID_Participante() {
