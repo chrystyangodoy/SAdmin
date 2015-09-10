@@ -5,7 +5,7 @@ class configs {
     public function dateToBR($dataAmericana) {
         //2015-09-01
         $d = explode('-', $dataAmericana);
-        $dbr = $d[2] . '/' . $d[1] . '/' . $d[0];
+        $dbr = $d[0] . '/' . $d[1] . '/' . $d[2];
         return $dbr;
     }
 
