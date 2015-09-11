@@ -4,14 +4,25 @@ class configs {
 
     public function dateToBR($dataAmericana) {
         //2015-09-01
-        $d = explode('-', $dataAmericana);
-        $dbr = $d[0] . '/' . $d[1] . '/' . $d[2];
+        if (strpos($dataAmericana, '-')) {
+            $d = explode('-', $dataAmericana);
+            $dbr = $d[0] . '/' . $d[1] . '/' . $d[2];
+        }
+        if(strpos($dataAmericana, '/')){
+            $dbr = $dataAmericana;
+        }
         return $dbr;
     }
 
     public function dateToUS($dataBrasil) {
-        $d = explode('/', $dataBrasil);
-        $dam = $d[2] . '-' . $d[1] . '-' . $d[0];
+        if (strpos($dataBrasil, '/') != 0) {
+            $d = explode('/', $dataBrasil);
+            $dam = $d[2] . '-' . $d[1] . '-' . $d[0];
+        }
+        if (strpos($dataBrasil, '-') != 0) {
+            $dam = $dataBrasil;
+        }
+
         return $dam;
     }
 
