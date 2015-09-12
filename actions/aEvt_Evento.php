@@ -51,8 +51,8 @@ class aEvt_Evento extends mEvt_Evento {
         return $this;
     }
     
-    public function SelectEventosEmdia(){
-        return $this->select(" DT_Inicio > CURRENT_DATE()");
+    public function SelectEventoEmdia(){
+        return $this->select(" DT_INICIO > CURRENT_DATE()");
     }
 
 }
