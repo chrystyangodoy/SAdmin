@@ -2,6 +2,11 @@
 
 require_once 'smarty.php';
 require './actions/aEvt_Evento.php';
+require_once './config/FeedbackMessage.php';
+
+session_start();
+
+$FeedbackMessage = new FeedbackMessage();
 
 $evento = new aEvt_Evento();
 
@@ -23,9 +28,12 @@ if (isset($_POST['Cadastrar'])) {
     $evento->setID_BSC_Local_Evento($_POST['ID_BSC_Local_Evento']);
     $evento->setCOD_Tipo_Estado_promotora($_POST['COD_Tipo_Estado_promotora']);
     $evento->insert();
-    echo "Evento inserido com sucesso!";
-} else {
-    echo "Não foi possível inserir Evento!";
+    
+    $FeedbackMessage->setMsg("Evento inserido com sucesso!");
 }
+
+$smarty->assign("dscUser", $_SESSION['DSC_Login']);
+$smarty->assign("msg", $FeedbackMessage->getMsg());
+$smarty->assign("type", $FeedbackMessage->getType());
 
 $smarty->display('./View/EventoInsert.html');

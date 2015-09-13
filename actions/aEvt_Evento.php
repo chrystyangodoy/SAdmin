@@ -8,6 +8,17 @@ class aEvt_Evento extends mEvt_Evento {
     protected $sqlUpdate = "update evt_evento set DSC_Nome= '%s', DSC_Presidente= '%s', DT_Inicio= '%s', DT_Fim= '%s', COD_CNPJ_Promotora= '%s', DSC_Nome_Promotora= '%s', DSC_Presidente_Promotora= '%s', DSC_Endereco_Promotora= '%s', NUM_CEP_Promotora= '%s', DSC_Cidade_Promotora= '%s', NUM_Fone_Promotora= '%s', NUM_FAX_Promotora= '%s', DSC_EMAIL_Promotora= '%s', QTD_CargaHorariaMinima= '%s', ID_BSC_Local_Evento= '%s', COD_Tipo_Estado_promotora= '%s' where ID_EVT = '%s'";
     protected $sqlDelete = "delete from evt_evento where ID_EVT = '%s'";
     protected $sqlSelect = "select * from evt_evento where 1=1 %s %s";
+    protected $sqlInnerEventoLocal = "SELECT 	evento.ID_EVT, 
+                                                evento.DSC_Nome, 
+                                                DATE_FORMAT( evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, 
+                                                DATE_FORMAT( evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, 
+                                                localEvento.DSC_Endereco,
+                                                localEvento.DSC_Bairro,
+                                                localEvento.DSC_Cidade,
+                                                localEvento.NUM_Fone,
+                                                localEvento.DSC_EMAIL
+                                    FROM        evt_evento as evento inner join bsc_local_evento as localEvento on (ID_BSC_Local_Evento = ID_BSC_Local_Evento) 
+                                    WHERE       DT_INICIO > CURRENT_DATE()";
 
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(), $this->getDT_Fim(), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora());
@@ -52,7 +63,7 @@ class aEvt_Evento extends mEvt_Evento {
     }
     
     public function SelectEventoEmdia(){
-        return $this->select(" DT_INICIO > CURRENT_DATE()");
+        return $this->RunSelect($this->sqlInnerEventoLocal);
     }
 
 }
