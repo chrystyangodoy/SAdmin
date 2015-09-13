@@ -13,23 +13,24 @@
  */
 class eMail {
 
-    public function email($remetente,$destinatario, $assunto, $mensagem) {
+    public function sendEmail($remetente, $destinatario, $assunto, $mensagem) {
 
         // O remetente deve ser um e-mail do seu domínio conforme determina a RFC 822.
         // O return-path deve ser ser o mesmo e-mail do remetente.
         $headers = "MIME-Version: 1.1\r\n";
         $headers .= "X-Priority: 3\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1\n";
-        $headers .= "From: ".$remetente."\r\n"; // remetente
-        $headers .= "Return-Path: ".$remetente."\r\n"; // return-path
-        $envio = mail($destinatario, $assunto, $mensagem, $headers);
-        if ($envio){
+        $headers .= "From: " . $remetente . "\r\n"; // remetente
+        $headers .= "Return-Path: " . $remetente . "\r\n"; // return-path
+        
+        if (mail($destinatario, $assunto, $mensagem, $headers)) {
             echo "Mensagem enviada com sucesso";
-        }
-        else{
+            return true;
+        } else {
             echo "A mensagem não pode ser enviada";
+            return false;
         }
-            
+        return false;
     }
 
 }

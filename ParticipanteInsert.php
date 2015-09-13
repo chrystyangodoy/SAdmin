@@ -58,10 +58,14 @@ if (isset($_POST['Cadastrar'])) {
             $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
             $partic->setID_Usuario($idUnico);
             $partic->insert();
-//            
-//            require_once './config/eMail.php';
-//            $email = new eMail();
-//            $envio = $email->email("chrystyangodoy@gmail.com", $email, "Cadastro efetuado com sucesso!", "Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
+//          
+            $ass ="Cadastro efetuado com sucesso!";
+            $mens = ("Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
+            require_once './config/eMail.php';
+            $email = new eMail();
+            //$envio = mail($email, $ass,$mens);
+            $remetente = "Testando Sistema Web - Confirmação";
+            $envio = $email->sendEmail($remetente, $email, $ass ,$mens );
 
             $msg = "Participante inserido com sucesso!";
             $type = "success";
