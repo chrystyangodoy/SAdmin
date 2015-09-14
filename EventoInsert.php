@@ -1,7 +1,9 @@
 <?php
 
 require_once 'smarty.php';
-require './actions/aEvt_Evento.php';
+require_once ('./config/configs.php');
+require_once './actions/aEvt_Evento.php';
+require_once './actions/aBsc_Local_Evento.php';
 require_once './config/FeedbackMessage.php';
 
 session_start();
@@ -9,8 +11,12 @@ session_start();
 $FeedbackMessage = new FeedbackMessage();
 
 $evento = new aEvt_Evento();
+$localevento = new aBsc_Local_Evento();
 
 if (isset($_POST['Cadastrar'])) {
+    $idUnico = $config->idUnico();
+    
+    $evento->setID_EVT($idUnico);
     $evento->setDSC_Nome($_POST['DSC_Nome']);
     $evento->setDSC_Presidente($_POST['DSC_Presidente']);
     $evento->setDT_Inicio($_POST['DT_Inicio']);
@@ -33,6 +39,7 @@ if (isset($_POST['Cadastrar'])) {
 }
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
+$smarty -> assign("listLocal",$localevento->select());
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 

@@ -11,6 +11,7 @@ $FeedbackMessage = new FeedbackMessage();
 
 $evento = new aEvt_Evento();
 
+
 $lista = $evento->SelectEventoEmdia();
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);

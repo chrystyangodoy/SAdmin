@@ -18,7 +18,7 @@ class aEvt_Evento extends mEvt_Evento {
                                                 localEvento.NUM_Fone,
                                                 localEvento.DSC_EMAIL
                                     FROM        evt_evento as evento inner join bsc_local_evento as localEvento on (ID_BSC_Local_Evento = ID_BSC_Local_Evento) 
-                                    WHERE       DT_INICIO > CURRENT_DATE()";
+                                    WHERE       CURRENT_DATE() < DT_Fim";
 
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(), $this->getDT_Fim(), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora());

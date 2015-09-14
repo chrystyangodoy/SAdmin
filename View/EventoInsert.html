@@ -60,7 +60,11 @@
     </div>
     <div class="form-group">
         <label>Local Evento</label>
-        <input type="text" class="form-control" name="ID_BSC_Local_Evento" placeholder="Carga Horária Mínima">
+        <select name="ID_SEG_Grupo">
+            {foreach from=$listLocal item=row}
+            <option value="{$row.$ID_Local}">{$row.DSC_Nome}</option>
+            {/foreach}
+        </select>
     </div>
     <div class="form-group">
         <label>Tipo Estado Promotora</label>
