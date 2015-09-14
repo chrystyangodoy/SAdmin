@@ -12,6 +12,7 @@ $FeedbackMessage = new FeedbackMessage();
 
 $evento = new aEvt_Evento();
 $localevento = new aBsc_Local_Evento();
+$config = new configs();
 
 if (isset($_POST['Cadastrar'])) {
     $idUnico = $config->idUnico();

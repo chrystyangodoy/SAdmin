@@ -60,9 +60,9 @@
     </div>
     <div class="form-group">
         <label>Local Evento</label>
-        <select name="ID_SEG_Grupo">
+        <select name="ID_BSC_Local_Evento">
             {foreach from=$listLocal item=row}
-            <option value="{$row.$ID_Local}">{$row.DSC_Nome}</option>
+            <option value="{$row.ID_Local}">{$row.DSC_Nome}</option>
             {/foreach}
         </select>
     </div>
