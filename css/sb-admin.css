@@ -265,3 +265,51 @@ label.error {
 .alert-success {
     background-color: #2ecc71;
 }
+
+
+
+.card {
+
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem 0 1rem 0;
+    background-color: #fff;
+    transition: box-shadow .25s;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: inherit;
+    display: block;
+    font-size: 15px;
+    max-width: 500px;
+}
+.card, .card-title {
+    margin-bottom: .75rem;
+}
+.card-header:first-child {
+    border-radius: .1875rem .1875rem 0 0;
+}
+
+.card-header {
+    border-bottom: .0625rem solid #e5e5e5;
+}
+
+.card-footer, .card-header {
+    padding: .75rem 1.25rem;
+    background-color: #f5f5f5;
+}
+.card-block {
+    padding: 1.25rem;
+}
+.card-footer:last-child {
+    border-radius: 0 0 .1875rem .1875rem;
+}
+.text-muted {
+    color: #818a91;
+}
+.card-footer {
+    border-top: .0625rem solid #e5e5e5;
+}
+.card-footer, .card-header {
+    padding: .75rem 1.25rem;
+    background-color: #f5f5f5;
+}

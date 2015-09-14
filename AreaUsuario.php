@@ -1,6 +1,4 @@
 <?php
-
-
 include_once './smarty.php';
 require_once './config/FeedbackMessage.php';
 require_once './actions/aEvt_Evento.php';
