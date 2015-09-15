@@ -47,6 +47,26 @@ $(document).ready(function () {
             QTD_CargaHorariaMinima: {required: 'Preencha o campo'},
             ID_BSC_Local_Evento: {required: 'Preencha o campo', validaComboBox: 'Preencha o campo'},
             COD_Tipo_Estado_promotora: {required: 'Preencha o campo', validaComboBox: 'Preencha o campo'}
+        },
+        submitHandler: function (form) {
+
+            //var dados = $(form).serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "EventoInsert.php",
+                data: dados,
+                success: function (data)
+                {
+                    if (data == 1) {
+                        showAlert('success', 'Salvo.');
+                    } else {
+                        showAlert('error', 'falha ao salvar.');
+                    }
+                }
+            });
+
+            return false;
         }
     });
 });
