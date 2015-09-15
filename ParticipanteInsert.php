@@ -67,7 +67,7 @@ if (isset($_POST['Cadastrar'])) {
             $remetente = "Testando Sistema Web - Confirmação";
             $envio = $email->sendEmail($remetente, $email, $ass ,$mens );
 
-            $msg = "Participante inserido com sucesso!";
+            $msg = "Participante inserido com sucesso! Senha: ".$senha;
             $type = "success";
             /*
               $smarty->assign("msg", $msg);
