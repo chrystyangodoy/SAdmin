@@ -18,17 +18,11 @@ if (isset($_GET['idevt']))
     
     //Capturar informações do participante
     $partic->selectInfoEvt($_SESSION['ID_Usuario']);
-    
-    $partID = $partic->getID_Usuario();
-    $partName = $partic->getDSC_Nome();
-    $partCPF = $partic->getCOD_CPF();
     $IDEvto = $_GET['idevt'];
 
-    $idUnico = $config->idUnico();
-
-    $evtPart->setID_EVT_Evento_Pariticipante($idUnico);
-    $evtPart->setDSC_Nome_Crachav($partName);
-    $evtPart->setCOD_Barras_Cracha($partCPF);
+    $evtPart->setID_EVT_Evento_Pariticipante($config->idUnico());
+    $evtPart->setDSC_Nome_Crachav($partic->getDSC_Nome());
+    $evtPart->setCOD_Barras_Cracha($partic->getCOD_CPF());
 //    $evtPart->setVLR_Total();
 //    $evtPart->setVLR_Total_Inscricao();
 //    $evtPart->setQTD_CargaHoraria_Realizada();
@@ -36,7 +30,7 @@ if (isset($_GET['idevt']))
 //    $evtPart->setID_EVT_Pagamento();
 //    $evtPart->setID_EVT_Categoria();
     $evtPart->setID_EVT_Evento($IDEvto);
-    $evtPart->setID_BSC_Participante($partID);
+    $evtPart->setID_BSC_Participante($partic->getID_Participante());
 //    $evtPart->setID_EVT_Participante_Pai();
 //    $evtPart->setCOD_Tipo_SIT_Certificado();
 //    $evtPart->setDTM_Entrega_Certificado();

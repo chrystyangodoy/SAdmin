@@ -83,7 +83,8 @@ class aBsc_Participante extends mBsc_Participante {
     }
     public function selectInfoEvt($ID_Usuario)
     {
-        $rs = sprintf($this->sqlSelectInfoEvt, $ID_Usuario);
+        $rs = $this->RunSelect(sprintf($this->sqlSelectInfoEvt, $ID_Usuario));
+        //$rs = sprintf($this->sqlSelectInfoEvt, $ID_Usuario);
         $this->setID_Participante($rs[0]['ID_Participante']);
         $this->setDSC_Nome($rs[0]['DSC_Nome']);
         $this->setCOD_CPF($rs[0]['COD_CPF']);
