@@ -10,28 +10,35 @@ class aBsc_Participante extends mBsc_Participante {
     protected $sqlSelect = "SELECT * FROM bsc_participante WHERE 1=1 %s %s";
     protected $sqlSelectExist = "SELECT count(0) AS COUNTCPF FROM bsc_participante WHERE 1=1 and COD_CPF='%s'";
     protected $sqlinsertPartUs = "INSERT INTO bsc_participante(COD_CPF,COD_RG,DSC_Nome,DSC_Endereco,DSC_Bairro,DSC_Cidade,NUM_CEP,NUM_Fone,NUM_Celular,NUM_FAX,DSC_Profissao_Especialidade,DSC_Email,NUM_Registro,COD_Tipo_Estado,ID_BSC_Empresa,ID_BSC_Profissao) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
+    
+    protected $sqlSelectInfoEvt = "SELECT bsc_participante.ID_Participante, bsc_participante.DSC_Nome, bsc_participante.COD_CPF FROM bsc_participante LEFT JOIN seg_usuario ON bsc_participante.ID_Usuario = seg_usuario.ID_Usuario WHERE seg_usuario.DSC_Login = '%s'";
 
-    public function insert() {
+    public function insert()
+    {
         $sql = sprintf($this->sqlInsert, $this->getCOD_CPF(), $this->getCOD_RG(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Usuario());
         return $this->RunQuery($sql);
     }
 
-    public function update() {
+    public function update()
+    {
         $sql = sprintf($this->sqlUpdate, $this->getCOD_CPF(), $this->getCOD_RG(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao());
         return $this->RunQuery($sql);
     }
 
-    public function delete() {
+    public function delete()
+    {
         $sql = sprintf($this->sqlDelete, $this->getID_Participante());
         return $this->RunQuery($sql);
     }
 
-    public function select($where = '', $order = '') {
+    public function select($where = '', $order = '')
+    {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
 
-    public function load() {
+    public function load()
+    {
         $rs = $this->select(sprintf("and ID_Participante='%s'", $this->getID_Participante()));
         $this->getID_Participante($rs[0]['ID_Participante']);
         $this->getID_Participante($rs[0]['COD_CPF']);
@@ -55,19 +62,33 @@ class aBsc_Participante extends mBsc_Participante {
         return $this;
     }
 
-    public function insertPartUs() {
+    public function insertPartUs()
+    {
         $sql = sprintf($this->sqlinsertPartUs, $this->getCOD_CPF(), $this->getCOD_RG(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Usuario());
         return $this->RunQuery($sql);
     }
 
-    public function selectNotExistsCPF($COD_CPF) {
+    public function selectNotExistsCPF($COD_CPF)
+    {
         $rs = $this->RunSelect(sprintf($this->sqlSelectExist, $COD_CPF));
         $count = $rs[0]['COUNTCPF'];
-        if ($count == 0) {
+        if ($count == 0)
+        {
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
+    }
+    public function selectInfoEvt($DSC_Login)
+    {
+        $rs = sprintf($this->sqlSelectInfoEvt, $DSC_Login);
+        $this->setID_Participante($rs[0]['ID_Participante']);
+        $this->setDSC_Nome($rs[0]['DSC_Nome']);
+        $this->setCOD_CPF($rs[0]['COD_CPF']);
+        //bsc_participante.ID_Participante, bsc_participante.DSC_Nome, bsc_participante.COD_CPF
+        return $this->RunSelect($rs);
     }
 
 }
