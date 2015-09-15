@@ -28,6 +28,7 @@ class aBsc_Local_Evento extends mBsc_Local_Evento {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
+   
 
     public function load() {
         $rs = $this->select(sprintf("and ID_Local='%s'", $this->getID_Local()));

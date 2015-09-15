@@ -19,7 +19,7 @@
     </div>
     <div class="form-group">
         <label >Data Final</label>
-        <input type="date" class="" name="DT_Fim" placeholder="Data Fim">
+        <input type="date" class="form-control" name="DT_Fim" placeholder="Data Fim">
     </div>
 
     <div class="form-group">
@@ -68,7 +68,11 @@
     </div>
     <div class="form-group">
         <label>Tipo Estado Promotora</label>
-        <input type="text" class="form-control" name="COD_Tipo_Estado_promotora" placeholder="Carga Horária Mínima">
+        <select name="COD_Tipo_Estado_promotora">
+            {foreach from=$listTpUF item=row}
+            <option value="{$row.COD_TIPOEstado}">{$row.DSC_Nome}</option>
+            {/foreach}
+        </select>
     </div>
     <button type="submit" class="btn" name="Cadastrar" value="Cadastrar">Cadastrar</button>    
 </form>

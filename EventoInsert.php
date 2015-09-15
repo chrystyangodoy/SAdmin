@@ -4,6 +4,7 @@ require_once 'smarty.php';
 require_once ('./config/configs.php');
 require_once './actions/aEvt_Evento.php';
 require_once './actions/aBsc_Local_Evento.php';
+require_once './actions/atb_Tipo_Estado.php';
 require_once './config/FeedbackMessage.php';
 
 session_start();
@@ -12,6 +13,7 @@ $FeedbackMessage = new FeedbackMessage();
 
 $evento = new aEvt_Evento();
 $localevento = new aBsc_Local_Evento();
+$tipoestado = new atb_Tipo_Estado();
 $config = new configs();
 
 if (isset($_POST['Cadastrar'])) {
@@ -41,6 +43,7 @@ if (isset($_POST['Cadastrar'])) {
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty -> assign("listLocal",$localevento->select());
+$smarty -> assign("listTpUF",$tipoestado->select());
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 

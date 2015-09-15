@@ -5,7 +5,13 @@ require_once './actions/aEvt_Evento.php';
 
 session_start();
 
+if (isset($_GET['Cadastrar'])) {
+    
+}
+
+
 $FeedbackMessage = new FeedbackMessage();
+
 
 $evento = new aEvt_Evento();
 
