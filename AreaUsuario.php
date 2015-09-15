@@ -15,7 +15,7 @@ if (isset($_GET['idevt']))
     $partic = new aBsc_Participante();
     $evtPart = new aEvt_Evento_Participante();
     $config = new configs();
-
+    echo $_SESSION['Username'];
     //Capturar informações do participante
     $partic->selectInfoEvt($_SESSION['Username']);
     $partID = $partic->getID_Usuario();
@@ -23,9 +23,9 @@ if (isset($_GET['idevt']))
     $partCPF = $partic->getCOD_CPF();
     $IDEvto = $_GET['idevt'];
 
-    $newID = $config->idUnico();
+    $idUnico = $config->idUnico();
 
-    $evtPart->setID_EVT_Evento_Pariticipante($newID);
+    $evtPart->setID_EVT_Evento_Pariticipante($idUnico);
     $evtPart->setDSC_Nome_Crachav($partName);
     $evtPart->setCOD_Barras_Cracha($partCPF);
     $evtPart->setVLR_Total();
@@ -45,7 +45,7 @@ if (isset($_GET['idevt']))
     $evtPart->setCOD_TipoSituacao_Material();
     $evtPart->setDTM_EntregaMaterial();
     $evtPart->setCOD_InscricaoExterno();
-    
+
     $evtPart->insert();
 }
 
