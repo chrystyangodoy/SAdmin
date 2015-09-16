@@ -9,40 +9,45 @@ class aBsc_Empresa extends mBsc_Empresa {
     protected $sqlDelete = "delete from bsc_empresa where ID_Empresa = '%s'";
     protected $sqlSelect = "select * from bsc_empresa where 1=1 %s %s";
 
-    public function insert() {
+    public function insert()
+    {
         $sql = sprintf($this->sqlInsert, $this->getCOD_CNPJ(), $this->getDSC_RazaoSocial(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_InscricaoEstadual(), $this->getNUM_Fone(), $this->getNUM_FAX(), $this->getDSC_EMAIL(), $this->getCOD_TipoEstado());
         return $this->RunQuery($sql);
     }
 
-    public function update() {
+    public function update()
+    {
         $sql = sprintf($this->sqlUpdate, $this->getCOD_CNPJ(), $this->getDSC_RazaoSocial(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_InscricaoEstadual(), $this->getNUM_Fone(), $this->getNUM_FAX(), $this->getDSC_EMAIL(), $this->getCOD_TipoEstado());
         return $this->RunQuery($sql);
     }
 
-    public function delete() {
+    public function delete()
+    {
         $sql = sprintf($this->sqlDelete, $this->getID_Empresa());
         return $this->RunQuery($sql);
     }
 
-    public function select($where = '', $order = '') {
+    public function select($where = '', $order = '')
+    {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
 
-    public function load() {
+    public function load()
+    {
         $rs = $this->select(sprintf("and ID_Empresa='%s'", $this->getID_Empresa()));
-        $this->getID_Empresa($rs[0]['ID_Empresa']);
-        $this->getID_Empresa($rs[0]['COD_CNPJ']);
-        $this->getID_Empresa($rs[0]['DSC_RazaoSocial']);
-        $this->getID_Empresa($rs[0]['DSC_Endereco']);
-        $this->getID_Empresa($rs[0]['DSC_Bairro']);
-        $this->getID_Empresa($rs[0]['DSC_Cidade']);
-        $this->getID_Empresa($rs[0]['NUM_CEP']);
-        $this->getID_Empresa($rs[0]['NUM_InscricaoEstadual']);
-        $this->getID_Empresa($rs[0]['NUM_Fone']);
-        $this->getID_Empresa($rs[0]['NUM_FAX']);
-        $this->getID_Empresa($rs[0]['DSC_EMAIL']);
-        $this->getID_Empresa($rs[0]['COD_TipoEstado']);
+        $this->setID_Empresa($rs[0]['ID_Empresa']);
+        $this->setCOD_CNPJ($rs[0]['COD_CNPJ']);
+        $this->setDSC_RazaoSocial($rs[0]['DSC_RazaoSocial']);
+        $this->setDSC_Endereco($rs[0]['DSC_Endereco']);
+        $this->setDSC_Bairro($rs[0]['DSC_Bairro']);
+        $this->setDSC_Cidade($rs[0]['DSC_Cidade']);
+        $this->setNUM_CEP($rs[0]['NUM_CEP']);
+        $this->setNUM_InscricaoEstadual($rs[0]['NUM_InscricaoEstadual']);
+        $this->setNUM_Fone($rs[0]['NUM_Fone']);
+        $this->setNUM_FAX($rs[0]['NUM_FAX']);
+        $this->setDSC_EMAIL($rs[0]['DSC_EMAIL']);
+        $this->setCOD_TipoEstado($rs[0]['COD_TipoEstado']);       
         return $this;
     }
 
