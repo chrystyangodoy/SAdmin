@@ -87,33 +87,51 @@
                 </div>
                 <!--Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
-                    <li>
-                        <a href="EmpresaList.php">Empresas</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-blackboard"></span> Básico <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="EmpresaList.php">Empresas</a>
+                            </li>
+                            <li>
+                                <a href="UsuarioList.php">Usuários</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="TipoEstadoList.php">Estados</a>
+                            </li>
+                            <li>
+                                <a href="ProfissaoList.php">Profissões</a>
+                            </li>
+                            <li>
+                                <a href="GrupoList.php">Grupos</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="UsuarioList.php">Usuários</a>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-book"></span> Evento <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="EventoList.php">Eventos</a>
+                            </li>
+                            <li>
+                                <a href="LocalEventoList.php">Local Evento</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="ProfissaoList.php">Profissão</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-certificate"></span> Participantes <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="ParticipanteList.php">Participante</a>
+                            </li>
+                            <li>
+                                <a href="TbTipoParticipacaoList.php">Tipo Participação</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="GrupoList.php">Grupos</a>
-                    </li>
-                    <li>
-                        <a href="TipoEstadoList.php">Estado</a>
-                    </li>
-                    <li>
-                        <a href="LocalEventoList.php">Local Evento</a>
-                    </li>
-                    <li>
-                        <a href="EventoList.php">Eventos</a>
-                    </li>
-                    <li>
-                        <a href="ParticipanteList.php">Participante</a>
-                    </li>
-                    <li>
-                        <a href="TbTipoParticipacaoList.php">Tipo Participação</a>
-                    </li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {$dscUser} <b class="caret"></b></a>
                         <ul class="dropdown-menu">

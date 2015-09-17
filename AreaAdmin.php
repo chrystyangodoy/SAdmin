@@ -19,5 +19,6 @@ $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("lista", $lista);
 
-$smarty->display('./View/AreaAdmin.html');
+//$smarty->display('./View/AreaAdmin.html');
+$smarty->display('./View/Administracao.html');
 //----------------------------------------------------------

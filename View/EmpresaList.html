@@ -1,34 +1,36 @@
-{include file="./Template/header.html"}
-
+{include file="./Template/HeaderAdmin.html"}
+<div style="padding-bottom: 10px;">
+    <a class="btn btn-primary" href="EmpresaInsert.php" role="button">Novo</a>    
+</div>
 <div>
-    <a href="EmpresaInsert.php"><button class="btn">Novo</button></a>
-    <table id="myTable" border="1" cellpadding="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Razão Social</th>
-            <th>Descrição</th>
-            <th>Telefone</th>
-            <th>Email</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody id="myTabContent">
-        {foreach from=$lista item=row}
-        <tr >
-            <td>{$row.ID_Empresa}</td>
-            <td>{$row.DSC_RazaoSocial}</td>
-            <td>{$row.DSC_Endereco}</td>
-            <td>{$row.NUM_Fone}</td>
-            <td>{$row.DSC_EMAIL}</td>
-            <td>
-                <a href="EmpresaEdit.php?alt={$row.ID_Empresa}" onclick="win('EmpresaEdit.php?alt={$row.ID_Empresa}',300,300)"><button class="btn">Alterar</button></a> 
-                <a href="?del={$row.ID_Empresa}"><button class="btn">Excluir</button></a>
-            </td>
-        </tr>
-        {/foreach}
-    </tbody>
-</table>
+    <table id="myTable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Razão Social</th>
+                <th>Descrição</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="myTabContent">
+            {foreach from=$lista item=row}
+            <tr >
+                <td>{$row.ID_Empresa}</td>
+                <td>{$row.DSC_RazaoSocial}</td>
+                <td>{$row.DSC_Endereco}</td>
+                <td>{$row.NUM_Fone}</td>
+                <td>{$row.DSC_EMAIL}</td>
+                <td>
+                    <a href="EmpresaEdit.php?alt={$row.ID_Empresa}" onclick="win('EmpresaEdit.php?alt={$row.ID_Empresa}', 300, 300)" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a> 
+                    <a href="?del={$row.ID_Empresa}" title="Excluir"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="font-size: 30px;"></span></a>
+                </td>
+
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
 </div>
 
 {include file="./Template/footer.html"}

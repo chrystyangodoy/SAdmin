@@ -1,32 +1,34 @@
-{include file="./Template/header.html"}
+{include file="./Template/HeaderAdmin.html"}
 
+<div style="padding-bottom: 10px;">
+    <a class="btn btn-primary" href="ParticipanteInsert.php" role="button">Novo</a>    
+</div>
 <div>
-    <a href="ParticipanteInsert.php"><button class="btn">Novo</button></a>
-    <table id="myTable" border="1" cellpadding="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>NºCelular</th>
-            <th>Email</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody id="myTabContent">
-        {foreach from=$lista item=row}
-        <tr >
-            <td>{$row.ID_Participante}</td>
-            <td>{$row.DSC_Nome}</td>
-            <td>{$row.NUM_Celular}</td>
-            <td>{$row.DSC_Email}</td>
-            <td>
-                <a href="?alt={$row.ID_Participante}"><button class="btn">Alterar</button></a> 
-                <a href="?del={$row.ID_Participante}"><button class="btn">Excluir</button></a>
-            </td>
-        </tr>
-        {/foreach}
-    </tbody>
-</table>
+    <table id="myTable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>NºCelular</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="myTabContent">
+            {foreach from=$lista item=row}
+            <tr >
+                <td>{$row.ID_Participante}</td>
+                <td>{$row.DSC_Nome}</td>
+                <td>{$row.NUM_Celular}</td>
+                <td>{$row.DSC_Email}</td>
+                <td>
+                    <a href="?alt={$row.ID_Participante}" class="col-md-offset-1" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a>
+                    <a href="?del={$row.ID_Participante}" title="Excluir"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="font-size: 30px;"></span></a>
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
 </div>
 
 {include file="./Template/footer.html"}

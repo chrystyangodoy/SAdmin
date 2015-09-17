@@ -1,15 +1,21 @@
 <?php
 
 require_once './smarty.php';
-$msg = "";
-$type = "";
 require ('./actions/aBsc_Local_Evento.php');
 $localEvento = new aBsc_Local_Evento();
+
+session_start();
+require_once './config/FeedbackMessage.php';
+$FeedbackMessage = new FeedbackMessage();
+
 if (isset($_GET['del'])) {
     $localEvento->setID_Local($_GET['del']);
     $localEvento->delete();
 }
 
-$smarty->assign("msg", $msg);
-$smarty->assign("type", $type);
+$smarty->assign("dscUser", $_SESSION['DSC_Login']);
+$smarty->assign("msg", $FeedbackMessage->getMsg());
+$smarty->assign("type", $FeedbackMessage->getType());
+
+$smarty->assign("lista", $localEvento->select());
 $smarty->display('./View/LocalEventoList.html');

@@ -1,14 +1,12 @@
 {include file="./Template/HeaderAdmin.html"}
 
-
-<div >
-    <a href="TipoEstadoInsert.php"><button class="btn btn-primary">Novo</button></a>
+<div style="padding-bottom: 10px;">
+    <a class="btn btn-primary" href="TipoEstadoInsert.php" role="button">Novo</a>    
 </div>
 <div >
     <table id="myTable" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>Código</th>
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Opções</th>
@@ -17,10 +15,9 @@
         <tbody id="myTabContent">
             {foreach from=$lista item=row}
             <tr >
-                <td>{$row.COD_TIPOEstado}</td>
                 <td>{$row.DSC_Nome}</td>
                 <td>{$row.DSC_Descricao}</td>
-                
+
                 <td class="col-lg-1">
                     <a href="?alt={$row.COD_TIPOEstado}" class="col-md-offset-1" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a> 
                     <a href="?del={$row.COD_TIPOEstado}" title="Excluir"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="font-size: 30px;"></span></a>

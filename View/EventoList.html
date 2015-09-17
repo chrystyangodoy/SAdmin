@@ -1,9 +1,9 @@
 {include file="./Template/HeaderAdmin.html"}
 
-<div class="row">
-    <a href="EventoInsert.php"><button class="btn">Novo</button></a>
+<div style="padding-bottom: 10px;">
+    <a class="btn btn-primary" href="EventoInsert.php" role="button">Novo</a>    
 </div>
-<div class="row">
+<div>
     <table id="myTable" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -26,8 +26,8 @@
                 <td>{$row.DSC_Cidade_Promotora}</td>
                 <td>{$row.NUM_Fone_Promotora}</td>
                 <td>
-                    <a href="?alt={$row.ID_EVT}"><button class="btn">Alterar</button></a> 
-                    <a href="?del={$row.ID_EVT}"><button class="btn">Excluir</button></a>
+                    <a href="?alt={$row.ID_EVT}" class="col-md-offset-1" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a>
+                    <a href="?del={$row.ID_EVT}" title="Excluir"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="font-size: 30px;"></span></a>
                 </td>
             </tr>
             {/foreach}
