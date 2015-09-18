@@ -22,7 +22,7 @@ if (isset($_POST['Cadastrar'])) {
     $eventoCategoria->setDT_Fim_Valor($_POST['DT_Fim_Valor']);
     $eventoCategoria->setID_EVT_Evento($_POST['ID_EVT_Evento']);
     
-    $evento->insert();
+    $eventoCategoria->insert();
     
     $FeedbackMessage->setMsg("Evento inserido com sucesso!");
 }
@@ -32,4 +32,4 @@ $smarty -> assign("listEvento",$evento->select());
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 
-$smarty->display('./View/EventoInsert.html');
+$smarty->display('./View/EventoCategoriaInsert.html');
