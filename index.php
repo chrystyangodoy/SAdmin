@@ -17,7 +17,7 @@ if (isset($_POST['btnLogin'])) {
         
         $_SESSION['ID_Usuario'] = $usuario->getID_Usuario();
         $_SESSION['DSC_Login'] = $usuario->getDSC_Login();
-        $FeedbackMessage->setMsg("Bem Vindo," . $_SESSION['DSC_Login']);
+        $FeedbackMessage->setMsg("Bem Vindo, " . $_SESSION['DSC_Login']);
         
         if($Username=="admin"){
         header("Location: AreaAdmin.php");   
