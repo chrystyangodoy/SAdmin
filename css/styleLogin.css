@@ -300,15 +300,19 @@ label.error {
 }
 #alert {
     display: none;/* O alerta deve iniciar oculto */
-    width: 100%;
+    width: 300px;
     height: auto;
     overflow: hidden;
-    position: fixed;
+    /*position: fixed;*/
+    position: absolute;
+	left: 50%;
+        margin-left: -160px;
     z-index: 999999;
     padding: 10px;
     color: #fff;
     cursor: pointer;
     top: 0;
+    text-align: center;
 }
 
 .alert-error {
