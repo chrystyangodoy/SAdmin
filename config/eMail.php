@@ -14,7 +14,7 @@
 class eMail {
     
     
-    private $smtp = 'smtp.gmail.com';
+    private $smtp = 'smtp.cs-consoft.com.br';
 
     public function sendEmail($remetente, $destinatario, $assunto, $mensagem) {
 
@@ -46,16 +46,17 @@ class eMail {
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->IsSMTP(); // Define que a mensagem será SMTP
         $mail->Host = $this->smtp; // Endereço do servidor SMTP
-        //$mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
-        //$mail->Username = 'seumail@dominio.net'; // Usuário do servidor SMTP
-        //$mail->Password = 'senha'; // Senha do servidor SMTP
+        $mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
+        $mail->Port = 587;
+        $mail->Username = 'victor@cs-consoft.com.br'; // Usuário do servidor SMTP
+        $mail->Password = 'vh1234vh'; // Senha do servidor SMTP
         // Define o remetente
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        $mail->From = $detinatario; // Seu e-mail
-        $mail->FromName = $nome; // Seu nome
+        $mail->From = 'victor@cs-consoft.com.br'; // Seu e-mail
+        $mail->FromName = 'Victor Hugo'; // Seu nome
         // Define os destinatário(s)
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        $mail->AddAddress('victorhugolgr@gmail.com', 'Victor Hugo');
+        $mail->AddAddress($detinatario, $nome);
         //$mail->AddAddress('ciclano@site.net');
         //$mail->AddCC('ciclano@site.net', 'Ciclano'); // Copia
         //$mail->AddBCC('fulano@dominio.com.br', 'Fulano da Silva'); // Cópia Oculta
