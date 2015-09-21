@@ -64,8 +64,8 @@ if (isset($_POST['Cadastrar'])) {
             require_once './config/eMail.php';
             $emailObj = new eMail();
             //$envio = mail($email, $ass,$mens);
-            $remetente = "shift_d2@hotmail.com";
-            $envio = $emailObj->sendEmail($remetente, $email, $ass ,$mens );
+
+            $envio = $emailObj->enviarEMail($partic->getDSC_Email(),$partic->getDSC_Nome(), $ass ,$mens );
 
             $msg = "Participante inserido com sucesso! Senha: ".$senha;
             $type = "success";
