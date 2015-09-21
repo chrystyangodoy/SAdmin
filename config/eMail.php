@@ -14,7 +14,7 @@
 class eMail {
     
     
-    private $smtp = 'smtp.gmail.com';
+    private $smtp = 'smtp.cs-consoft.com.br';
 
     public function sendEmail($remetente, $destinatario, $assunto, $mensagem) {
 
@@ -47,12 +47,13 @@ class eMail {
         $mail->IsSMTP(); // Define que a mensagem será SMTP
         $mail->Host = $this->smtp; // Endereço do servidor SMTP
         $mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
-        $mail->Username = 'chrystyangodoy@gmail.com'; // Usuário do servidor SMTP
-        $mail->Password = 'cg280587'; // Senha do servidor SMTP
+        $mail->Port = 587;
+        $mail->Username = 'victor@cs-consoft.com.br'; // Usuário do servidor SMTP
+        $mail->Password = 'vh1234vh'; // Senha do servidor SMTP
         // Define o remetente
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        $mail->From = $detinatario; // Seu e-mail
-        $mail->FromName = $nome; // Seu nome
+        $mail->From = 'victor@cs-consoft.com.br'; // Seu e-mail
+        $mail->FromName = 'Victor Hugo'; // Seu nome
         // Define os destinatário(s)
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->AddAddress($detinatario, $nome);

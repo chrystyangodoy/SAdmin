@@ -64,16 +64,20 @@ if (isset($_POST['Cadastrar'])) {
             require_once './config/eMail.php';
             $emailObj = new eMail();
             //$envio = mail($email, $ass,$mens);
-            $remetente = "shift_d2@hotmail.com";
-            $envio = $emailObj->sendEmail($remetente, $email, $ass ,$mens );
 
-            $msg = "Participante inserido com sucesso! Senha: ".$senha;
+            $envio = $emailObj->enviarEMail($partic->getDSC_Email(),$partic->getDSC_Nome(), $ass ,$mens );
+
+            $msg = "Participante inserido com sucesso!";
             $type = "success";
             /*
               $smarty->assign("msg", $msg);
               $smarty->assign("msg", $msg);
               $smarty->display('./View/ParticipanteList.html');
              * */
+            
+            header("Location: Index.php");
+            die();
+            
         } else {
             $msg = "CPF já cadastrado!";
             $type = "error";
