@@ -42,11 +42,18 @@ jQuery.validator.addMethod("cpfCadastrado", function (value, element) {
     cpf = value.replace('-', '');
 
     resultado = isCPFCadastrado(cpf);
-    
-    
-    
+
+
+
     return this.optional(element) || resultado == 1;
 
     //Retorna 1 caso não tenha cadastro
     //Retorna 0 caso já haja cadastro
 }, "CPF já cadastrado");
+
+jQuery.validator.addMethod("validaComboBox", function (value, element) {
+    if (value == 0)
+        return this.optional(element) || false;
+    return this.optional(element) || true;
+}, "Selecione um Valor."
+        );

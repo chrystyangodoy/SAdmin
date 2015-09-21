@@ -83,7 +83,9 @@ $(document).ready(function () {
             NUM_CEP: {required: true},
             DSC_Cidade: {required: true},
             DSC_Bairro: {required: true},
-            DSC_Endereco: {required: true}
+            DSC_Endereco: {required: true},
+            ID_BSC_Empresa: {validaComboBox:true},
+            ID_BSC_Profissao: {validaComboBox:true}
         },
         messages: {
             DSC_Nome: {required: 'Preencha o campo nome'},
@@ -92,7 +94,9 @@ $(document).ready(function () {
             NUM_CEP: {required: 'Preencha o campo CEP'},
             DSC_Cidade: {required: 'Preencha o campo Cidade'},
             DSC_Bairro: {required: 'Preencha o campo Bairro'},
-            DSC_Endereco: {required: 'Preencha o campo Endereço'}
+            DSC_Endereco: {required: 'Preencha o campo Endereço'},
+            ID_BSC_Empresa: {validaComboBox:'Preencha o campo Empresa'},
+            ID_BSC_Profissao: {validaComboBox:'Preencha o campo Profissão'}
 
         },
         /*     errorPlacement: function (error, element) {

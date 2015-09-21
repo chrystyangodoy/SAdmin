@@ -67,13 +67,17 @@ if (isset($_POST['Cadastrar'])) {
 
             $envio = $emailObj->enviarEMail($partic->getDSC_Email(),$partic->getDSC_Nome(), $ass ,$mens );
 
-            $msg = "Participante inserido com sucesso! Senha: ".$senha;
+            $msg = "Participante inserido com sucesso!";
             $type = "success";
             /*
               $smarty->assign("msg", $msg);
               $smarty->assign("msg", $msg);
               $smarty->display('./View/ParticipanteList.html');
              * */
+            
+            header("Location: Index.php");
+            die();
+            
         } else {
             $msg = "CPF já cadastrado!";
             $type = "error";
