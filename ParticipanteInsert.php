@@ -62,10 +62,10 @@ if (isset($_POST['Cadastrar'])) {
             $ass ="Cadastro efetuado com sucesso!";
             $mens = ("Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
             require_once './config/eMail.php';
-            $email = new eMail();
+            $emailObj = new eMail();
             //$envio = mail($email, $ass,$mens);
-            $remetente = "Testando Sistema Web - Confirmação";
-            $envio = $email->sendEmail($remetente, $email, $ass ,$mens );
+            $remetente = "shift_d2@hotmail.com";
+            $envio = $emailObj->sendEmail($remetente, $email, $ass ,$mens );
 
             $msg = "Participante inserido com sucesso! Senha: ".$senha;
             $type = "success";

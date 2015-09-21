@@ -255,8 +255,8 @@ label.error {
     overflow: hidden;
     /*position: fixed;*/
     position: absolute;
-	left: 50%;
-        margin-left: -160px;
+    left: 50%;
+    margin-left: -160px;
     z-index: 999999;
     padding: 10px;
     color: #fff;
