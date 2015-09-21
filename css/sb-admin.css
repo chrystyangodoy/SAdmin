@@ -249,6 +249,9 @@ label.error {
     display: none;/* O alerta deve iniciar oculto */
     width: 300px;
     height: auto;
+    border-radius:10px;
+    font-family:Tahoma,Geneva,Arial,sans-serif;font-size:12px;
+    font-weight: bold;
     overflow: hidden;
     /*position: fixed;*/
     position: absolute;
@@ -259,16 +262,19 @@ label.error {
     color: #fff;
     cursor: pointer;
     top: 0;
+    text-align: center;
 }
 
 .alert-error {
-    background-color: #e74c3c;
+    background:#FF5252 url('../images/error.png') no-repeat 10px 50%;
+    border:1px solid #f5aca6;
+
 }
 
 .alert-success {
-    background-color: #2ecc71;
+    background: #0f9d58 url('../images/success.png') no-repeat 10px 50%;
+    border:1px solid #2ecc71;
 }
-
 
 
 .card {

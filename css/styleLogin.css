@@ -302,11 +302,14 @@ label.error {
     display: none;/* O alerta deve iniciar oculto */
     width: 300px;
     height: auto;
+    border-radius:10px;
+    font-family:Tahoma,Geneva,Arial,sans-serif;font-size:12px;
+    font-weight: bold;
     overflow: hidden;
     /*position: fixed;*/
     position: absolute;
-	left: 50%;
-        margin-left: -160px;
+    left: 50%;
+    margin-left: -160px;
     z-index: 999999;
     padding: 10px;
     color: #fff;
@@ -316,9 +319,12 @@ label.error {
 }
 
 .alert-error {
-    background-color: #e74c3c;
+    background:#FF5252 url('../images/error.png') no-repeat 10px 50%;
+    border:1px solid #f5aca6;
+
 }
 
 .alert-success {
-    background-color: #2ecc71;
+    background: #0f9d58 url('../images/success.png') no-repeat 10px 50%;
+    border:1px solid #2ecc71;
 }
