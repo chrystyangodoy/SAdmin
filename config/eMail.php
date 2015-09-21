@@ -46,16 +46,16 @@ class eMail {
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->IsSMTP(); // Define que a mensagem será SMTP
         $mail->Host = $this->smtp; // Endereço do servidor SMTP
-        //$mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
-        //$mail->Username = 'seumail@dominio.net'; // Usuário do servidor SMTP
-        //$mail->Password = 'senha'; // Senha do servidor SMTP
+        $mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
+        $mail->Username = 'chrystyangodoy@gmail.com'; // Usuário do servidor SMTP
+        $mail->Password = 'cg280587'; // Senha do servidor SMTP
         // Define o remetente
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->From = $detinatario; // Seu e-mail
         $mail->FromName = $nome; // Seu nome
         // Define os destinatário(s)
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        $mail->AddAddress('victorhugolgr@gmail.com', 'Victor Hugo');
+        $mail->AddAddress($detinatario, $nome);
         //$mail->AddAddress('ciclano@site.net');
         //$mail->AddCC('ciclano@site.net', 'Ciclano'); // Copia
         //$mail->AddBCC('fulano@dominio.com.br', 'Fulano da Silva'); // Cópia Oculta
