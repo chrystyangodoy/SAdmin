@@ -2,9 +2,11 @@
 require_once 'smarty.php';
 require_once './config/FeedbackMessage.php';
 require_once './actions/aEvt_Evento.php';
+require_once './actions/aUsuario.php';
 
 $FeedbackMessage = new FeedbackMessage();
 
+$usuario = new aUsuario();
 $evento = new aEvt_Evento();
 
 $lista = $evento->SelectEventoEmdia();
@@ -14,4 +16,4 @@ $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("lista", $lista);
 
-$smarty->display('./Portal/index.html');
+$smarty->display('./Portal/Index.html');
