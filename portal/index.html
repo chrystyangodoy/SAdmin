@@ -10,10 +10,10 @@
         <title>Portal 3</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="./portal/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
-        <link href="css/custom.css" rel="stylesheet">
+        <link href="./portal/css/custom.css" rel="stylesheet">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,16 +61,16 @@
                         </li>    
                     </ul>
                     <!-- Log In Form -->
-                    <form class="navbar-form navbar-right form-inline">
+                    <form name="Login" id="Login" class="navbar-form navbar-right form-inline" action="" method="post">
                         <div class="form-group">
-                            <label class="sr-only" for="emailAddress">Email address</label>
-                            <input type="email" class="form-control" id="emailAddress" placeholder="Email">
+                            <label class="sr-only" >Usuário</label>
+                            <input name="Username" type="text" class="form-control" placeholder="Usuário">
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="pwd">Password</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Password">
+                            <input name="Password" type="password" class="form-control" id="pwd" placeholder="Password">
                         </div>
-                        <button type="submit" class="btn btn-default">Sign in</button>
+                        <button name="btnLogin" type="submit" class="btn btn-primary">Sign in</button>
                     </form>
 
                 </div>
@@ -138,13 +138,13 @@
             <!-- Left Column -->
 
             <!-- Center Column -->
-            <div class="col-sm-6">	
+            <div class="col-sm-10">	
                 <!-- Articles -->
                 <table>
-                    <td>
+                    <tr>
 
                         {foreach from=$lista item=row}
-                    <tr>
+                    <td>
                     <div class="card text-center">
                         <div class="card-block">
                             <h4 class="card-title">{$row.DSC_Nome}</h4>
@@ -157,10 +157,9 @@
                     </div>
                     {foreachelse}
                     Sem evento disponível
-                    </tr>
-                    {/foreach}
-
                     </td>
+                    {/foreach}
+                    </tr>
                 </table>
 
             </div><!--/Center Column-->
@@ -178,16 +177,16 @@
 
 
         <!-- jQuery -->
-        <script src="js/jquery-1.11.3.min.js"></script>
+        <script src="./portal/js/jquery-1.11.3.min.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="./portal/js/bootstrap.min.js"></script>
 
         <!-- IE10 viewport bug workaround -->
-        <script src="js/ie10-viewport-bug-workaround.js"></script>
+        <script src="./portal/js/ie10-viewport-bug-workaround.js"></script>
 
         <!-- Placeholder Images -->
-        <script src="js/holder.min.js"></script>
+        <script src="./portal/js/holder.min.js"></script>
 
     </body>
 
