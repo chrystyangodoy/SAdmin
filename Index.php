@@ -50,7 +50,9 @@ else
 
 if (isset($_GET['idevt']))
 {
-    if($_SESSION['ID_Usuario'] !=null || $_SESSION['ID_Usuario'] !=0) {
+    $idEvent = $_GET['idevt'];
+    if ($_SESSION['ID_Usuario'] != null || $_SESSION['ID_Usuario'] != 0)
+    {
 
         require_once './actions/aBsc_Participante.php';
         require_once './actions/aEvt_Evento_Participante.php';
@@ -69,8 +71,17 @@ if (isset($_GET['idevt']))
         $evtPart->setID_EVT_Evento($_GET['idevt']);
         $evtPart->setID_BSC_Participante($partic->getID_Participante());
         $evtPart->insert();
-    }else{
-        header("Location: Login.php");
+
+        $ass = "Confirmação de Inscrição no Evento!";
+        $mens = ("Sua inscrição no evento ".$_GET['idevt']." foi efetuada com sucesso!");
+        require_once './config/eMail.php';
+        $emailObj = new eMail();
+
+        $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
+    }
+    else
+    {
+        header("Location: Login.php?idevt=$idEvent");
     }
 }
 if ($usuario->getID_Usuario() == null || $usuario->getID_Usuario() == 0)

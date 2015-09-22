@@ -15,10 +15,10 @@ if (isset($_POST['btnLogin']))
 
     if ($usuario->getID_Usuario() != null || $usuario->getID_Usuario() != 0)
     {
-
         $_SESSION['ID_Usuario'] = $usuario->getID_Usuario();
         $_SESSION['DSC_Login'] = $usuario->getDSC_Login();
         $FeedbackMessage->setMsg("Bem Vindo, " . $_SESSION['DSC_Login']);
+
 
         if ($Username == "admin")
         {
@@ -26,7 +26,15 @@ if (isset($_POST['btnLogin']))
         }
         else
         {
-            header("Location: AreaUsuario.php");
+            $idEvent = $_GET['idevt'];
+            if (isset($_GET['idevt']))
+            {
+                header("Location: Index.php?idevt=$idEvent");
+            }
+            else
+            {
+                header("Location: AreaUsuario.php");
+            }
         }
 
         die();
@@ -44,6 +52,7 @@ else
 {
     $FeedbackMessage->setMsg("Bem Vindo, Visitante!");
 }
+
 if ($usuario->getID_Usuario() == null || $usuario->getID_Usuario() == 0)
 {
     $msg = $FeedbackMessage->getMsg();
