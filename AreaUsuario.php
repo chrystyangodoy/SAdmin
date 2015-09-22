@@ -44,7 +44,6 @@ if (isset($_GET['idevt']))
     $evtPart->insert();
 }
 
-
 $FeedbackMessage = new FeedbackMessage();
 
 $evento = new aEvt_Evento();
