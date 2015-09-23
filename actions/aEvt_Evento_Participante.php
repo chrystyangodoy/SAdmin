@@ -44,26 +44,48 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
     public function load() {
         $rs = $this->select(sprintf("and ID_EVT_Evento_Pariticipante='%s'", $this->getID_EVT_Evento_Pariticipante()));
         $this->setID_EVT($rs[0]['ID_EVT_Evento_Pariticipante']);
-        $this->setID_EVT($rs[0]['DSC_Nome_Crachav']);
-        $this->setID_EVT($rs[0]['COD_Barras_Cracha']);
-        $this->setID_EVT($rs[0]['VLR_Total']);
-        $this->setID_EVT($rs[0]['VLR_Total_Inscricao']);
-        $this->setID_EVT($rs[0]['QTD_CargaHoraria_Realizada']);
-        $this->setID_EVT($rs[0]['COD_Nivel_Participante']);
-        $this->setID_EVT($rs[0]['ID_EVT_Pagamento']);
-        $this->setID_EVT($rs[0]['ID_EVT_Categoria']);
-        $this->setID_EVT($rs[0]['ID_EVT_Evento']);
-        $this->setID_EVT($rs[0]['ID_BSC_Participante']);
-        $this->setID_EVT($rs[0]['ID_EVT_Participante_Pai']);
-        $this->setID_EVT($rs[0]['COD_Tipo_SIT_Certificado']);
-        $this->setID_EVT($rs[0]['DTM_Entrega_Certificado']);
-        $this->setID_EVT($rs[0]['ID_SEG_DetalheTransacao']);
-        $this->setID_EVT($rs[0]['SIT_EH_Parcelado']);
-        $this->setID_EVT($rs[0]['ID_EVT_EventoGrupo']);
-        $this->setID_EVT($rs[0]['COD_TipoSituacao_Material']);
-        $this->setID_EVT($rs[0]['DTM_EntregaMaterial']);
-        $this->setID_EVT($rs[0]['COD_InscricaoExterno']);
+        $this->setDSC_Nome_Crachav($rs[0]['DSC_Nome_Crachav']);
+        $this->setCOD_Barras_Cracha($rs[0]['COD_Barras_Cracha']);
+        $this->setVLR_Total($rs[0]['VLR_Total']);
+        $this->setVLR_Total_Inscricao($rs[0]['VLR_Total_Inscricao']);
+        $this->setQTD_CargaHoraria_Realizada($rs[0]['QTD_CargaHoraria_Realizada']);
+        $this->setCOD_Nivel_Participante($rs[0]['COD_Nivel_Participante']);
+        $this->setID_EVT_Pagamento($rs[0]['ID_EVT_Pagamento']);
+        $this->setID_EVT_Categoria($rs[0]['ID_EVT_Categoria']);
+        $this->setID_EVT_Evento($rs[0]['ID_EVT_Evento']);
+        $this->setID_BSC_Participante($rs[0]['ID_BSC_Participante']);
+        $this->setID_EVT_Participante_Pai($rs[0]['ID_EVT_Participante_Pai']);
+        $this->setCOD_Tipo_SIT_Certificado($rs[0]['COD_Tipo_SIT_Certificado']);
+        $this->setDTM_Entrega_Certificado($rs[0]['DTM_Entrega_Certificado']);
+        $this->setID_SEG_DetalheTransacao($rs[0]['ID_SEG_DetalheTransacao']);
+        $this->setSIT_EH_Parcelado($rs[0]['SIT_EH_Parcelado']);
+        $this->setID_EVT_EventoGrupo($rs[0]['ID_EVT_EventoGrupo']);
+        $this->setCOD_TipoSituacao_Material($rs[0]['COD_TipoSituacao_Material']);
+        $this->setDTM_EntregaMaterial($rs[0]['DTM_EntregaMaterial']);
+        $this->setCOD_InscricaoExterno($rs[0]['COD_InscricaoExterno']);
         return $this;
     }
 
+    
+    public function insertPart($id_Evt,$id_User) {
+        
+        require_once ('./config/configs.php');
+        require_once './actions/aBsc_Participante.php';
+        
+        $partic = new aBsc_Participante();
+        $config = new configs();
+        
+        $partic->selectInfoEvt($id_User);
+        
+        $this->setID_EVT_Evento_Pariticipante($config->idUnico());
+        $this->setID_EVT_Evento($id_Evt);
+        
+        $this->setID_BSC_Participante($partic->getID_Participante());
+        $this->setDSC_Nome_Crachav($partic->getDSC_Nome());
+        $this->setCOD_Barras_Cracha($partic->getCOD_CPF());
+        
+        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Crachav(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno());
+        return $this->RunQuery($sql);
+    }
+    
 }

@@ -19,17 +19,19 @@ if (isset($_POST['btnLogin']))
         $_SESSION['DSC_Login'] = $usuario->getDSC_Login();
         $FeedbackMessage->setMsg("Bem Vindo, " . $_SESSION['DSC_Login']);
 
-
         if ($Username == "admin")
         {
             header("Location: AreaAdmin.php");
         }
         else
         {
-            $idEvent = $_GET['idevt'];
-            if (isset($_GET['idevt']))
+
+            if ($_SESSION['id_Evento'] != NULL || $_SESSION['id_Evento'] != 0)
             {
-                header("Location: Index.php?idevt=$idEvent");
+                require_once './actions/aEvt_Evento_Participante.php';
+                $evtPart = new aEvt_Evento_Participante();
+                $evtPart->insertPart($_SESSION['id_Evento'], $_SESSION['ID_Usuario']);
+                header("Location: Index.php");
             }
             else
             {

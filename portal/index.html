@@ -137,6 +137,9 @@
                                 <div class="card-block">
                                     <h4 class="card-title">{$row.DSC_Nome}</h4>
                                     <p class="card-text">{$row.DSC_Endereco}, {$row.DSC_Cidade} - {$row.DSC_Bairro}</p>
+                                    <form name="inscricao" action="" method="post">    
+                                        <button name="btn_inscricao" type="submit" value="{$row.ID_EVT}" class="btn btn-primary">Inscreva-se</button>    
+                                    </form>
                                     <a href="?idevt={$row.ID_EVT}" class="btn btn-primary">Inscreva-se</a>
                                 </div>
                                 <div class="card-footer text-muted">
