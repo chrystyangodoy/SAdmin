@@ -77,7 +77,7 @@ if (isset($_GET['idevt']))
         require_once './config/eMail.php';
         $emailObj = new eMail();
 
-        $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
+        //$envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
     }
     else
     {
