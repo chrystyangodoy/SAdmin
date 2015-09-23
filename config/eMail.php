@@ -46,10 +46,9 @@ class eMail {
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->IsSMTP(); // Define que a mensagem será SMTP
         $mail->Host = $this->smtp; // Endereço do servidor SMTP
-        $mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
+        //$mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
         $mail->Port = 587;
-        $mail->Username = 'victor@cs-consoft.com.br'; // Usuário do servidor SMTP
-        $mail->Password = 'vh1234vh'; // Senha do servidor SMTP
+
         // Define o remetente
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->From = 'victor@cs-consoft.com.br'; // Seu e-mail

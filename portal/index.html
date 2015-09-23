@@ -22,27 +22,7 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <!--Slider-in icons-->
-        <script src="./js/Customizacoes.js" type="text/javascript"></script>
-        <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $(".username").focus(function () {
-                    $(".user-icon").css("left", "-48px");
-                });
-                $(".username").blur(function () {
-                    $(".user-icon").css("left", "0px");
-                });
-
-                $(".password").focus(function () {
-                    $(".pass-icon").css("left", "-48px");
-                });
-                $(".password").blur(function () {
-                    $(".pass-icon").css("left", "0px");
-                });
-                showAlert('{$type}', '{$msg}');
-            });
-        </script>
 
     </head>
 
@@ -155,21 +135,21 @@
                     <tr>
 
                         {foreach from=$lista item=row}
-                    <td>
-                    <div class="card text-center">
-                        <div class="card-block">
-                            <h4 class="card-title">{$row.DSC_Nome}</h4>
-                            <p class="card-text">{$row.DSC_Endereco}, {$row.DSC_Cidade} - {$row.DSC_Bairro}</p>
-                            <a href="?idevt={$row.ID_EVT}" class="btn btn-primary">Inscreva-se</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            {$row.DT_Inicio}
-                        </div>
-                    </div>
-                    {foreachelse}
-                    Sem evento disponível
-                    </td>
-                    {/foreach}
+                        <td>
+                            <div class="card text-center">
+                                <div class="card-block">
+                                    <h4 class="card-title">{$row.DSC_Nome}</h4>
+                                    <p class="card-text">{$row.DSC_Endereco}, {$row.DSC_Cidade} - {$row.DSC_Bairro}</p>
+                                    <a href="?idevt={$row.ID_EVT}" class="btn btn-primary">Inscreva-se</a>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    {$row.DT_Inicio}
+                                </div>
+                            </div>
+                            {foreachelse}
+                            Sem evento disponível
+                        </td>
+                        {/foreach}
                     </tr>
                 </table>
 
@@ -198,6 +178,27 @@
 
         <!-- Placeholder Images -->
         <script src="./portal/js/holder.min.js"></script>
+        <script src="./js/Customizacoes.js" type="text/javascript"></script>
+        <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".username").focus(function () {
+                    $(".user-icon").css("left", "-48px");
+                });
+                $(".username").blur(function () {
+                    $(".user-icon").css("left", "0px");
+                });
+
+                $(".password").focus(function () {
+                    $(".pass-icon").css("left", "-48px");
+                });
+                $(".password").blur(function () {
+                    $(".pass-icon").css("left", "0px");
+                });
+                showAlert('{$type}', '{$msg}');
+            });
+        </script>
 
     </body>
 
