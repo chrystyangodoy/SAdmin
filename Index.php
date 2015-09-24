@@ -35,6 +35,8 @@ if (isset($_POST['btn_inscricao']))
         $mens = ("Sua inscrição no evento " . $infoEvt->getDSC_Nome() . " foi efetuada com sucesso!");
         require_once './config/eMail.php';
         $emailObj = new eMail();
+        require_once ('./actions/aBsc_Participante.php');
+        $partic = new aBsc_Participante();
         
         $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
         

@@ -19,7 +19,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
     protected $sqlUpdate = "update evt_evento_participante set DSC_Nome_Crachav='%s', COD_Barras_Cracha='%s', VLR_Total='%s', VLR_Total_Inscricao='%s', QTD_CargaHoraria_Realizada='%s', COD_Nivel_Participante='%s', ID_EVT_Pagamento='%s', ID_EVT_Categoria='%s', ID_EVT_Evento='%s', ID_BSC_Participante='%s', ID_EVT_Participante_Pai='%s', COD_Tipo_SIT_Certificado='%s', DTM_Entrega_Certificado='%s', ID_SEG_DetalheTransacao='%s', SIT_EH_Parcelado='%s', ID_EVT_EventoGrupo='%s', COD_TipoSituacao_Material='%s', DTM_EntregaMaterial='%s', COD_InscricaoExterno='%s' where ID_EVT_Evento_Pariticipante='%s'";
     protected $sqlDelete = "delete from evt_evento_participante where ID_EVT = '%s'";
     protected $sqlSelect = "select * from evt_evento_participante where 1=1 %s %s";
-    protected $sqlSelectExist = "SELECT count(0) AS COUNTCPF FROM evt_evento_participante WHERE 1=1 and ID_EVT='%s' and ID_BSC_Participante='%s'";
+    protected $sqlSelectExistEvt = "SELECT count(0) AS COUNT_EVT FROM evt_evento_participante WHERE 1=1 and ID_EVT_Evento='%s' and ID_BSC_Participante='%s'";
 
     public function insert()
     {
@@ -95,7 +95,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
 
     public function selectNotExistsEvt($id_Evt, $id_User)
     {
-        $rs = $this->RunSelect(sprintf($this->sqlSelectExist, $id_Evt, $id_User));
+        $rs = $this->RunSelect(sprintf($this->sqlSelectExistEvt, $id_Evt, $id_User));
         $count = $rs[0]['COUNT_EVT'];
         if ($count == 0)
         {
