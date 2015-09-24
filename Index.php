@@ -10,20 +10,15 @@ require_once './actions/aEvt_Evento.php';
 $usuario = new aUsuario();
 $evento = new aEvt_Evento();
 
-if (isset($_POST['btn_inscricao']))
-{
+if (isset($_POST['btn_inscricao'])) {
     $_SESSION['id_Evento'] = $_POST['btn_inscricao'];
 
-    if ($_SESSION['ID_Usuario'] != null || $_SESSION['ID_Usuario'] != 0)
-    {
+    if ($_SESSION['ID_Usuario'] != null || $_SESSION['ID_Usuario'] != 0) {
         require_once './actions/aEvt_Evento_Participante.php';
         $evtPart = new aEvt_Evento_Participante();
-        if ($evtPart->selectNotExistsEvt($_SESSION['id_Evento'], $_SESSION['ID_Usuario']))
-        {
+        if ($evtPart->selectNotExistsEvt($_SESSION['id_Evento'], $_SESSION['ID_Usuario'])) {
             $evtPart->insertPart($_SESSION['id_Evento'], $_SESSION['ID_Usuario']);
-        }
-        else
-        {
+        } else {
             $FeedbackMessage->setMsg("Você já está inscrito neste evento!");
             $FeedbackMessage->setType("error");
         }
@@ -39,20 +34,16 @@ if (isset($_POST['btn_inscricao']))
         $partic = new aBsc_Participante();
         
         $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
-        
-    }
-    else
-    {
+    } else {
         header("Location: Login.php");
+        die();
     }
 }
-if ($usuario->getID_Usuario() == null || $usuario->getID_Usuario() == 0)
-{
-    $msg = $FeedbackMessage->getMsg();
-    $type = $FeedbackMessage->getType();
 
-    $smarty->assign("msg", $msg);
-    $smarty->assign("type", $type);
-    $smarty->assign("lista", $evento->SelectEventoEmdia());
-    $smarty->display('./portal/Index.html');
-}
+$msg = $FeedbackMessage->getMsg();
+$type = $FeedbackMessage->getType();
+
+$smarty->assign("msg", $msg);
+$smarty->assign("type", $type);
+$smarty->assign("lista", $evento->SelectEventoEmdia());
+$smarty->display('./portal/Index.html');
