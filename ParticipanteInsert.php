@@ -40,6 +40,7 @@ if (isset($_POST['Cadastrar'])) {
             $user->setID_SEG_Grupo($grupo);
             $user->insert();
             
+            $partic->setID_Participante($config->idUnico());
             $partic->setCOD_CPF($cpf);
             $partic->setCOD_RG($_POST['COD_RG']);
             $partic->setDSC_Nome($_POST['DSC_Nome']);
@@ -58,22 +59,16 @@ if (isset($_POST['Cadastrar'])) {
             $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
             $partic->setID_Usuario($idUnico);
             $partic->insert();
-//          
+
             $ass ="Cadastro efetuado com sucesso!";
             $mens = ("Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
             require_once './config/eMail.php';
             $emailObj = new eMail();
-            //$envio = mail($email, $ass,$mens);
 
             $envio = $emailObj->enviarEMail($partic->getDSC_Email(),$partic->getDSC_Nome(), $ass ,$mens );
 
             $msg = "Participante inserido com sucesso!";
             $type = "success";
-            /*
-              $smarty->assign("msg", $msg);
-              $smarty->assign("msg", $msg);
-              $smarty->display('./View/ParticipanteList.html');
-             * */
             
             header("Location: Index.php");
             die();
