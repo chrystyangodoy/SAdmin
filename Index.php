@@ -37,7 +37,7 @@ if (isset($_POST['btn_inscricao'])) {
         die();
     }
 }
-$FeedbackMessage->setMsg("Bem Vindo, Visitante!");
+
 $msg = $FeedbackMessage->getMsg();
 $type = $FeedbackMessage->getType();
 
