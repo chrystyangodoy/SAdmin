@@ -12,11 +12,11 @@
  * @author Chrystyan Godoy <F1r3Black0ut>
  */
 class eMail {
-    
-    
-    private $smtp = 'smtp.cs-consoft.com.br';
 
-    public function sendEmail($remetente, $destinatario, $assunto, $mensagem) {
+    private $smtp = 'mx1.hostinger.com.br';
+
+    public function sendEmail($remetente, $destinatario, $assunto, $mensagem)
+    {
 
         // O remetente deve ser um e-mail do seu domínio conforme determina a RFC 822.
         // O return-path deve ser ser o mesmo e-mail do remetente.
@@ -26,17 +26,21 @@ class eMail {
         $headers .= "From: " . $remetente . "\r\n"; // remetente
         $headers .= "Return-Path: " . $remetente . "\r\n"; // return-path
 
-        if (mail($destinatario, $assunto, $mensagem, $headers)) {
+        if (mail($destinatario, $assunto, $mensagem, $headers))
+        {
             echo "Mensagem enviada com sucesso";
             return true;
-        } else {
+        }
+        else
+        {
             echo "A mensagem não pode ser enviada";
             return false;
         }
         return false;
     }
 
-    public function enviarEMail($detinatario,$nome,$assunto,$mensagem) {
+    public function enviarEMail($detinatario, $nome, $assunto, $mensagem)
+    {
         // Inclui o arquivo class.phpmailer.php localizado na pasta phpmailer
         require_once './phpMailer/class.phpmailer.php';
         require_once './phpMailer/PHPMailerAutoload.php';
@@ -47,12 +51,14 @@ class eMail {
         $mail->IsSMTP(); // Define que a mensagem será SMTP
         $mail->Host = $this->smtp; // Endereço do servidor SMTP
         //$mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
-        $mail->Port = 587;
-
+        //$mail->Port = 587;
+        $mail->Port =2525;
+        $mail->Username = 'admin@layouts.bl.ee'; // Usuário do servidor SMTP
+        $mail->Password = 'ad1234ad'; // Senha do servidor SMTP
         // Define o remetente
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        $mail->From = 'victor@cs-consoft.com.br'; // Seu e-mail
-        $mail->FromName = 'Victor Hugo'; // Seu nome
+        $mail->From = 'admin@layouts.bl.ee'; // Seu e-mail
+        $mail->FromName = 'Administração'; // Seu nome
         // Define os destinatário(s)
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->AddAddress($detinatario, $nome);
@@ -77,9 +83,12 @@ class eMail {
         $mail->ClearAllRecipients();
         $mail->ClearAttachments();
         // Exibe uma mensagem de resultado
-        if ($enviado) {
+        if ($enviado)
+        {
             echo "E-mail enviado com sucesso!";
-        } else {
+        }
+        else
+        {
             echo "Não foi possível enviar o e-mail.";
             echo "<b>Informações do erro:</b> " . $mail->ErrorInfo;
         }

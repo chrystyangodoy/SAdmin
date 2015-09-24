@@ -13,24 +13,31 @@ $evento = new aEvt_Evento();
 if (isset($_POST['btn_inscricao']))
 {
     $_SESSION['id_Evento'] = $_POST['btn_inscricao'];
-    
+
     if ($_SESSION['ID_Usuario'] != null || $_SESSION['ID_Usuario'] != 0)
     {
         require_once './actions/aEvt_Evento_Participante.php';
-
         $evtPart = new aEvt_Evento_Participante();
+        if ($evtPart->selectNotExistsEvt($_SESSION['id_Evento'], $_SESSION['ID_Usuario']))
+        {
+            $evtPart->insertPart($_SESSION['id_Evento'], $_SESSION['ID_Usuario']);
+        }
+        else
+        {
+            $FeedbackMessage->setMsg("Você já está inscrito neste evento!");
+            $FeedbackMessage->setType("error");
+        }
 
-        $evtPart->insertPart($_SESSION['id_Evento'], $_SESSION['ID_Usuario']);
-        
+
         require_once './actions/aEvt_Evento.php';
         $infoEvt = new aEvt_Evento();
         $ass = "Confirmação de Inscrição no Evento!";
         $mens = ("Sua inscrição no evento " . $infoEvt->getDSC_Nome() . " foi efetuada com sucesso!");
         require_once './config/eMail.php';
         $emailObj = new eMail();
-
-      //  $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
-
+        
+        $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
+        
     }
     else
     {
