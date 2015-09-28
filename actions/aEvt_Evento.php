@@ -26,7 +26,7 @@ class aEvt_Evento extends mEvt_Evento {
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(), $this->getDT_Fim(), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(), $this->getDT_Fim(), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora(), $this->getID_EVT());
         return $this->RunQuery($sql);
     }
 
@@ -43,22 +43,22 @@ class aEvt_Evento extends mEvt_Evento {
     public function load() {
         $rs = $this->select(sprintf("and ID_EVT='%s'", $this->getID_EVT()));
         $this->setID_EVT($rs[0]['ID_EVT']);
-        $this->setID_EVT($rs[0]['DSC_Nome']);
-        $this->setID_EVT($rs[0]['DSC_Presidente']);
-        $this->setID_EVT($rs[0]['DT_Inicio']);
-        $this->setID_EVT($rs[0]['DT_Fim']);
-        $this->setID_EVT($rs[0]['COD_CNPJ_Promotora']);
-        $this->setID_EVT($rs[0]['DSC_Nome_Promotora']);
-        $this->setID_EVT($rs[0]['DSC_Presidente_Promotora']);
-        $this->setID_EVT($rs[0]['DSC_Endereco_Promotora']);
-        $this->setID_EVT($rs[0]['NUM_CEP_Promotora']);
-        $this->setID_EVT($rs[0]['DSC_Cidade_Promotora']);
-        $this->setID_EVT($rs[0]['NUM_Fone_Promotora']);
-        $this->setID_EVT($rs[0]['NUM_FAX_Promotora']);
-        $this->setID_EVT($rs[0]['DSC_EMAIL_Promotora']);
-        $this->setID_EVT($rs[0]['QTD_CargaHorariaMinima']);
-        $this->setID_EVT($rs[0]['ID_BSC_Local_Evento']);
-        $this->setID_EVT($rs[0]['COD_Tipo_Estado_promotora']);
+        $this->setDSC_Nome($rs[0]['DSC_Nome']);
+        $this->setDSC_Presidente($rs[0]['DSC_Presidente']);
+        $this->setDT_Inicio($rs[0]['DT_Inicio']);
+        $this->setDT_Fim($rs[0]['DT_Fim']);
+        $this->setCOD_CNPJ_Promotora($rs[0]['COD_CNPJ_Promotora']);
+        $this->setDSC_Nome_Promotora($rs[0]['DSC_Nome_Promotora']);
+        $this->setDSC_Presidente_Promotora($rs[0]['DSC_Presidente_Promotora']);
+        $this->setDSC_Endereco_Promotora($rs[0]['DSC_Endereco_Promotora']);
+        $this->setNUM_CEP_Promotora($rs[0]['NUM_CEP_Promotora']);
+        $this->setDSC_Cidade_Promotora($rs[0]['DSC_Cidade_Promotora']);
+        $this->setNUM_Fone_Promotora($rs[0]['NUM_Fone_Promotora']);
+        $this->setNUM_FAX_Promotora($rs[0]['NUM_FAX_Promotora']);
+        $this->setDSC_EMAIL_Promotora($rs[0]['DSC_EMAIL_Promotora']);
+        $this->setQTD_CargaHorariaMinima($rs[0]['QTD_CargaHorariaMinima']);
+        $this->setID_BSC_Local_Evento($rs[0]['ID_BSC_Local_Evento']);
+        $this->setCOD_Tipo_Estado_promotora($rs[0]['COD_Tipo_Estado_promotora']);
         return $this;
     }
     
