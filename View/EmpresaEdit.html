@@ -1,52 +1,55 @@
 {include file="./Template/HeaderAdmin.html"}
+<script src="./js/jquery.validate.min.js" type="text/javascript"></script>
 
 <form id="Salvar" form method="post">
     <div class="form-group">
+        <input type="hidden" class="form-control" name="ID_Empresa" id="ID_Empresa" placeholder="ID_Empresa" value="{$ID_Empresa}">
         <label>CNPJ</label>
-        <input type="text" class="form-control" name="COD_CNPJ" value="{$regEmp.COD_CNPJ}" placeholder="Código CNPJ">
+        <input type="text" class="form-control" name="COD_CNPJ" id="COD_CNPJ" value="{$COD_CNPJ}" placeholder="Código CNPJ">
     </div>
     <div class="form-group">
         <label >Razão Social</label>
-        <input type="text" class="form-control"  name="DSC_RazaoSocial" value="{$regEmp.DSC_RazaoSocial}" placeholder="Razão Social">
+        <input type="text" class="form-control"  name="DSC_RazaoSocial" id="DSC_RazaoSocial" value="{$DSC_RazaoSocial}" placeholder="Razão Social">
     </div>
     <div class="form-group">
         <label >Endereço</label>
-        <input type="text" class="form-control" name="DSC_Endereco" value="{$regEmp.DSC_Endereco}" placeholder="Endereço">
+        <input type="text" class="form-control" name="DSC_Endereco" id="DSC_Endereco" value="{$DSC_Endereco}" placeholder="Endereço">
     </div>
     <div class="form-group">
         <label>Bairro</label>
-        <input type="text" class="form-control" name="DSC_Bairro" value="{$regEmp.DSC_Bairro}" placeholder="Bairro">
+        <input type="text" class="form-control" name="DSC_Bairro" id="DSC_Bairro" value="{$DSC_Bairro}" placeholder="Bairro">
     </div>
     <div class="form-group">
         <label >Cidade</label>
-        <input type="text" class="form-control" name="DSC_Cidade" value="{$regEmp.DSC_Cidade}" placeholder="Cidade">
+        <input type="text" class="form-control" name="DSC_Cidade" id="DSC_Cidade" value="{$DSC_Cidade}" placeholder="Cidade">
     </div>
 
     <div class="form-group">
         <label >CEP</label>
-        <input type="text" class="form-control" name="NUM_CEP" value="{$regEmp.NUM_CEP}" placeholder="CEP">
+        <input type="text" class="form-control" name="NUM_CEP" id="NUM_CEP" value="{$NUM_CEP}" placeholder="CEP">
     </div>
     <div class="form-group">
         <label >Inscrição Estadual</label>
-        <input type="text" class="form-control" name="NUM_InscricaoEstadual" value="{$regEmp.NUM_InscricaoEstadual}" placeholder="Inscrição Estadual">
+        <input type="text" class="form-control" name="NUM_InscricaoEstadual" id="NUM_InscricaoEstadual" value="{$NUM_InscricaoEstadual}" placeholder="Inscrição Estadual">
     </div>
     <div class="form-group">
         <label >Telefone</label>
-        <input type="text" class="form-control" name="NUM_Fone" value="{$regEmp.NUM_Fone}" placeholder="Nº Telefone">
+        <input type="text" class="form-control" name="NUM_Fone" id="NUM_Fone" value="{$NUM_Fone}" placeholder="Nº Telefone">
     </div>
     <div class="form-group">
         <label >Nº Fax</label>
-        <input type="text" class="form-control" name="NUM_FAX" value="{$regEmp.NUM_FAX}" placeholder="Nº Fax">
+        <input type="text" class="form-control" name="NUM_FAX" id="NUM_FAX" value="{$NUM_FAX}" placeholder="Nº Fax">
     </div>
     <div class="form-group">
         <label >Email</label>
-        <input type="text" class="form-control" name="DSC_EMAIL" value="{$regEmp.DSC_EMAIL}" placeholder="Email">
+        <input type="text" class="form-control" name="DSC_EMAIL" id="DSC_EMAIL" value="{$DSC_EMAIL}" placeholder="Email">
     </div>
     <div class="form-group">
         <label >Estado</label>
-        <input type="text" class="form-control" name="COD_TipoEstado" value="{$regEmp.COD_TipoEstado}" placeholder="Estado">
+        <input type="text" class="form-control" name="COD_TipoEstado" id="COD_TipoEstado" value="{$COD_TipoEstado}" placeholder="Estado">
     </div>
-    <button type="submit" class="btn" name="Salvar" value="Salvar">Salvar</button>    
+    <button type="submit" class="btn" name="Salvar" value="Salvar">Salvar</button>
+    <a href="EmpresaList.php" class="btn btn-default">Cancelar</a>
 </form>
 
 {include file="./Template/footer.html"}

@@ -41,7 +41,7 @@ class aEvt_Evento_Categoria extends mEvt_Evento_Categoria {
     }
 
     public function load() {
-        $rs = $this->select(sprintf("and ID_Empresa='%s'", $this->getID_Evento_Categoria()));
+        $rs = $this->select(sprintf("and ID_Evento_Categoria='%s'", $this->getID_Evento_Categoria()));
         $this->setID_Evento_Categoria($rs[0]['ID_Evento_Categoria']);
         $this->setDSC_Nome($rs[0]['DSC_Nome']);
         $this->setVLR_Inscricao($rs[0]['VLR_Inscricao']);

@@ -1,17 +1,19 @@
 <?php
 
 require_once 'smarty.php';
+require_once './config/FeedbackMessage.php';
+$FeedbackMessage = new FeedbackMessage();
+session_start();
 
 require ('./actions/aBsc_Empresa.php');
+
 $emp = new aBsc_Empresa();
 $emp->setID_Empresa($_GET['alt']);
 $emp->load();
 
-$regEmpresa = array('COD_CNPJ' => $emp->getCOD_CNPJ(), 'DSC_RazaoSocial' => $emp->getDSC_RazaoSocial(), 'DSC_Endereco' => $emp->getDSC_Endereco(), 'DSC_Bairro' => $emp->getDSC_Bairro(), 'DSC_Cidade' => $emp->getDSC_Cidade(), 'NUM_CEP' => $emp->getNUM_CEP(), 'NUM_InscricaoEstadual' => $emp->getNUM_InscricaoEstadual(), 'NUM_Fone' => $emp->getNUM_Fone(), 'NUM_FAX' => $emp->getNUM_FAX(), 'DSC_EMAIL' => $emp->getDSC_EMAIL(), 'COD_TipoEstado' => $emp->getCOD_TipoEstado());
-
-$smarty->assign('regEmp', $regEmpresa);
 
 if (isset($_POST['Salvar'])) {
+    $emp->setID_Empresa($_GET['alt']);
     $emp->setCOD_CNPJ($_POST['COD_CNPJ']);
     $emp->setDSC_RazaoSocial($_POST['DSC_RazaoSocial']);
     $emp->setDSC_Endereco($_POST['DSC_Endereco']);
@@ -24,7 +26,26 @@ if (isset($_POST['Salvar'])) {
     $emp->setDSC_EMAIL($_POST['DSC_EMAIL']);
     $emp->setCOD_TipoEstado($_POST['COD_TipoEstado']);
     $emp->update();
-    echo "Empresa inseridas com sucesso!";
+    $FeedbackMessage->setMsg("Evento atualizado com sucesso!");
+    header("Location: EmpresaList.php");
 }
+
+$smarty->assign("dscUser", $_SESSION['DSC_Login']);
+$smarty->assign("msg", $FeedbackMessage->getMsg());
+$smarty->assign("type", $FeedbackMessage->getType());
+
+
+$smarty->assign("ID_Empresa",$emp->getID_Empresa());
+$smarty->assign("COD_CNPJ",$emp->getCOD_CNPJ());
+$smarty->assign("DSC_RazaoSocial",$emp->getDSC_RazaoSocial());
+$smarty->assign("DSC_Endereco",$emp->getDSC_Endereco());
+$smarty->assign("DSC_Bairro",$emp->getDSC_Bairro());
+$smarty->assign("DSC_Cidade",$emp->getDSC_Cidade());
+$smarty->assign("NUM_CEP",$emp->getNUM_CEP());
+$smarty->assign("NUM_InscricaoEstadual",$emp->getNUM_InscricaoEstadual());
+$smarty->assign("NUM_Fone",$emp->getNUM_Fone());
+$smarty->assign("NUM_FAX",$emp->getNUM_FAX());
+$smarty->assign("DSC_EMAIL",$emp->getDSC_EMAIL());
+$smarty->assign("COD_TipoEstado",$emp->getCOD_TipoEstado());
 
 $smarty->display('./View/EmpresaEdit.html');
