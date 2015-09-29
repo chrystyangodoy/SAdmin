@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 17-Set-2015 às 19:08
+-- Generation Time: 29-Set-2015 às 15:03
 -- Versão do servidor: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `siga_web`
 --
+CREATE DATABASE IF NOT EXISTS `siga_web` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `siga_web`;
 
 -- --------------------------------------------------------
 
@@ -68,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `bsc_local_evento` (
   `NUM_FAX` varchar(10) NOT NULL,
   `DSC_EMAIL` varchar(100) NOT NULL,
   `DSC_Nome_Contato` varchar(100) NOT NULL,
-  `COD_TIPOEstado` int(11) NOT NULL
+  `COD_TIPOEstado` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -76,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `bsc_local_evento` (
 --
 
 INSERT INTO `bsc_local_evento` (`ID_Local`, `DSC_Nome`, `DSC_Endereco`, `DSC_Bairro`, `DSC_Cidade`, `NUM_CEO`, `NUM_Fone`, `NUM_FAX`, `DSC_EMAIL`, `DSC_Nome_Contato`, `COD_TIPOEstado`) VALUES
-('a26ce4d7dc4e91404bf315299fb78cda', 'Local Evento ', 'Endereco Evento', 'Fátima', 'Belém', '', '', '', '', '', 0);
+('a26ce4d7dc4e91404bf315299fb78cda', 'Local Evento ', 'Endereco Evento', 'Fátima', 'Belém', '', '', '', '', '', '0');
 
 -- --------------------------------------------------------
 
@@ -111,7 +113,8 @@ CREATE TABLE IF NOT EXISTS `bsc_participante` (
 --
 
 INSERT INTO `bsc_participante` (`ID_Participante`, `COD_CPF`, `COD_RG`, `DSC_Nome`, `DSC_Endereco`, `DSC_Bairro`, `DSC_Cidade`, `NUM_CEP`, `NUM_Fone`, `NUM_Celular`, `NUM_FAX`, `DSC_Profissao_Especialidade`, `DSC_Email`, `NUM_Registro`, `COD_Tipo_Estado`, `ID_BSC_Empresa`, `ID_BSC_Profissao`, `ID_Usuario`) VALUES
-('528c234df006558ae470fa0ccabe7892', '18044943722', '23.492.766', 'Participante 01', 'Rua SÃ£o Domingos', 'Terra Firme', 'BelÃ©m', '66.077-650', '', '', '', '', 'participante@teste.com.br', '', 0, 1, 1, 'ed7e78d24a6c1d6a66ff8a0afb018299');
+('528c234df006558ae470fa0ccabe7892', '18044943722', '23.492.766', 'Participante 01', 'Rua SÃ£o Domingos', 'Terra Firme', 'BelÃ©m', '66.077-650', '', '', '', '', 'chrystyangodoy@gmail.com', '', 0, 1, 1, 'ed7e78d24a6c1d6a66ff8a0afb018299'),
+('b6573e570fbd1850156780e7182197ad', '52863298291', '4387870', 'Participante 02', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '', '', '', '', 'chrystyangodoy@gmail.com', '', 0, 1, 1, 'af6eb1a4bf6cfc13c5b0c86f606a2d34');
 
 -- --------------------------------------------------------
 
@@ -238,7 +241,10 @@ CREATE TABLE IF NOT EXISTS `evt_evento` (
 --
 
 INSERT INTO `evt_evento` (`ID_EVT`, `DSC_Nome`, `DSC_Presidente`, `DT_Inicio`, `DT_Fim`, `COD_CNPJ_Promotora`, `DSC_Nome_Promotora`, `DSC_Presidente_Promotora`, `DSC_Endereco_Promotora`, `NUM_CEP_Promotora`, `DSC_Cidade_Promotora`, `NUM_Fone_Promotora`, `NUM_FAX_Promotora`, `DSC_EMAIL_Promotora`, `QTD_CargaHorariaMinima`, `ID_BSC_Local_Evento`, `COD_Tipo_Estado_promotora`) VALUES
-('528c234df006558ae470fa0ccabe7892', 'Evento 001', 'Presidente Evento', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', '0', '0');
+('528c234df006558ae470fa0ccabe7892', 'Evento 001', 'Presidente Evento', '2015-01-01', '2015-12-31', '101001001/0000', 'Nome da Promotora', 'Presidente Promotora', 'Domingos Marreiros', '66060160', 'BelÃ©m', '91 4006979', '91 4006979', 'promotora@prom.com.br', '0.00', 'a26ce4d7dc4e91404bf315299fb78cda', 'bbb95aac9ba83705cdad5e9e119ef9c3'),
+('528c234df006558ae470fa0ccabe7893', 'Evento 002', 'Presidente Evento 2', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', '0', '0'),
+('528c234df006558ae470fa0ccabe7894', 'Evento 003', 'Presidente Evento 3', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', '0', '0'),
+('528c234df006558ae470fa0ccabe7895', 'Evento 004', 'Presidente Evento 4', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -296,7 +302,8 @@ CREATE TABLE IF NOT EXISTS `evt_evento_categoria` (
 --
 
 INSERT INTO `evt_evento_categoria` (`ID_Evento_Categoria`, `DSC_Nome`, `VLR_Inscricao`, `DT_Inicio_Valor`, `DT_Fim_Valor`, `ID_EVT_Evento`) VALUES
-('528c234df006558ae470fa0ccabe7892', 'Categoria 01', '100.00', '2015-01-01', '2015-12-31', '528c234df006558ae470fa0ccabe7892');
+('528c234df006558ae470fa0ccabe7892', 'Categoria 01', '100.00', '2015-01-01', '2015-12-31', '528c234df006558ae470fa0ccabe7892'),
+('454a5f785a4b175974cf43890ab38b09', 'Categoria 03', '200.00', '2016-09-01', '2016-01-01', '528c234df006558ae470fa0ccabe7892');
 
 -- --------------------------------------------------------
 
@@ -362,8 +369,20 @@ CREATE TABLE IF NOT EXISTS `evt_evento_participante` (
 --
 
 INSERT INTO `evt_evento_participante` (`ID_EVT_Evento_Pariticipante`, `DSC_Nome_Crachav`, `COD_Barras_Cracha`, `VLR_Total`, `VLR_Total_Inscricao`, `QTD_CargaHoraria_Realizada`, `COD_Nivel_Participante`, `ID_EVT_Pagamento`, `ID_EVT_Categoria`, `ID_EVT_Evento`, `ID_BSC_Participante`, `ID_EVT_Participante_Pai`, `COD_Tipo_SIT_Certificado`, `DTM_Entrega_Certificado`, `ID_SEG_DetalheTransacao`, `SIT_EH_Parcelado`, `ID_EVT_EventoGrupo`, `COD_TipoSituacao_Material`, `DTM_EntregaMaterial`, `COD_InscricaoExterno`) VALUES
-('10ad61c8593927f64370ff4693dc56db', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('d6534f6e36e8f2a04ea728c406d0ff5e', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0);
+('5a272c0c279697791bb8e5359673d8ce', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('ab629e668ae65ed2fbf2f252290c3d40', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('8a818743922ad932d25df641d9eeb054', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('257d1c211346afed550c8888d2c6a952', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('baa7cbfe16005c3859836a0ba8b13d96', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('dbff6abf658add753a0a19fbd1735fbe', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('720d31eac852a74d04a4664994ac7c2e', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('22a6fbd43fb9a6c23a2127af96155f34', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('b67ceab2aa93dc610521915cd4ee29f5', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('9bab7694ec3cd0cf3d5064805aaeeeb8', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('e54c1c709c170a4833c17c4148139515', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('d6450e40c541c0c224e215b208119e4b', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('ba36b3e601f876ae1835fce72b8da42b', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('ebc9a193b3d434e059e3e712d1cf9de3', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -584,7 +603,9 @@ CREATE TABLE IF NOT EXISTS `seg_usuario` (
 
 INSERT INTO `seg_usuario` (`ID_Usuario`, `DSC_Login`, `DSC_Senha`, `DTM_Inicio`, `DTM_Fim`, `ID_SEG_Grupo`) VALUES
 ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2015-09-04 17:12:34', '0000-00-00 00:00:00', 1),
-('ed7e78d24a6c1d6a66ff8a0afb018299', '18044943722', '202cb962ac59075b964b07152d234b70', '2015-09-15 13:51:21', '2015-09-20 03:00:00', 99);
+('ed7e78d24a6c1d6a66ff8a0afb018299', '18044943722', '202cb962ac59075b964b07152d234b70', '2015-09-15 13:51:21', '2015-09-20 03:00:00', 99),
+('0e7c795ef217fc9c992315322b7c947f', '52863298291', 'a1d81f0ac7ef931d761805a7cfde26dd', '2015-09-24 03:00:00', '2015-10-01 03:00:00', 99),
+('af6eb1a4bf6cfc13c5b0c86f606a2d34', '52863298291', '1af7be944f304767217be1c441fd6ddc', '2015-09-24 03:00:00', '2015-10-01 03:00:00', 99);
 
 -- --------------------------------------------------------
 

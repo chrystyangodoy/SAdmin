@@ -49,13 +49,13 @@ class aUsuario extends mUsuario {
     }
 
     public function load() {
-        $rs = $this->select(sprintf("and ID_Usuario='%s'", $this->getUser_ID()));
-        $this->setUser_ID($rs[0]['ID_Usuario']);
-        $this->setUser_ID($rs[0]['DSC_Login']);
-        $this->setUser_ID($rs[0]['DSC_Senha']);
-        $this->setUser_ID($rs[0]['DTM_Inicio']);
-        $this->setUser_ID($rs[0]['DTM_Fim']);
-        $this->setUser_ID($rs[0]['ID_SEG_Grupo']);
+        $rs = $this->select(sprintf("and ID_Usuario='%s'", $this->getID_Usuario()));
+        $this->setID_Usuario($rs[0]['ID_Usuario']);
+        $this->setDSC_Login($rs[0]['DSC_Login']);
+        $this->setDSC_Senha($rs[0]['DSC_Senha']);
+        $this->setDTM_Inicio($rs[0]['DTM_Inicio']);
+        $this->setDTM_Fim($rs[0]['DTM_Fim']);
+        $this->setID_SEG_Grupo($rs[0]['ID_SEG_Grupo']);
         return $this;
     }
 

@@ -1,0 +1,15 @@
+{include file="./Template/HeaderAdmin.html"}
+<form id="Cadastrar" form method="post">
+    <input type="hidden" class="form-control" name="COD_TIPOEstado" id="COD_TIPOEstado" placeholder="COD_TIPOEstado" value="{$COD_TIPOEstado}">
+    <div class="form-group">
+        <label>Nome</label>
+        <input type="text" class="form-control" name="DSC_Nome" id="DSC_Nome" value="{$DSC_Nome}" placeholder="Nome">
+    </div>
+    <div class="form-group">
+        <label>Descrição</label>
+        <input type="text" class="form-control" name="DSC_Descricao" id="DSC_Descricao" value="{$DSC_Descricao}" placeholder="Descrição">
+    </div>
+    <button type="submit" class="btn btn-primary" name="Salvar" value="Salvar">Salvar</button>    
+    <a href="TipoEstadoList.php" class="btn btn-default">Cancelar</a>
+</form>
+{include file="./Template/footer.html"}

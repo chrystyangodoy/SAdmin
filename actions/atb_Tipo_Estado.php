@@ -43,14 +43,12 @@ class atb_Tipo_Estado extends mtb_Tipo_Estado {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
-
-    public function load()
-    {
+    
+    public function load() {
         $rs = $this->select(sprintf("and COD_TIPOEstado='%s'", $this->getCOD_TIPOEstado()));
-        $this->getCOD_TIPOEstado($rs[0]['COD_TIPOEstado']);
-        $this->getCOD_TIPOEstado($rs[0]['DSC_Nome']);
-        $this->getCOD_TIPOEstado($rs[0]['DSC_Descricao']);
+        $this->setCOD_TIPOEstado($rs[0]['COD_TIPOEstado']);
+        $this->setDSC_Nome($rs[0]['DSC_Nome']);
+        $this->setDSC_Descricao($rs[0]['DSC_Descricao']);
         return $this;
     }
-
 }

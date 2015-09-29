@@ -26,7 +26,7 @@ if (isset($_POST['Salvar'])) {
     $emp->setDSC_EMAIL($_POST['DSC_EMAIL']);
     $emp->setCOD_TipoEstado($_POST['COD_TipoEstado']);
     $emp->update();
-    $FeedbackMessage->setMsg("Evento atualizado com sucesso!");
+    $FeedbackMessage->setMsg("Empresa atualizada com sucesso!");
     header("Location: EmpresaList.php");
 }
 

@@ -1,0 +1,33 @@
+{include file="./Template/HeaderAdmin.html"}
+
+<form id="Cadastrar" form method="post">
+    <input type="hidden" class="form-control" name="ID_Usuario" id="ID_Usuario" placeholder="ID_Usuario" value="{$ID_Usuario}">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Login</label>
+        <input type="text" class="form-control" name="DSC_Login" id="DSC_Login" value="{$DSC_Login}" placeholder="Login">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Senha</label>
+        <input type="password" class="form-control" name="DSC_Senha" id="DSC_Senha" value="{$DSC_Senha}" placeholder="Senha">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Data Inicial</label>
+        <input type="date" class="form-control" name="DTM_Inicio" id="DTM_Inicio" value="{$DTM_Inicio}" placeholder="Data Inicial">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Data Final</label>
+        <input type="date" class="form-control" name="DTM_Fim" id="DTM_Fim" value="{$DTM_Fim}" placeholder="Data Final">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Grupo</label>
+        
+        <select name="ID_SEG_Grupo">
+            {foreach from=$listGrupo item=row}
+            <option value="{$row.ID_Grupo}">{$row.DSC_Descricao}</option>
+            {/foreach}
+        </select>
+    </div>
+    <button type="submit" class="btn" name="Salvar" value="Salvar">Salvar</button>
+    <a href="UsuarioList.php" class="btn btn-default">Cancelar</a>
+</form>
+{include file="./Template/footer.html"}
