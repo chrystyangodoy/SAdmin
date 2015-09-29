@@ -1,11 +1,12 @@
 <?php
 
 require_once './smarty.php';
-$msg = "";
-$type = "";
 
-if (isset($_POST['Cadastrar']))
-{
+session_start();
+require_once './config/FeedbackMessage.php';
+$FeedbackMessage = new FeedbackMessage();
+
+if (isset($_POST['Cadastrar'])) {
     require_once ('./config/configs.php');
     require ('./config/geraSenha.php');
     require ('./actions/aBsc_Participante.php');
@@ -20,11 +21,9 @@ if (isset($_POST['Cadastrar']))
     $email = $_POST['DSC_Email'];
 
     //validação do CPF
-    if ($config->validaCPF($cpf))
-    {
+    if ($config->validaCPF($cpf)) {
         //verifica se o CPF já foi cadastrado
-        if ($partic->selectNotExistsCPF($cpf))
-        {
+        if ($partic->selectNotExistsCPF($cpf)) {
             //Gera data incial e final para o cadastro de usuário
             $datainicial = date("d/m/Y");
             $datafim = date('d/m/Y', strtotime("+7 days"));
@@ -71,26 +70,18 @@ if (isset($_POST['Cadastrar']))
 
             $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
 
-            $msg = "Participante inserido com sucesso!";
-            $type = "success";
-
+            $FeedbackMessage->setMsg("Participante inserido com sucesso!");
             header("Location: Index.php");
             die();
+        } else {
+            $FeedbackMessage->setMsg("CPF já cadastrado!");
+            $FeedbackMessage->setType("error");
         }
-        else
-        {
-            $msg = "CPF já cadastrado!";
-            $type = "error";
-        }
+    } else {
+        $FeedbackMessage->setMsg("CPF inválido!");
+        $FeedbackMessage->setType("error");
     }
-    else
-    {
-        $msg = "CPF inválido!";
-        $type = "error";
-    }
-}
-else
-{
+} else {
 
     require_once './actions/aBsc_Empresa.php';
     require_once './actions/aBsc_Profissao.php';
@@ -103,6 +94,6 @@ else
     $smarty->assign("listProf", $prof->select());
 }
 
-$smarty->assign("msg", $msg);
-$smarty->assign("type", $type);
+$smarty->assign("msg", $FeedbackMessage->getMsg());
+$smarty->assign("type", $FeedbackMessage->getType());
 $smarty->display('./View/ParticipanteInsert.html');

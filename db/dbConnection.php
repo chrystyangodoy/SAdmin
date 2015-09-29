@@ -6,11 +6,11 @@ require_once './config/constants.php';
 
 class dbConnection extends configs {
     
-    
+
     private $user = "root";
     private $senha = '';
     private $host = 'localhost';
-    private $dbname = 'Siga_web';
+    private $dbname = 'Siga-web';
 
 //private $host = '192.168.1.59';
 //private $dbname = 'Siga-web';
