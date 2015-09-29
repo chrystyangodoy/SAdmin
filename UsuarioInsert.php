@@ -2,8 +2,10 @@
 require_once 'smarty.php';
 require_once ('./config/configs.php');
 session_start();
-require ('./actions/aUsuario.php');
-require ('./actions/aGrupoUsuario.php');
+require_once './config/FeedbackMessage.php';
+$FeedbackMessage = new FeedbackMessage();
+require './actions/aUsuario.php';
+require './actions/aGrupoUsuario.php';
 
 $config = new configs();
 
@@ -21,10 +23,14 @@ if(isset($_POST['Cadastrar'])){
     $user->setDTM_Fim($_POST['DTM_Fim']);
     $user->setID_SEG_Grupo($_POST['ID_SEG_Grupo']);
     $user->insert();
-    echo "Usuário inserido com sucesso!";
-}else {
-    echo "Não foi possível inserir usuário!";
+    $FeedbackMessage->setMsg("Usuário inserido com sucesso!");
+    header('location:UsuarioList.php');
 }
+
+$smarty->assign("dscUser", $_SESSION['DSC_Login']);
+$smarty->assign("msg", $FeedbackMessage->getMsg());
+$smarty->assign("type", $FeedbackMessage->getType());
+
 $smarty -> assign("listGrupo",$grupo->select());
 
 $smarty->display('./View/UsuarioInsert.html');

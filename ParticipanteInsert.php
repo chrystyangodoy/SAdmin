@@ -1,9 +1,11 @@
 <?php
+
 require_once './smarty.php';
 $msg = "";
 $type = "";
 
-if (isset($_POST['Cadastrar'])) {
+if (isset($_POST['Cadastrar']))
+{
     require_once ('./config/configs.php');
     require ('./config/geraSenha.php');
     require ('./actions/aBsc_Participante.php');
@@ -18,9 +20,11 @@ if (isset($_POST['Cadastrar'])) {
     $email = $_POST['DSC_Email'];
 
     //validação do CPF
-    if ($config->validaCPF($cpf)) {
+    if ($config->validaCPF($cpf))
+    {
         //verifica se o CPF já foi cadastrado
-        if ($partic->selectNotExistsCPF($cpf)) {
+        if ($partic->selectNotExistsCPF($cpf))
+        {
             //Gera data incial e final para o cadastro de usuário
             $datainicial = date("d/m/Y");
             $datafim = date('d/m/Y', strtotime("+7 days"));
@@ -31,7 +35,7 @@ if (isset($_POST['Cadastrar'])) {
 
             //Gera e armazena ID Único Gerado.
             $idUnico = $config->idUnico();
-            
+
             $user->setID_Usuario($idUnico);
             $user->setDSC_Login($cpf);
             $user->setDSC_Senha($senha);
@@ -39,7 +43,7 @@ if (isset($_POST['Cadastrar'])) {
             $user->setDTM_Fim($datafim);
             $user->setID_SEG_Grupo($grupo);
             $user->insert();
-            
+
             $partic->setID_Participante($config->idUnico());
             $partic->setCOD_CPF($cpf);
             $partic->setCOD_RG($_POST['COD_RG']);
@@ -60,28 +64,33 @@ if (isset($_POST['Cadastrar'])) {
             $partic->setID_Usuario($idUnico);
             $partic->insert();
 
-            $ass ="Cadastro efetuado com sucesso!";
+            $ass = "Cadastro efetuado com sucesso!";
             $mens = ("Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
             require_once './config/eMail.php';
             $emailObj = new eMail();
 
-            $envio = $emailObj->enviarEMail($partic->getDSC_Email(),$partic->getDSC_Nome(), $ass ,$mens );
+            $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
 
             $msg = "Participante inserido com sucesso!";
             $type = "success";
-            
+
             header("Location: Index.php");
             die();
-            
-        } else {
+        }
+        else
+        {
             $msg = "CPF já cadastrado!";
             $type = "error";
         }
-    } else {
+    }
+    else
+    {
         $msg = "CPF inválido!";
         $type = "error";
     }
-} else {
+}
+else
+{
 
     require_once './actions/aBsc_Empresa.php';
     require_once './actions/aBsc_Profissao.php';

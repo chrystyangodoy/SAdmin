@@ -1,7 +1,9 @@
 <?php
 
 require_once 'smarty.php';
-
+session_start();
+require_once './config/FeedbackMessage.php';
+$FeedbackMessage = new FeedbackMessage();
 require ('./actions/aBsc_Empresa.php');
 $empresa = new aBsc_Empresa();
 
@@ -18,9 +20,11 @@ if (isset($_POST['Cadastrar'])) {
     $empresa->setDSC_EMAIL($_POST['DSC_EMAIL']);
     $empresa->setCOD_TipoEstado($_POST['COD_TipoEstado']);
     $empresa->insert();
-    echo "Empresa inseridas com sucesso!";
-} else {
-    echo "Não foi possível inserir Empresa!";
+    $FeedbackMessage->setMsg("Empresa inserida com sucesso!");
+    header('location:UsuarioList.php');
 }
+$smarty->assign("dscUser", $_SESSION['DSC_Login']);
+$smarty->assign("msg", $FeedbackMessage->getMsg());
+$smarty->assign("type", $FeedbackMessage->getType());
 
 $smarty->display('./View/EmpresaInsert.html');

@@ -10,11 +10,13 @@ require ('./actions/aGrupoUsuario.php');
 $grupo = new aGrupoUsuario();
 $user= new aUsuario();
 
-$user->setID_Usuario($_GET['alt']);
+$codUsuario = $_GET['alt'];
+
+$user->setID_Usuario($codUsuario);
 $user->load();
 
 if(isset($_POST['Salvar'])){
-    $user->setID_Usuario($_GET['alt']);
+    $user->setID_Usuario($codUsuario);
     $user->setDSC_Login($_POST['DSC_Login']);
     $user->setDSC_Senha($_POST['DSC_Senha']);
     $user->setDTM_Inicio($_POST['DTM_Inicio']);

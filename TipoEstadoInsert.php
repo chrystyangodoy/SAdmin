@@ -2,12 +2,12 @@
 require_once 'smarty.php';
 session_start();
 require_once './config/FeedbackMessage.php';
+$FeedbackMessage = new FeedbackMessage();
 require ('./actions/atb_Tipo_Estado.php');
 require_once ('./config/configs.php');
 
 $tpEstado = new atb_Tipo_Estado();
 $config = new configs();
-$FeedbackMessage = new FeedbackMessage();
 
 if (isset($_POST['Cadastrar']))
 {
@@ -18,12 +18,8 @@ if (isset($_POST['Cadastrar']))
     $tpEstado->setDSC_Descricao($_POST['DSC_Descricao']);
     $tpEstado->insert();
 
-    $FeedbackMessage->setMsg("Evento inserido com sucesso!");
+    $FeedbackMessage->setMsg("Estado inserido com sucesso!");
 }
-
-
-
-$FeedbackMessage = new FeedbackMessage();
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
