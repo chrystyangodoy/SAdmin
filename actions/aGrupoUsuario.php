@@ -14,7 +14,7 @@ class aGrupoUsuario extends mGrupoUsuario{
     }
     
     public function update(){
-        $sql = sprintf($this->sqlUpdate,$this->getDSC_Nome(), $this->getDSC_Descricao());
+        $sql = sprintf($this->sqlUpdate,$this->getDSC_Nome(), $this->getDSC_Descricao(), $this->getID_Grupo());
         return $this->RunQuery($sql);
     }
     
@@ -30,9 +30,9 @@ class aGrupoUsuario extends mGrupoUsuario{
     
     public function load(){
         $rs = $this->select(sprintf("and ID_Grupo='%s'",  $this->getID_Grupo()));
-        $this->setUser_ID($rs[0]['ID_Grupo']);
-        $this->setUser_ID($rs[0]['DSC_Nome']);
-        $this->setUser_ID($rs[0]['DSC_Descricao']);
+        $this->setID_Grupo($rs[0]['ID_Grupo']);
+        $this->setDSC_Nome($rs[0]['DSC_Nome']);
+        $this->setDSC_Descricao($rs[0]['DSC_Descricao']);
         return $this;
     }
 }

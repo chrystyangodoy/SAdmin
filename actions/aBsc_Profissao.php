@@ -15,7 +15,7 @@ class aBsc_Profissao extends mBsc_Profissao {
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Descricao());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Descricao(), $this->getID_Profissao());
         return $this->RunQuery($sql);
     }
 
@@ -31,9 +31,9 @@ class aBsc_Profissao extends mBsc_Profissao {
 
     public function load() {
         $rs = $this->select(sprintf("and ID_Profissao='%s'", $this->getID_Profissao()));
-        $this->getID_Empresa($rs[0]['ID_Profissao']);
-        $this->getID_Empresa($rs[0]['DSC_Nome']);
-        $this->getID_Empresa($rs[0]['DSC_Descricao']);
+        $this->setID_Profissao($rs[0]['ID_Profissao']);
+        $this->setDSC_Nome($rs[0]['DSC_Nome']);
+        $this->setDSC_Descricao($rs[0]['DSC_Descricao']);
         return $this;
     }
 

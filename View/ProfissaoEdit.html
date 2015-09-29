@@ -1,0 +1,17 @@
+{include file="./Template/Header.html"}
+
+<form id="Cadastrar" form method="post">
+    <input type="hidden" class="form-control" name="ID_Profissao" id="ID_Profissao" placeholder="ID_Profissao" value="{$ID_Profissao}">
+    <div class="form-group">
+        <label >Profissão</label>
+        <input type="text" class="form-control"  name="DSC_Nome" id="DSC_Nome" value="{$DSC_Nome}" placeholder="Nome da Profissão">
+    </div>
+    <div class="form-group">
+        <label >Descrição</label>
+        <input type="text" class="form-control" name="DSC_Descricao" id="DSC_Descricao" value="{$DSC_Descricao}" placeholder="Descrição da Profissão">
+    </div>
+    <button type="submit" class="btn" name="Salvar" value="Salvar">Salvar</button>
+    <a href="ProfissaoList.php" class="btn btn-default">Cancelar</a>
+</form>
+
+{include file="./Template/footer.html"}

@@ -22,8 +22,7 @@ if (isset($_POST['btn_inscricao'])) {
             $FeedbackMessage->setMsg("Você já está inscrito neste evento!");
             $FeedbackMessage->setType("error");
         }
-
-
+        
         require_once './actions/aEvt_Evento.php';
         $infoEvt = new aEvt_Evento();
         $ass = "Confirmação de Inscrição no Evento!";
@@ -32,6 +31,7 @@ if (isset($_POST['btn_inscricao'])) {
         $emailObj = new eMail();
         require_once ('./actions/aBsc_Participante.php');
         $partic = new aBsc_Participante();
+        $partic->selectInfoEvt($id_User);
         
         $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
     } else {
