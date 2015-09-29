@@ -21,7 +21,7 @@ class aBsc_Participante extends mBsc_Participante {
 
     public function update()
     {
-        $sql = sprintf($this->sqlUpdate, $this->getCOD_CPF(), $this->getCOD_RG(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao());
+        $sql = sprintf($this->sqlUpdate, $this->getCOD_CPF(), $this->getCOD_RG(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Participante());
         return $this->RunQuery($sql);
     }
 
@@ -40,25 +40,25 @@ class aBsc_Participante extends mBsc_Participante {
     public function load()
     {
         $rs = $this->select(sprintf("and ID_Participante='%s'", $this->getID_Participante()));
-        $this->getID_Participante($rs[0]['ID_Participante']);
-        $this->getID_Participante($rs[0]['COD_CPF']);
-        $this->getID_Participante($rs[0]['COD_RG']);
-        $this->getID_Participante($rs[0]['DSC_Nome']);
-        $this->getID_Participante($rs[0]['DSC_Endereco']);
-        $this->getID_Participante($rs[0]['DSC_Bairro']);
-        $this->getID_Participante($rs[0]['DSC_Cidade']);
-        $this->getID_Participante($rs[0]['NUM_CEP']);
-        $this->getID_Participante($rs[0]['NUM_Fone']);
-        $this->getID_Participante($rs[0]['NUM_Celular']);
-        $this->getID_Participante($rs[0]['NUM_FAX']);
-        $this->getID_Participante($rs[0]['DSC_Profissao_Especialidade']);
-        $this->getID_Participante($rs[0]['DSC_Email']);
-        $this->getID_Participante($rs[0]['NUM_Registro']);
-        $this->getID_Participante($rs[0]['COD_Tipo_Estado']);
-        $this->getID_Participante($rs[0]['ID_BSC_Empresa']);
-        $this->getID_Participante($rs[0]['ID_BSC_Profissao']);
-        $this->getID_Participante($rs[0]['ID_BSC_Profissao']);
-        $this->getID_Usuario($rs[0]['ID_Usuario']);
+        $this->setID_Participante($rs[0]['ID_Participante']);
+        $this->setCOD_CPF($rs[0]['COD_CPF']);
+        $this->setCOD_RG($rs[0]['COD_RG']);
+        $this->setDSC_Nome($rs[0]['DSC_Nome']);
+        $this->setDSC_Endereco($rs[0]['DSC_Endereco']);
+        $this->setDSC_Bairro($rs[0]['DSC_Bairro']);
+        $this->setDSC_Cidade($rs[0]['DSC_Cidade']);
+        $this->setNUM_CEP($rs[0]['NUM_CEP']);
+        $this->setNUM_Fone($rs[0]['NUM_Fone']);
+        $this->setNUM_Celular($rs[0]['NUM_Celular']);
+        $this->setNUM_FAX($rs[0]['NUM_FAX']);
+        $this->setDSC_Profissao_Especialidade($rs[0]['DSC_Profissao_Especialidade']);
+        $this->setDSC_Email($rs[0]['DSC_Email']);
+        $this->setNUM_Registro($rs[0]['NUM_Registro']);
+        $this->setCOD_Tipo_Estado($rs[0]['COD_Tipo_Estado']);
+        $this->setID_BSC_Empresa($rs[0]['ID_BSC_Empresa']);
+        $this->setID_BSC_Profissao($rs[0]['ID_BSC_Profissao']);
+        $this->setID_ParticipanteID_BSC_Profissao($rs[0]['ID_BSC_Profissao']);
+        $this->setID_Usuario($rs[0]['ID_Usuario']);
         return $this;
     }
 
