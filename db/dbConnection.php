@@ -2,15 +2,18 @@
 
 require_once './config/configs.php';
 
-class dbConnection extends configs {
+require_once './config/constants.php';
 
-    private $user = 'root';
+class dbConnection extends configs {
+    
+    
+    private $user = "root";
     private $senha = '';
     private $host = 'localhost';
     private $dbname = 'Siga_web';
 
-    //private $host = '192.168.1.59';
-    //private $dbname = 'Siga-web';
+//private $host = '192.168.1.59';
+//private $dbname = 'Siga-web';
 
     private function Connect() {
         try {
@@ -21,13 +24,13 @@ class dbConnection extends configs {
         }
     }
 
-    //Executa uma query. Retorna a quantidade de linha executada(True).
+//Executa uma query. Retorna a quantidade de linha executada(True).
     public function RunQuery($sql) {
         $stm = $this->Connect()->prepare($sql);
         return $stm->execute();
     }
 
-    //Executa uma select
+//Executa uma select
     public function RunSelect($sql) {
         $stm = $this->Connect()->prepare($sql);
         $stm->execute();
