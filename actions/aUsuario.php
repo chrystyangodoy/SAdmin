@@ -19,7 +19,7 @@ class aUsuario extends mUsuario {
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo(),$this->getID_Usuario());
         return $this->RunQuery($sql);
     }
 

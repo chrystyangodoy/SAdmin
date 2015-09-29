@@ -28,7 +28,7 @@ class aEvt_Evento_Grupo extends aEvt_Evento_Grupo {
 
     public function update()
     {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Nome_Resp(), $this->getCOD_CPF_Resp(), $this->getDSC_Email_Resp(), $this->getNUM_Tel_Resp(), $this->getNUM_Celular_Resp(), $this->getDSC_Endereco_Resp(), $this->getDSC_Bairro(), $this->getNUM_CEP_Resp(), $this->getDSC_Cidade_Resp(), $this->getCOD_TipoEstado_Resp(), $this->getSIT_EH_Parcelado(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getCOD_Inscricao_APAE(), $this->getID_EVT_Evento(), $this->getID_EVT_Pagamento(), $this->getID_SEG_Detalhe_transacao());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Nome_Resp(), $this->getCOD_CPF_Resp(), $this->getDSC_Email_Resp(), $this->getNUM_Tel_Resp(), $this->getNUM_Celular_Resp(), $this->getDSC_Endereco_Resp(), $this->getDSC_Bairro(), $this->getNUM_CEP_Resp(), $this->getDSC_Cidade_Resp(), $this->getCOD_TipoEstado_Resp(), $this->getSIT_EH_Parcelado(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getCOD_Inscricao_APAE(), $this->getID_EVT_Evento(), $this->getID_EVT_Pagamento(), $this->getID_SEG_Detalhe_transacao(), $this->getID_EVT_EventoGrupo());
         return $this->RunQuery($sql);
     }
 

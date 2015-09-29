@@ -17,7 +17,7 @@ class aBsc_Empresa extends mBsc_Empresa {
 
     public function update()
     {
-        $sql = sprintf($this->sqlUpdate, $this->getCOD_CNPJ(), $this->getDSC_RazaoSocial(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_InscricaoEstadual(), $this->getNUM_Fone(), $this->getNUM_FAX(), $this->getDSC_EMAIL(), $this->getCOD_TipoEstado());
+        $sql = sprintf($this->sqlUpdate, $this->getCOD_CNPJ(), $this->getDSC_RazaoSocial(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_InscricaoEstadual(), $this->getNUM_Fone(), $this->getNUM_FAX(), $this->getDSC_EMAIL(), $this->getCOD_TipoEstado(), $this->getID_Empresa());
         return $this->RunQuery($sql);
     }
 
@@ -47,7 +47,7 @@ class aBsc_Empresa extends mBsc_Empresa {
         $this->setNUM_Fone($rs[0]['NUM_Fone']);
         $this->setNUM_FAX($rs[0]['NUM_FAX']);
         $this->setDSC_EMAIL($rs[0]['DSC_EMAIL']);
-        $this->setCOD_TipoEstado($rs[0]['COD_TipoEstado']);       
+        $this->setCOD_TipoEstado($rs[0]['COD_TipoEstado']);
         return $this;
     }
 

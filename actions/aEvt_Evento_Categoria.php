@@ -26,7 +26,7 @@ class aEvt_Evento_Categoria extends mEvt_Evento_Categoria {
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getVLR_Inscricao(), $this->getDT_Inicio_Valor(), $this->getDT_Fim_Valor(), $this->getID_EVT_Evento());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getVLR_Inscricao(), $this->getDT_Inicio_Valor(), $this->getDT_Fim_Valor(), $this->getID_EVT_Evento(),$this->getID_Evento_Categoria());
         return $this->RunQuery($sql);
     }
 

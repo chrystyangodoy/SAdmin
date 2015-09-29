@@ -15,12 +15,12 @@ class aSeg_Detalhe_Transacao extends mSeg_Detalhe_Transacao {
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getCOD_TIPO_Origem_Transacao(), $this->getCOD_Tipo_Sistema_Transacao(), $this->getDTM_Transacao(), $this->getID_SEG_Usuario(), $this->getDSC_Login_Transacao());
+        $sql = sprintf($this->sqlUpdate, $this->getCOD_TIPO_Origem_Transacao(), $this->getCOD_Tipo_Sistema_Transacao(), $this->getDTM_Transacao(), $this->getID_SEG_Usuario(), $this->getDSC_Login_Transacao(),$this->getID_Detalhe_Transacao());
         return $this->RunQuery($sql);
     }
 
     public function delete() {
-        $sql = sprintf($this->sqlDelete, $this->getID_Empresa());
+        $sql = sprintf($this->sqlDelete, $this->getID_Detalhe_Transacao());
         return $this->RunQuery($sql);
     }
 
@@ -30,13 +30,13 @@ class aSeg_Detalhe_Transacao extends mSeg_Detalhe_Transacao {
     }
 
     public function load() {
-        $rs = $this->select(sprintf("and ID_Detalhe_Transacao='%s'", $this->getID_Empresa()));
-        $this->getID_Detalhe_Transacao($rs[0]['ID_Detalhe_Transacao']);
-        $this->getID_Detalhe_Transacao($rs[0]['COD_TIPO_Origem_Transacao']);
-        $this->getID_Detalhe_Transacao($rs[0]['COD_Tipo_Sistema_Transacao']);
-        $this->getID_Detalhe_Transacao($rs[0]['DTM_Transacao']);
-        $this->getID_Detalhe_Transacao($rs[0]['ID_SEG_Usuario']);
-        $this->getID_Detalhe_Transacao($rs[0]['DSC_Login_Transacao']);
+        $rs = $this->select(sprintf("and ID_Detalhe_Transacao='%s'", $this->getID_Detalhe_Transacao()));
+        $this->setID_Detalhe_Transacao($rs[0]['ID_Detalhe_Transacao']);
+        $this->setCOD_TIPO_Origem_Transacao($rs[0]['COD_TIPO_Origem_Transacao']);
+        $this->setCOD_Tipo_Sistema_Transacao($rs[0]['COD_Tipo_Sistema_Transacao']);
+        $this->setDTM_Transacao($rs[0]['DTM_Transacao']);
+        $this->setID_SEG_Usuario($rs[0]['ID_SEG_Usuario']);
+        $this->setDSC_Login_Transacao($rs[0]['DSC_Login_Transacao']);
         return $this;
     }
 

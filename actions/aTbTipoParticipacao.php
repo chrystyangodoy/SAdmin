@@ -15,7 +15,7 @@ class aTbTipoParticipacao extends mTbTipoParticipacao {
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Descricao());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Descricao(),$this->getCOD_Tipo_Participacao());
         return $this->RunQuery($sql);
     }
 
@@ -30,10 +30,10 @@ class aTbTipoParticipacao extends mTbTipoParticipacao {
     }
 
     public function load() {
-        $rs = $this->select(sprintf("and COD_Tipo_Participacao='%s'", $this->getID_Grupo()));
-        $this->setUser_ID($rs[0]['COD_Tipo_Participacao']);
-        $this->setUser_ID($rs[0]['DSC_Nome']);
-        $this->setUser_ID($rs[0]['DSC_Descricao']);
+        $rs = $this->select(sprintf("and COD_Tipo_Participacao='%s'", $this->getCOD_Tipo_Participacao()));
+        $this->setCOD_Tipo_Participacao($rs[0]['COD_Tipo_Participacao']);
+        $this->setDSC_Nome($rs[0]['DSC_Nome']);
+        $this->setDSC_Descricao($rs[0]['DSC_Descricao']);
         return $this;
     }
 

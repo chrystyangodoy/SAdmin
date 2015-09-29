@@ -28,7 +28,7 @@ class atb_Tipo_Estado extends mtb_Tipo_Estado {
 
     public function update()
     {
-        $sql = sprintf($this->sqlUpdate, $this->getCOD_TIPOEstado(), $this->getDSC_Nome(), $this->getDSC_Descricao());
+        $sql = sprintf($this->sqlUpdate, $this->getCOD_TIPOEstado(), $this->getDSC_Nome(), $this->getDSC_Descricao(),$this->getCOD_TIPOEstado());
         return $this->RunQuery($sql);
     }
 
