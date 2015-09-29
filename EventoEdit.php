@@ -44,6 +44,7 @@ if (isset($_POST['Cadastrar']) && isset($_GET['ID_EVT'])) {
     
     $FeedbackMessage->setMsg("Evento atualizado com sucesso!");
     header("Location: EventoList.php");
+    die();
 }
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);

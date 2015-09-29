@@ -15,7 +15,7 @@ class aBsc_Local_Evento extends mBsc_Local_Evento {
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEO(), $this->getNUM_Fone(), $this->getNUM_FAX(), $this->getDSC_EMAIL(), $this->getDSC_Nome_Contato(), $this->getCOD_TIPOEstado());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEO(), $this->getNUM_Fone(), $this->getNUM_FAX(), $this->getDSC_EMAIL(), $this->getDSC_Nome_Contato(), $this->getCOD_TIPOEstado(), $this->getID_Local());
         return $this->RunQuery($sql);
     }
 
@@ -32,17 +32,17 @@ class aBsc_Local_Evento extends mBsc_Local_Evento {
 
     public function load() {
         $rs = $this->select(sprintf("and ID_Local='%s'", $this->getID_Local()));
-        $this->getID_Local($rs[0]['ID_Local']);
-        $this->getID_Local($rs[0]['DSC_Nome']);
-        $this->getID_Local($rs[0]['DSC_Endereco']);
-        $this->getID_Local($rs[0]['DSC_Bairro']);
-        $this->getID_Local($rs[0]['DSC_Cidade']);
-        $this->getID_Local($rs[0]['NUM_CEO']);
-        $this->getID_Local($rs[0]['NUM_Fone']);
-        $this->getID_Local($rs[0]['NUM_FAX']);
-        $this->getID_Local($rs[0]['DSC_EMAIL']);
-        $this->getID_Local($rs[0]['DSC_Nome_Contato']);
-        $this->getID_Local($rs[0]['COD_TIPOEstado']);
+        $this->setID_Local($rs[0]['ID_Local']);
+        $this->setDSC_Nome($rs[0]['DSC_Nome']);
+        $this->setDSC_Endereco($rs[0]['DSC_Endereco']);
+        $this->setDSC_Bairro($rs[0]['DSC_Bairro']);
+        $this->setDSC_Cidade($rs[0]['DSC_Cidade']);
+        $this->setNUM_CEO($rs[0]['NUM_CEO']);
+        $this->setNUM_Fone($rs[0]['NUM_Fone']);
+        $this->setNUM_FAX($rs[0]['NUM_FAX']);
+        $this->setDSC_EMAIL($rs[0]['DSC_EMAIL']);
+        $this->setDSC_Nome_Contato($rs[0]['DSC_Nome_Contato']);
+        $this->setCOD_TIPOEstado($rs[0]['COD_TIPOEstado']);
         return $this;
     }
 

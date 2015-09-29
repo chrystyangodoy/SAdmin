@@ -1,0 +1,57 @@
+{include file="./Template/HeaderAdmin.html"}
+<script src="./js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="./js/EventoInsert.js" type="text/javascript"></script>
+
+<form id="Cadastrar" form method="post">
+    <div class="form-group">
+        <label>Nome</label>
+        <input type="text" class="form-control" name="DSC_Nome" id="DSC_Nome" placeholder="Nome" value="{$DSC_Nome}">
+    </div>
+
+    <div class="form-group">
+        <label>Endereço</label>
+        <input type="text" class="form-control" name="DSC_Endereco" id="DSC_Endereco" placeholder="Endereco" value="{$DSC_Endereco}">
+    </div>
+    <div class="form-group">
+        <label >Bairro</label>
+        <input type="text" class="form-control" name="DSC_Bairro" id="DSC_Bairro" placeholder="Bairro" value="{$DSC_Bairro}">
+    </div>
+    <div class="form-group">
+        <label >Cidade</label>
+        <input type="text" class="form-control"  name="DSC_Cidade" id="DSC_Cidade" placeholder="Cidade" value="{$DSC_Cidade}">
+    </div>
+    <div class="form-group">
+        <label >CEO</label>
+        <input type="text" class="form-control" name="NUM_CEO" id="NUM_CEO" placeholder="Número CEO" value="{$NUM_CEO}">
+    </div>
+
+    <div class="form-group">
+        <label >Fone</label>
+        <input type="text" class="form-control" name="NUM_Fone" id="NUM_Fone" placeholder="Fone" value="{$NUM_Fone}">
+    </div>
+    <div class="form-group">
+        <label >Fax</label>
+        <input type="text" class="form-control" name="NUM_FAX" id="NUM_FAX" placeholder="Fax" value="{$NUM_FAX}">
+    </div>
+    <div class="form-group">
+        <label >Email</label>
+        <input type="text" class="form-control" name="DSC_EMAIL" id="DSC_EMAIL" placeholder="EMAIL" value="{$DSC_EMAIL}">
+    </div>
+    <div class="form-group">
+        <label >Contato</label>
+        <input type="text" class="form-control" name="DSC_Nome_Contato" id="DSC_Nome_Contato" placeholder="Nome do Contato" value="{$DSC_Nome_Contato}">
+    </div>
+    <div class="form-group">
+        <label>Estado</label>
+        <select name="COD_TIPOEstado" id="COD_TIPOEstado"  class="form-control" style="width: 400px;">
+            <option value="0">-</option>
+            {foreach from=$listTpUF item=row}
+            <option value="{$row.COD_TIPOEstado}" {if $COD_TIPOEstado == $row.COD_TIPOEstado} selected {/if}>{$row.DSC_Nome}</option>
+            {/foreach}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar">Cadastrar</button>    
+    <a href="LocalEventoList.php" class="btn btn-default">Cancelar</a>
+</form>
+
+{include file="./Template/footer.html"}
