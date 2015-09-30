@@ -51,8 +51,8 @@ class eMail {
         $mail->IsSMTP(); // Define que a mensagem será SMTP
         $mail->Host = $this->smtp; // Endereço do servidor SMTP
         //$mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
-        //$mail->Port = 587;
-        $mail->Port =2525;
+        $mail->Port = 587;
+        //$mail->Port =2525;
         $mail->Username = 'admin@layouts.bl.ee'; // Usuário do servidor SMTP
         $mail->Password = 'ad1234ad'; // Senha do servidor SMTP
         // Define o remetente
