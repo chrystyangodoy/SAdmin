@@ -2,7 +2,7 @@
 
 //CONSTANTE DE BANCO DE DADO
 
-class constants {
+class ini {
 
     const DBUSER = "root";
     const DBSENHA = "";

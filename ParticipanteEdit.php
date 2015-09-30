@@ -10,12 +10,13 @@ session_start();
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 
-$id = $_GET['ID'];
+$ID_Participante = $_GET['ID_Participante'];
 
-$partic->setID_Participante($id);
+$partic->setID_Participante($ID_Participante);
 $partic->load();
 
-$user->setID_Usuario($partic->getID_Usuario());
+$ID_Usuario = $partic->getID_Usuario();
+$user->setID_Usuario($ID_Usuario);
 $user->load();
 
 if (isset($_POST['Cadastrar'])) {
@@ -32,7 +33,7 @@ if (isset($_POST['Cadastrar'])) {
     //validação do CPF
     if ($config->validaCPF($cpf)) {
         //verifica se o CPF já foi cadastrado
-        if ($partic->selectNotExistsCPF($cpf)) {
+        if ($partic->selectNotExistsCPFEdit($cpf, $ID_Participante)) {
             //Gera data incial e final para o cadastro de usuário
 
             $datainicial = date("d/m/Y");
@@ -41,15 +42,15 @@ if (isset($_POST['Cadastrar'])) {
             $grupo = 99;
 
             //Gera e armazena ID Único Gerado.
-            
-            
-            
+
+
+
             $user->setDTM_Inicio($datainicial);
             $user->setDTM_Fim($datafim);
             $user->setID_SEG_Grupo($grupo);
             $user->update();
 
-            $partic->setID_Participante($config->idUnico());
+            $partic->setID_Participante($ID_Participante);
             $partic->setCOD_CPF($cpf);
             $partic->setCOD_RG($_POST['COD_RG']);
             $partic->setDSC_Nome($_POST['DSC_Nome']);
@@ -79,18 +80,18 @@ if (isset($_POST['Cadastrar'])) {
         $FeedbackMessage->setMsg("CPF inválido!");
         $FeedbackMessage->setType("error");
     }
-} else {
-
-    require_once './actions/aBsc_Empresa.php';
-    require_once './actions/aBsc_Profissao.php';
-
-
-    $emp = new aBsc_Empresa();
-    $prof = new aBsc_Profissao();
-
-    $smarty->assign("listEmp", $emp->select());
-    $smarty->assign("listProf", $prof->select());
 }
+
+require_once './actions/aBsc_Empresa.php';
+require_once './actions/aBsc_Profissao.php';
+
+
+$emp = new aBsc_Empresa();
+$prof = new aBsc_Profissao();
+
+$smarty->assign("listEmp", $emp->select());
+$smarty->assign("listProf", $prof->select());
+
 
 
 $smarty->assign("COD_CPF", $partic->getCOD_CPF());
@@ -109,11 +110,9 @@ $smarty->assign("NUM_Registro", $partic->getNUM_Registro());
 $smarty->assign("COD_Tipo_Estado", $partic->getCOD_Tipo_Estado());
 $smarty->assign("ID_BSC_Empresa", $partic->getID_BSC_Empresa());
 $smarty->assign("ID_BSC_Profissao", $partic->getID_BSC_Profissao());
-$smarty->assign("", $partic->get);
-$smarty->assign("", $partic->get);
 
 
-
+$smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
-$smarty->display('./View/ParticipanteInsert.html');
+$smarty->display('./View/ParticipanteEdit.html');

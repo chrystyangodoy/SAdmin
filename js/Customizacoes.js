@@ -34,17 +34,19 @@ function isCPFCadastrado(cpf) {
             resultado = data;
         }
     });
+    return resultado;
+}
+function isCPFCadastradoEdit(cpf) {
+    resultado = 0;
     
-//    $.post(
-//            "getCPFCasdastrado.php",
-//            {cpf: cpf},
-//            
-//            function (data) {
-//                resultado = data;
-//                console.log(data);
-//            }
-//    );
-  // setTimeout(console.log(resultado),800);
-//  console.log(resultado);
+    $.ajax({
+       url: "getCPFCasdastrado.php",
+       data: {cpf: cpf, ID_Participante: ""},
+       type: "POST",
+        async: false,
+        success: function (data) {
+            resultado = data;
+        }
+    });
     return resultado;
 }
