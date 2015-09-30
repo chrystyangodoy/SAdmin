@@ -1,10 +1,10 @@
 <?php
-
+session_start();
+include_once './config/ValidaSessao.php';
 include_once './smarty.php';
 require_once './config/FeedbackMessage.php';
 require_once './actions/aEvt_Evento.php';
 
-session_start();
 
 if (isset($_GET['idevt']))
 {
