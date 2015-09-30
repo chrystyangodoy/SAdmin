@@ -13,7 +13,8 @@
  */
 class eMail {
 
-    private $smtp = 'mx1.hostinger.com.br';
+    //private $smtp = 'smtp.cs-consoft.com.br';
+    private $smtp = 'mail-ssl.locaweb.com.br';
 
     public function sendEmail($remetente, $destinatario, $assunto, $mensagem)
     {
@@ -50,14 +51,13 @@ class eMail {
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->IsSMTP(); // Define que a mensagem será SMTP
         $mail->Host = $this->smtp; // Endereço do servidor SMTP
-        //$mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
+        $mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
         $mail->Port = 587;
-        //$mail->Port =2525;
-        $mail->Username = 'admin@layouts.bl.ee'; // Usuário do servidor SMTP
-        $mail->Password = 'ad1234ad'; // Senha do servidor SMTP
+        $mail->Username = 'cleytonqueiroz@cs-consoft.com.br'; // Usuário do servidor SMTP
+        $mail->Password = 'cq142536cq'; // Senha do servidor SMTP
         // Define o remetente
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        $mail->From = 'admin@layouts.bl.ee'; // Seu e-mail
+        $mail->From = 'cleytonqueiroz@cs-consoft.com.br'; // Seu e-mail
         $mail->FromName = 'Administração'; // Seu nome
         // Define os destinatário(s)
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
