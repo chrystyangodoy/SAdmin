@@ -3,35 +3,35 @@
 <script src="./js/jquery.mask.js" type="text/javascript"></script>
 <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
 <script src="./js/additional-methods.min.js" type="text/javascript"></script>
-<script src="./js/addMethod.js" type="text/javascript"></script>
 <script src="./js/Customizacoes.js" type="text/javascript"></script>
-<script src="./js/ParticipanteInsert.js" type="text/javascript"></script>
+<script src="./js/ParticipanteEdit.js" type="text/javascript"></script>
 <form id="Cadastrar" form method="post" action="">
     <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar">Cadastrar</button>
     <a href="ParticipanteList.php" class="btn btn-default">Cancelar</a>
+    <input type="hidden" class="form-control col-lg-12" name="ID_Participante" id="ID_Participante" value="{$ID_Participante}">
     <h3 class="page-header">Dados Pessoais</h3>
     <div class="form-group col-lg-12 row">
         <label >Nome</label>
-        <input type="text" class="form-control col-lg-12" name="DSC_Nome" placeholder="Nome" value="{$DSC_Nome}">
+        <input type="text" class="form-control col-lg-12" id="DSC_Nome" name="DSC_Nome" placeholder="Nome" value="{$DSC_Nome}">
     </div>
     <div class="row">
         <div class="form-group col-lg-6">
             <label >Email</label>
-            <input type="email" class="form-control" name="DSC_Email" placeholder="Email" value="{$DSC_Email}">
+            <input type="email" class="form-control" id="DSC_Email" name="DSC_Email" placeholder="Email" value="{$DSC_Email}">
         </div>
         <div class="form-group col-md-3">
             <label>CPF</label>
-            <input type="text" class="form-control" name="COD_CPF" placeholder="CPF" id="COD_CPF" value="{$COD_CPF}">
+            <input type="text" class="form-control" id="COD_CPF" name="COD_CPF" placeholder="CPF" value="{$COD_CPF}">
         </div>
         <div class="form-group col-md-2">
             <label >RG</label>
-            <input type="text" class="form-control"  name="COD_RG" placeholder="RG" value="{$COD_RG}">
+            <input type="text" class="form-control" id="COD_RG"  name="COD_RG" placeholder="RG" value="{$COD_RG}">
         </div>
     </div>
     <h3 class="page-header">Endereço</h3>
     <div class="form-group col-lg-3 row">
         <label >CEP</label>
-        <input type="text" id="NUM_CEP" class="form-control" name="NUM_CEP" id="NUM_CEP" placeholder="CEP" value="{$NUM_CEP}">
+        <input type="text" id="NUM_CEP" class="form-control" name="NUM_CEP" placeholder="CEP" value="{$NUM_CEP}">
     </div>
     <div class="form-group col-lg-3">
         <label >Cidade</label>
@@ -73,7 +73,7 @@
         <select name="ID_BSC_Empresa" id="ID_BSC_Empresa" class="form-control col-lg-3">
             <option value="0">-</option>
             {foreach from=$listEmp item=row}
-            <option value="{$row.ID_Empresa}">{$row.DSC_RazaoSocial}</option>
+            <option value="{$row.ID_Empresa}" {if $ID_BSC_Empresa == $row.ID_Empresa} selected {/if}>{$row.DSC_RazaoSocial}</option>
             {/foreach}
         </select>
     </div>
@@ -82,7 +82,7 @@
         <select name="ID_BSC_Profissao" id="ID_BSC_Profissao" class="form-control col-lg-3">
             <option value="0">-</option>
             {foreach from=$listProf item=row}
-            <option value="{$row.ID_Profissao}">{$row.DSC_Nome}</option>
+            <option value="{$row.ID_Profissao}" {if $ID_BSC_Profissao == $row.ID_Profissao} selected {/if}>{$row.DSC_Nome}</option>
             {/foreach}
         </select>
     </div>
@@ -98,12 +98,18 @@
     </div>
     <div class="form-group">
         <label>Tipo Estado</label>
-        <input type="text" class="form-control" name="COD_Tipo_Estado" placeholder="Tipo Estado" value="{$COD_Tipo_Estado}">
+
+        <select name="COD_Tipo_Estado" id="COD_Tipo_Estado"  class="form-control" style="width: 400px;">
+            <option value="0">-</option>
+            {foreach from=$listTpUF item=row}
+            <option value="{$row.COD_TIPOEstado}" {if $COD_Tipo_Estado == $row.COD_TIPOEstado} selected {/if}>{$row.DSC_Nome}</option>
+            {/foreach}
+        </select>
     </div>
 
 
     <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar">Cadastrar</button>
-    <a href="index.php" class="btn btn-default">Cancelar</a>
+    <a href="ParticipanteList.php" class="btn btn-default">Cancelar</a>
 </form>
 
 {include file="./Template/footer.html"}
