@@ -3,8 +3,11 @@
 require_once './smarty.php';
 require ('./actions/aBsc_Participante.php');
 require ('./actions/aUsuario.php');
+require_once './actions/atb_Tipo_Estado.php';
 $partic = new aBsc_Participante();
 $user = new aUsuario();
+
+$tipoestado = new atb_Tipo_Estado();
 
 session_start();
 require_once './config/FeedbackMessage.php';
@@ -20,9 +23,6 @@ $user->setID_Usuario($ID_Usuario);
 $user->load();
 
 if (isset($_POST['Cadastrar'])) {
-    require_once ('./config/configs.php');
-    require ('./config/geraSenha.php');
-    $config = new configs();
 
     //limpa cpf
     $cpf = $config->limpaCPF($_POST['COD_CPF']);
@@ -94,6 +94,7 @@ $smarty->assign("listProf", $prof->select());
 
 
 
+$smarty->assign("ID_Participante", $partic->getID_Participante());
 $smarty->assign("COD_CPF", $partic->getCOD_CPF());
 $smarty->assign("COD_RG", $partic->getCOD_RG());
 $smarty->assign("DSC_Nome", $partic->getDSC_Nome());
@@ -111,6 +112,8 @@ $smarty->assign("COD_Tipo_Estado", $partic->getCOD_Tipo_Estado());
 $smarty->assign("ID_BSC_Empresa", $partic->getID_BSC_Empresa());
 $smarty->assign("ID_BSC_Profissao", $partic->getID_BSC_Profissao());
 
+
+$smarty->assign("listTpUF", $tipoestado->select());
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());

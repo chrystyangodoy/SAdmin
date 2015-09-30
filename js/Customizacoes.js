@@ -36,12 +36,11 @@ function isCPFCadastrado(cpf) {
     });
     return resultado;
 }
-function isCPFCadastradoEdit(cpf) {
+function isCPFCadastradoEdit(cpf,idParticipante) {
     resultado = 0;
-    
     $.ajax({
-       url: "getCPFCasdastrado.php",
-       data: {cpf: cpf, ID_Participante: ""},
+       url: "getCPFCasdastradoEdit.php",
+       data: {cpf: cpf, ID_Participante: idParticipante},
        type: "POST",
         async: false,
         success: function (data) {

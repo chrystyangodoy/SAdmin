@@ -9,7 +9,7 @@ class aBsc_Participante extends mBsc_Participante {
     protected $sqlDelete = "DELETE FROM bsc_participante WHERE ID_Participante = '%s'";
     protected $sqlSelect = "SELECT * FROM bsc_participante WHERE 1=1 %s %s";
     protected $sqlSelectExist = "SELECT count(0) AS COUNTCPF FROM bsc_participante WHERE 1=1 and COD_CPF='%s'";
-    protected $sqlSelectExistEdit = "SELECT count(0) AS COUNTCPF FROM bsc_participante WHERE 1=1 and COD_CPF='%s' and ID_Participante = '%s'";
+    protected $sqlSelectExistEdit = "SELECT count(0) AS COUNTCPF FROM bsc_participante WHERE 1=1 and COD_CPF='%s' and ID_Participante <> '%s'";
     protected $sqlinsertPartUs = "INSERT INTO bsc_participante(COD_CPF,COD_RG,DSC_Nome,DSC_Endereco,DSC_Bairro,DSC_Cidade,NUM_CEP,NUM_Fone,NUM_Celular,NUM_FAX,DSC_Profissao_Especialidade,DSC_Email,NUM_Registro,COD_Tipo_Estado,ID_BSC_Empresa,ID_BSC_Profissao) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
     protected $sqlSelectInfoEvt = "SELECT bsc_participante.ID_Participante, bsc_participante.DSC_Nome, bsc_participante.COD_CPF FROM bsc_participante LEFT JOIN seg_usuario ON bsc_participante.ID_Usuario = seg_usuario.ID_Usuario WHERE seg_usuario.ID_Usuario = '%s'";
 
