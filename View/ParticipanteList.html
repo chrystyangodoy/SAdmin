@@ -7,7 +7,6 @@
     <table id="myTable" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nome</th>
                 <th>NºCelular</th>
                 <th>Email</th>
@@ -17,12 +16,11 @@
         <tbody id="myTabContent">
             {foreach from=$lista item=row}
             <tr >
-                <td>{$row.ID_Participante}</td>
                 <td>{$row.DSC_Nome}</td>
                 <td>{$row.NUM_Celular}</td>
                 <td>{$row.DSC_Email}</td>
                 <td>
-                    <a href="?alt={$row.ID_Participante}" class="col-md-offset-1" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a>
+                    <a href="ParticipanteEdit.php?ID_Participante={$row.ID_Participante}" class="col-md-offset-1" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a>
                     <a href="?del={$row.ID_Participante}" title="Excluir"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="font-size: 30px;"></span></a>
                 </td>
             </tr>

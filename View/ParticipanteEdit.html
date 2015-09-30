@@ -1,0 +1,109 @@
+{include file="./Template/HeaderAdmin.html"}
+
+<script src="./js/jquery.mask.js" type="text/javascript"></script>
+<script src="./js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="./js/additional-methods.min.js" type="text/javascript"></script>
+<script src="./js/addMethod.js" type="text/javascript"></script>
+<script src="./js/Customizacoes.js" type="text/javascript"></script>
+<script src="./js/ParticipanteInsert.js" type="text/javascript"></script>
+<form id="Cadastrar" form method="post" action="">
+    <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar">Cadastrar</button>
+    <a href="ParticipanteList.php" class="btn btn-default">Cancelar</a>
+    <h3 class="page-header">Dados Pessoais</h3>
+    <div class="form-group col-lg-12 row">
+        <label >Nome</label>
+        <input type="text" class="form-control col-lg-12" name="DSC_Nome" placeholder="Nome" value="{$DSC_Nome}">
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-6">
+            <label >Email</label>
+            <input type="email" class="form-control" name="DSC_Email" placeholder="Email" value="{$DSC_Email}">
+        </div>
+        <div class="form-group col-md-3">
+            <label>CPF</label>
+            <input type="text" class="form-control" name="COD_CPF" placeholder="CPF" id="COD_CPF" value="{$COD_CPF}">
+        </div>
+        <div class="form-group col-md-2">
+            <label >RG</label>
+            <input type="text" class="form-control"  name="COD_RG" placeholder="RG" value="{$COD_RG}">
+        </div>
+    </div>
+    <h3 class="page-header">Endereço</h3>
+    <div class="form-group col-lg-3 row">
+        <label >CEP</label>
+        <input type="text" id="NUM_CEP" class="form-control" name="NUM_CEP" id="NUM_CEP" placeholder="CEP" value="{$NUM_CEP}">
+    </div>
+    <div class="form-group col-lg-3">
+        <label >Cidade</label>
+        <input type="text" class="form-control" id="DSC_Cidade" name="DSC_Cidade" placeholder="Cidade" value="{$DSC_Cidade}">
+    </div>
+    <div class="form-group col-lg-6">
+        <label >Bairro</label>
+        <input type="text" class="form-control" id="DSC_Bairro" name="DSC_Bairro" placeholder="Bairro" value="{$DSC_Bairro}">
+    </div>
+    <div class="form-group col-lg-12 row">
+        <label>Endereço</label>
+        <input type="text" class="form-control" id="DSC_Endereco" name="DSC_Endereco" placeholder="Endereço " value="{$DSC_Endereco}">
+    </div>
+
+
+
+    <h3 class="page-header">Contato</h3>
+    <div class="row">
+        <div class="form-group col-lg-3">
+            <label >Telefone Residencial</label>
+            <input type="text" class="form-control" name="NUM_Fone" id="NUM_Fone" placeholder="Telefone" value="{$NUM_Fone}">
+        </div>
+        <div class="form-group col-lg-3">
+            <label >Celular</label>
+            <input type="text" class="form-control" name="NUM_Celular" id="NUM_Celular" placeholder="Celular" value="{$NUM_Celular}">
+        </div>
+
+        <div class="form-group col-lg-3">
+            <label >Fax</label>
+            <input type="text" class="form-control" name="NUM_FAX" id="NUM_FAX" placeholder="Fax" value="{$NUM_FAX}">
+        </div>
+
+    </div>
+
+    <h3 class="page-header">Outros</h3>
+
+    <div class="form-group">
+        <label>Empresa</label>
+        <select name="ID_BSC_Empresa" id="ID_BSC_Empresa" class="form-control col-lg-3">
+            <option value="0">-</option>
+            {foreach from=$listEmp item=row}
+            <option value="{$row.ID_Empresa}">{$row.DSC_RazaoSocial}</option>
+            {/foreach}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Profissão</label>
+        <select name="ID_BSC_Profissao" id="ID_BSC_Profissao" class="form-control col-lg-3">
+            <option value="0">-</option>
+            {foreach from=$listProf item=row}
+            <option value="{$row.ID_Profissao}">{$row.DSC_Nome}</option>
+            {/foreach}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label >Profissão</label>
+        <input type="text" class="form-control" name="DSC_Profissao_Especialidade" placeholder="Profissão" value="{$DSC_Profissao_Especialidade}">
+    </div>
+
+    <div class="form-group">
+        <label>Nº Registro</label>
+        <input type="text" class="form-control" name="NUM_Registro" placeholder="Número Registro" value="{$NUM_Registro}">
+    </div>
+    <div class="form-group">
+        <label>Tipo Estado</label>
+        <input type="text" class="form-control" name="COD_Tipo_Estado" placeholder="Tipo Estado" value="{$COD_Tipo_Estado}">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar">Cadastrar</button>
+    <a href="index.php" class="btn btn-default">Cancelar</a>
+</form>
+
+{include file="./Template/footer.html"}

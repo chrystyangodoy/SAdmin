@@ -1,7 +1,7 @@
 <?php
-require_once './config/constants.php';
 
-class configs extends constants{
+
+class configs {
 
     public function dateToBR($dataAmericana) {
         //2015-09-01
