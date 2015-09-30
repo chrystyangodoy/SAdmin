@@ -43,6 +43,7 @@ if (isset($_POST['btnLogin'])){
             else
             {
                 header("Location: AreaUsuario.php");
+                
             }
         }
 

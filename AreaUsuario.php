@@ -45,15 +45,16 @@ if (isset($_GET['idevt']))
 }
 
 $FeedbackMessage = new FeedbackMessage();
+require_once './actions/aEvt_Evento_Participante.php';
+$evtPart = new aEvt_Evento_Participante();
 
-$evento = new aEvt_Evento();
-
-$lista = $evento->SelectEventoEmdia();
+$lista = $evtPart->select();
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("lista", $lista);
 
-$smarty->display('./View/AreaUsuario.html');
+$smarty->display('./View_Participante/AreaParticipante.html');
+
 //----------------------------------------------------------

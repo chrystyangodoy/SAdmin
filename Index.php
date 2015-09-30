@@ -22,7 +22,7 @@ if (isset($_POST['btn_inscricao'])) {
             $FeedbackMessage->setMsg("Você já está inscrito neste evento!");
             $FeedbackMessage->setType("error");
         }
-        
+        $id_User = $_SESSION['ID_Usuario'];
         require_once './actions/aEvt_Evento.php';
         $infoEvt = new aEvt_Evento();
         $ass = "Confirmação de Inscrição no Evento!";
