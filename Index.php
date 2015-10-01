@@ -32,7 +32,7 @@ if (isset($_POST['btn_inscricao'])) {
         require_once ('./actions/aBsc_Participante.php');
         $partic = new aBsc_Participante();
         $partic->selectInfoEvt($id_User);
-        
+
         $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
     } else {
         header("Location: Login.php");
@@ -40,8 +40,26 @@ if (isset($_POST['btn_inscricao'])) {
     }
 }
 
+//--------------------------Variáveis para IF de Tela--------------------------------------------------------------
+
+$isLogado = false;
+$NomeUsuario = "";
+
+if (isset($_SESSION['ID_Usuario'])) {
+    $isLogado = true;
+    if (isset($_SESSION['DSC_Login'])) {
+        $NomeUsuario = $_SESSION['DSC_Login'];
+    }
+    
+}
+
+//-----------------------------------------------------------------------------------------------------------------
+
 $msg = $FeedbackMessage->getMsg();
 $type = $FeedbackMessage->getType();
+
+$smarty->assign("isLogado", $isLogado);
+$smarty->assign("NomeUsuario", $NomeUsuario);
 
 $smarty->assign("msg", $msg);
 $smarty->assign("type", $type);
