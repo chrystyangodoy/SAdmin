@@ -18,6 +18,7 @@ if (isset($_POST['btn_inscricao'])) {
         $evtPart = new aEvt_Evento_Participante();
         if ($evtPart->selectNotExistsEvt($_SESSION['id_Evento'], $_SESSION['ID_Usuario'])) {
             $evtPart->insertPart($_SESSION['id_Evento'], $_SESSION['ID_Usuario']);
+            $_SESSION['id_Evento']=null;
         } else {
             $FeedbackMessage->setMsg("Você já está inscrito neste evento!");
             $FeedbackMessage->setType("error");
@@ -27,18 +28,24 @@ if (isset($_POST['btn_inscricao'])) {
         $infoEvt = new aEvt_Evento();
         $ass = "Confirmação de Inscrição no Evento!";
         $mens = ("Sua inscrição no evento " . $infoEvt->getDSC_Nome() . " foi efetuada com sucesso!");
+        //Load de informações para envio do email
         require_once './config/eMail.php';
         $emailObj = new eMail();
         require_once ('./actions/aBsc_Participante.php');
         $partic = new aBsc_Participante();
-        $partic->selectInfoEvt($id_User);
-
+        $partic->selectInfoPartic($id_User);
         $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
+        
     } else {
-        header("Location: Login.php");
+        header("Location: ParticipanteInsert.php");
         die();
     }
 }
+if (isset($_POST['btn_Login'])) {
+    $_SESSION['id_Evento'] = $_POST['btn_Login'];
+    header("Location: Login.php");
+}
+
 
 //--------------------------Variáveis para IF de Tela--------------------------------------------------------------
 

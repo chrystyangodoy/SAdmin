@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <title>Portal 3</title>
+        <title>Portal</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="./portal/css/bootstrap.min.css" rel="stylesheet">
@@ -77,6 +77,7 @@
                             <input name="Password" type="password" class="form-control" id="pwd" placeholder="Password">
                         </div>
                         <button name="btnLogin" type="submit" class="btn btn-primary">Sign in</button>
+                        <a href="EsqueciSenha.php">Esqueceu a Senha?</a>
                     </form>
                     {/if}
                 </div>
@@ -145,7 +146,6 @@
                 <!-- Articles -->
                 <table>
                     <tr>
-
                         {foreach from=$lista item=row}
                         <td>
                             <div class="card text-center">
@@ -153,7 +153,8 @@
                                     <h4 class="card-title">{$row.DSC_Nome}</h4>
                                     <p class="card-text">{$row.DSC_Endereco}, {$row.DSC_Cidade} - {$row.DSC_Bairro}</p>
                                     <form name="inscricao" action="" method="post">    
-                                        <button name="btn_inscricao" type="submit" value="{$row.ID_EVT}" class="btn btn-primary">Inscreva-se</button>    
+                                        <button name="btn_inscricao" type="submit" value="{$row.ID_EVT}" class="btn btn-primary">Inscreva-se</button></p>
+                                        <button name="btn_Login" type="submit" value="{$row.ID_EVT}" class="btn btn-default">Possuí cadastro</button>
                                     </form>
                                 </div>
                                 <div class="card-footer text-muted">

@@ -33,7 +33,7 @@ h1 a:link, h2 a:link, h3 a:link, h4 a:link, h5 a:link, h6 a:link {
 
 .small-print {
     background-color: #fff;
-    padding: 30px 0;
+    padding: 30px 0px;
 }
 
 .feature,
@@ -99,7 +99,7 @@ label.error {
     display: block;
     font-size: 15px;
     max-width: 500px;
-margin-right: 10px;}
+    margin-right: 10px;}
 .card, .card-title {
     margin-bottom: .75rem;
 }
@@ -130,4 +130,82 @@ margin-right: 10px;}
 .card-footer, .card-header {
     padding: .75rem 1.25rem;
     background-color: #f5f5f5;
+}
+.recuperaSenha-form {
+    width: 300px;
+    margin: 0px auto;
+    position: relative;
+    z-index: 5;
+    background: #F3F3F3 none repeat scroll 0% 0%;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.recuperaSenha-form .header {
+    padding: 10px 10px 10px 20px;
+}
+.recuperaSenha-form .content {
+    padding: 0px 20px 20px;
+}
+.recuperaSenha-form .footer {
+    padding: 20px 20px 20px;
+    overflow: auto;
+    background: #D4DEDF none repeat scroll 0% 0%;
+    border-top: 1px solid #FFF;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.15) inset;
+    text-align: center;
+}
+
+.input-username {
+    width: 260px;
+    padding: 15px 15px;
+    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #9D9E9E;
+    text-shadow: 1px 1px 0px #FFF;
+    background: #FFF none repeat scroll 0% 0%;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5) inset;
+}
+
+.recuperaSenha-form .header h1 {
+    font-family: 'Bree Serif', serif;
+    font-weight: 300;
+    font-size: 28px;
+    line-height:34px;
+    color: #414848;
+    text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.recuperaSenha-form .header span {
+    font-size: 11px;
+    line-height: 16px;
+    color: #678889;
+    text-shadow: 1px 1px 0px #FFF;
+}
+
+.wrapper {
+    /* Center wrapper perfectly */
+    width: 300px;
+    height: 400px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -200px;
+}
+
+.footer-fixed {
+    width: 100%;
+    position:fixed;
+    bottom:0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    background-color: #222;
+    border-color: #101010;
+    text-align: center;
 }

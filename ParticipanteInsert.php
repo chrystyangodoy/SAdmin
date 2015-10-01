@@ -28,7 +28,7 @@ if (isset($_POST['Cadastrar'])) {
             $datainicial = date("d/m/Y");
             $datafim = date('d/m/Y', strtotime("+7 days"));
             //Gera Senha Aleatória
-            $senha = $gerasenha->geraSenha(14);
+            $senha = $gerasenha->geraSenha(6);
             //Gera o grupo padrão para Participantes
             $grupo = 99;
 
@@ -71,7 +71,7 @@ if (isset($_POST['Cadastrar'])) {
             $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
 
             $FeedbackMessage->setMsg("Participante inserido com sucesso!");
-            header("Location: Index.php");
+            header("Location: AreaUsuario.php");
             die();
         } else {
             $FeedbackMessage->setMsg("CPF já cadastrado!");

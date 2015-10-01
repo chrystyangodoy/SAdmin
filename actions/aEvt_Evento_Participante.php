@@ -80,7 +80,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $partic = new aBsc_Participante();
         $config = new configs();
 
-        $partic->selectInfoEvt($id_User);
+        $partic->selectInfoPartic($id_User);
 
         $this->setID_EVT_Evento_Pariticipante($config->idUnico());
         $this->setID_EVT_Evento($id_Evt);

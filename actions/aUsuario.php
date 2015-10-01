@@ -12,43 +12,52 @@ class aUsuario extends mUsuario {
     protected $sqlSelectInnerTrans = "SELECT *,seg_detalhe_transacao.COD_TIPO_Origem_Transacao seg_detalhe_transacao.COD_Tipo_Sistema_Transacao,seg_detalhe_transacao.DSC_Login_Transacao from seg_usuario inner join seg_detalhe_transacao on (seg_usuario.ID_Usuario = seg_detalhe_transacao.ID_SEG_Usuario) where 1=1 %s %s";
     protected $sqlSelectExists = "SELECT count(*) FROM seg_usuario WHERE 1=1 and DSC_Login='%s'";
     protected $sqlSelectID = "SELECT ID_Usuario FROM seg_usuario WHERE 1=1 and DSC_Login=%s";
+    protected $sqlUpdateSenha = "UPDATE seg_usuario set DSC_Senha= MD5('%s') where ID_Usuario = '%s'";
 
-    public function insert() {
+    public function insert()
+    {
         $sql = sprintf($this->sqlInsert, $this->getID_Usuario(), $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo());
-        return $this->RunInsert($sql);
-    }
-
-    public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo(),$this->getID_Usuario());
         return $this->RunQuery($sql);
     }
 
-    public function delete() {
+    public function update()
+    {
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo(), $this->getID_Usuario());
+        return $this->RunQuery($sql);
+    }
+
+    public function delete()
+    {
         $sql = sprintf($this->sqlDelete, $this->getID_Usuario());
         return $this->RunQuery($sql);
     }
 
-    public function select($where = '', $order = '') {
+    public function select($where = '', $order = '')
+    {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
 
-    public function loginAc($where = '', $order = '') {
+    public function loginAc($where = '', $order = '')
+    {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunLog($sql);
     }
 
-    public function selectInnerGrupo($where = '', $order = '') {
+    public function selectInnerGrupo($where = '', $order = '')
+    {
         $sql = sprintf($this->sqlSelectInnerGrupo, $where, $order);
         return $this->RunSelect($sql);
     }
 
-    public function selectInnerTrans($where = '', $order = '') {
+    public function selectInnerTrans($where = '', $order = '')
+    {
         $sql = sprintf($this->sqlSelectInnerTrans, $where, $order);
         return $this->RunSelect($sql);
     }
 
-    public function load() {
+    public function load()
+    {
         $rs = $this->select(sprintf("and ID_Usuario='%s'", $this->getID_Usuario()));
         $this->setID_Usuario($rs[0]['ID_Usuario']);
         $this->setDSC_Login($rs[0]['DSC_Login']);
@@ -59,9 +68,11 @@ class aUsuario extends mUsuario {
         return $this;
     }
 
-    public function login($login, $senha) {
+    public function login($login, $senha)
+    {
         $rs = $this->select(sprintf("and DSC_Login='%s' and DSC_Senha=md5('%s')", $login, $senha));
-        if (!empty($rs)) {
+        if (!empty($rs))
+        {
             $ID_Usuario = $rs[0]['ID_Usuario'];
             $DSC_Login = $rs[0]['DSC_Login'];
             $DSC_Senha = $rs[0]['DSC_Senha'];
@@ -79,20 +90,53 @@ class aUsuario extends mUsuario {
         return $this;
     }
 
-    public function selectExists($login) {
+    public function selectExists($login)
+    {
         $sql = sprintf($this->sqlSelectExists, $login);
         return $this->RunQuery($sql);
     }
 
-    public function selectID($where = '') {
+    public function selectID($where = '')
+    {
         $sql = sprintf($this->sqlSelectID, $where);
         return $this->RunID($sql);
     }
 
-    public function SelectUserID() {
+    public function SelectUserID()
+    {
         $sql = $this->selectID(sprintf("and DSC_Login='%s'", $this->getDSC_Login()));
         $ID_Usuario = $sql[0]['ID_Usuario'];
         return $this;
+    }
+
+    public function updateSenha()
+    {
+        require ('./actions/aBsc_Participante.php');
+        $partic = new aBsc_Participante();
+        require ('./config/geraSenha.php');
+        $gerasenha = new geraSenha();
+        $senha = $gerasenha->geraSenha(6);
+
+        $rs = $this->select(sprintf("and DSC_Login='%s'", $this->getDSC_Login()));
+
+        if (!empty($rs))
+        {
+            $ID_Usuario = $rs[0]['ID_Usuario'];
+            $DSC_Login = $rs[0]['DSC_Login'];
+
+            $partic->selectInfoPartic($ID_Usuario);
+
+            $sql = sprintf($this->sqlUpdateSenha, $senha, $ID_Usuario);
+
+            $ass = "Nova Senha gerada com sucesso!";
+            $mens = ("Seu usuário é " . $DSC_Login . "  e sua senha agora é " . $senha . ".");
+            require_once './config/eMail.php';
+            $emailObj = new eMail();
+
+            $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
+            return $this->RunQuery($sql);
+        }
+        return false;
     }
 
 }

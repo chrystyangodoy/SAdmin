@@ -89,7 +89,7 @@ class eMail {
         }
         else
         {
-            echo "Não foi possível enviar o e-mail.";
+            echo "<b>Não foi possível enviar o e-mail.</b>";
             echo "<b>Informações do erro:</b> " . $mail->ErrorInfo;
         }
     }

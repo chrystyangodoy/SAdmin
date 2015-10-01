@@ -17,7 +17,7 @@ if (isset($_GET['idevt']))
     $config = new configs();
     
     //Capturar informações do participante
-    $partic->selectInfoEvt($_SESSION['ID_Usuario']);
+    $partic->selectInfoPartic($_SESSION['ID_Usuario']);
     $IDEvto = $_GET['idevt'];
 
     $evtPart->setID_EVT_Evento_Pariticipante($config->idUnico());
