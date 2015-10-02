@@ -20,6 +20,8 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
     protected $sqlDelete = "delete from evt_evento_participante where ID_EVT = '%s'";
     protected $sqlSelect = "select * from evt_evento_participante where 1=1 %s %s";
     protected $sqlSelectExistEvt = "SELECT count(0) AS COUNT_EVT FROM evt_evento_participante WHERE 1=1 and ID_EVT_Evento='%s' and ID_BSC_Participante='%s'";
+    protected $sqlSelectEvtPartc = "SELECT evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL FROM evt_evento_participante INNER JOIN evt_evento ON evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT INNER JOIN bsc_local_evento ON bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento WHERE 1=1 %s %s";
+    protected $SelectEvtP = "SELECT evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) WHERE 1=1 and ID_BSC_Participante='%s'";
 
     public function insert()
     {
@@ -73,7 +75,6 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
 
     public function insertPart($id_Evt, $id_User)
     {
-
         require_once ('./config/configs.php');
         require_once './actions/aBsc_Participante.php';
 
@@ -108,6 +109,22 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         else
         {
             return false;
+        }
+    }
+
+    public function SelectEvtPartc($id_User)
+    {
+        require_once ('./actions/aBsc_Participante.php');
+        $partic = new aBsc_Participante();
+        $partic->selectInfoPartic($id_User);
+        $idParticipante = $partic->getID_Participante();
+
+        try {
+//            $sqlEvt = sprintf($this->sqlSelectEvtPartc, $where);
+//            $sqlEvtP = sprintf($this->SelectEvtP, $idParticipante);
+            return $this->RunSelect("SELECT evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) WHERE 1=1 and ID_BSC_Participante='$idParticipante'");
+        } catch (Exception $ex) {
+            return $ex . error_get_last();
         }
     }
 

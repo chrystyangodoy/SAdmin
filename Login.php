@@ -32,6 +32,7 @@ if (isset($_POST['btnLogin'])){
                 if ($evtPart->selectNotExistsEvt($_SESSION['id_Evento'], $_SESSION['ID_Usuario']))
                 {
                     $evtPart->insertPart($_SESSION['id_Evento'], $_SESSION['ID_Usuario']);
+                    $_SESSION['id_Evento']=null;
                     header("Location: Index.php");
                 }
                 else
