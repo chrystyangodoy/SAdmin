@@ -95,7 +95,11 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
 
     public function selectNotExistsEvt($id_Evt, $id_User)
     {
-        $rs = $this->RunSelect(sprintf($this->sqlSelectExistEvt, $id_Evt, $id_User));
+        require_once ('./actions/aBsc_Participante.php');
+        $partic = new aBsc_Participante();
+        $partic->selectInfoPartic($id_User);
+
+        $rs = $this->RunSelect(sprintf($this->sqlSelectExistEvt, $id_Evt, $partic->getID_Participante()));
         $count = $rs[0]['COUNT_EVT'];
         if ($count == 0)
         {

@@ -10,38 +10,46 @@ require_once './actions/aEvt_Evento.php';
 $usuario = new aUsuario();
 $evento = new aEvt_Evento();
 
-if (isset($_POST['btn_inscricao'])) {
+if (isset($_POST['btn_inscricao']))
+{
     $_SESSION['id_Evento'] = $_POST['btn_inscricao'];
 
-    if ($_SESSION['ID_Usuario'] != null || $_SESSION['ID_Usuario'] != 0) {
+    if ($_SESSION['ID_Usuario'] != null || $_SESSION['ID_Usuario'] != 0)
+    {
+        $id_User = $_SESSION['ID_Usuario'];
         require_once './actions/aEvt_Evento_Participante.php';
         $evtPart = new aEvt_Evento_Participante();
-        if ($evtPart->selectNotExistsEvt($_SESSION['id_Evento'], $_SESSION['ID_Usuario'])) {
+        if ($evtPart->selectNotExistsEvt($_SESSION['id_Evento'], $_SESSION['ID_Usuario']))
+        {
             $evtPart->insertPart($_SESSION['id_Evento'], $_SESSION['ID_Usuario']);
-            $_SESSION['id_Evento']=null;
-        } else {
+            require_once './actions/aEvt_Evento.php';
+            $infoEvt = new aEvt_Evento();
+            $ass = "Confirmação de Inscrição no Evento!";
+            $mens = ("Sua inscrição no evento " . $infoEvt->getDSC_Nome() . " foi efetuada com sucesso!");
+            //Load de informações para envio do email
+            require_once './config/eMail.php';
+            $emailObj = new eMail();
+            require_once ('./actions/aBsc_Participante.php');
+            $partic = new aBsc_Participante();
+            $partic->selectInfoPartic($id_User);
+            $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
+
+            $_SESSION['id_Evento'] = null;
+        }
+        else
+        {
             $FeedbackMessage->setMsg("Você já está inscrito neste evento!");
             $FeedbackMessage->setType("error");
         }
-        $id_User = $_SESSION['ID_Usuario'];
-        require_once './actions/aEvt_Evento.php';
-        $infoEvt = new aEvt_Evento();
-        $ass = "Confirmação de Inscrição no Evento!";
-        $mens = ("Sua inscrição no evento " . $infoEvt->getDSC_Nome() . " foi efetuada com sucesso!");
-        //Load de informações para envio do email
-        require_once './config/eMail.php';
-        $emailObj = new eMail();
-        require_once ('./actions/aBsc_Participante.php');
-        $partic = new aBsc_Participante();
-        $partic->selectInfoPartic($id_User);
-        $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
-        
-    } else {
+    }
+    else
+    {
         header("Location: ParticipanteInsert.php");
         die();
     }
 }
-if (isset($_POST['btn_Login'])) {
+if (isset($_POST['btn_Login']))
+{
     $_SESSION['id_Evento'] = $_POST['btn_Login'];
     header("Location: Login.php");
 }
@@ -52,12 +60,13 @@ if (isset($_POST['btn_Login'])) {
 $isLogado = false;
 $NomeUsuario = "";
 
-if (isset($_SESSION['ID_Usuario'])) {
+if (isset($_SESSION['ID_Usuario']))
+{
     $isLogado = true;
-    if (isset($_SESSION['DSC_Login'])) {
+    if (isset($_SESSION['DSC_Login']))
+    {
         $NomeUsuario = $_SESSION['DSC_Login'];
     }
-    
 }
 
 //-----------------------------------------------------------------------------------------------------------------
