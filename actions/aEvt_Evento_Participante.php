@@ -111,6 +111,14 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
             return false;
         }
     }
+    public function SelectEvtPartc($id_User){
+        require_once ('./actions/aBsc_Participante.php');
+        $partic = new aBsc_Participante();
+        $partic->selectInfoPartic($id_User);
+        $idParticipante = $partic->getID_Participante();
+        $sql = $this->RunSelect($this->sqlSelectEvtPartc,$idParticipante);
+        return $this->RunSelect($this->sqlSelectEvtPartc,$idParticipante);
+    }
 
     public function SelectEvtPartc($id_User)
     {
