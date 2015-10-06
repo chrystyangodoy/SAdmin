@@ -24,11 +24,11 @@ function closeAlert() {
 
 function isCPFCadastrado(cpf) {
     resultado = 0;
-    
+
     $.ajax({
-       url: "getCPFCasdastrado.php",
-       data: {cpf: cpf},
-       type: "POST",
+        url: "getCPFCasdastrado.php",
+        data: {cpf: cpf},
+        type: "POST",
         async: false,
         success: function (data) {
             resultado = data;
@@ -36,16 +36,29 @@ function isCPFCadastrado(cpf) {
     });
     return resultado;
 }
-function isCPFCadastradoEdit(cpf,idParticipante) {
+function isCPFCadastradoEdit(cpf, idParticipante) {
     resultado = 0;
     $.ajax({
-       url: "getCPFCasdastradoEdit.php",
-       data: {cpf: cpf, ID_Participante: idParticipante},
-       type: "POST",
+        url: "getCPFCasdastradoEdit.php",
+        data: {cpf: cpf, ID_Participante: idParticipante},
+        type: "POST",
         async: false,
         success: function (data) {
             resultado = data;
         }
     });
     return resultado;
+}
+
+function getEventoCategoriaPorEventoID(ID_EVT_Evento) {
+    $.getJSON("getEventoCategoriaPorEventoID.php",{ID_EVT_Evento : ID_EVT_Evento})
+            .done(function (data) {
+                return data;
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                console.log("Request Failed: " + err);
+                alert('error', 'Ocorreu um erro durante a exercução da ação.\n\
+Desculpe o transtorno!');
+            });
 }

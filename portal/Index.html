@@ -64,7 +64,7 @@
                             </ul>
                         </li>
                     </ul>
-                    
+
                     {else}
                     <!-- Log In Form -->
                     <form name="Login" id="Login" class="navbar-form navbar-right form-inline" action="Login.php" method="post">
@@ -155,6 +155,7 @@
                                     <form name="inscricao" action="" method="post">    
                                         <button name="btn_inscricao" type="submit" value="{$row.ID_EVT}" class="btn btn-primary">Inscreva-se</button></p>
                                         <button name="btn_Login" type="submit" value="{$row.ID_EVT}" class="btn btn-default">Possuí cadastro</button>
+                                        <a href='#' onclick="ListaEventoCategoriaPopUp('{$row.ID_EVT}');">Link</a>
                                     </form>
                                 </div>
                                 <div class="card-footer text-muted">
@@ -168,52 +169,73 @@
                     </tr>
                 </table>
 
+            <footer>
+                <div class="small-print">
+                    <div class="container">
+                        <p><a href="#">Terms &amp; Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+                        <p>Copyright &copy; 2015 </p>
+                    </div>
+                </div>
+            </footer>
+
+
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Evento</h4>
+                            </div>
+                            <div class="modal-body" id="corpoPopUp">
+                                <p>
+                                    
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal --
+
             </div><!--/Center Column-->
 
-        </div><!--/container-fluid-->
+            </div><!--/container-fluid-->
 
-        <footer>
-            <div class="small-print">
-                <div class="container">
-                    <p><a href="#">Terms &amp; Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
-                    <p>Copyright &copy; 2015 </p>
-                </div>
-            </div>
-        </footer>
+            <!-- jQuery -->
+            <script src="./portal/js/jquery-1.11.3.min.js"></script>
 
+            <!-- Bootstrap Core JavaScript -->
+            <script src="./portal/js/bootstrap.min.js"></script>
 
-        <!-- jQuery -->
-        <script src="./portal/js/jquery-1.11.3.min.js"></script>
+            <!-- IE10 viewport bug workaround -->
+            <script src="./portal/js/ie10-viewport-bug-workaround.js"></script>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="./portal/js/bootstrap.min.js"></script>
+            <!-- Placeholder Images -->
+            <script src="./portal/js/holder.min.js"></script>
+            <script src="./js/Customizacoes.js" type="text/javascript"></script>
+            <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
+            <script src="./js/portal.js" type="text/javascript"></script>
 
-        <!-- IE10 viewport bug workaround -->
-        <script src="./portal/js/ie10-viewport-bug-workaround.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(".username").focus(function () {
+                        $(".user-icon").css("left", "-48px");
+                    });
+                    $(".username").blur(function () {
+                        $(".user-icon").css("left", "0px");
+                    });
 
-        <!-- Placeholder Images -->
-        <script src="./portal/js/holder.min.js"></script>
-        <script src="./js/Customizacoes.js" type="text/javascript"></script>
-        <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $(".username").focus(function () {
-                    $(".user-icon").css("left", "-48px");
+                    $(".password").focus(function () {
+                        $(".pass-icon").css("left", "-48px");
+                    });
+                    $(".password").blur(function () {
+                        $(".pass-icon").css("left", "0px");
+                    });
+                    showAlert('{$type}', '{$msg}');
                 });
-                $(".username").blur(function () {
-                    $(".user-icon").css("left", "0px");
-                });
-
-                $(".password").focus(function () {
-                    $(".pass-icon").css("left", "-48px");
-                });
-                $(".password").blur(function () {
-                    $(".pass-icon").css("left", "0px");
-                });
-                showAlert('{$type}', '{$msg}');
-            });
-        </script>
+            </script>
 
     </body>
 

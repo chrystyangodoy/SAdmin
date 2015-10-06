@@ -39,6 +39,11 @@ class aEvt_Evento_Categoria extends mEvt_Evento_Categoria {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
+    
+    public function selectCategoriasDoEvento($ID_EVT_Evento){
+        $rs = $this->select(sprintf(" and ID_EVT_Evento = '%s'", $ID_EVT_Evento));
+        return $rs;
+    }
 
     public function load() {
         $rs = $this->select(sprintf("and ID_Evento_Categoria='%s'", $this->getID_Evento_Categoria()));
