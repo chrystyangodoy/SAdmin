@@ -58,7 +58,6 @@ function getEventoCategoriaPorEventoID(ID_EVT_Evento) {
             .fail(function (jqxhr, textStatus, error) {
                 var err = textStatus + ", " + error;
                 console.log("Request Failed: " + err);
-                alert('error', 'Ocorreu um erro durante a exercução da ação.\n\
-Desculpe o transtorno!');
+                alert('error', 'Ocorreu um erro durante a exercução da ação.\n\Desculpe o transtorno!');
             });
 }

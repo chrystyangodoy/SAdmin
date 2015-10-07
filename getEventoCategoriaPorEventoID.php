@@ -5,6 +5,6 @@ require_once './actions/aEvt_Evento_Categoria.php';
 
 $EventoCategoria = new aEvt_Evento_Categoria();
 
-$arr[] = $EventoCategoria->selectCategoriasDoEvento($ID_EVT_Evento);
+$arr = $EventoCategoria->selectCategoriasDoEvento($ID_EVT_Evento);
 
 echo json_encode($arr);
