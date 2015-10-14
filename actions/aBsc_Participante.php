@@ -92,5 +92,10 @@ class aBsc_Participante extends mBsc_Participante {
         //return $this->RunSelect($rs);
         return $this;
     }
+    
+        public function selectParticPorCPF() {
+        $rs = $this->select(sprintf("and COD_CPF='%s'", $this->getCOD_CPF()));
+        return $rs;
+    }
 
 }
