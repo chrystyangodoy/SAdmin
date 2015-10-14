@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     function limpa_formulário_cep() {
-        // Limpa valores do formulário de cep.
+// Limpa valores do formulário de cep.
         $("#DSC_Endereco").val("");
         $("#DSC_Bairro").val("");
         $("#DSC_Cidade").val("");
@@ -9,22 +9,20 @@ $(document).ready(function () {
         $("#ibge").val("");
     }
 
-    //Quando o campo cep perde o foco.
+//Quando o campo cep perde o foco.
     $("#NUM_CEP").blur(function () {
 
-        //Nova variável "cep" somente com dígitos.
+//Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
-
         //Verifica se campo cep possui valor informado.
         if (cep != "") {
 
-            //Expressão regular para validar o CEP.
+//Expressão regular para validar o CEP.
             var validacep = /[0-9]{8}/;
-
             //Valida o formato do CEP.
             if (validacep.test(cep)) {
 
-                //Preenche os campos com "..." enquanto consulta webservice.
+//Preenche os campos com "..." enquanto consulta webservice.
                 $("#DSC_Endereco").val("...")
                 $("#DSC_Bairro").val("...")
                 $("#DSC_Cidade").val("...")
@@ -50,17 +48,16 @@ $(document).ready(function () {
                 });
             } //end if.
             else {
-                //cep é inválido.
+//cep é inválido.
                 limpa_formulário_cep();
                 showAlert('error', 'Formato de CEP inválido.');
             }
         } //end if.
         else {
-            //cep sem valor, limpa formulário.
+//cep sem valor, limpa formulário.
             limpa_formulário_cep();
         }
     });
-
     $('#COD_CPF').mask('000.000.000-00');
     $('#NUM_Celular').mask('(00) 00000-0000');
     $('#NUM_Fone').mask('(00) 0000-0000');
@@ -79,7 +76,7 @@ $(document).ready(function () {
         rules: {
             DSC_Nome: {required: true},
             DSC_Email: {required: true, email: true},
-            COD_CPF: {required: true, cpfValidacao: true},
+            COD_CPF: {required: true, cpfValidacao: true, cpfValidacao:true},
             NUM_CEP: {required: true},
             DSC_Cidade: {required: true},
             DSC_Bairro: {required: true},
@@ -123,68 +120,17 @@ $(document).ready(function () {
                     }
                 }
             });
-
             return false;
         }
     });
-
     $("#COD_CPF").blur(function () {
         cpf = $("#COD_CPF").val();
-
         if (CPFValido(cpf)) {
             console.log("CPF Válido!");
-            $.getJSON("getParticipantePorCPF.php", {COD_CPF: cpf}, function (data) {
-                console.log("Inicio do getJson");
-                $("#loadImg").css("display", "block").fadeIn();
-
-                $('#DSC_Nome').val("");
-                $('#DSC_Email').val("");
-                $('#COD_RG').val("");
-                $('#NUM_CEP').val("");
-                $('#DSC_Cidade').val("");
-                $('#DSC_Bairro').val("");
-                $('#DSC_Endereco').val("");
-                $('#NUM_Fone').val("");
-                $('#NUM_Celular').val("");
-                $('#NUM_FAX').val("");
-                $('#NUM_FAX_Promotora').val("");
-                $('#ID_BSC_Empresa').val("");
-                $('#ID_BSC_Profissao').val("");
-                $('#DSC_Presidente_Promotora').val("");
-                $('#DSC_Profissao_Especialidade').val("");
-                $('#NUM_Registro').val("");
-                $('#COD_Tipo_Estado').val("");
-                $('#COD_Tipo_Estado').val("");
-                dataStr = data.toString();
-                console.log(dataStr);
-
-                if (!(dataStr == "[vazio]") || !(dataStr == "") || !(dataStr.length == 0) || !(data[0].ID_Participante === "")) {
-                    console.log('entrou no if da str');
-                    $('#DSC_Nome').val(data[0].DSC_Nome);
-                    $('#DSC_Email').val(data[0].DSC_Email);
-                    $('#COD_RG').val(data[0].COD_RG);
-                    $('#NUM_CEP').val(data[0].NUM_CEP);
-                    $('#DSC_Cidade').val(data[0].DSC_Cidade);
-                    $('#DSC_Bairro').val(data[0].DSC_Bairro);
-                    $('#DSC_Endereco').val(data[0].DSC_Endereco);
-                    $('#NUM_Fone').val(data[0].NUM_Fone);
-                    $('#NUM_Celular').val(data[0].NUM_Celular);
-                    $('#NUM_FAX').val(data[0].NUM_FAX);
-                    $('#NUM_FAX_Promotora').val(data[0].NUM_FAX_Promotora);
-                    $('#ID_BSC_Empresa').val(data[0].ID_BSC_Empresa);
-                    $('#ID_BSC_Profissao').val(data[0].ID_BSC_Profissao);
-                    $('#DSC_Presidente_Promotora').val(data[0].DSC_Presidente_Promotora);
-                    $('#DSC_Profissao_Especialidade').val(data[0].DSC_Profissao_Especialidade);
-                    $('#NUM_Registro').val(data[0].NUM_Registro);
-                    $('#COD_Tipo_Estado').val(data[0].COD_Tipo_Estado);
-                    
-                    showAlert('success','Verifique seus dados!');
-
-                }else {
-                    showAlert('error','CPF não cadastrado');
-                }
-
-
+            console.log("Inicio do getJson");
+            $("#loadImg").css("display", "block").fadeIn();
+            var CPFnaoCadastrado = isCPFCadastrado(cpf);
+            if (CPFnaoCadastrado == 1) {
                 $('#DSC_Nome').attr("disabled", false);
                 $('#DSC_Email').attr("disabled", false);
                 $('#COD_RG').attr("disabled", false);
@@ -203,15 +149,34 @@ $(document).ready(function () {
                 $('#NUM_Registro').attr("disabled", false);
                 $('#COD_Tipo_Estado').attr("disabled", false);
                 $('#COD_Tipo_Estado').attr("disabled", false);
-                $('.btn').attr("disabled", false);
+                $('.btn-primary').attr("disabled", false);
+                $('#DSC_Nome').focus();
                 console.log('campos habilitados');
-                $("#loadImg").css("display", "none").fadeOut();
-            });
-        }else {
-            console.log("CPF Inválido");
-            showAlert('error','CPF Inválido');
+            } else {
+                $('#DSC_Nome').attr("disabled", true).val("");
+                $('#DSC_Email').attr("disabled", true).val("");
+                $('#COD_RG').attr("disabled", true).val("");
+                $('#NUM_CEP').attr("disabled", true).val("");
+                $('#DSC_Cidade').attr("disabled", true).val("");
+                $('#DSC_Bairro').attr("disabled", true).val("");
+                $('#DSC_Endereco').attr("disabled", true).val("");
+                $('#NUM_Fone').attr("disabled", true).val("");
+                $('#NUM_Celular').attr("disabled", true).val("");
+                $('#NUM_FAX').attr("disabled", true).val("");
+                $('#NUM_FAX_Promotora').attr("disabled", true).val("");
+                $('#ID_BSC_Empresa').attr("disabled", true).val("");
+                $('#ID_BSC_Profissao').attr("disabled", true).val("");
+                $('#DSC_Presidente_Promotora').attr("disabled", true).val("");
+                $('#DSC_Profissao_Especialidade').attr("disabled", true).val("");
+                $('#NUM_Registro').attr("disabled", true).val("");
+                $('#COD_Tipo_Estado').attr("disabled", true).val("");
+                $('#COD_Tipo_Estado').attr("disabled", true).val("");
+                $('.btn-primary').attr("disabled", true);
+                console.log("CPF Já Cadastrado. Clique em Login para entrar no sistema.");
+                showAlert('error', 'CPF Já Cadastrado. Clique em Login para entrar no sistema.');
+            }
+            $("#loadImg").css("display", "none").fadeOut();
         }
-
     });
 });
 
