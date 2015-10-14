@@ -174,6 +174,7 @@ $(document).ready(function () {
                 $('.btn-primary').attr("disabled", true);
                 console.log("CPF Já Cadastrado. Clique em Login para entrar no sistema.");
                 showAlert('error', 'CPF Já Cadastrado. Clique em Login para entrar no sistema.');
+                
             }
             $("#loadImg").css("display", "none").fadeOut();
         }
