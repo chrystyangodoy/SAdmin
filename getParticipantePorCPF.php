@@ -15,7 +15,7 @@ if (isset($_REQUEST['COD_CPF'])) {
     $json = json_encode($arr);
 
     if ($json == "[]") {
-        
+        echo '[{"ID_Participante":""}]';
     } else {
         echo $json;
     }

@@ -131,33 +131,35 @@ $(document).ready(function () {
     $("#COD_CPF").blur(function () {
         cpf = $("#COD_CPF").val();
 
-        if (CPFValido(cpf)){
+        if (CPFValido(cpf)) {
+            console.log("CPF Válido!");
             $.getJSON("getParticipantePorCPF.php", {COD_CPF: cpf}, function (data) {
-                $("#loadImg").css("display", "block");
+                console.log("Inicio do getJson");
+                $("#loadImg").css("display", "block").fadeIn();
 
-                $('#DSC_Nome').val("").attr("disabled", false);
-                $('#DSC_Email').val("").attr("disabled", false);
-                $('#COD_RG').val("").attr("disabled", false);
-                $('#NUM_CEP').val("").attr("disabled", false);
-                $('#DSC_Cidade').val("").attr("disabled", false);
-                $('#DSC_Bairro').val("").attr("disabled", false);
-                $('#DSC_Endereco').val("").attr("disabled", false);
-                $('#NUM_Fone').val("").attr("disabled", false);
-                $('#NUM_Celular').val("").attr("disabled", false);
-                $('#NUM_FAX').val("").attr("disabled", false);
-                $('#NUM_FAX_Promotora').val("").attr("disabled", false);
-                $('#ID_BSC_Empresa').val("").attr("disabled", false);
-                $('#ID_BSC_Profissao').val("").attr("disabled", false);
-                $('#DSC_Presidente_Promotora').val("").attr("disabled", false);
-                $('#DSC_Profissao_Especialidade').val("").attr("disabled", false);
-                $('#NUM_Registro').val("").attr("disabled", false);
-                $('#COD_Tipo_Estado').val("").attr("disabled", false);
-                $('#COD_Tipo_Estado').val("").attr("disabled", false);
-                $('.btn').attr("disabled", false);
+                $('#DSC_Nome').val("");
+                $('#DSC_Email').val("");
+                $('#COD_RG').val("");
+                $('#NUM_CEP').val("");
+                $('#DSC_Cidade').val("");
+                $('#DSC_Bairro').val("");
+                $('#DSC_Endereco').val("");
+                $('#NUM_Fone').val("");
+                $('#NUM_Celular').val("");
+                $('#NUM_FAX').val("");
+                $('#NUM_FAX_Promotora').val("");
+                $('#ID_BSC_Empresa').val("");
+                $('#ID_BSC_Profissao').val("");
+                $('#DSC_Presidente_Promotora').val("");
+                $('#DSC_Profissao_Especialidade').val("");
+                $('#NUM_Registro').val("");
+                $('#COD_Tipo_Estado').val("");
+                $('#COD_Tipo_Estado').val("");
                 dataStr = data.toString();
                 console.log(dataStr);
-                
-                if (!(dataStr == "[]") || !(dataStr == "") || !(dataStr.length == 0)) {
+
+                if (!(dataStr == "[vazio]") || !(dataStr == "") || !(dataStr.length == 0) || !(data[0].ID_Participante === "")) {
+                    console.log('entrou no if da str');
                     $('#DSC_Nome').val(data[0].DSC_Nome);
                     $('#DSC_Email').val(data[0].DSC_Email);
                     $('#COD_RG').val(data[0].COD_RG);
@@ -175,12 +177,41 @@ $(document).ready(function () {
                     $('#DSC_Profissao_Especialidade').val(data[0].DSC_Profissao_Especialidade);
                     $('#NUM_Registro').val(data[0].NUM_Registro);
                     $('#COD_Tipo_Estado').val(data[0].COD_Tipo_Estado);
+                    
+                    showAlert('success','Verifique seus dados!');
 
+                }else {
+                    showAlert('error','CPF não cadastrado');
                 }
 
-                $("#loadImg").css("display", "none");
+
+                $('#DSC_Nome').attr("disabled", false);
+                $('#DSC_Email').attr("disabled", false);
+                $('#COD_RG').attr("disabled", false);
+                $('#NUM_CEP').attr("disabled", false);
+                $('#DSC_Cidade').attr("disabled", false);
+                $('#DSC_Bairro').attr("disabled", false);
+                $('#DSC_Endereco').attr("disabled", false);
+                $('#NUM_Fone').attr("disabled", false);
+                $('#NUM_Celular').attr("disabled", false);
+                $('#NUM_FAX').attr("disabled", false);
+                $('#NUM_FAX_Promotora').attr("disabled", false);
+                $('#ID_BSC_Empresa').attr("disabled", false);
+                $('#ID_BSC_Profissao').attr("disabled", false);
+                $('#DSC_Presidente_Promotora').attr("disabled", false);
+                $('#DSC_Profissao_Especialidade').attr("disabled", false);
+                $('#NUM_Registro').attr("disabled", false);
+                $('#COD_Tipo_Estado').attr("disabled", false);
+                $('#COD_Tipo_Estado').attr("disabled", false);
+                $('.btn').attr("disabled", false);
+                console.log('campos habilitados');
+                $("#loadImg").css("display", "none").fadeOut();
             });
+        }else {
+            console.log("CPF Inválido");
+            showAlert('error','CPF Inválido');
         }
+
     });
 });
 

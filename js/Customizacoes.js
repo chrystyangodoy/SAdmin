@@ -5,6 +5,7 @@ function showAlert(type, message) {
         if (type === '') {
             type = 'success'
         }
+        $('#alert').removeClass();
         $('#alert').addClass('alert-' + type).html(message).fadeIn();
         setTimeout("closeAlert()", 15000); // 15 segundos
     }
@@ -19,6 +20,7 @@ $(function () {
 //
 function closeAlert() {
     $('#alert').fadeOut();
+    $('#alert').removeClass();
 }
 
 
