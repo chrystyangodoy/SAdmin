@@ -6,15 +6,16 @@ session_start();
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 
+require_once './actions/aEvt_Evento_Participante.php';
+$evtPart = new aEvt_Evento_Participante();
+
 if (isset($_POST['Cadastrar'])) {
     require_once ('./config/configs.php');
     require ('./config/geraSenha.php');
     require ('./actions/aBsc_Participante.php');
     require ('./actions/aUsuario.php');
     $partic = new aBsc_Participante();
-    $user = new aUsuario();
-    $gerasenha = new geraSenha();
-    $config = new configs();
+
 
     //limpa cpf
     $cpf = $config->limpaCPF($_POST['COD_CPF']);
@@ -25,7 +26,7 @@ if (isset($_POST['Cadastrar'])) {
         //verifica se o CPF já foi cadastrado
         if ($partic->selectNotExistsCPF($cpf)) {
             //Gera data incial e final para o cadastro de usuário
-            $datainicial =  date("d/m/Y");
+            $datainicial = date("d/m/Y");
             $datafim = date('d/m/Y', strtotime("+7 days"));
             //Gera Senha Aleatória
             $senha = $gerasenha->geraSenha(6);
