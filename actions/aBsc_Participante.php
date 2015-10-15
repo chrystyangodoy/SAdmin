@@ -99,8 +99,12 @@ class aBsc_Participante extends mBsc_Participante {
     }
 
     public function getIDParticipantePeloIDUsuario($ID_Usuario) {
-        $rs = $this->select(sprintf("and ID_Usuario='%s'", $this->getCOD_CPF()));
-        return $rs[0]['ID_Usuario'];
+        $rs = $this->select(sprintf("and ID_Usuario='%s'", $ID_Usuario));
+        if (empty($rs)) {
+            return null;
+        } else {
+            return $rs[0]['ID_Participante'];
+        }
     }
 
 }

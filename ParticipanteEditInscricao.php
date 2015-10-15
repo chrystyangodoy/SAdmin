@@ -1,6 +1,7 @@
 <?php
 
-if (!(isset($_SESSION['ID_EVT_Evento']))) {
+session_start();
+if (!(isset($_SESSION['ID_Evento']))) {
     header("Location: Index.php");
     die();
 }
@@ -14,12 +15,11 @@ $user = new aUsuario();
 
 $tipoestado = new atb_Tipo_Estado();
 
-session_start();
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 
 $ID_Usuario = $_SESSION['ID_Usuario'];
-$ID_Evento = $_SESSION['Id_Evento'];
+$ID_Evento = $_SESSION['ID_Evento'];
 $ID_Categoria = $_SESSION['ID_Evento_Categoria'];
 
 $ID_Participante = $partic->getIDParticipantePeloIDUsuario($ID_Usuario);

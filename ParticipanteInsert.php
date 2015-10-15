@@ -25,7 +25,7 @@ if (isset($_POST['Cadastrar'])) {
         //verifica se o CPF já foi cadastrado
         if ($partic->selectNotExistsCPF($cpf)) {
             //Gera data incial e final para o cadastro de usuário
-            $datainicial = date("d/m/Y");
+            $datainicial =  date("d/m/Y");
             $datafim = date('d/m/Y', strtotime("+7 days"));
             //Gera Senha Aleatória
             $senha = $gerasenha->geraSenha(6);
