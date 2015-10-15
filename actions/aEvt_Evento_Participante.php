@@ -23,32 +23,27 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
     protected $sqlSelectEvtPartc = "SELECT evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL FROM evt_evento_participante INNER JOIN evt_evento ON evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT INNER JOIN bsc_local_evento ON bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento WHERE 1=1 %s %s";
     protected $SelectEvtP = "SELECT evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) WHERE 1=1 and ID_BSC_Participante='%s'";
 
-    public function insert()
-    {
+    public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Crachav(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno());
         return $this->RunQuery($sql);
     }
 
-    public function update()
-    {
+    public function update() {
         $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome_Crachav(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno(), $this->getID_EVT_Evento_Pariticipante());
         return $this->RunQuery($sql);
     }
 
-    public function delete()
-    {
+    public function delete() {
         $sql = sprintf($this->sqlDelete, $this->getID_EVT_Evento_Pariticipante());
         return $this->RunQuery($sql);
     }
 
-    public function select($where = '', $order = '')
-    {
+    public function select($where = '', $order = '') {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
 
-    public function load()
-    {
+    public function load() {
         $rs = $this->select(sprintf("and ID_EVT_Evento_Pariticipante='%s'", $this->getID_EVT_Evento_Pariticipante()));
         $this->setID_EVT($rs[0]['ID_EVT_Evento_Pariticipante']);
         $this->setDSC_Nome_Crachav($rs[0]['DSC_Nome_Crachav']);
@@ -73,8 +68,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         return $this;
     }
 
-    public function insertPart($id_Evt, $id_User)
-    {
+    public function insertPart($id_Evt, $id_User, $ID_Categoria = null) {
         require_once ('./config/configs.php');
         require_once './actions/aBsc_Participante.php';
 
@@ -86,6 +80,8 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $this->setID_EVT_Evento_Pariticipante($config->idUnico());
         $this->setID_EVT_Evento($id_Evt);
 
+
+        $this->setID_EVT_Categoria($ID_Categoria);
         $this->setID_BSC_Participante($partic->getID_Participante());
         $this->setDSC_Nome_Crachav($partic->getDSC_Nome());
         $this->setCOD_Barras_Cracha($partic->getCOD_CPF());
@@ -94,34 +90,30 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         return $this->RunQuery($sql);
     }
 
-    public function selectNotExistsEvt($id_Evt, $id_User)
-    {
+    public function selectNotExistsEvt($id_Evt, $id_User) {
         require_once ('./actions/aBsc_Participante.php');
         $partic = new aBsc_Participante();
         $partic->selectInfoPartic($id_User);
 
         $rs = $this->RunSelect(sprintf($this->sqlSelectExistEvt, $id_Evt, $partic->getID_Participante()));
         $count = $rs[0]['COUNT_EVT'];
-        if ($count == 0)
-        {
+        if ($count == 0) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
-    public function SelectEvtPartc($id_User){
-        require_once ('./actions/aBsc_Participante.php');
-        $partic = new aBsc_Participante();
-        $partic->selectInfoPartic($id_User);
-        $idParticipante = $partic->getID_Participante();
-        $sql = $this->RunSelect($this->sqlSelectEvtPartc,$idParticipante);
-        return $this->RunSelect($this->sqlSelectEvtPartc,$idParticipante);
-    }
 
-    public function SelectEvtPartc($id_User)
-    {
+//    public function SelectEvtPartc($id_User) {
+//        require_once ('./actions/aBsc_Participante.php');
+//        $partic = new aBsc_Participante();
+//        $partic->selectInfoPartic($id_User);
+//        $idParticipante = $partic->getID_Participante();
+//        $sql = $this->RunSelect($this->sqlSelectEvtPartc, $idParticipante);
+//        return $this->RunSelect($this->sqlSelectEvtPartc, $idParticipante);
+//    }
+
+    public function SelectEvtPartc($id_User) {
         require_once ('./actions/aBsc_Participante.php');
         $partic = new aBsc_Participante();
         $partic->selectInfoPartic($id_User);

@@ -153,9 +153,8 @@
                                     <h4 class="card-title">{$row.DSC_Nome}</h4>
                                     <p class="card-text">{$row.DSC_Endereco}, {$row.DSC_Cidade} - {$row.DSC_Bairro}</p>
                                     <form name="inscricao" action="" method="post">    
-                                        <button name="btn_inscricao" type="submit" value="{$row.ID_EVT}" class="btn btn-primary">Inscreva-se</button></p>
-                                        <button name="btn_Login" type="submit" value="{$row.ID_EVT}" class="btn btn-default">Possuí cadastro</button>
-                                        <a href='#' onclick="ListaEventoCategoriaPopUp('{$row.ID_EVT}');">Link</a>
+                                        <button name="btn_inscricao" type="submit" value="{$row.ID_EVT}" class="btn btn-primary">Inscreva-se</button>
+                                        <a href='#' onclick="ListaEventoCategoriaPopUp('{$row.ID_EVT}','{$row.DSC_Nome}');">Link</a>
                                     </form>
                                 </div>
                                 <div class="card-footer text-muted">
@@ -184,11 +183,11 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">Evento</h4>
+                                <h4 class="modal-title"></h4>
                             </div>
                             <div class="modal-body" id="corpoPopUp">
                                 <p>
-                                <table class="table">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th>Categoria</th>
@@ -202,10 +201,6 @@
                                     </tbody>
                                 </table>
                                 </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->

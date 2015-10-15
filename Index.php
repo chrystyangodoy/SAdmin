@@ -12,11 +12,11 @@ $evento = new aEvt_Evento();
 
 if (isset($_POST['btn_inscricao']))
 {
-    $_SESSION['id_Evento'] = $_POST['btn_inscricao'];
+    $_SESSION['Id_Evento'] = $_POST['btn_inscricao'];
 
     if ($_SESSION['ID_Usuario'] != null || $_SESSION['ID_Usuario'] != 0)
     {
-        $id_User = $_SESSION['ID_Usuario'];
+        $ID_Usuario = $_SESSION['ID_Usuario'];
         require_once './actions/aEvt_Evento_Participante.php';
         $evtPart = new aEvt_Evento_Participante();
         if ($evtPart->selectNotExistsEvt($_SESSION['id_Evento'], $_SESSION['ID_Usuario']))
@@ -31,10 +31,10 @@ if (isset($_POST['btn_inscricao']))
             $emailObj = new eMail();
             require_once ('./actions/aBsc_Participante.php');
             $partic = new aBsc_Participante();
-            $partic->selectInfoPartic($id_User);
+            $partic->selectInfoPartic($ID_Usuario);
             $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
 
-            $_SESSION['id_Evento'] = null;
+            $_SESSION['Id_Evento'] = null;
         }
         else
         {
