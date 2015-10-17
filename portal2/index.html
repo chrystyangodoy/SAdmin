@@ -7,6 +7,7 @@
         <meta name="description" content="mirchu team make this design. mirchu web and technology blog">
         <meta name="author" content="Waqas Hussain">
         <link rel="icon" href="portal2/assets/icons/favicon.ico">
+        <link href="./css/Card.css" rel="stylesheet" type="text/css"/>
         <title>Atual Eventos</title>
 
         <!-- Bootstrap core CSS -->
@@ -67,81 +68,33 @@
                     <h2 class="heading wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">Eventos Diponíveis</h2>
                     <div class="portfolio-grid">
                         {foreach from=$lista item=row}
-                        <div class="col-md-4 col-sm-6 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
-                            <a href="#" data-target="#portfolio1" class="thumbnail hcaption">
-                                <img src="portal2/assets/images/portfolio/portfolio1-thumb.jpg" alt="Portfolio" title="Desktop Apps" />
-                            </a>
-                            <div id="portfolio1" class="hide-none hover-text">
-                                <h5>Desktop Apps</h5>
-                                <p>UI/UX Design</p>
-                                <a class="nivo-light" data-lightbox-gallery="portfolio" href="portal2/assets/images/portfolio/portfolio1.jpg" title="Desktop Apps">
-                                    <i class="mdicon fullscreen"></i>
-                                </a>
+                        <div class="card">
+                            <div class="card-header">
+                                <img src="portal2/assets/images/portfolio/portfolio2-thumb.jpg"/>
+                            </div>
+                            <div class="card-content">
+                                <h3>Frank the Pug</h3>
+                                <h4>The sexiest "Men (dog) in Black" </h4>
+                                <p>And now you're back from outer space, / I just walked in to find you here with that sad look upon your face, / I should've changed that stupid lock, I should have made you leave your key, / If I'd have known for just one second you'd be back to bother me. / Go on, now go! Walk out the door...</p>
+                            </div>
+                            <div class="card-footer">
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="fa fa-codepen"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-stack-overflow"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-github"></i></a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         {foreachelse}
                         Sem evento disponível
                         {/foreach}
-                        <div class="col-md-4 col-sm-6 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
-                            <a href="#" data-target="#portfolio2" class="thumbnail hcaption">
-                                <img src="portal2/assets/images/portfolio/portfolio2-thumb.jpg" alt="Portfolio" title="Desktop Apps" />
-                            </a>
-                            <div id="portfolio2" class="hide-none hover-text">
-                                <h5>Desktop Apps</h5>
-                                <p>UI/UX Design</p>
-                                <a class="nivo-light" data-lightbox-gallery="portfolio" href="portal2/assets/images/portfolio/portfolio2.jpg" title="Desktop Apps">
-                                    <i class="mdicon fullscreen"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
-                            <a href="#" data-target="#portfolio3" class="thumbnail hcaption">
-                                <img src="portal2/assets/images/portfolio/portfolio3-thumb.jpg" alt="Portfolio" title="Apps icons" />
-                            </a>
-                            <div id="portfolio3" class="hide-none hover-text">
-                                <h5>Apps icons</h5>
-                                <p>UI/UX Design</p>
-                                <a class="nivo-light" data-lightbox-gallery="portfolio" href="portal2/assets/images/portfolio/portfolio3.jpg" title="Apps icons">
-                                    <i class="mdicon fullscreen"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
-                            <a href="#" data-target="#portfolio4" class="thumbnail hcaption">
-                                <img src="assets/images/portfolio/portfolio4-thumb.jpg" alt="Portfolio" title="Admin Themes" />
-                            </a>
-                            <div id="portfolio4" class="hide-none hover-text">
-                                <h5>Admin Themes</h5>
-                                <p>UI/UX Design</p>
-                                <a class="nivo-light" data-lightbox-gallery="portfolio" href="portal2/assets/images/portfolio/portfolio4.jpg" title="Admin Themes">
-                                    <i class="mdicon fullscreen"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
-                            <a href="#" data-target="#portfolio5" class="thumbnail hcaption">
-                                <img src="portal2/assets/images/portfolio/portfolio5-thumb.jpg" alt="Portfolio" title="Mobile Apps" />
-                            </a>
-                            <div id="portfolio5" class="hide-none hover-text">
-                                <h5>Mobile Apps</h5>
-                                <p>UI/UX Design</p>
-                                <a class="nivo-light" data-lightbox-gallery="portfolio" href="portal2/assets/images/portfolio/portfolio5.jpg" title="Mobile Apps">
-                                    <i class="mdicon fullscreen"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
-                            <a href="#" data-target="#portfolio6" class="thumbnail hcaption">
-                                <img src="portal2/assets/images/portfolio/portfolio6-thumb.jpg" alt="Portfolio" title="Weather Apps" />
-                            </a>
-                            <div id="portfolio6" class="hide-none hover-text">
-                                <h5>Weather Apps</h5>
-                                <p>UI/UX Design</p>
-                                <a class="nivo-light" data-lightbox-gallery="portfolio" href="portal2/assets/images/portfolio/portfolio6.jpg" title="Weather Apps">
-                                    <i class="mdicon fullscreen"></i>
-                                </a>
-                            </div>
-                        </div>
+
                     </div>      
                 </div>
             </div>
