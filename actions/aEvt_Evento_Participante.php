@@ -20,6 +20,9 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
     protected $sqlDelete = "delete from evt_evento_participante where ID_EVT = '%s'";
     protected $sqlSelect = "select * from evt_evento_participante where 1=1 %s %s";
     protected $sqlSelectExistEvt = "SELECT count(0) AS COUNT_EVT FROM evt_evento_participante WHERE 1=1 and ID_EVT_Evento='%s' and ID_BSC_Participante='%s'";
+    protected $sqlSelectExistEvtCPF = "SELECT COUNT(0) AS COUNT
+                                       FROM   evt_evento_participante INNER JOIN BSC_PARTICIPANTE ON (evt_evento_participante.ID_BSC_Participante = BSC_PARTICIPANTE.ID_Participante)
+                                       WHERE  evt_evento_participante.ID_EVT_Evento = '%s' AND BSC_PARTICIPANTE.COD_CPF = '%s'";
     protected $sqlSelectEvtPartc = "SELECT evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL FROM evt_evento_participante INNER JOIN evt_evento ON evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT INNER JOIN bsc_local_evento ON bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento WHERE 1=1 %s %s";
     protected $SelectEvtP = "SELECT evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) WHERE 1=1 and ID_BSC_Participante='%s'";
 
@@ -90,6 +93,29 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         return $this->RunQuery($sql);
     }
 
+    public function insertPartEvt($id_Evt, $id_Partic, $ID_Categoria = null) {
+        require_once ('./config/configs.php');
+        require_once ('./actions/aBsc_Participante.php');
+        
+        $config = new configs();
+        $partic = new aBsc_Participante();
+        
+        $partic->setID_Participante($id_Partic);
+        $partic->load();
+
+        $this->setID_EVT_Evento_Pariticipante($config->idUnico());
+        $this->setID_EVT_Evento($id_Evt);
+
+
+        $this->setID_EVT_Categoria($ID_Categoria);
+        $this->setID_BSC_Participante($partic->getID_Participante());
+        $this->setDSC_Nome_Crachav($partic->getDSC_Nome());
+        $this->setCOD_Barras_Cracha($partic->getCOD_CPF());
+
+        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Crachav(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno());
+        return $this->RunQuery($sql);
+    }
+
     public function selectNotExistsEvt($id_Evt, $id_User) {
         require_once ('./actions/aBsc_Participante.php');
         $partic = new aBsc_Participante();
@@ -97,6 +123,16 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
 
         $rs = $this->RunSelect(sprintf($this->sqlSelectExistEvt, $id_Evt, $partic->getID_Participante()));
         $count = $rs[0]['COUNT_EVT'];
+        if ($count == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function selectNotExistsEvtCPF($id_Evt, $CPF) {
+        $rs = $this->RunSelect(sprintf($this->sqlSelectExistEvtCPF, $id_Evt, $CPF));
+        $count = $rs[0]['COUNT'];
         if ($count == 0) {
             return true;
         } else {

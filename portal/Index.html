@@ -52,34 +52,7 @@
                             <a href="#">About</a>
                         </li>    
                     </ul>
-                    {if $isLogado}
-                    <ul class="nav navbar-right top-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>{$NomeUsuario}<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="Sair.php"><i class="fa fa-fw fa-power-off"></i> Sair</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
 
-                    {else}
-                    <!-- Log In Form -->
-                    <form name="Login" id="Login" class="navbar-form navbar-right form-inline" action="Login.php" method="post">
-                        <div class="form-group">
-                            <label class="sr-only" >Usuário</label>
-                            <input name="Username" type="text" class="form-control" placeholder="Usuário">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="pwd">Password</label>
-                            <input name="Password" type="password" class="form-control" id="pwd" placeholder="Password">
-                        </div>
-                        <button name="btnLogin" type="submit" class="btn btn-primary">Sign in</button>
-                        <a href="EsqueciSenha.php">Esqueceu a Senha?</a>
-                    </form>
-                    {/if}
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
@@ -154,7 +127,7 @@
                                     <p class="card-text">{$row.DSC_Endereco}, {$row.DSC_Cidade} - {$row.DSC_Bairro}</p>
                                     <form name="inscricao" action="" method="post">    
                                         <button name="btn_inscricao" type="submit" value="{$row.ID_EVT}" class="btn btn-primary">Inscreva-se</button>
-                                        <a href='#' onclick="ListaEventoCategoriaPopUp('{$row.ID_EVT}','{$row.DSC_Nome}');">Link</a>
+                                        <a href='#' onclick="ListaEventoCategoriaPopUp('{$row.ID_EVT}', '{$row.DSC_Nome}');">Link</a>
                                     </form>
                                 </div>
                                 <div class="card-footer text-muted">
@@ -197,7 +170,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="conteudoTabelaCategoria">
-                                        
+
                                     </tbody>
                                 </table>
                                 </p>

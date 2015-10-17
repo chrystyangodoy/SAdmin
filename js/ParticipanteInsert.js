@@ -172,8 +172,8 @@ $(document).ready(function () {
                 $('#COD_Tipo_Estado').attr("disabled", true).val("");
                 $('#COD_Tipo_Estado').attr("disabled", true).val("");
                 $('.btn-primary').attr("disabled", true);
-                console.log("CPF Já Cadastrado. Clique em Login para entrar no sistema.");
-                showAlert('error', 'CPF Já Cadastrado. Clique em Login para entrar no sistema.');
+                console.log("CPF Já Cadastrado.");
+                showAlert('error', 'CPF Já Cadastrado para este evento.');
                 
             }
             $("#loadImg").css("display", "none").fadeOut();

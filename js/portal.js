@@ -15,7 +15,7 @@ function ListaEventoCategoriaPopUp(ID_EVT_Evento, DSC_Nome) {
                                     "<td>" + item.VLR_Inscricao + "</td>" +
                                     "<td>" + item.DT_Inicio_Valor + "</td>" +
                                     "<td>" + item.DT_Fim_Valor + "</td>" +
-                                    "<td>" + "<a href='InscricaoParticipante.php?ID_Evento_Categoria=" 
+                                    "<td>" + "<a href='ParticipanteInsert.php?ID_Evento_Categoria=" 
                                                                         + item.ID_Evento_Categoria + "&ID_EVT_Evento="+
                                                                         item.ID_EVT_Evento + "' class='btn btn-warning' title='Clique para selecionar esta Categoria'>"+
                                                                         "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +

@@ -23,13 +23,26 @@ function closeAlert() {
     $('#alert').removeClass();
 }
 
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
 
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+}
 function isCPFCadastrado(cpf) {
     resultado = 0;
-
+    id_evento = getUrlParameter('ID_EVT_Evento');
     $.ajax({
         url: "getCPFCasdastrado.php",
-        data: {cpf: cpf},
+        data: {cpf: cpf, ID_Evento:id_evento},
         type: "POST",
         async: false,
         success: function (data) {

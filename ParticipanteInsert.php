@@ -6,16 +6,18 @@ session_start();
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 
-require_once './actions/aEvt_Evento_Participante.php';
-$evtPart = new aEvt_Evento_Participante();
+$ID_Evento = $_GET['ID_EVT_Evento'];
+$ID_Evento_Categoria = $_GET['ID_Evento_Categoria'];
 
 if (isset($_POST['Cadastrar'])) {
+    require_once './actions/aEvt_Evento_Participante.php';
     require_once ('./config/configs.php');
-    require ('./config/geraSenha.php');
     require ('./actions/aBsc_Participante.php');
-    require ('./actions/aUsuario.php');
-    $partic = new aBsc_Participante();
 
+    $evtPart = new aEvt_Evento_Participante();
+    $partic = new aBsc_Participante();
+    
+    $config = new configs();
 
     //limpa cpf
     $cpf = $config->limpaCPF($_POST['COD_CPF']);
@@ -24,27 +26,13 @@ if (isset($_POST['Cadastrar'])) {
     //validação do CPF
     if ($config->validaCPF($cpf)) {
         //verifica se o CPF já foi cadastrado
-        if ($partic->selectNotExistsCPF($cpf)) {
-            //Gera data incial e final para o cadastro de usuário
-            $datainicial = date("d/m/Y");
-            $datafim = date('d/m/Y', strtotime("+7 days"));
-            //Gera Senha Aleatória
-            $senha = $gerasenha->geraSenha(6);
-            //Gera o grupo padrão para Participantes
-            $grupo = 99;
+        if ($evtPart->selectNotExistsEvtCPF($ID_Evento, $cpf)) {
 
-            //Gera e armazena ID Único Gerado.
-            $idUnico = $config->idUnico();
+            //Insere participante
 
-            $user->setID_Usuario($idUnico);
-            $user->setDSC_Login($cpf);
-            $user->setDSC_Senha($senha);
-            $user->setDTM_Inicio($datainicial);
-            $user->setDTM_Fim($datafim);
-            $user->setID_SEG_Grupo($grupo);
-            $user->insert();
+            $id_Participante = $config->idUnico();
 
-            $partic->setID_Participante($config->idUnico());
+            $partic->setID_Participante($id_Participante);
             $partic->setCOD_CPF($cpf);
             $partic->setCOD_RG($_POST['COD_RG']);
             $partic->setDSC_Nome($_POST['DSC_Nome']);
@@ -61,21 +49,26 @@ if (isset($_POST['Cadastrar'])) {
             $partic->setCOD_Tipo_Estado($_POST['COD_Tipo_Estado']);
             $partic->setID_BSC_Empresa($_POST['ID_BSC_Empresa']);
             $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
-            $partic->setID_Usuario($idUnico);
             $partic->insert();
 
+
+            //Insere Evento_Participante
+            $evtPart->insertPartEvt($ID_Evento, $id_Participante, $ID_Evento_Categoria);
+
+
+
             $ass = "Cadastro efetuado com sucesso!";
-            $mens = ("Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
+            $mens = ("Você está inscrito no Evento");
             require_once './config/eMail.php';
             $emailObj = new eMail();
 
             $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
 
             $FeedbackMessage->setMsg("Participante inserido com sucesso!");
-            header("Location: AreaUsuario.php");
+            header("Location: Index.php");
             die();
         } else {
-            $FeedbackMessage->setMsg("CPF já cadastrado!");
+            $FeedbackMessage->setMsg("CPF já cadastrado para este Evento!");
             $FeedbackMessage->setType("error");
         }
     } else {
