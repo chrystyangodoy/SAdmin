@@ -1,9 +1,9 @@
 <?php
-
+session_start();
 include 'smarty.php';
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
-session_start();
+
 
 
 require_once './actions/aEvt_Evento.php';
