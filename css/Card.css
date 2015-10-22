@@ -48,7 +48,8 @@
 .card-footer {
     border-top: solid 1px #B6B6B6;
     padding: 5px;
-    height: 31px;
+    height: 61px;
+    text-align: right;
 }
 
 .card-footer ul {
