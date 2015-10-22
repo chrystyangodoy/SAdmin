@@ -1,4 +1,6 @@
 <?php
+    
+    $teste = '1';
 
     if(isset($_REQUEST["cpf"]) && $_REQUEST["ID_Evento"]){
     require ('./actions/aEvt_Evento_Participante.php');
