@@ -56,7 +56,7 @@ function OnclickAcompanhamento() {
             showAlert('error', 'CPF não cadastrado para este Evento');
         } else {
             showAlert('', 'SUMIT');
-            
+            $('#AcompanhamentoForm').submit();
         }
 
     } else {
