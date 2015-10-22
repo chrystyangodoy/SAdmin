@@ -1,8 +1,26 @@
 <?php
+session_start();
+include 'smarty.php';
+require_once './config/FeedbackMessage.php';
+$FeedbackMessage = new FeedbackMessage();
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+
+require_once './actions/aEvt_Evento.php';
+
+
+
+
+
+$msg = $FeedbackMessage->getMsg();
+$type = $FeedbackMessage->getType();
+
+
+
+$smarty->assign("msg", $msg);
+$smarty->assign("type", $type);
+
+
+
+
+$smarty->display('./portal/acompanhamento.html');

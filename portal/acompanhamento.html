@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="mirchu team make this design. mirchu web and technology blog">
+        <meta name="author" content="Waqas Hussain">
+        <link rel="icon" href="portal/assets/icons/favicon.ico">
+        <link href="./css/Card.css" rel="stylesheet" type="text/css"/>
+        <title>Atual Eventos</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="portal/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>
+        <!-- Custom styles for this template -->
+        <link href="portal/assets/MDicons/css/MDicon.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="portal/assets/css/animate.css">
+        <link rel="stylesheet" href="portal/assets/css/themes/default/default-nivo-theme.css" type="text/css">
+        <link rel="stylesheet" href="portal/assets/css/nivo-lightbox.css" type="text/css">
+        <link href="portal/assets/css/style.min.css" rel="stylesheet">
+        <link href="./css/Alert.css" rel="stylesheet" type="text/css"/>
+        <link href="./css/ImgLoad.css" rel="stylesheet" type="text/css"/>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+              <script src="assets/js/html5shiv.min.js"></script>
+              <script src="assets/js/respond.min.js"></script>
+            <![endif]-->
+    </head>
+    <body>
+
+        <div id="alert"></div>
+
+        <!-- Preloader -->
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+
+        <!-- Fixed navbar -->
+        <div class="navbar main-menu navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a class="navbar-brand" href="" title="MaterialStrap"><img src="portal/assets/images/logo.png" alt="logo" title="MaterialStrap" /></a> </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right" id="menu">
+                        <li><a data-scroll data-options="easing: easeOutQuart" href="#banner">Home</a></li>
+                        <li><a data-scroll data-options="easing: easeOutQuart" href="#mywork">Eventos</a></li>
+                        <li><a data-scroll data-options="easing: easeOutQuart" href="#about">Sobre</a></li>
+                        <li><a data-scroll data-options="easing: easeOutQuart" href="#skills">Skills</a></li>
+                        <li><a data-scroll data-options="easing: easeOutQuart" href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse --> 
+            </div>
+        </div>
+
+
+        <section id="banner" class="section">
+            <div class="container">
+                <div class="intro">
+                    <h1 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s"></h1>
+
+                    <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="1.0s">Atual <span>Eventos</span></h2>
+                    <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="1.2s">Planejamento de eventos</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- Carousel -->
+        </section>
+
+        <div id="loadImg"></div>
+        <!-- Bootstrap core JavaScript
+            ================================================== --> 
+        <!-- Placed at the end of the document so the pages load faster --> 
+        <script src="portal/assets/js/jquery.min.js"></script> 
+        <script src="portal/assets/js/bootstrap.min.js"></script>
+        <!-- smooth scrolling -->
+        <script src="portal/assets/js/smooth-scroll.js"></script>
+
+        <!-- animation scrolling -->
+        <script src="portal/assets/js/wow.min.js"></script>
+
+        <!-- hover captions -->
+        <script src="portal/assets/js/jquery.hcaptions.js"></script>
+
+        <!-- hover detail page -->
+        <script src="portal/assets/js/nivo-lightbox.min.js"></script>
+
+        <!-- Form Validation -->
+        <script src="portal/assets/js/bootstrapValidator.min.js"></script>
+
+        <!-- animation scrolling -->
+        <script src="portal/assets/js/app.min.js"></script>
+
+        <script src="./js/Customizacoes.js" type="text/javascript"></script>
+        <script src="./js/portal.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                showAlert('{$type}', '{$msg}');
+            });
+        </script>
+    </body>
+</html>
