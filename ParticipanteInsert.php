@@ -9,14 +9,15 @@ $FeedbackMessage = new FeedbackMessage();
 $ID_Evento = $_GET['ID_EVT_Evento'];
 $ID_Evento_Categoria = $_GET['ID_Evento_Categoria'];
 
-if (isset($_POST['Cadastrar'])) {
+if (isset($_POST['Cadastrar']))
+{
     require_once './actions/aEvt_Evento_Participante.php';
     require_once ('./config/configs.php');
     require ('./actions/aBsc_Participante.php');
 
     $evtPart = new aEvt_Evento_Participante();
     $partic = new aBsc_Participante();
-    
+
     $config = new configs();
 
     //limpa cpf
@@ -24,9 +25,11 @@ if (isset($_POST['Cadastrar'])) {
     $email = $_POST['DSC_Email'];
 
     //validação do CPF
-    if ($config->validaCPF($cpf)) {
+    if ($config->validaCPF($cpf))
+    {
         //verifica se o CPF já foi cadastrado
-        if ($evtPart->selectNotExistsEvtCPF($ID_Evento, $cpf)) {
+        if ($evtPart->selectNotExistsEvtCPF($ID_Evento, $cpf))
+        {
 
             //Insere participante
 
@@ -51,12 +54,15 @@ if (isset($_POST['Cadastrar'])) {
             $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
             $partic->insert();
 
-
             //Insere Evento_Participante
             $evtPart->insertPartEvt($ID_Evento, $id_Participante, $ID_Evento_Categoria);
 
-
-
+//Insere Informações para gerar o Boleto 
+            $pagamento = new aEvt_Pagamento();
+            $pagamento->selectInner($_SESSION['ID_Evento'], $_SESSION['CPF_Participante']);
+            $pagamento->geraInfoPagamento();
+//Informações para gerar o Boleto 
+            
             $ass = "Cadastro efetuado com sucesso!";
             $mens = ("Você está inscrito no Evento");
             require_once './config/eMail.php';
@@ -67,15 +73,21 @@ if (isset($_POST['Cadastrar'])) {
             $FeedbackMessage->setMsg("Participante inserido com sucesso!");
             header("Location: Index.php");
             die();
-        } else {
+        }
+        else
+        {
             $FeedbackMessage->setMsg("CPF já cadastrado para este Evento!");
             $FeedbackMessage->setType("error");
         }
-    } else {
+    }
+    else
+    {
         $FeedbackMessage->setMsg("CPF inválido!");
         $FeedbackMessage->setType("error");
     }
-} else {
+}
+else
+{
 
     require_once './actions/aBsc_Empresa.php';
     require_once './actions/aBsc_Profissao.php';
