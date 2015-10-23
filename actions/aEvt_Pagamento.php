@@ -20,7 +20,7 @@ class aEvt_Pagamento extends mEvt_Pagamento {
     protected $sqlDelete = "delete from evt_pagamento where ID_Pagamento='%s'";
     protected $sqlSelect = "select * from evt_pagamento where 1=1 %s %s";
     protected $sqlSelectInner = "SELECT evt_evento_participante.ID_EVT_Evento,evt_evento_categoria.VLR_Inscricao FROM `evt_evento_participante` INNER JOIN bsc_participante ON evt_evento_participante.ID_BSC_Participante = bsc_participante.ID_Participante INNER JOIN evt_evento_categoria ON evt_evento_participante.ID_EVT_Categoria = evt_evento_categoria.ID_Evento_Categoria WHERE evt_evento_participante.ID_EVT_Evento = '%s' AND bsc_participante.COD_CPF = '%s'";
-    
+
     public function insert()
     {
         $sql = sprintf($this->sqlInsert, $this->getID_Pagamento(), $this->getDT_Transacao(), $this->getDT_Pagamento(), $this->getVLR_Transacao(), $this->getVR_Pago(), $this->getNUM_Recibo(), $this->getCOD_TipoFormaPagamento(), $this->getCOD_TipoOrigemInscricao(), $this->getID_EVT_Evento(), $this->getID_EVT_Pagamento_Pai(), $this->getCOD_Tipo_Situacao_Pagamento(), $this->getQTD_Parcelas(), $this->getNUM_Parcelas(), $this->getQTD_Parcelas_Pagas());
@@ -65,10 +65,36 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         return $this;
     }
 
-    public function selectInner($ID_EVT, $CPF_Participante) {
-        $rs = $this->RunSelect(sprintf($this->sqlSelectInfoEvt, $ID_EVT,$CPF_Participante));
+    public function selectInner($ID_EVT, $CPF_Participante)
+    {
+        $rs = $this->RunSelect(sprintf($this->sqlSelectInfoEvt, $ID_EVT, $CPF_Participante));
         $this->setID_EVT_Evento($rs[0]['ID_EVT_Evento']);
         $this->setVLR_Transacao($rs[0]['VLR_Inscricao']);
         return $this;
     }
+
+    public function geraInfoPagamento()
+    {
+
+        $this->setCOD_TipoFormaPagamento(0);
+        $this->setCOD_Tipo_Situacao_Pagamento(0); //set igual a zero para Situação Aberto.
+        $this->setDT_Pagamento('01-01-1980');
+        $data_atual = date("Y/m/d", strtotime("now"));
+        $this->setCOD_TipoOrigemInscricao(0);
+        $this->setDT_Transacao($data_atual);
+        //Set feito no metodo selectInner $pagamento->setID_EVT_Evento($ID_EVT_Evento);
+        require_once ('./config/configs.php');
+        $config = new configs();
+        $id_Pagamento = $config->idUnico();
+        $this->setID_EVT_Pagamento_Pai(0);
+        $this->setID_Pagamento($id_Pagamento);
+        $this->setNUM_Parcelas(0);
+        $this->setNUM_Recibo(0);
+        $this->setQTD_Parcelas(1); //Apenas pagamento a vista, parcelamento não implementado
+        $this->setQTD_Parcelas_Pagas(0);
+        //Set feito no metodo selectInner $pagamento->setVLR_Transacao($VLR_Transacao);
+        $this->setVR_Pago(0);
+        $this->insert();
+    }
+
 }
