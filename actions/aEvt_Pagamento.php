@@ -67,7 +67,7 @@ class aEvt_Pagamento extends mEvt_Pagamento {
 
     public function selectInner($ID_EVT, $CPF_Participante)
     {
-        $rs = $this->RunSelect(sprintf($this->sqlSelectInfoEvt, $ID_EVT, $CPF_Participante));
+        $rs = $this->RunSelect(sprintf($this->sqlSelectInner, $ID_EVT, $CPF_Participante));
         $this->setID_EVT_Evento($rs[0]['ID_EVT_Evento']);
         $this->setVLR_Transacao($rs[0]['VLR_Inscricao']);
         return $this;
