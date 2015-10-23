@@ -97,4 +97,25 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         $this->insert();
     }
 
+    public function loadIDEvento()
+    {
+        $rs = $this->select(sprintf("and ID_EVT_Evento='%s'", $this->getID_Pagamento()));
+        $this->setID_Pagamento($rs[0]['ID_Pagamento']);
+        $this->setDT_Transacao($rs[0]['DT_Transacao']);
+        $this->setDT_Pagamento($rs[0]['DT_Pagamento']);
+        $this->setVLR_Transacao($rs[0]['VLR_Transacao']);
+        $this->setVR_Pago($rs[0]['VR_Pago']);
+        $this->setNUM_Recibo($rs[0]['NUM_Recibo']);
+        $this->setCOD_TipoFormaPagamento($rs[0]['COD_TipoFormaPagamento']);
+        $this->setCOD_TipoOrigemInscricao($rs[0]['COD_TipoOrigemInscricao']);
+        $this->setID_EVT_Evento($rs[0]['ID_EVT_Evento']);
+        $this->setID_EVT_Pagamento_Pai($rs[0]['ID_EVT_Pagamento_Pai']);
+        $this->setCOD_Tipo_Situacao_Pagamento($rs[0]['COD_Tipo_Situacao_Pagamento']);
+        $this->setQTD_Parcelas($rs[0]['QTD_Parcelas']);
+        $this->setNUM_Parcelas($rs[0]['NUM_Parcelas']);
+        $this->setQTD_Parcelas_Pagas($rs[0]['QTD_Parcelas_Pagas']);
+        return $this;
+    }
+    
+    
 }
