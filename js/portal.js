@@ -46,18 +46,19 @@ function OnclickAcompanhamento() {
             url: "getCPFCasdastrado.php",
             data: {cpf: cpf, ID_Evento: id_evento},
             type: "POST",
-            async: false,
             success: function (data) {
+                console.log(data);
                 resultado = data;
+                console.log(resultado);
+                if (data == 1) {
+                    showAlert('error', 'CPF não cadastrado para este Evento');
+                } else {
+                    showAlert('', 'SUMIT');
+                    $('#AcompanhamentoForm').submit();
+                }
             }
         });
 
-        if (resultado = 1) {
-            showAlert('error', 'CPF não cadastrado para este Evento');
-        } else {
-            showAlert('', 'SUMIT');
-            $('#AcompanhamentoForm').submit();
-        }
 
     } else {
         showAlert('error', 'CPF Incorreto!');
