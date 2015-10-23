@@ -11,7 +11,7 @@
  *
  * @author Chrystyan Godoy <F1r3Black0ut>
  */
-require './model/aEvt_Pagamento.php';
+require './model/mEvt_Pagamento.php';
 
 class aEvt_Pagamento extends mEvt_Pagamento {
 
