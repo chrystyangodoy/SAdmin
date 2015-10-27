@@ -1,5 +1,6 @@
 {include file="./Template/HeaderAdmin.html"}
 <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="./js/jquery.mask.js" type="text/javascript"></script>
 <script src="./js/EventoInsert.js" type="text/javascript"></script>
 
 <form id="Cadastrar" form method="post">
@@ -11,11 +12,11 @@
     <div class="row">
         <div class="form-group col-md-3">
             <label>Data Inicial</label>
-            <input type="date" class="form-control" name="DT_Inicio" id="DT_Inicio" placeholder="Data Inicio" value="{$DT_Inicio}">
+            <input type="text" class="form-control" name="DT_Inicio" id="DT_Inicio" placeholder="Data Inicio" value="{$DT_Inicio}">
         </div>
         <div class="form-group col-md-3">
             <label >Data Final</label>
-            <input type="date" class="form-control" name="DT_Fim" id="DT_Fim" placeholder="Data Fim" value="{$DT_Fim}">
+            <input type="text" class="form-control" name="DT_Fim" id="DT_Fim" placeholder="Data Fim" value="{$DT_Fim}">
         </div>
     </div>
     <div class="form-group">

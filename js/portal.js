@@ -12,9 +12,9 @@ function ListaEventoCategoriaPopUp(ID_EVT_Evento, DSC_Nome) {
                     .append(
                             "<tr>" +
                             "<td>" + item.DSC_Nome + "</td>" +
-                            "<td>" + item.VLR_Inscricao + "</td>" +
-                            "<td>" + item.DT_Inicio_Valor + "</td>" +
-                            "<td>" + item.DT_Fim_Valor + "</td>" +
+                            "<td class='formatcurrency'>" + item.VLR_Inscricao + "</td>" +
+                            "<td>" + FormataDataBR(item.DT_Inicio_Valor) + "</td>" +
+                            "<td>" + FormataDataBR(item.DT_Fim_Valor) + "</td>" +
                             "<td>" + "<a href='ParticipanteInsert.php?ID_Evento_Categoria="
                             + item.ID_Evento_Categoria + "&ID_EVT_Evento=" +
                             item.ID_EVT_Evento + "' class='btn btn-warning' title='Clique para selecionar esta Categoria'>" +
@@ -23,6 +23,8 @@ function ListaEventoCategoriaPopUp(ID_EVT_Evento, DSC_Nome) {
                             "</tr>"
                             );
         });
+
+        $('.formatcurrency').formatCurrency();
     });
 
 }

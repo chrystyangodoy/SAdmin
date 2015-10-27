@@ -41,7 +41,7 @@ class aEvt_Evento_Categoria extends mEvt_Evento_Categoria {
     }
     
     public function selectCategoriasDoEvento($ID_EVT_Evento){
-        $rs = $this->select(sprintf(" and ID_EVT_Evento = '%s'", $ID_EVT_Evento));
+        $rs = $this->select(sprintf(" and ID_EVT_Evento = '%s'  and now() > DT_Inicio_Valor and now() < DT_Fim_Valor", $ID_EVT_Evento));
         return $rs;
     }
 

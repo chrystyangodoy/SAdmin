@@ -112,3 +112,9 @@ function CPFValido(cpf) {
         return false;
     return true;
 }
+
+function FormataDataBR(dataUS){
+    v_split = dataUS.split("-");
+    dataBR = v_split[2] + "/" + v_split[1] + "/" + v_split[0]
+    return dataBR;
+}
