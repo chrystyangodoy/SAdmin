@@ -8,7 +8,8 @@ jQuery.validator.addMethod("validaComboBox", function (value, element) {
 $(document).ready(function () {
 
 
-
+$('#DT_Inicio').mask('99/99/9999');
+$('#DT_Fim').mask('99/99/9999');
 
 //Validações
     $('#Cadastrar').validate({
