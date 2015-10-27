@@ -23,8 +23,8 @@
                 <td>{$row.DT_Fim_Valor}</td>
                 <td>{$row.DSC_Nome}</td>
                 <td class="col-lg-1">
-                    <a href="EventoCategoriaEdit.php?ID_EvtCategoria={$row.ID_Evento_Categoria}" class="col-md-offset-1" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a>
-                    <a href="?del={$row.ID_EVT_Evento}" title="Excluir"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="font-size: 30px;"></span></a>
+                    <a href="EventoCategoriaEdit.php?ID_Evento_Categoria={$row.ID_Evento_Categoria}" class="col-md-offset-1" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a>
+                    <a href="?del={$row.ID_Evento_Categoria}" title="Excluir"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="font-size: 30px;"></span></a>
                 </td>
             </tr>
             {/foreach}

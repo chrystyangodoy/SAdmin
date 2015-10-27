@@ -16,5 +16,5 @@ $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 
-$smarty->assign("lista", $eventoCateg->select());
+$smarty->assign("lista", $eventoCateg->selectInner());
 $smarty->display('./View/EventoCategoriaList.html');
