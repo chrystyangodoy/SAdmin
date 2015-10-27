@@ -10,6 +10,8 @@ $(document).ready(function () {
 
 $('#DT_Inicio').mask('99/99/9999');
 $('#DT_Fim').mask('99/99/9999');
+$('#COD_CNPJ_Promotora').mask('99.999.999/9999-99');
+$('#COD_CNPJ_Promotora').mask('99.999.999/9999-99');
 
 //Validações
     $('#Cadastrar').validate({
