@@ -6,8 +6,10 @@ $FeedbackMessage = new FeedbackMessage();
 session_start();
 
 require ('./actions/aBsc_Empresa.php');
-
 $emp = new aBsc_Empresa();
+require_once './actions/atb_Tipo_Estado.php';
+$tipoestado = new atb_Tipo_Estado();
+
 $emp->setID_Empresa($_GET['alt']);
 $emp->load();
 
@@ -47,5 +49,7 @@ $smarty->assign("NUM_Fone",$emp->getNUM_Fone());
 $smarty->assign("NUM_FAX",$emp->getNUM_FAX());
 $smarty->assign("DSC_EMAIL",$emp->getDSC_EMAIL());
 $smarty->assign("COD_TipoEstado",$emp->getCOD_TipoEstado());
+
+$smarty->assign("listTpUF", $tipoestado->select());
 
 $smarty->display('./View/EmpresaEdit.html');

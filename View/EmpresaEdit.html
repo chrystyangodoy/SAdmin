@@ -45,8 +45,13 @@
         <input type="text" class="form-control" name="DSC_EMAIL" id="DSC_EMAIL" value="{$DSC_EMAIL}" placeholder="Email">
     </div>
     <div class="form-group">
-        <label >Estado</label>
-        <input type="text" class="form-control" name="COD_TipoEstado" id="COD_TipoEstado" value="{$COD_TipoEstado}" placeholder="Estado">
+        <label>Estado</label>
+        <select name="COD_TIPOEstado" id="COD_TIPOEstado"  class="form-control" style="width: 400px;">
+            <option value="0">-</option>
+            {foreach from=$listTpUF item=row}
+            <option value="{$row.COD_TIPOEstado}">{$row.DSC_Nome}</option>
+            {/foreach}
+        </select>
     </div>
     <button type="submit" class="btn" name="Salvar" value="Salvar">Salvar</button>
     <a href="EmpresaList.php" class="btn btn-default">Cancelar</a>
