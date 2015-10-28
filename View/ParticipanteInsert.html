@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title> Administração - Siga Web </title>
+        <title> Cadastro para o Evento {$DSC_Evento} </title>
         <!-- Bootstrap Core CSS -->
         <link href="./css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
@@ -68,7 +68,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php">Siga Web </a>
+                    <a class="navbar-brand" href="Index.php">Siga Web </a>
                 </div>
             </nav>
 
@@ -78,8 +78,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Usuários - Siga Web
+                            {$DSC_Evento} 
                         </h1>
+                            <h3 class="page-header">{$DSC_Categoria}</h3>
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -90,13 +92,13 @@
 
                                 <form id="Cadastrar" form method="post" action="">
                                     <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar"  disabled>Cadastrar</button>
-                                    <a href="index.php" class="btn btn-default">Cancelar</a>
+                                    <a href="Index.php" class="btn btn-default">Cancelar</a>
                                     <h3 class="page-header">Dados Pessoais</h3>
-                                        <div class="form-group col-md-3">
-                                            <label>CPF</label>
-                                            <input type="text" class="form-control" name="COD_CPF" placeholder="CPF" id="COD_CPF">
-                                            
-                                        </div>
+                                    <div class="form-group col-md-3">
+                                        <label>CPF</label>
+                                        <input type="text" class="form-control" name="COD_CPF" placeholder="CPF" id="COD_CPF">
+
+                                    </div>
                                     <div class="form-group col-lg-12 row">
                                         <label >Nome</label>
                                         <input type="text" class="form-control col-lg-12" name="DSC_Nome" id="DSC_Nome" placeholder="Nome" disabled>
@@ -172,15 +174,6 @@
                                             {/foreach}
                                         </select>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label >Presidente Promotora</label>
-                                        <input type="text" class="form-control" name="DSC_Presidente_Promotora" id="DSC_Presidente_Promotora" placeholder="Presidente Promotora" disabled>
-                                    </div>
-
-
-
-
                                     <div class="form-group">
                                         <label >Profissão</label>
                                         <input type="text" class="form-control" name="DSC_Profissao_Especialidade" id="DSC_Profissao_Especialidade" placeholder="Profissão" disabled>
@@ -191,13 +184,20 @@
                                         <input type="text" class="form-control" name="NUM_Registro" id="NUM_Registro" placeholder="Número Registro" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label>Tipo Estado</label>
-                                        <input type="text" class="form-control" name="COD_Tipo_Estado" id="COD_Tipo_Estado" placeholder="Tipo Estado" disabled>
+                                        <label>Estado</label>
+                                        <select name="COD_Tipo_Estado" id="COD_Tipo_Estado" class="form-control col-lg-3" disabled>
+                                            <option value="0">-</option>
+                                            {foreach from=$listEstado item=row}
+                                            <option value="{$row.DSC_Nome}">{$row.DSC_Nome}</option>
+                                            {/foreach}
+                                        </select>
+
                                     </div>
+                                    <br/>
 
 
                                     <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar"  disabled>Cadastrar</button>
-                                    <a href="index.php" class="btn btn-default">Cancelar</a>
+                                    <a href="Index.php" class="btn btn-default">Cancelar</a>
                                 </form>
 
                                 <!DOCTYPE html>

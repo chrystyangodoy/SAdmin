@@ -1,5 +1,10 @@
 <?php
 
+if (!isset($_GET['ID_EVT_Evento']) and ! isset($_GET['ID_Evento_Categoria'])) {
+    header("Location: Index.php");
+    die();
+}
+
 session_start();
 
 require_once './smarty.php';
@@ -92,13 +97,27 @@ if (isset($_POST['Cadastrar'])) {
 
     require_once './actions/aBsc_Empresa.php';
     require_once './actions/aBsc_Profissao.php';
-
-
+    require_once './actions/atb_Tipo_Estado.php';
+    require_once './actions/aEvt_Evento.php';
+    require_once './actions/aEvt_Evento_Categoria.php';
+    
     $emp = new aBsc_Empresa();
     $prof = new aBsc_Profissao();
-
+    $estado = new atb_Tipo_Estado();
+    $evento = new aEvt_Evento();
+    $categoria = new aEvt_Evento_Categoria();
+    
+    $evento->setID_EVT($ID_Evento);
+    $evento->load();
+    
+    $categoria->setID_Evento_Categoria($ID_Evento_Categoria);
+    $categoria->load();
+    
+    $smarty->assign("DSC_Evento",$evento->getDSC_Nome());
+    $smarty->assign("DSC_Categoria",$categoria->getDSC_Nome());
     $smarty->assign("listEmp", $emp->select());
     $smarty->assign("listProf", $prof->select());
+    $smarty->assign("listEstado", $estado->select());
 }
 
 $smarty->assign("msg", $FeedbackMessage->getMsg());

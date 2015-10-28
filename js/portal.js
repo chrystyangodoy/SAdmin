@@ -56,7 +56,8 @@ function OnclickAcompanhamento() {
                     showAlert('error', 'CPF não cadastrado para este Evento');
                 } else {
                     showAlert('', 'SUMIT');
-                    $('#AcompanhamentoForm').submit();
+                    url = 'ParticipanteAcompanhamento.php?cpf='+cpf+'&ID_Evento='+$('#AcompanhamentoEVTID').val();;
+                    $(location).attr('href',url);
                 }
             }
         });
