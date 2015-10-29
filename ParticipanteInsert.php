@@ -22,9 +22,12 @@ if (isset($_POST['Cadastrar'])) {
     require_once './actions/aEvt_Evento_Participante.php';
     require_once ('./config/configs.php');
     require ('./actions/aBsc_Participante.php');
+    require ('./actions/aUsuario.php');
 
     $evtPart = new aEvt_Evento_Participante();
     $partic = new aBsc_Participante();
+
+    $user = new aUsuario();
 
     $config = new configs();
 
@@ -35,8 +38,25 @@ if (isset($_POST['Cadastrar'])) {
     //validação do CPF
     if ($config->validaCPF($cpf)) {
         //verifica se o CPF já foi cadastrado
-        if ($evtPart->selectNotExistsEvtCPF($ID_Evento, $cpf)) {
+        if ($partic->selectNotExistsCPF($cpf)) {
             try {
+
+                //Gera data incial e final para o cadastro de usuário
+                $datainicial = date("d/m/Y");
+                $datafim = date('d/m/Y', strtotime("+7 days"));
+                //Gera Senha Aleatória
+                $senha = $gerasenha->geraSenha(6);
+                //Gera o grupo padrão para Participantes
+                $grupo = 99;
+                //Gera e armazena ID Único Gerado.
+                $idUnico = $config->idUnico();
+                $user->setID_Usuario($idUnico);
+                $user->setDSC_Login($cpf);
+                $user->setDSC_Senha($senha);
+                $user->setDTM_Inicio($datainicial);
+                $user->setDTM_Fim($datafim);
+                $user->setID_SEG_Grupo($grupo);
+                $user->insert();
 
                 //Insere participante
 
@@ -59,19 +79,21 @@ if (isset($_POST['Cadastrar'])) {
                 $partic->setCOD_Tipo_Estado($_POST['COD_Tipo_Estado']);
                 $partic->setID_BSC_Empresa($_POST['ID_BSC_Empresa']);
                 $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
+                $partic->setID_Usuario($idUnico);
                 $partic->insert();
 
                 //Insere Evento_Participante
                 $evtPart->insertPartEvt($ID_Evento, $id_Participante, $ID_Evento_Categoria);
 
-//Insere Informações para gerar o Boleto 
+                //Insere Informações para gerar o Boleto 
                 $pagamento = new aEvt_Pagamento();
                 $pagamento->selectInner($ID_Evento, $cpf);
                 $pagamento->geraInfoPagamento();
-//Informações para gerar o Boleto 
+
+                //Informações para gerar o Boleto 
 
                 $ass = "Cadastro efetuado com sucesso!";
-                $mens = ("Você está inscrito no Evento");
+                $mens = ("Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
                 require_once './config/eMail.php';
                 $emailObj = new eMail();
 
@@ -100,21 +122,21 @@ if (isset($_POST['Cadastrar'])) {
     require_once './actions/atb_Tipo_Estado.php';
     require_once './actions/aEvt_Evento.php';
     require_once './actions/aEvt_Evento_Categoria.php';
-    
+
     $emp = new aBsc_Empresa();
     $prof = new aBsc_Profissao();
     $estado = new atb_Tipo_Estado();
     $evento = new aEvt_Evento();
     $categoria = new aEvt_Evento_Categoria();
-    
+
     $evento->setID_EVT($ID_Evento);
     $evento->load();
-    
+
     $categoria->setID_Evento_Categoria($ID_Evento_Categoria);
     $categoria->load();
-    
-    $smarty->assign("DSC_Evento",$evento->getDSC_Nome());
-    $smarty->assign("DSC_Categoria",$categoria->getDSC_Nome());
+
+    $smarty->assign("DSC_Evento", $evento->getDSC_Nome());
+    $smarty->assign("DSC_Categoria", $categoria->getDSC_Nome());
     $smarty->assign("listEmp", $emp->select());
     $smarty->assign("listProf", $prof->select());
     $smarty->assign("listEstado", $estado->select());

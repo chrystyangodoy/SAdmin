@@ -1,18 +1,15 @@
 <?php
-    
-    $teste = '1';
 
-    if(isset($_REQUEST["cpf"]) && $_REQUEST["ID_Evento"]){
-    require ('./actions/aEvt_Evento_Participante.php');
+if (isset($_REQUEST["cpf"])) {
+    require ('./actions/aBsc_Participante.php');
     require_once './config/configs.php';
-    $evtPart = new aEvt_Evento_Participante();
+    $partic = new aBsc_Participante();
     $config = new configs();
     $cpf = $config->limpaCPF($_REQUEST["cpf"]);
-    $ID_Evento = $_REQUEST["ID_Evento"];
-    
-    if($evtPart->selectNotExistsEvtCPF($ID_Evento, $cpf)){
+
+    if ($partic->selectNotExistsCPF($cpf)) {
         echo '1';
-    }else{
+    } else {
         echo '0';
     }
 }

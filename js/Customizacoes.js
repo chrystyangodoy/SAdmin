@@ -39,10 +39,9 @@ function getUrlParameter(sParam) {
 }
 function isCPFCadastrado(cpf) {
     resultado = 0;
-    id_evento = getUrlParameter('ID_EVT_Evento');
     $.ajax({
         url: "getCPFCasdastrado.php",
-        data: {cpf: cpf, ID_Evento:id_evento},
+        data: {cpf: cpf},
         type: "POST",
         async: false,
         success: function (data) {
@@ -113,7 +112,7 @@ function CPFValido(cpf) {
     return true;
 }
 
-function FormataDataBR(dataUS){
+function FormataDataBR(dataUS) {
     v_split = dataUS.split("-");
     dataBR = v_split[2] + "/" + v_split[1] + "/" + v_split[0]
     return dataBR;

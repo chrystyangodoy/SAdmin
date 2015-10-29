@@ -28,7 +28,7 @@ $(document).ready(function () {
                 $("#DSC_Cidade").val("...");
                 $("#uf").val("...");
                 $("#ibge").val("...");
-
+                $("#loadImg").css("display", "block").fadeIn();
                 //Consulta o webservice viacep.com.br/
                 $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
 
@@ -45,6 +45,7 @@ $(document).ready(function () {
                         limpa_formulário_cep();
                         showAlert('error', 'CEP não encontrado.');
                     }
+                    $("#loadImg").css("display", "none").fadeOut();
                 });
             } //end if.
             else {
