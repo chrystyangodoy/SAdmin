@@ -80,8 +80,8 @@
                         <h1 class="page-header">
                             {$DSC_Evento} 
                         </h1>
-                            <h3 class="page-header">{$DSC_Categoria}</h3>
-                        
+                        <h3 class="page-header">{$DSC_Categoria}</h3>
+
                     </div>
                 </div>
                 <div class="row">
@@ -207,6 +207,46 @@
                 </div>
             </div>
         </div>
+
+        <!--Modal-->
+        <div class="modal fade" id="modalLogin">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="NomeEventoAcompanhamento">Logar e Cadastrar</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form name="Login" id="Login" class="form-inline" action="" method="post">
+
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <!--USERNAME--><div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div><input name="Username" type="text" class="form-control" placeholder="Usuário" id="Username"/><!--END USERNAME-->
+                                </div>
+                                <div class="input-group">
+                                    <!--PASSWORD--><div class="input-group-addon"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></div><input name="Password" type="password" class="form-control" placeholder="Senha" id="Password"/><!--END PASSWORD-->
+                                </div>
+                                <div class="input-group">
+                                    <!--LOGIN BUTTON--><input type="submit" name="btnLogin" value="Login" class="btn btn-success"  /><!--END LOGIN BUTTON-->
+                                </div>
+                                <!--REGISTER BUTTON--><!--END REGISTER BUTTON-->
+                            </div>
+                            <!--END FOOTER-->
+
+                        </form>
+                        <!--END LOGIN FORM-->
+
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!--Final Modal-->
+
         <div id="loadImg"></div>
     </body>
 </html>

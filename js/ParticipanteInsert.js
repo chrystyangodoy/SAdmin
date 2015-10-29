@@ -1,3 +1,49 @@
+
+function desabilitaCampos() {
+    $('#DSC_Nome').attr("disabled", true).val("");
+    $('#DSC_Email').attr("disabled", true).val("");
+    $('#COD_RG').attr("disabled", true).val("");
+    $('#NUM_CEP').attr("disabled", true).val("");
+    $('#DSC_Cidade').attr("disabled", true).val("");
+    $('#DSC_Bairro').attr("disabled", true).val("");
+    $('#DSC_Endereco').attr("disabled", true).val("");
+    $('#NUM_Fone').attr("disabled", true).val("");
+    $('#NUM_Celular').attr("disabled", true).val("");
+    $('#NUM_FAX').attr("disabled", true).val("");
+    $('#NUM_FAX_Promotora').attr("disabled", true).val("");
+    $('#ID_BSC_Empresa').attr("disabled", true).val("");
+    $('#ID_BSC_Profissao').attr("disabled", true).val("");
+    $('#DSC_Presidente_Promotora').attr("disabled", true).val("");
+    $('#DSC_Profissao_Especialidade').attr("disabled", true).val("");
+    $('#NUM_Registro').attr("disabled", true).val("");
+    $('#COD_Tipo_Estado').attr("disabled", true).val("");
+    $('#COD_Tipo_Estado').attr("disabled", true).val("");
+    $('.btn-primary').attr("disabled", true);
+}
+
+function habilitaCampos() {
+    $('#DSC_Nome').attr("disabled", false);
+    $('#DSC_Email').attr("disabled", false);
+    $('#COD_RG').attr("disabled", false);
+    $('#NUM_CEP').attr("disabled", false);
+    $('#DSC_Cidade').attr("disabled", false);
+    $('#DSC_Bairro').attr("disabled", false);
+    $('#DSC_Endereco').attr("disabled", false);
+    $('#NUM_Fone').attr("disabled", false);
+    $('#NUM_Celular').attr("disabled", false);
+    $('#NUM_FAX').attr("disabled", false);
+    $('#NUM_FAX_Promotora').attr("disabled", false);
+    $('#ID_BSC_Empresa').attr("disabled", false);
+    $('#ID_BSC_Profissao').attr("disabled", false);
+    $('#DSC_Presidente_Promotora').attr("disabled", false);
+    $('#DSC_Profissao_Especialidade').attr("disabled", false);
+    $('#NUM_Registro').attr("disabled", false);
+    $('#COD_Tipo_Estado').attr("disabled", false);
+    $('#COD_Tipo_Estado').attr("disabled", false);
+    $('.btn-primary').attr("disabled", false);
+}
+
+
 $(document).ready(function () {
 
     function limpa_formulário_cep() {
@@ -132,50 +178,17 @@ $(document).ready(function () {
             $("#loadImg").css("display", "block").fadeIn();
             var CPFnaoCadastrado = isCPFCadastrado(cpf);
             if (CPFnaoCadastrado == 1) {
-                $('#DSC_Nome').attr("disabled", false);
-                $('#DSC_Email').attr("disabled", false);
-                $('#COD_RG').attr("disabled", false);
-                $('#NUM_CEP').attr("disabled", false);
-                $('#DSC_Cidade').attr("disabled", false);
-                $('#DSC_Bairro').attr("disabled", false);
-                $('#DSC_Endereco').attr("disabled", false);
-                $('#NUM_Fone').attr("disabled", false);
-                $('#NUM_Celular').attr("disabled", false);
-                $('#NUM_FAX').attr("disabled", false);
-                $('#NUM_FAX_Promotora').attr("disabled", false);
-                $('#ID_BSC_Empresa').attr("disabled", false);
-                $('#ID_BSC_Profissao').attr("disabled", false);
-                $('#DSC_Presidente_Promotora').attr("disabled", false);
-                $('#DSC_Profissao_Especialidade').attr("disabled", false);
-                $('#NUM_Registro').attr("disabled", false);
-                $('#COD_Tipo_Estado').attr("disabled", false);
-                $('#COD_Tipo_Estado').attr("disabled", false);
-                $('.btn-primary').attr("disabled", false);
+                habilitaCampos();
                 $('#DSC_Nome').focus();
                 console.log('campos habilitados');
             } else {
-                $('#DSC_Nome').attr("disabled", true).val("");
-                $('#DSC_Email').attr("disabled", true).val("");
-                $('#COD_RG').attr("disabled", true).val("");
-                $('#NUM_CEP').attr("disabled", true).val("");
-                $('#DSC_Cidade').attr("disabled", true).val("");
-                $('#DSC_Bairro').attr("disabled", true).val("");
-                $('#DSC_Endereco').attr("disabled", true).val("");
-                $('#NUM_Fone').attr("disabled", true).val("");
-                $('#NUM_Celular').attr("disabled", true).val("");
-                $('#NUM_FAX').attr("disabled", true).val("");
-                $('#NUM_FAX_Promotora').attr("disabled", true).val("");
-                $('#ID_BSC_Empresa').attr("disabled", true).val("");
-                $('#ID_BSC_Profissao').attr("disabled", true).val("");
-                $('#DSC_Presidente_Promotora').attr("disabled", true).val("");
-                $('#DSC_Profissao_Especialidade').attr("disabled", true).val("");
-                $('#NUM_Registro').attr("disabled", true).val("");
-                $('#COD_Tipo_Estado').attr("disabled", true).val("");
-                $('#COD_Tipo_Estado').attr("disabled", true).val("");
-                $('.btn-primary').attr("disabled", true);
+                desabilitaCampos();
+
                 console.log("CPF Já Cadastrado.");
-                showAlert('error', 'CPF Já Cadastrado para este evento.');
-                
+                showAlert('error', 'Você já possui cadastro no sistema.');
+                $('#modalLogin').modal('show');
+                $('#Username').focus();
+
             }
             $("#loadImg").css("display", "none").fadeOut();
         }

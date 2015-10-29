@@ -3,10 +3,10 @@
 function showAlert(type, message) {
     if (message !== '') {
         if (type === '') {
-            type = 'success'
+            type = 'success';
         }
         $('#alert').removeClass();
-        $('#alert').addClass('alert-' + type).html(message).fadeIn();
+        $('#alert').addClass('alert-' + type).html(message).slideDown();
         setTimeout("closeAlert()", 15000); // 15 segundos
     }
 }
@@ -19,7 +19,7 @@ $(function () {
 });
 //
 function closeAlert() {
-    $('#alert').fadeOut();
+    $('#alert').slideUp();
     $('#alert').removeClass();
 }
 

@@ -23,10 +23,13 @@ if (isset($_POST['Cadastrar'])) {
     require_once ('./config/configs.php');
     require ('./actions/aBsc_Participante.php');
     require ('./actions/aUsuario.php');
-
+    require_once './config/geraSenha.php';
+    
     $evtPart = new aEvt_Evento_Participante();
     $partic = new aBsc_Participante();
-
+    
+    $gerasenha = new geraSenha();
+    
     $user = new aUsuario();
 
     $config = new configs();
