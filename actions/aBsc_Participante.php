@@ -97,6 +97,11 @@ class aBsc_Participante extends mBsc_Participante {
         $rs = $this->select(sprintf("and COD_CPF='%s'", $this->getCOD_CPF()));
         return $rs;
     }
+    
+        public function selectParticPorID() {
+        $rs = $this->select(sprintf("and ID_Participante='%s'", $this->getID_Participante()));
+        return $rs;
+    }
 
     public function getIDParticipantePeloIDUsuario($ID_Usuario) {
         $rs = $this->select(sprintf("and ID_Usuario='%s'", $ID_Usuario));

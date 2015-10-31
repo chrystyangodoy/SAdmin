@@ -193,5 +193,32 @@ $(document).ready(function () {
             $("#loadImg").css("display", "none").fadeOut();
         }
     });
+
+    $('#btnLogin').click(function () {
+        $("#loadImg").css("display", "block").fadeIn();
+        username = $('#Username').val();
+        password = $('#Password').val();
+        console.log('Click no login');
+
+        $.getJSON("getLoginParticipante.php", {Username: username, Password: password}, function (data) {
+            console.log(data);
+            resultado = data;
+            $("#loadImg").css("display", "none").fadeOut();
+            showAlert('', data);
+            
+            
+            
+            $.each(data, function (index, item){
+                
+                $('#DSC_Nome').attr("disabled", true).val(item.DSC_Nome);
+                $('#DSC_Email').val(item.DSC_Nome);
+                
+            });
+            
+            
+        });
+
+    });
+
 });
 
