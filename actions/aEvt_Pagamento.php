@@ -21,32 +21,27 @@ class aEvt_Pagamento extends mEvt_Pagamento {
     protected $sqlSelect = "select * from evt_pagamento where 1=1 %s %s";
     protected $sqlSelectInner = "SELECT evt_evento_participante.ID_EVT_Evento,evt_evento_categoria.VLR_Inscricao FROM `evt_evento_participante` INNER JOIN bsc_participante ON evt_evento_participante.ID_BSC_Participante = bsc_participante.ID_Participante INNER JOIN evt_evento_categoria ON evt_evento_participante.ID_EVT_Categoria = evt_evento_categoria.ID_Evento_Categoria WHERE evt_evento_participante.ID_EVT_Evento = '%s' AND bsc_participante.COD_CPF = '%s'";
 
-    public function insert()
-    {
+    public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getID_Pagamento(), $this->getDT_Transacao(), $this->getDT_Pagamento(), $this->getVLR_Transacao(), $this->getVR_Pago(), $this->getNUM_Recibo(), $this->getCOD_TipoFormaPagamento(), $this->getCOD_TipoOrigemInscricao(), $this->getID_EVT_Evento(), $this->getID_EVT_Pagamento_Pai(), $this->getCOD_Tipo_Situacao_Pagamento(), $this->getQTD_Parcelas(), $this->getNUM_Parcelas(), $this->getQTD_Parcelas_Pagas());
         return $this->RunQuery($sql);
     }
 
-    public function update()
-    {
+    public function update() {
         $sql = sprintf($this->sqlUpdate, $this->getDT_Transacao(), $this->getDT_Pagamento(), $this->getVLR_Transacao(), $this->getVR_Pago(), $this->getNUM_Recibo(), $this->getCOD_TipoFormaPagamento(), $this->getCOD_TipoOrigemInscricao(), $this->getID_EVT_Evento(), $this->getID_EVT_Pagamento_Pai(), $this->getCOD_Tipo_Situacao_Pagamento(), $this->getQTD_Parcelas(), $this->getNUM_Parcelas(), $this->getQTD_Parcelas_Pagas(), $this->getID_Pagamento());
         return $this->RunQuery($sql);
     }
 
-    public function delete()
-    {
+    public function delete() {
         $sql = sprintf($this->sqlDelete, $this->getID_Pagamento());
         return $this->RunQuery($sql);
     }
 
-    public function select($where = '', $order = '')
-    {
+    public function select($where = '', $order = '') {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
 
-    public function load()
-    {
+    public function load() {
         $rs = $this->select(sprintf("and ID_Pagamento='%s'", $this->getID_Pagamento()));
         $this->setID_Pagamento($rs[0]['ID_Pagamento']);
         $this->setDT_Transacao($rs[0]['DT_Transacao']);
@@ -65,16 +60,18 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         return $this;
     }
 
-    public function selectInner($ID_EVT, $CPF_Participante)
-    {
-        $rs = $this->RunSelect(sprintf($this->sqlSelectInner, $ID_EVT, $CPF_Participante));
-        $this->setID_EVT_Evento($rs[0]['ID_EVT_Evento']);
-        $this->setVLR_Transacao($rs[0]['VLR_Inscricao']);
+    public function selectInner($ID_EVT, $CPF_Participante) {
+        //$sql = sprintf($this->selectInner,$ID_EVT,$CPF_Participante);
+        $sql = "SELECT evt_evento_participante.ID_EVT_Evento,evt_evento_categoria.VLR_Inscricao FROM `evt_evento_participante` INNER JOIN bsc_participante ON evt_evento_participante.ID_BSC_Participante = bsc_participante.ID_Participante INNER JOIN evt_evento_categoria ON evt_evento_participante.ID_EVT_Categoria = evt_evento_categoria.ID_Evento_Categoria WHERE evt_evento_participante.ID_EVT_Evento = '$ID_EVT' AND bsc_participante.COD_CPF = '$CPF_Participante'";
+        $rs = $this->RunSelect($sql);
+        if (!empty($rs)) {
+            $this->setID_EVT_Evento($rs[0]['ID_EVT_Evento']);
+            $this->setVLR_Transacao($rs[0]['VLR_Inscricao']);
+        }
         return $this;
     }
 
-    public function geraInfoPagamento()
-    {
+    public function geraInfoPagamento() {
 
         $this->setCOD_TipoFormaPagamento(0);
         $this->setCOD_Tipo_Situacao_Pagamento(0); //set igual a zero para Situação Aberto.
@@ -97,8 +94,7 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         $this->insert();
     }
 
-    public function loadIDEvento()
-    {
+    public function loadIDEvento() {
         $rs = $this->select(sprintf("and ID_EVT_Evento='%s'", $this->getID_Pagamento()));
         $this->setID_Pagamento($rs[0]['ID_Pagamento']);
         $this->setDT_Transacao($rs[0]['DT_Transacao']);
@@ -116,6 +112,5 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         $this->setQTD_Parcelas_Pagas($rs[0]['QTD_Parcelas_Pagas']);
         return $this;
     }
-    
-    
+
 }

@@ -24,12 +24,12 @@ if (isset($_POST['Cadastrar'])) {
     require ('./actions/aBsc_Participante.php');
     require ('./actions/aUsuario.php');
     require_once './config/geraSenha.php';
-    
+
     $evtPart = new aEvt_Evento_Participante();
     $partic = new aBsc_Participante();
-    
+
     $gerasenha = new geraSenha();
-    
+
     $user = new aUsuario();
 
     $config = new configs();
@@ -38,34 +38,58 @@ if (isset($_POST['Cadastrar'])) {
     $cpf = $config->limpaCPF($_POST['COD_CPF']);
     $email = $_POST['DSC_Email'];
 
+    $id_Participante = '';
+    if (isset($_POST['ID_Participante'])) {
+
+        $id_Participante = $_POST['ID_Participante'];
+    }
+    
+    $idUnico = '';
+    
+    if (isset($_POST['ID_Usuario'])) {
+        $idUnico = $_POST['ID_Usuario'];
+    }
+
+    $isParticipanteNovo = TRUE;
+
+    if ($id_Participante == '') {
+        $isParticipanteNovo = TRUE;
+    } else {
+        $isParticipanteNovo = FALSE;
+    }
+
     //validação do CPF
     if ($config->validaCPF($cpf)) {
         //verifica se o CPF já foi cadastrado
-        if ($partic->selectNotExistsCPF($cpf)) {
+        if ($partic->selectNotExistsCPF($cpf) || $id_Participante != '') {
             try {
+                if ($isParticipanteNovo) {
 
-                //Gera data incial e final para o cadastro de usuário
-                $datainicial = date("d/m/Y");
-                $datafim = date('d/m/Y', strtotime("+7 days"));
-                //Gera Senha Aleatória
-                $senha = $gerasenha->geraSenha(6);
-                //Gera o grupo padrão para Participantes
-                $grupo = 99;
-                //Gera e armazena ID Único Gerado.
-                $idUnico = $config->idUnico();
-                $user->setID_Usuario($idUnico);
-                $user->setDSC_Login($cpf);
-                $user->setDSC_Senha($senha);
-                $user->setDTM_Inicio($datainicial);
-                $user->setDTM_Fim($datafim);
-                $user->setID_SEG_Grupo($grupo);
-                $user->insert();
+                    //Gera data incial e final para o cadastro de usuário
+                    $datainicial = date("d/m/Y");
+                    $datafim = date('d/m/Y', strtotime("+7 days"));
+                    //Gera Senha Aleatória
+                    $senha = $gerasenha->geraSenha(6);
+                    //Gera o grupo padrão para Participantes
+                    $grupo = 99;
+                    //Gera e armazena ID Único Gerado.
+                    $idUnico = $config->idUnico();
+                    $user->setID_Usuario($idUnico);
+                    $user->setDSC_Login($cpf);
+                    $user->setDSC_Senha($senha);
+                    $user->setDTM_Inicio($datainicial);
+                    $user->setDTM_Fim($datafim);
+                    $user->setID_SEG_Grupo($grupo);
+                    $user->insert();
 
-                //Insere participante
+                    //Insere participante
 
-                $id_Participante = $config->idUnico();
+                    $id_Participante = $config->idUnico();
+                }
+
 
                 $partic->setID_Participante($id_Participante);
+
                 $partic->setCOD_CPF($cpf);
                 $partic->setCOD_RG($_POST['COD_RG']);
                 $partic->setDSC_Nome($_POST['DSC_Nome']);
@@ -83,7 +107,12 @@ if (isset($_POST['Cadastrar'])) {
                 $partic->setID_BSC_Empresa($_POST['ID_BSC_Empresa']);
                 $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
                 $partic->setID_Usuario($idUnico);
-                $partic->insert();
+
+                if ($isParticipanteNovo) {
+                    $partic->insert();
+                } else {
+                    $partic->update();
+                }
 
                 //Insere Evento_Participante
                 $evtPart->insertPartEvt($ID_Evento, $id_Participante, $ID_Evento_Categoria);
@@ -95,14 +124,23 @@ if (isset($_POST['Cadastrar'])) {
 
                 //Informações para gerar o Boleto 
 
-                $ass = "Cadastro efetuado com sucesso!";
-                $mens = ("Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
+                if ($isParticipanteNovo) {
+
+                    $ass = "Cadastro efetuado com sucesso!";
+                    $mens = ("Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
+                    $msg = 'Verifique seu e-mail para verificar usuario e senha';
+                } else {
+                    $ass = "Cadastro efetuado com sucesso!";
+                    $mens = ("Participando do evento");
+                    $msg = 'Você está participando do evento';
+                }
+
                 require_once './config/eMail.php';
                 $emailObj = new eMail();
 
                 $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
 
-                $FeedbackMessage->setMsg("Participante inserido com sucesso!");
+                $FeedbackMessage->setMsg($msg);
                 header("Location: Index.php");
                 die();
             } catch (Exception $e) {
