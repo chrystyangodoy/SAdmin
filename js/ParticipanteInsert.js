@@ -208,13 +208,17 @@ $(document).ready(function () {
         console.log('Click no login');
 
         $.getJSON("getLoginParticipante.php", {Username: username, Password: password}, function (data) {
-
+            
+            console.log('Inicio get');
+            
             $("#loadImg").css("display", "none").fadeOut();
 
             isSenhaCorreta = false;
 
             $.each(data, function (index, item) {
-
+                
+                console.log('each');
+                $('#COD_CPF').val(item.COD_CPF);
                 $('#DSC_Nome').val(item.DSC_Nome);
                 $('#DSC_Email').val(item.DSC_Email);
                 $('#COD_RG').val(item.COD_RG);
@@ -234,6 +238,9 @@ $(document).ready(function () {
                 $('#ID_BSC_Profissao').val(item.ID_BSC_Profissao);
                 $('#ID_Participante').val(item.ID_Participante);
                 $('#ID_Usuario').val(item.ID_Usuario);
+                
+                setCookie('ID_Participante',item.ID_Participante,1);
+                setCookie('ID_Usuario',item.ID_Usuario,1);
 
                 isSenhaCorreta = true;
 
@@ -244,7 +251,7 @@ $(document).ready(function () {
 
                 habilitaCampos();
                 $('#modalLogin').modal('hide');
-                $('#COD_CPF').attr("disabled", true)
+                //$('#COD_CPF').attr("disabled", true);
                 showAlert('', 'Confirme seus dados');
             } else {
 

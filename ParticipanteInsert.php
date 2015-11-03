@@ -39,15 +39,15 @@ if (isset($_POST['Cadastrar'])) {
     $email = $_POST['DSC_Email'];
 
     $id_Participante = '';
-    if (isset($_POST['ID_Participante'])) {
+    if (isset($_COOKIE['ID_Participante'])) {
 
-        $id_Participante = $_POST['ID_Participante'];
+        $id_Participante = $_COOKIE['ID_Participante'];
     }
-    
+
     $idUnico = '';
-    
-    if (isset($_POST['ID_Usuario'])) {
-        $idUnico = $_POST['ID_Usuario'];
+
+    if (isset($_COOKIE['ID_Usuario'])) {
+        $idUnico = $_COOKIE['ID_Usuario'];
     }
 
     $isParticipanteNovo = TRUE;
@@ -156,32 +156,32 @@ if (isset($_POST['Cadastrar'])) {
         $FeedbackMessage->setMsg("CPF inválido!");
         $FeedbackMessage->setType("error");
     }
-} else {
-
-    require_once './actions/aBsc_Empresa.php';
-    require_once './actions/aBsc_Profissao.php';
-    require_once './actions/atb_Tipo_Estado.php';
-    require_once './actions/aEvt_Evento.php';
-    require_once './actions/aEvt_Evento_Categoria.php';
-
-    $emp = new aBsc_Empresa();
-    $prof = new aBsc_Profissao();
-    $estado = new atb_Tipo_Estado();
-    $evento = new aEvt_Evento();
-    $categoria = new aEvt_Evento_Categoria();
-
-    $evento->setID_EVT($ID_Evento);
-    $evento->load();
-
-    $categoria->setID_Evento_Categoria($ID_Evento_Categoria);
-    $categoria->load();
-
-    $smarty->assign("DSC_Evento", $evento->getDSC_Nome());
-    $smarty->assign("DSC_Categoria", $categoria->getDSC_Nome());
-    $smarty->assign("listEmp", $emp->select());
-    $smarty->assign("listProf", $prof->select());
-    $smarty->assign("listEstado", $estado->select());
 }
+
+require_once './actions/aBsc_Empresa.php';
+require_once './actions/aBsc_Profissao.php';
+require_once './actions/atb_Tipo_Estado.php';
+require_once './actions/aEvt_Evento.php';
+require_once './actions/aEvt_Evento_Categoria.php';
+
+$emp = new aBsc_Empresa();
+$prof = new aBsc_Profissao();
+$estado = new atb_Tipo_Estado();
+$evento = new aEvt_Evento();
+$categoria = new aEvt_Evento_Categoria();
+
+$evento->setID_EVT($ID_Evento);
+$evento->load();
+
+$categoria->setID_Evento_Categoria($ID_Evento_Categoria);
+$categoria->load();
+
+$smarty->assign("DSC_Evento", $evento->getDSC_Nome());
+$smarty->assign("DSC_Categoria", $categoria->getDSC_Nome());
+$smarty->assign("listEmp", $emp->select());
+$smarty->assign("listProf", $prof->select());
+$smarty->assign("listEstado", $estado->select());
+
 
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
