@@ -123,7 +123,7 @@ $(document).ready(function () {
         rules: {
             DSC_Nome: {required: true},
             DSC_Email: {required: true, email: true},
-            COD_CPF: {required: true, cpfValidacao: true, cpfValidacao:true},
+            COD_CPF: {required: true, cpfValidacao: true, cpfCadastradoEvento:true,cpfValidacao:true},
             NUM_CEP: {required: true},
             DSC_Cidade: {required: true},
             DSC_Bairro: {required: true},
@@ -176,27 +176,33 @@ $(document).ready(function () {
             console.log("CPF Válido!");
             console.log("Inicio do getJson");
             $("#loadImg").css("display", "block").fadeIn();
-            var CPFnaoCadastrado = isCPFCadastrado(cpf);
-            if (CPFnaoCadastrado == 1) {
-                habilitaCampos();
-                $('#DSC_Nome').focus();
-                console.log('campos habilitados');
-            } else {
-                desabilitaCampos();
+            var CPFNaoCadastradoEvento = isCPFCadastradoEvento(cpf, getUrlParameter('ID_EVT_Evento'));
+            
+            if(CPFNaoCadastradoEvento == 1){
+                
+                var CPFnaoCadastrado = isCPFCadastrado(cpf);
+                if (CPFnaoCadastrado == 1) {
+                    habilitaCampos();
+                    $('#DSC_Nome').focus();
+                    console.log('campos habilitados');
+                } else {
+                    desabilitaCampos();
 
-                console.log("CPF Já Cadastrado.");
-                showAlert('error', 'Você já possui cadastro no sistema.');
-                $('#modalLogin').modal('show');
-                cpf = jQuery.trim(cpf);
+                    console.log("CPF Já Cadastrado.");
+                    showAlert('error', 'Você já possui cadastro no sistema.');
+                    $('#modalLogin').modal('show');
+                    cpf = jQuery.trim(cpf);
 
-                cpf = cpf.replace('.', '');
-                cpf = cpf.replace('.', '');
-                cpf = cpf.replace('-', '');
+                    cpf = cpf.replace('.', '');
+                    cpf = cpf.replace('.', '');
+                    cpf = cpf.replace('-', '');
 
-                $('#Username').val(cpf);
-                $('#Password').focus();
+                    $('#Username').val(cpf);
+                    $('#Password').focus();
 
+                }
             }
+            
             $("#loadImg").css("display", "none").fadeOut();
         }
     });

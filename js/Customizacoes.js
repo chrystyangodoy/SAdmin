@@ -50,6 +50,21 @@ function isCPFCadastrado(cpf) {
     });
     return resultado;
 }
+
+function isCPFCadastradoEvento(cpf,evento) {
+    resultado = 0;
+    $.ajax({
+        url: "getCPFCasdastradoEvento.php",
+        data: {cpf: cpf, eventoID:evento},
+        type: "POST",
+        async: false,
+        success: function (data) {
+            resultado = data;
+        }
+    });
+    return resultado;
+}
+
 function isCPFCadastradoEdit(cpf, idParticipante) {
     resultado = 0;
     $.ajax({

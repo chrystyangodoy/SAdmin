@@ -51,6 +51,25 @@ jQuery.validator.addMethod("cpfCadastrado", function (value, element) {
     //Retorna 0 caso já haja cadastro
 }, "CPF já cadastrado");
 
+jQuery.validator.addMethod("cpfCadastradoEvento", function (value, element) {
+    value = jQuery.trim(value);
+
+    value = value.replace('.', '');
+    value = value.replace('.', '');
+    cpf = value.replace('-', '');
+
+    eventoID = getUrlParameter('ID_EVT_Evento');
+
+    resultado = isCPFCadastradoEvento(cpf,eventoID);
+
+
+
+    return this.optional(element) || resultado == 1;
+
+    //Retorna 1 caso não tenha cadastro
+    //Retorna 0 caso já haja cadastro
+}, "CPF já cadastrado para este Evento");
+
 jQuery.validator.addMethod("validaComboBox", function (value, element) {
     if (value == 0)
         return this.optional(element) || false;
