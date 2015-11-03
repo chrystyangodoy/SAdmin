@@ -187,12 +187,77 @@ $(document).ready(function () {
                 console.log("CPF Já Cadastrado.");
                 showAlert('error', 'Você já possui cadastro no sistema.');
                 $('#modalLogin').modal('show');
-                $('#Username').focus();
+                cpf = jQuery.trim(cpf);
+
+                cpf = cpf.replace('.', '');
+                cpf = cpf.replace('.', '');
+                cpf = cpf.replace('-', '');
+
                 $('#Username').val(cpf);
+                $('#Password').focus();
 
             }
             $("#loadImg").css("display", "none").fadeOut();
         }
     });
+
+    $('#btnLogin').click(function () {
+        $("#loadImg").css("display", "block").fadeIn();
+        username = $('#Username').val();
+        password = $('#Password').val();
+        console.log('Click no login');
+
+        $.getJSON("getLoginParticipante.php", {Username: username, Password: password}, function (data) {
+
+            $("#loadImg").css("display", "none").fadeOut();
+
+            isSenhaCorreta = false;
+
+            $.each(data, function (index, item) {
+
+                $('#DSC_Nome').val(item.DSC_Nome);
+                $('#DSC_Email').val(item.DSC_Email);
+                $('#COD_RG').val(item.COD_RG);
+                $('#COD_RG').val(item.COD_RG);
+                $('#DSC_Endereco').val(item.DSC_Endereco);
+                $('#DSC_Bairro').val(item.DSC_Bairro);
+                $('#DSC_Bairro').val(item.DSC_Bairro);
+                $('#DSC_Cidade').val(item.DSC_Cidade);
+                $('#NUM_CEP').val(item.NUM_CEP);
+                $('#NUM_Fone').val(item.NUM_Fone);
+                $('#NUM_Celular').val(item.NUM_Celular);
+                $('#NUM_FAX').val(item.NUM_FAX);
+                $('#DSC_Profissao_Especialidade').val(item.DSC_Profissao_Especialidade);
+                $('#NUM_Registro').val(item.NUM_Registro);
+                $('#COD_Tipo_Estado').val(item.COD_Tipo_Estado);
+                $('#ID_BSC_Empresa').val(item.ID_BSC_Empresa);
+                $('#ID_BSC_Profissao').val(item.ID_BSC_Profissao);
+                $('#ID_Participante').val(item.ID_Participante);
+                $('#ID_Usuario').val(item.ID_Usuario);
+
+                isSenhaCorreta = true;
+
+            });
+
+
+            if (isSenhaCorreta) {
+
+                habilitaCampos();
+                $('#modalLogin').modal('hide');
+                $('#COD_CPF').attr("disabled", true)
+                showAlert('', 'Confirme seus dados');
+            } else {
+
+                showAlert('error', 'Usuário ou senha incorreto');
+            }
+
+
+            $("#loadImg").css("display", "none").fadeOut();
+            $('#Username').val('');
+            $('#Password').val('');
+        });
+
+    });
+
 });
 
