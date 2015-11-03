@@ -188,6 +188,7 @@ $(document).ready(function () {
                 showAlert('error', 'Você já possui cadastro no sistema.');
                 $('#modalLogin').modal('show');
                 $('#Username').focus();
+                $('#Username').val(cpf);
 
             }
             $("#loadImg").css("display", "none").fadeOut();
