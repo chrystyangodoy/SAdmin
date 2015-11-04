@@ -27,7 +27,7 @@
 // +--------------------------------------------------------------------------------------------------------+
 // | Captura de informações para geração do boleto                                                          |
 // | require_once das actions necessárias                                                                   |
-require_once './actions/aBsc_Banco.php';
+require_once './model/mBsc_Banco.php';
 $Banco = new aBsc_Banco();
 require_once './actions/aEvt_Pagamento.php';
 $Pagamento = new aEvt_Pagamento();
@@ -35,20 +35,13 @@ $Pagamento = new aEvt_Pagamento();
 require_once './actions/aEvt_Evento_Participante.php';
 $DadosEvento = new aEvt_Evento_Participante();
 
-
-//$ID_Evt_Partic = $_POST['$ID_EVT_Evento_Pariticipante'];
-
-$ID_Evt_Partic = '1788cc65c6afe3c2d8bb2023353a390c';
-$DadosEvento->setID_EVT_Evento_Pariticipante($ID_Evt_Partic);
-$DadosEvento->load();
-
-$Banco->setID('1');
+$Banco->setID(1);
 $Banco->load();
 
-$Pagamento->setID_EVT_Evento($ID_Evt_Partic);
+$Pagamento->setID_EVT_Evento($ID_EVT_Evento);
 $Pagamento->loadIDEvento();
 
-$DadosEvento->SelectInfoBoleto($ID_Evt_Partic);
+$DadosEvento->SelectInfoBoleto($ID_EVT_Evento);
 require_once ('./actions/aBsc_Participante.php');
 $partic = new aBsc_Participante();
 require_once ('./actions/aEvt_evento.php');
@@ -62,11 +55,9 @@ $LocalEvento = new absc_local_evento();
 // DADOS DO BOLETO PARA O SEU CLIENTE
 $dias_de_prazo_para_pagamento = 5;
 $taxa_boleto = 2.95;
-$data_emissão = date("d/m/Y", strtotime("now"));
+$data_emissão = date("Y/m/d", strtotime("now"));
 $data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
-//$valor_cobrado = $Pagamento->getVLR_Transacao(); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
-//Informação capturada a partir do evento participante
-$valor_cobrado = $DadosEvento->getVLR_Total_Inscricao(); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
+$valor_cobrado = $Pagamento->getVLR_Transacao(); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 $valor_cobrado = str_replace(",", ".", $valor_cobrado);
 $valor_boleto = number_format($valor_cobrado + $taxa_boleto, 2, ',', '');
 $nosso_numero = $Banco->getnumero_documento(); // Usaremos o mesmo campo para Nosso número e Número de Documento pois sempre serão números sequênciais.
@@ -86,19 +77,12 @@ $dadosboleto["endereco2"] = "Cidade - Estado -  CEP: 00000-000";
 // INFORMACOES PARA O CLIENTE
 $dadosboleto["demonstrativo1"] = "Pagamento em qualquer Agência Banco do Brasil";
 $dadosboleto["demonstrativo2"] = "Referênte a inscrição no evento <br>Taxa bancária - R$ " . number_format($taxa_boleto, 2, ',', '');
-$dadosboleto["demonstrativo3"] = "";
-//$dadosboleto["demonstrativo2"] = "Referênte a inscrição no evento <br>Taxa bancária - R$ " . number_format($taxa_boleto, 2, ',', '');
 //$dadosboleto["demonstrativo3"] = "BoletoPhp - http://www.boletophp.com.br";
-//
 // INSTRU��ES PARA O CAIXA
 $dadosboleto["instrucoes1"] = "- Não receber após o vencimento";
-$dadosboleto["instrucoes2"] = "";
-$dadosboleto["instrucoes3"] = "";
-$dadosboleto["instrucoes4"] = "";
 //$dadosboleto["instrucoes2"] = "- Não receber após o vencimento";
 //$dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: xxxx@xxxx.com.br";
 //$dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto BoletoPhp - www.boletophp.com.br";
-
 // DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
 $dadosboleto["quantidade"] = "";
 $dadosboleto["valor_unitario"] = "";
@@ -138,7 +122,7 @@ $dadosboleto["formatacao_nosso_numero"] = "2"; // REGRA: Usado apenas p/ Convên
   #################################################
  */
 
-$NomeEmpresa = $Evento->getDSC_Nome_Promotora();
+$NomeEmpresa = $Evento->getsetDSC_Nome_Promotora();
 $cnpjEmpresa = $Evento->getCOD_CNPJ_Promotora();
 
 $Endereço =  $LocalEvento->getDSC_Nome()." - ".$LocalEvento->getDSC_Endereco()." - ".$LocalEvento->getDSC_Bairro()." Telefone: ".$LocalEvento->getNUM_Fone();

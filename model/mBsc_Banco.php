@@ -13,7 +13,7 @@ class mBsc_Banco extends dbConnection {
     private $Carteira;
     private $Variacao_Carteira;
     private $numero_documento;
-    private $ID_Evento;
+    private $COD_CNPJ_Promotora;
 
     public function setID($ID)
     {
@@ -104,14 +104,13 @@ class mBsc_Banco extends dbConnection {
     {
         return $this->numero_documento;
     }
-    
-    public function setID_Evento($ID_Evento)
+    public function setCOD_CNPJ_Promotora($COD_CNPJ_Promotora)
     {
-        $this->ID_Evento = $ID_Evento;
+        $this->COD_CNPJ_Promotora = $COD_CNPJ_Promotora;
     }
 
-    public function getID_Evento()
+    public function getCOD_CNPJ_Promotora()
     {
-        return $this->ID_Evento;
+        return $this->COD_CNPJ_Promotora;
     }
 }

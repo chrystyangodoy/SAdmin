@@ -25,7 +25,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
                                        WHERE  evt_evento_participante.ID_EVT_Evento = '%s' AND BSC_PARTICIPANTE.COD_CPF = '%s'";
     protected $sqlSelectEvtPartc = "SELECT evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL FROM evt_evento_participante INNER JOIN evt_evento ON evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT INNER JOIN bsc_local_evento ON bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento WHERE 1=1 %s %s";
     protected $SelectEvtP = "SELECT evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) WHERE 1=1 and ID_BSC_Participante='%s'";
-    protected $SelectInnerBoleto = "SELECT bsc_participante.DSC_Nome, bsc_participante.DSC_Endereco, bsc_participante.DSC_Bairro, bsc_participante.DSC_Cidade, bsc_participante.NUM_CEP, evt_evento.COD_CNPJ_Promotora, evt_evento.DSC_Nome_Promotora, bsc_local_evento.DSC_Nome, bsc_local_evento.DSC_Endereco, bsc_local_evento.DSC_Bairro, bsc_local_evento.DSC_Cidade, bsc_local_evento.NUM_Fone FROM evt_evento_participante INNER JOIN bsc_participante ON evt_evento_participante.ID_BSC_Participante = bsc_participante.ID_Participante INNER JOIN evt_evento ON evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT INNER JOIN bsc_local_evento ON evt_evento.ID_BSC_Local_Evento = bsc_local_evento.ID_Local WHERE evt_evento_participante.ID_EVT_Evento = '%s'";
+    protected $SelectInnerBoleto = "SELECT COUNT(0) AS COUNT,bsc_participante.DSC_Nome, bsc_participante.DSC_Endereco, bsc_participante.DSC_Bairro, bsc_participante.DSC_Cidade, bsc_participante.NUM_CEP, evt_evento.COD_CNPJ_Promotora, evt_evento.DSC_Nome_Promotora, bsc_local_evento.DSC_Nome, bsc_local_evento.DSC_Endereco, bsc_local_evento.DSC_Bairro, bsc_local_evento.DSC_Cidade, bsc_local_evento.NUM_Fone FROM evt_evento_participante INNER JOIN bsc_participante ON evt_evento_participante.ID_BSC_Participante = bsc_participante.ID_Participante INNER JOIN evt_evento ON evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT INNER JOIN bsc_local_evento ON evt_evento.ID_BSC_Local_Evento = bsc_local_evento.ID_Local WHERE evt_evento_participante.ID_EVT_Evento_Pariticipante = '%s'";
 
     public function insert()
     {
@@ -54,7 +54,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
     public function load()
     {
         $rs = $this->select(sprintf("and ID_EVT_Evento_Pariticipante='%s'", $this->getID_EVT_Evento_Pariticipante()));
-        $this->setID_EVT($rs[0]['ID_EVT_Evento_Pariticipante']);
+        $this->setID_EVT_Evento_Pariticipante($rs[0]['ID_EVT_Evento_Pariticipante']);
         $this->setDSC_Nome_Crachav($rs[0]['DSC_Nome_Crachav']);
         $this->setCOD_Barras_Cracha($rs[0]['COD_Barras_Cracha']);
         $this->setVLR_Total($rs[0]['VLR_Total']);
@@ -114,8 +114,15 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $this->setID_EVT_Evento_Pariticipante($config->idUnico());
         $this->setID_EVT_Evento($id_Evt);
 
-
         $this->setID_EVT_Categoria($ID_Categoria);
+        
+        require_once ('./actions/aEvt_Evento_Categoria.php');
+        $evt_catg = new aEvt_Evento_Categoria();
+        $evt_catg->setID_Evento_Categoria($ID_Categoria);
+        $evt_catg->load();
+        
+        $this->setVLR_Total($evt_catg->getVLR_Inscricao());
+        $this->setVLR_Total_Inscricao($evt_catg->getVLR_Inscricao());
         $this->setID_BSC_Participante($partic->getID_Participante());
         $this->setDSC_Nome_Crachav($partic->getDSC_Nome());
         $this->setCOD_Barras_Cracha($partic->getCOD_CPF());
@@ -169,30 +176,30 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         }
     }
 
-    public function SelectInfoBoleto($ID_Evento)
+    public function SelectInfoBoleto($ID_EVT_Evento_Pariticipante)
     {
-        $rs = $this->RunSelect(sprintf($this->SelectInnerBoleto, $ID_Evento));
+        $rs = $this->RunSelect(sprintf($this->SelectInnerBoleto, $ID_EVT_Evento_Pariticipante));
         
         require_once ('./actions/aBsc_Participante.php');
         $partic = new aBsc_Participante();
-        $partic->setDSC_Nome($rs[0]['bsc_participante.DSC_Nome']);
-        $partic->setDSC_Endereco($rs[0]['bsc_participante.DSC_Endereco']);       
-        $partic->setDSC_Bairro($rs[0]['bsc_participante.DSC_Bairro']);
-        $partic->setDSC_Cidade($rs[0]['bsc_participante.DSC_Cidade']);
-        $partic->setNUM_CEP($rs[0]['bsc_participante.NUM_CEP']);
+        $partic->setDSC_Nome($rs[0]['DSC_Nome']);
+        $partic->setDSC_Endereco($rs[0]['DSC_Endereco']);       
+        $partic->setDSC_Bairro($rs[0]['DSC_Bairro']);
+        $partic->setDSC_Cidade($rs[0]['DSC_Cidade']);
+        $partic->setNUM_CEP($rs[0]['NUM_CEP']);
         
         require_once ('./actions/aEvt_evento.php');
         $Evento = new aEvt_Evento();
-        $Evento->setCOD_CNPJ_Promotora($rs[0]['evt_evento.COD_CNPJ_Promotora']);
-        $Evento->setDSC_Nome_Promotora($rs[0]['evt_evento.DSC_Nome_Promotora']);
+        $Evento->setCOD_CNPJ_Promotora($rs[0]['COD_CNPJ_Promotora']);
+        $Evento->setDSC_Nome_Promotora($rs[0]['DSC_Nome_Promotora']);
         
         require_once ('./actions/absc_local_evento.php');
         $LocalEvento = new absc_local_evento();
-        $LocalEvento->setDSC_Nome($rs[0]['bsc_local_evento.DSC_Nome']);
-        $LocalEvento->setDSC_Endereco($rs[0]['bsc_local_evento.DSC_Endereco']);
-        $LocalEvento->setDSC_Bairro($rs[0]['bsc_local_evento.DSC_Bairro']);
-        $LocalEvento->setDSC_Cidade($rs[0]['bsc_local_evento.DSC_Cidade']);
-        $LocalEvento->setNUM_Fone($rs[0]['bsc_local_evento.NUM_Fone']);
+        $LocalEvento->setDSC_Nome($rs[0]['DSC_Nome']);
+        $LocalEvento->setDSC_Endereco($rs[0]['DSC_Endereco']);
+        $LocalEvento->setDSC_Bairro($rs[0]['DSC_Bairro']);
+        $LocalEvento->setDSC_Cidade($rs[0]['DSC_Cidade']);
+        $LocalEvento->setNUM_Fone($rs[0]['NUM_Fone']);
         
         $count = $rs[0]['COUNT'];
         if ($count == 0)
