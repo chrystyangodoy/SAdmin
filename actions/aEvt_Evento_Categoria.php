@@ -27,7 +27,7 @@ class aEvt_Evento_Categoria extends mEvt_Evento_Categoria {
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getVLR_Inscricao(), $this->getDT_Inicio_Valor(), $this->getDT_Fim_Valor(), $this->getID_EVT_Evento(),$this->getID_Evento_Categoria());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getVLR_Inscricao(), $this->getDT_Inicio_Valor(), $this->getDT_Fim_Valor(), $this->getID_EVT_Evento(), $this->getID_Evento_Categoria());
         return $this->RunQuery($sql);
     }
 
@@ -40,8 +40,8 @@ class aEvt_Evento_Categoria extends mEvt_Evento_Categoria {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
-    
-    public function selectCategoriasDoEvento($ID_EVT_Evento){
+
+    public function selectCategoriasDoEvento($ID_EVT_Evento) {
         $rs = $this->select(sprintf(" and ID_EVT_Evento = '%s'  and now() > DT_Inicio_Valor and now() < DT_Fim_Valor", $ID_EVT_Evento));
         return $rs;
     }
@@ -55,7 +55,7 @@ class aEvt_Evento_Categoria extends mEvt_Evento_Categoria {
         $this->setID_EVT_Evento($rs[0]['ID_EVT_Evento']);
         return $this;
     }
-    
+
     public function selectInner($where = '', $order = '') {
         $sql = sprintf($this->sqlSelecInner, $where, $order);
         return $this->RunSelect($sql);

@@ -60,7 +60,7 @@ jQuery.validator.addMethod("cpfCadastradoEvento", function (value, element) {
 
     eventoID = getUrlParameter('ID_EVT_Evento');
 
-    resultado = isCPFCadastradoEvento(cpf,eventoID);
+    resultado = isCPFCadatradoEvento(cpf,eventoID);
 
 
 

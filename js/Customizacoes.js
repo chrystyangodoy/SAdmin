@@ -51,7 +51,9 @@ function isCPFCadastrado(cpf) {
     return resultado;
 }
 
-function isCPFCadastradoEvento(cpf, evento) {
+
+
+function isCPFCadatradoEvento(cpf, evento) {
     resultado = 0;
     $.ajax({
         url: "getCPFCasdastradoEvento.php",

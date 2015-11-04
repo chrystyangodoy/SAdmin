@@ -123,7 +123,7 @@ $(document).ready(function () {
         rules: {
             DSC_Nome: {required: true},
             DSC_Email: {required: true, email: true},
-            COD_CPF: {required: true, cpfValidacao: true, cpfCadastradoEvento:true,cpfValidacao:true},
+            COD_CPF: {required: true, cpfValidacao: true, cpfCadastradoEvento: true},
             NUM_CEP: {required: true},
             DSC_Cidade: {required: true},
             DSC_Bairro: {required: true},
@@ -172,14 +172,20 @@ $(document).ready(function () {
     });
     $("#COD_CPF").blur(function () {
         cpf = $("#COD_CPF").val();
+        cpf = jQuery.trim(cpf);
+
+        cpf = cpf.replace('.', '');
+        cpf = cpf.replace('.', '');
+        cpf = cpf.replace('-', '');
+        
         if (CPFValido(cpf)) {
             console.log("CPF Válido!");
             console.log("Inicio do getJson");
             $("#loadImg").css("display", "block").fadeIn();
-            var CPFNaoCadastradoEvento = isCPFCadastradoEvento(cpf, getUrlParameter('ID_EVT_Evento'));
-            
-            if(CPFNaoCadastradoEvento == 1){
-                
+            var CPFNaoCadastradoEvento = isCPFCadatradoEvento(cpf, getUrlParameter('ID_EVT_Evento'));
+            console.log(CPFNaoCadastradoEvento);
+            if (CPFNaoCadastradoEvento == 1) {
+
                 var CPFnaoCadastrado = isCPFCadastrado(cpf);
                 if (CPFnaoCadastrado == 1) {
                     habilitaCampos();
@@ -201,8 +207,11 @@ $(document).ready(function () {
                     $('#Password').focus();
 
                 }
+            } else {
+                showAlert('error', 'CPF já cadastrado para este Evento');
             }
-            
+
+
             $("#loadImg").css("display", "none").fadeOut();
         }
     });
@@ -214,17 +223,17 @@ $(document).ready(function () {
         console.log('Click no login');
 
         $.getJSON("getLoginParticipante.php", {Username: username, Password: password}, function (data) {
-            
+
             console.log('Inicio get');
-            
+
             $("#loadImg").css("display", "none").fadeOut();
 
             isSenhaCorreta = false;
 
             $.each(data, function (index, item) {
-                
+
                 console.log('each');
-                $('#COD_CPF').val(item.COD_CPF);
+
                 $('#DSC_Nome').val(item.DSC_Nome);
                 $('#DSC_Email').val(item.DSC_Email);
                 $('#COD_RG').val(item.COD_RG);
@@ -244,9 +253,9 @@ $(document).ready(function () {
                 $('#ID_BSC_Profissao').val(item.ID_BSC_Profissao);
                 $('#ID_Participante').val(item.ID_Participante);
                 $('#ID_Usuario').val(item.ID_Usuario);
-                
-                setCookie('ID_Participante',item.ID_Participante,1);
-                setCookie('ID_Usuario',item.ID_Usuario,1);
+
+                setCookie('ID_Participante', item.ID_Participante, 1);
+                setCookie('ID_Usuario', item.ID_Usuario, 1);
 
                 isSenhaCorreta = true;
 
