@@ -80,6 +80,23 @@
             {/foreach}
         </select>
     </div>
+    <div class="form-group">
+        <label>Tipo de Emissão do Boleto</label>
+        <select name="isPromotora" id="isPromotora"  class="form-control" style="width: 400px;">
+            <option value="0">Local</option>
+            <option value="1">Promotora</option>
+            
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Banco</label>
+        <select name="ID_Banco" id="ID_Banco"  class="form-control" style="width: 400px;">
+            <option value="0">-</option>
+            {foreach from=$listBanco item=row}
+            <option value="{$row.ID}">{$row.Agencia} / {$row.Conta}</option>
+            {/foreach}
+        </select>
+    </div>
     <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar">Cadastrar</button>    
     <a href="EventoList.php" class="btn btn-default">Cancelar</a>
 </form>

@@ -21,6 +21,8 @@ class mEvt_Evento extends dbConnection {
     private $QTD_CargaHorariaMinima;
     private $ID_BSC_Local_Evento;
     private $COD_Tipo_Estado_promotora;
+    private $isPromotora;
+    private $ID_Banco;
 
     public function setID_EVT($ID_EVT) {
         $this->ID_EVT = $ID_EVT;
@@ -158,4 +160,19 @@ class mEvt_Evento extends dbConnection {
         return $this->COD_Tipo_Estado_promotora;
     }
 
+    public function setisPromotora($isPromotora) {
+        $this->isPromotora = $isPromotora;
+    }
+
+    public function getisPromotora() {
+        return $this->isPromotora;
+    }
+    
+    public function setID_Banco($ID_Banco) {
+        $this->ID_Banco = $ID_Banco;
+    }
+
+    public function getID_Banco() {
+        return $this->ID_Banco;
+    }
 }

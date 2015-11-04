@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Out-2015 às 21:01
+-- Generation Time: 04-Nov-2015 às 19:26
 -- Versão do servidor: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `siga_web`
 --
-CREATE DATABASE IF NOT EXISTS `siga_web` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `siga_web`;
 
 -- --------------------------------------------------------
 
@@ -30,7 +28,7 @@ USE `siga_web`;
 
 DROP TABLE IF EXISTS `bsc_banco`;
 CREATE TABLE IF NOT EXISTS `bsc_banco` (
-  `ID` int(11) NOT NULL,
+  `ID` varchar(50) NOT NULL,
   `Agencia` varchar(100) NOT NULL,
   `Conta` varchar(20) NOT NULL,
   `Cod_Banco` varchar(20) NOT NULL,
@@ -38,8 +36,16 @@ CREATE TABLE IF NOT EXISTS `bsc_banco` (
   `Contrato` varchar(60) NOT NULL,
   `Carteira` varchar(60) NOT NULL,
   `Variacao_Carteira` varchar(60) NOT NULL,
-  `ID_Evento` int(11) NOT NULL
+  `numero_documento` int(11) NOT NULL,
+  `COD_CNPJ_Promotora` int(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `bsc_banco`
+--
+
+INSERT INTO `bsc_banco` (`ID`, `Agencia`, `Conta`, `Cod_Banco`, `Convenio`, `Contrato`, `Carteira`, `Variacao_Carteira`, `numero_documento`, `COD_CNPJ_Promotora`) VALUES
+('1', '9999', '99999', '237', '7777777', '999999', '18', '019', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -97,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `bsc_local_evento` (
 --
 
 INSERT INTO `bsc_local_evento` (`ID_Local`, `DSC_Nome`, `DSC_Endereco`, `DSC_Bairro`, `DSC_Cidade`, `NUM_CEO`, `NUM_Fone`, `NUM_FAX`, `DSC_EMAIL`, `DSC_Nome_Contato`, `COD_TIPOEstado`) VALUES
-('a26ce4d7dc4e91404bf315299fb78cda', 'Local Evento ', 'Endereco Evento', 'Fátima', 'Belém', '', '', '', '', '', '0');
+('a26ce4d7dc4e91404bf315299fb78cda', 'Local Evento ', 'Endereco Evento', 'FÃ¡tima', 'BelÃ©m', '', '', '', '', '', 'bbb95aac9ba83705cdad5e9e119ef9c3');
 
 -- --------------------------------------------------------
 
@@ -132,9 +138,7 @@ CREATE TABLE IF NOT EXISTS `bsc_participante` (
 --
 
 INSERT INTO `bsc_participante` (`ID_Participante`, `COD_CPF`, `COD_RG`, `DSC_Nome`, `DSC_Endereco`, `DSC_Bairro`, `DSC_Cidade`, `NUM_CEP`, `NUM_Fone`, `NUM_Celular`, `NUM_FAX`, `DSC_Profissao_Especialidade`, `DSC_Email`, `NUM_Registro`, `COD_Tipo_Estado`, `ID_BSC_Empresa`, `ID_BSC_Profissao`, `ID_Usuario`) VALUES
-('528c234df006558ae470fa0ccabe7892', '18044943722', '23.492.766', 'Participante 01', 'Rua SÃ£o Domingos', 'Terra Firme', 'BelÃ©m', '66.077-650', '', '', '', '', 'chrystyangodoy@gmail.com', '', 0, 1, 1, 'ed7e78d24a6c1d6a66ff8a0afb018299'),
-('b6573e570fbd1850156780e7182197ad', '52863298291', '4387870', 'Participante 02', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '', '', '', '', 'chrystyangodoy@gmail.com', '', 0, 1, 1, 'af6eb1a4bf6cfc13c5b0c86f606a2d34'),
-('a208d2644724d251d5421e85758e9376', '52863298291', '4387870', 'Chrystyan', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '', '', '', '', 'chrystyangodoy@gmail.com', '', 0, 1, 1, '');
+('3350c1ab14d5dc3170217a796c095ff5', '52863298291', '4387870', 'Chrystyan Godoy', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '', '', '', '', 'chrystyangodoy@gmail.com', '', 0, 1, 1, '63347d9901277faf92157ef3de7e985e');
 
 -- --------------------------------------------------------
 
@@ -253,18 +257,19 @@ CREATE TABLE IF NOT EXISTS `evt_evento` (
   `DSC_EMAIL_Promotora` varchar(100) NOT NULL,
   `QTD_CargaHorariaMinima` decimal(8,2) NOT NULL,
   `ID_BSC_Local_Evento` varchar(50) NOT NULL,
-  `COD_Tipo_Estado_promotora` varchar(50) NOT NULL
+  `COD_Tipo_Estado_promotora` varchar(50) NOT NULL,
+  `ID_Banco` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `evt_evento`
 --
 
-INSERT INTO `evt_evento` (`ID_EVT`, `DSC_Nome`, `DSC_Presidente`, `DT_Inicio`, `DT_Fim`, `COD_CNPJ_Promotora`, `DSC_Nome_Promotora`, `DSC_Presidente_Promotora`, `DSC_Endereco_Promotora`, `NUM_CEP_Promotora`, `DSC_Cidade_Promotora`, `NUM_Fone_Promotora`, `NUM_FAX_Promotora`, `DSC_EMAIL_Promotora`, `QTD_CargaHorariaMinima`, `ID_BSC_Local_Evento`, `COD_Tipo_Estado_promotora`) VALUES
-('528c234df006558ae470fa0ccabe7892', 'Evento 001', 'Presidente Evento', '2015-01-01', '2015-12-31', '101001001/0000', 'Nome da Promotora', 'Presidente Promotora', 'Domingos Marreiros', '66060160', 'BelÃ©m', '91 4006979', '91 4006979', 'promotora@prom.com.br', '0.00', 'a26ce4d7dc4e91404bf315299fb78cda', 'bbb95aac9ba83705cdad5e9e119ef9c3'),
-('528c234df006558ae470fa0ccabe7893', 'Evento 002', 'Presidente Evento 2', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', '0', '0'),
-('528c234df006558ae470fa0ccabe7894', 'Evento 003', 'Presidente Evento 3', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', '0', '0'),
-('528c234df006558ae470fa0ccabe7895', 'Evento 004', 'Presidente Evento 4', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', '0', '0');
+INSERT INTO `evt_evento` (`ID_EVT`, `DSC_Nome`, `DSC_Presidente`, `DT_Inicio`, `DT_Fim`, `COD_CNPJ_Promotora`, `DSC_Nome_Promotora`, `DSC_Presidente_Promotora`, `DSC_Endereco_Promotora`, `NUM_CEP_Promotora`, `DSC_Cidade_Promotora`, `NUM_Fone_Promotora`, `NUM_FAX_Promotora`, `DSC_EMAIL_Promotora`, `QTD_CargaHorariaMinima`, `ID_BSC_Local_Evento`, `COD_Tipo_Estado_promotora`, `ID_Banco`) VALUES
+('528c234df006558ae470fa0ccabe7892', 'Evento 001', 'Presidente Evento', '2015-01-01', '2015-12-31', '101001001/0000', 'Nome da Promotora', 'Presidente Promotora', 'Domingos Marreiros', '66060160', 'BelÃ©m', '91 4006979', '91 4006979', 'promotora@prom.com.br', '0.00', 'a26ce4d7dc4e91404bf315299fb78cda', 'bbb95aac9ba83705cdad5e9e119ef9c3', ''),
+('528c234df006558ae470fa0ccabe7893', 'Evento 002', 'Presidente Evento 2', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', '0', '0', ''),
+('528c234df006558ae470fa0ccabe7894', 'Evento 003', 'Presidente Evento 3', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', '0', '0', ''),
+('528c234df006558ae470fa0ccabe7895', 'Evento 004', 'Presidente Evento 4', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', 'a26ce4d7dc4e91404bf315299fb78cda', '0', '');
 
 -- --------------------------------------------------------
 
@@ -322,8 +327,8 @@ CREATE TABLE IF NOT EXISTS `evt_evento_categoria` (
 --
 
 INSERT INTO `evt_evento_categoria` (`ID_Evento_Categoria`, `DSC_Nome`, `VLR_Inscricao`, `DT_Inicio_Valor`, `DT_Fim_Valor`, `ID_EVT_Evento`) VALUES
-('528c234df006558ae470fa0ccabe7892', 'Categoria 01', '100.00', '2015-01-01', '2015-12-31', '528c234df006558ae470fa0ccabe7892'),
-('454a5f785a4b175974cf43890ab38b09', 'Categoria 03', '200.00', '2016-09-01', '2016-01-01', '528c234df006558ae470fa0ccabe7892');
+('528c234df006558ae470fa0ccabe7892', 'Categoria 01', '10000.00', '2015-01-01', '2015-12-31', '528c234df006558ae470fa0ccabe7895'),
+('454a5f785a4b175974cf43890ab38b09', 'Categoria 03', '200.00', '2016-09-01', '2016-01-01', '528c234df006558ae470fa0ccabe7893');
 
 -- --------------------------------------------------------
 
@@ -389,58 +394,7 @@ CREATE TABLE IF NOT EXISTS `evt_evento_participante` (
 --
 
 INSERT INTO `evt_evento_participante` (`ID_EVT_Evento_Pariticipante`, `DSC_Nome_Crachav`, `COD_Barras_Cracha`, `VLR_Total`, `VLR_Total_Inscricao`, `QTD_CargaHoraria_Realizada`, `COD_Nivel_Participante`, `ID_EVT_Pagamento`, `ID_EVT_Categoria`, `ID_EVT_Evento`, `ID_BSC_Participante`, `ID_EVT_Participante_Pai`, `COD_Tipo_SIT_Certificado`, `DTM_Entrega_Certificado`, `ID_SEG_DetalheTransacao`, `SIT_EH_Parcelado`, `ID_EVT_EventoGrupo`, `COD_TipoSituacao_Material`, `DTM_EntregaMaterial`, `COD_InscricaoExterno`) VALUES
-('7a1ad2470ac8dee70c032fd650a0b6fb', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('27b85957d1e329559ce72209aa18096c', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('5a272c0c279697791bb8e5359673d8ce', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('ab629e668ae65ed2fbf2f252290c3d40', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('8a818743922ad932d25df641d9eeb054', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('257d1c211346afed550c8888d2c6a952', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('baa7cbfe16005c3859836a0ba8b13d96', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('dbff6abf658add753a0a19fbd1735fbe', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('720d31eac852a74d04a4664994ac7c2e', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('22a6fbd43fb9a6c23a2127af96155f34', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('b67ceab2aa93dc610521915cd4ee29f5', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('9bab7694ec3cd0cf3d5064805aaeeeb8', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('e54c1c709c170a4833c17c4148139515', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('d6450e40c541c0c224e215b208119e4b', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('ba36b3e601f876ae1835fce72b8da42b', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('ebc9a193b3d434e059e3e712d1cf9de3', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('359d72c6098466bd4f6490f47a609831', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('12c030cedc407f2c3d211d65c478c0ee', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('2a17deb8fafd2b890a8b95d76f9377bf', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('87202021f81c0659241c422ce4dfc9b1', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('f922aa144916241f14a3bca40bc154d3', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('0583b61a2d10d9ff87af0bd762564a2a', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('f8790b585a49faeef810a214d3b7dc0e', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('da5f6e67c57914c1e1d1b23ae6b131ec', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('6c8774ae7d14b7417c1204d8f3c8fce3', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('164c3e3c5ae94ae81f1ad6d7537af8c5', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('97c8f70fee99583b1467fd05ca670c2c', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('60f8d30c345633da4af3c4588e752315', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7895', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('ea91632cdecb3615821553eecda4394a', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('329ad3b9258ce8d660c2ac17e2e75f6e', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('fd6b129103cec796624a0a3a138f0696', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('fd059949420a01733297f3a265e75afa', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('9dc48795f0a0848a60ca67a376675650', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('ce2cf2c1495b2293862a0ec1da3b8887', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('df89b2cdceb1ce09473aa3482761a98d', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('78277af216fe04d395a9896ad4781f69', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('749b9ff6de19fec98eec598c072c0ea6', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('2df88d29640bf3254dfb419b8074fb94', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('e6a4c999933931126cf27be63795558f', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('0ec6bb845cd8a851b107b82c60296d42', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('cb93202cb469171d0ce3d5c2c416e132', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('0e7990951308b36369626d8b33b91846', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('bbc54ec43e5beb600e8de6e9ba9ea2b2', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('bf7c714f8e68ef6395672aa68eb2584e', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('5d58d4257a4f074e2f8b9ed4418b9490', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('96dc3955835c5da54aedb5fbde80f881', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('bdbc89aa5fb4901ab31e8c07941f4c83', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('7d704ead2d6365d24480c3181ae3332c', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('7a36bafc6ea85a98821079c580880adf', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('014546b885f48f0daf918d4198e9ae74', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7894', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('dec57290083f51e5d74f03367c98c037', 'Participante 01', '18044943722', '0.00', '0.00', '0.00', 0, 0, '0', '528c234df006558ae470fa0ccabe7893', '528c234df006558ae470fa0ccabe7892', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
-('d4f1da2300aa1d7e945ff20527c317c1', 'Chrystyan', '52863298291', '0.00', '0.00', '0.00', 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7892', 'a208d2644724d251d5421e85758e9376', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0);
+('1788cc65c6afe3c2d8bb2023353a390c', 'Chrystyan Godoy', '52863298291', '10000.00', '10000.00', '0.00', 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7895', '3350c1ab14d5dc3170217a796c095ff5', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -465,6 +419,13 @@ CREATE TABLE IF NOT EXISTS `evt_pagamento` (
   `NUM_Parcelas` int(11) NOT NULL,
   `QTD_Parcelas_Pagas` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `evt_pagamento`
+--
+
+INSERT INTO `evt_pagamento` (`ID_Pagamento`, `DT_Transacao`, `DT_Pagamento`, `VLR_Transacao`, `VR_Pago`, `NUM_Recibo`, `COD_TipoFormaPagamento`, `COD_TipoOrigemInscricao`, `ID_EVT_Evento`, `ID_EVT_Pagamento_Pai`, `COD_Tipo_Situacao_Pagamento`, `QTD_Parcelas`, `NUM_Parcelas`, `QTD_Parcelas_Pagas`) VALUES
+('7b81808b7a3be6477c4d2fd5f3e3135e', '2015-11-04 02:00:00', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '1788cc65c6afe3c2d8bb2023353a390c', '0', 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -661,9 +622,7 @@ CREATE TABLE IF NOT EXISTS `seg_usuario` (
 
 INSERT INTO `seg_usuario` (`ID_Usuario`, `DSC_Login`, `DSC_Senha`, `DTM_Inicio`, `DTM_Fim`, `ID_SEG_Grupo`) VALUES
 ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2015-09-04 17:12:34', '0000-00-00 00:00:00', 1),
-('ed7e78d24a6c1d6a66ff8a0afb018299', '18044943722', '202cb962ac59075b964b07152d234b70', '2015-09-15 13:51:21', '2015-09-20 03:00:00', 99),
-('0e7c795ef217fc9c992315322b7c947f', '52863298291', 'a1d81f0ac7ef931d761805a7cfde26dd', '2015-09-24 03:00:00', '2015-10-01 03:00:00', 99),
-('af6eb1a4bf6cfc13c5b0c86f606a2d34', '52863298291', '1af7be944f304767217be1c441fd6ddc', '2015-09-24 03:00:00', '2015-10-01 03:00:00', 99);
+('63347d9901277faf92157ef3de7e985e', '52863298291', '202cb962ac59075b964b07152d234b70', '2015-11-04 14:44:23', '2015-11-11 02:00:00', 99);
 
 -- --------------------------------------------------------
 
@@ -1081,7 +1040,7 @@ ALTER TABLE `tb_tipo_situacao_pagamento`
 -- AUTO_INCREMENT for table `bsc_banco`
 --
 ALTER TABLE `bsc_banco`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `bsc_empresa`
 --

@@ -5,6 +5,7 @@ require_once ('./config/configs.php');
 require_once './actions/aEvt_Evento.php';
 require_once './actions/aBsc_Local_Evento.php';
 require_once './actions/atb_Tipo_Estado.php';
+require_once './actions/aBsc_Banco.php';
 require_once './config/FeedbackMessage.php';
 
 session_start();
@@ -14,11 +15,14 @@ $FeedbackMessage = new FeedbackMessage();
 $evento = new aEvt_Evento();
 $localevento = new aBsc_Local_Evento();
 $tipoestado = new atb_Tipo_Estado();
+$banco = new aBsc_Banco();
+
 $config = new configs();
 
-if (isset($_POST['Cadastrar'])) {
+if (isset($_POST['Cadastrar']))
+{
     $idUnico = $config->idUnico();
-    
+
     $evento->setID_EVT($idUnico);
     $evento->setDSC_Nome($_POST['DSC_Nome']);
     $evento->setDSC_Presidente($_POST['DSC_Presidente']);
@@ -36,14 +40,17 @@ if (isset($_POST['Cadastrar'])) {
     $evento->setQTD_CargaHorariaMinima($_POST['QTD_CargaHorariaMinima']);
     $evento->setID_BSC_Local_Evento($_POST['ID_BSC_Local_Evento']);
     $evento->setCOD_Tipo_Estado_promotora($_POST['COD_Tipo_Estado_promotora']);
+    $evento->setisPromotora($_POST['isPromotora']);
+    $evento->setID_Banco($_POST['ID_Banco']);
     $evento->insert();
-    
+
     $FeedbackMessage->setMsg("Evento inserido com sucesso!");
 }
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
-$smarty -> assign("listLocal",$localevento->select());
-$smarty -> assign("listTpUF",$tipoestado->select());
+$smarty->assign("listLocal", $localevento->select());
+$smarty->assign("listTpUF", $tipoestado->select());
+$smarty->assign("listBanco", $banco->select());
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 
