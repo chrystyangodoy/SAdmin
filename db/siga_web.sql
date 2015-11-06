@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Nov-2015 às 19:26
+-- Generation Time: 06-Nov-2015 às 14:54
 -- Versão do servidor: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `siga_web`
 --
+CREATE DATABASE IF NOT EXISTS `siga_web` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `siga_web`;
 
 -- --------------------------------------------------------
 
@@ -258,6 +260,7 @@ CREATE TABLE IF NOT EXISTS `evt_evento` (
   `QTD_CargaHorariaMinima` decimal(8,2) NOT NULL,
   `ID_BSC_Local_Evento` varchar(50) NOT NULL,
   `COD_Tipo_Estado_promotora` varchar(50) NOT NULL,
+  `isPromotora` tinyint(1) NOT NULL,
   `ID_Banco` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -265,11 +268,10 @@ CREATE TABLE IF NOT EXISTS `evt_evento` (
 -- Extraindo dados da tabela `evt_evento`
 --
 
-INSERT INTO `evt_evento` (`ID_EVT`, `DSC_Nome`, `DSC_Presidente`, `DT_Inicio`, `DT_Fim`, `COD_CNPJ_Promotora`, `DSC_Nome_Promotora`, `DSC_Presidente_Promotora`, `DSC_Endereco_Promotora`, `NUM_CEP_Promotora`, `DSC_Cidade_Promotora`, `NUM_Fone_Promotora`, `NUM_FAX_Promotora`, `DSC_EMAIL_Promotora`, `QTD_CargaHorariaMinima`, `ID_BSC_Local_Evento`, `COD_Tipo_Estado_promotora`, `ID_Banco`) VALUES
-('528c234df006558ae470fa0ccabe7892', 'Evento 001', 'Presidente Evento', '2015-01-01', '2015-12-31', '101001001/0000', 'Nome da Promotora', 'Presidente Promotora', 'Domingos Marreiros', '66060160', 'BelÃ©m', '91 4006979', '91 4006979', 'promotora@prom.com.br', '0.00', 'a26ce4d7dc4e91404bf315299fb78cda', 'bbb95aac9ba83705cdad5e9e119ef9c3', ''),
-('528c234df006558ae470fa0ccabe7893', 'Evento 002', 'Presidente Evento 2', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', '0', '0', ''),
-('528c234df006558ae470fa0ccabe7894', 'Evento 003', 'Presidente Evento 3', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', '0', '0', ''),
-('528c234df006558ae470fa0ccabe7895', 'Evento 004', 'Presidente Evento 4', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', 'a26ce4d7dc4e91404bf315299fb78cda', '0', '');
+INSERT INTO `evt_evento` (`ID_EVT`, `DSC_Nome`, `DSC_Presidente`, `DT_Inicio`, `DT_Fim`, `COD_CNPJ_Promotora`, `DSC_Nome_Promotora`, `DSC_Presidente_Promotora`, `DSC_Endereco_Promotora`, `NUM_CEP_Promotora`, `DSC_Cidade_Promotora`, `NUM_Fone_Promotora`, `NUM_FAX_Promotora`, `DSC_EMAIL_Promotora`, `QTD_CargaHorariaMinima`, `ID_BSC_Local_Evento`, `COD_Tipo_Estado_promotora`, `isPromotora`, `ID_Banco`) VALUES
+('528c234df006558ae470fa0ccabe7892', 'Evento 001', 'Presidente Evento', '2015-01-01', '2015-12-31', '101001001/0000', 'Nome da Promotora', 'Presidente Promotora', 'Domingos Marreiros', '66060160', 'BelÃ©m', '91 4006979', '91 4006979', 'promotora@prom.com.br', '0.00', 'a26ce4d7dc4e91404bf315299fb78cda', 'bbb95aac9ba83705cdad5e9e119ef9c3', 0, ''),
+('ec9ed85ee8e502bc2d5f0432434964fb', 'Evento para teste de impressÃ£o de boleto', 'Bill Gates', '0000-00-00', '0000-00-00', '25.271.284/000', 'Microsoft LTDA', 'Bill Gates', 'Domingos Marreiros', '66060160', 'BelÃ©m', '91 4006979', '91 4006979', 'promotora@prom.com.br', '100.00', 'a26ce4d7dc4e91404bf315299fb78cda', 'bbb95aac9ba83705cdad5e9e119ef9c3', 1, '1'),
+('528c234df006558ae470fa0ccabe7895', 'Evento 004', 'Presidente Evento 4', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', 'a26ce4d7dc4e91404bf315299fb78cda', '0', 0, '');
 
 -- --------------------------------------------------------
 
