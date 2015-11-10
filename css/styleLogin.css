@@ -298,33 +298,3 @@ label.error {
     border-color: #ebccd1;
     padding:1px 20px 1px 20px;
 }
-#alert {
-    display: none;/* O alerta deve iniciar oculto */
-    width: 300px;
-    height: auto;
-    border-radius:10px;
-    font-family:Tahoma,Geneva,Arial,sans-serif;font-size:12px;
-    font-weight: bold;
-    overflow: hidden;
-    /*position: fixed;*/
-    position: absolute;
-    left: 50%;
-    margin-left: -160px;
-    z-index: 999999;
-    padding: 10px;
-    color: #fff;
-    cursor: pointer;
-    top: 0;
-    text-align: center;
-}
-
-.alert-error {
-    background:#FF5252 url('../images/error.png') no-repeat 10px 50%;
-    border:1px solid #f5aca6;
-
-}
-
-.alert-success {
-    background: #0f9d58 url('../images/success.png') no-repeat 10px 50%;
-    border:1px solid #2ecc71;
-}
