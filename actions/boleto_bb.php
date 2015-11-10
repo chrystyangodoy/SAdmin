@@ -51,9 +51,12 @@ require_once ('./actions/aBsc_Participante.php');
 $partic = new aBsc_Participante();
 require_once ('./actions/aEvt_evento.php');
 $Evento = new aEvt_Evento();
+$Evento->setID_EVT($DadosEvento->getID_EVT_Evento());
+$Evento->load();
 require_once ('./actions/absc_local_evento.php');
 $LocalEvento = new absc_local_evento();
-
+$LocalEvento->setID_Local($Evento->getID_BSC_Local_Evento());
+$LocalEvento->load();
 // +--------------------------------------------------------------------------------------------------------+
 // ------------------------- DADOS DINÂMICOS DO SEU CLIENTE PARA A GERAÇÃO DO BOLETO (FIXO OU VIA GET) -------------------- //
 // Os valores abaixo podem ser colocados manualmente ou ajustados p/ formulário c/ POST, GET ou de BD (MySql,Postgre,etc)	//

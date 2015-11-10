@@ -188,7 +188,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $partic->setDSC_Cidade($rs[0]['DSC_Cidade']);
         $partic->setNUM_CEP($rs[0]['NUM_CEP']);
         
-        require_once ('./actions/aEvt_evento.php');
+        require_once ('./actions/aEvt_Evento.php');
         $Evento = new aEvt_Evento();
         $Evento->setCOD_CNPJ_Promotora($rs[0]['COD_CNPJ_Promotora']);
         $Evento->setDSC_Nome_Promotora($rs[0]['DSC_Nome_Promotora']);
