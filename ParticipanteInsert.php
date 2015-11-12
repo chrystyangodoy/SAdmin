@@ -127,12 +127,16 @@ if (isset($_POST['Cadastrar'])) {
                 if ($isParticipanteNovo) {
 
                     $ass = "Cadastro efetuado com sucesso!";
-                    $mens = ("Seu usuário é " . $cpf . " sua senha é " . $senha . ".");
-                    $msg = 'Verifique seu e-mail para verificar usuario e senha';
+                    $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() + 
+                            ', será confirmada após pagamento do boleto.<br />
+                            Seus dados para acesso são <br />
+                            Usuário:' + $cpf + '<br />' +
+                            'Senha:' + $senha + '<br />' +
+                            'Link: acesso acompanhamento';
                 } else {
                     $ass = "Cadastro efetuado com sucesso!";
-                    $mens = ("Participando do evento");
-                    $msg = 'Você está participando do evento';
+                    $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() + 
+                            ', será confirmada após pagamento do boleto.';
                 }
 
                 require_once './config/eMail.php';

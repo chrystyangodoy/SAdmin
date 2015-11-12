@@ -131,7 +131,16 @@
                                         <input type="text" class="form-control" id="DSC_Endereco" name="DSC_Endereco" placeholder="Endereço " disabled>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label>Estado</label>
+                                        <select name="COD_Tipo_Estado" id="COD_Tipo_Estado" class="form-control col-lg-3" disabled>
+                                            <option value="0">-</option>
+                                            {foreach from=$listEstado item=row}
+                                            <option value="{$row.DSC_Nome}">{$row.DSC_Nome}</option>
+                                            {/foreach}
+                                        </select>
 
+                                    </div>
 
                                     <h3 class="page-header">Contato</h3>
                                     <div class="row">
@@ -183,16 +192,7 @@
                                         <label>Nº Registro</label>
                                         <input type="text" class="form-control" name="NUM_Registro" id="NUM_Registro" placeholder="Número Registro" disabled>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Estado</label>
-                                        <select name="COD_Tipo_Estado" id="COD_Tipo_Estado" class="form-control col-lg-3" disabled>
-                                            <option value="0">-</option>
-                                            {foreach from=$listEstado item=row}
-                                            <option value="{$row.DSC_Nome}">{$row.DSC_Nome}</option>
-                                            {/foreach}
-                                        </select>
 
-                                    </div>
                                     <br/>
                                     <input type="hidden" id="ID_Participante" value="">
                                     <input type="hidden" id="ID_Usuario" value="">
@@ -237,7 +237,7 @@
                             </div>
                             <!--END FOOTER-->
                         </div>
-                        
+
 
                         <!--END LOGIN FORM-->
 
