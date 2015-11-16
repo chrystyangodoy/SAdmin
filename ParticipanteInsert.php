@@ -137,7 +137,7 @@ if (isset($_POST['Cadastrar'])) {
 
                 require_once './config/eMail.php';
                 $emailObj = new eMail();
-
+                $partic->setDSC_Nome($_POST['DSC_Nome']);
                 $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
 
                 $FeedbackMessage->setMsg($msg);

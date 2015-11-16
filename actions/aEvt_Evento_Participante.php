@@ -193,7 +193,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $Evento->setCOD_CNPJ_Promotora($rs[0]['COD_CNPJ_Promotora']);
         $Evento->setDSC_Nome_Promotora($rs[0]['DSC_Nome_Promotora']);
         
-        require_once ('./actions/absc_local_evento.php');
+        require_once ('./actions/aBsc_Local_Evento.php');
         $LocalEvento = new absc_local_evento();
         $LocalEvento->setDSC_Nome($rs[0]['DSC_Nome']);
         $LocalEvento->setDSC_Endereco($rs[0]['DSC_Endereco']);
