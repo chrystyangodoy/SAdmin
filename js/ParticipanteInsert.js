@@ -170,14 +170,14 @@ $(document).ready(function () {
             return false;
         }
     });
-    $("#COD_CPF").blur(function () {
+    $("#COD_CPF").keypress(function () {
         cpf = $("#COD_CPF").val();
         cpf = jQuery.trim(cpf);
 
         cpf = cpf.replace('.', '');
         cpf = cpf.replace('.', '');
         cpf = cpf.replace('-', '');
-        
+        console.log('keypress');
         if (CPFValido(cpf)) {
             console.log("CPF Válido!");
             console.log("Inicio do getJson");
