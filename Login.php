@@ -17,7 +17,7 @@ if (isset($_POST['btnLogin'])){
         $_SESSION['DSC_Login'] = $usuario->getDSC_Login();
         $FeedbackMessage->setMsg("Bem Vindo, " . $_SESSION['DSC_Login']);
 
-        if ($Username == "admin")
+        if ($Username == "admin" || $usuario->getID_SEG_Grupo()<>99)
         {
             header("Location: AreaAdmin.php");
         }
