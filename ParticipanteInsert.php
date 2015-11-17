@@ -24,6 +24,7 @@ if (isset($_POST['Cadastrar'])) {
     require ('./actions/aBsc_Participante.php');
     require ('./actions/aUsuario.php');
     require_once './config/geraSenha.php';
+    require_once './actions/aEvt_Evento.php';
 
     $evtPart = new aEvt_Evento_Participante();
     $partic = new aBsc_Participante();
@@ -33,6 +34,12 @@ if (isset($_POST['Cadastrar'])) {
     $user = new aUsuario();
 
     $config = new configs();
+    
+    $evento = new aEvt_Evento();
+    
+    $evento->setID_EVT($ID_Evento);
+    
+    $evento->load();
 
     //limpa cpf
     $cpf = $config->limpaCPF($_POST['COD_CPF']);
