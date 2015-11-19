@@ -65,6 +65,7 @@ if (isset($_POST['Cadastrar'])) {
         $isParticipanteNovo = FALSE;
     }
 
+    
     //validação do CPF
     if ($config->validaCPF($cpf)) {
         //verifica se o CPF já foi cadastrado
