@@ -49,7 +49,7 @@ class mEvt_Evento extends dbConnection {
     }
 
     public function setDT_Inicio($DT_Inicio) {
-        $this->DT_Inicio = $DT_Inicio;
+        $this->DT_Inicio = $this->dateToUS($DT_Inicio);
     }
 
     public function getDT_Inicio() {
@@ -57,7 +57,7 @@ class mEvt_Evento extends dbConnection {
     }
 
     public function setDT_Fim($DT_Fim) {
-        $this->DT_Fim = $DT_Fim;
+        $this->DT_Fim = $this->dateToUS($DT_Fim);
     }
 
     public function getDT_Fim() {

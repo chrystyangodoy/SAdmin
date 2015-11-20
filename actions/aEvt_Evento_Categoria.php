@@ -19,7 +19,14 @@ class aEvt_Evento_Categoria extends mEvt_Evento_Categoria {
     protected $sqlUpdate = "update evt_evento_categoria set DSC_Nome='%s', VLR_Inscricao='%s', DT_Inicio_Valor='%s', DT_Fim_Valor='%s', ID_EVT_Evento='%s' where ID_Evento_Categoria='%s'";
     protected $sqlDelete = "delete from evt_evento_categoria where ID_Evento_Categoria = '%s'";
     protected $sqlSelect = "select * from evt_evento_categoria where 1=1 %s %s";
-    protected $sqlSelecInner = "SELECT evt_evento_categoria.*, evt_evento.DSC_Nome FROM evt_evento_categoria inner join evt_evento on evt_evento_categoria.ID_EVT_Evento = evt_evento.ID_EVT where 1=1 %s %s";
+    protected $sqlSelecInner = "SELECT  evt_evento_categoria.ID_Evento_Categoria,
+                                        evt_evento_categoria.DSC_Nome,
+                                        evt_evento_categoria.VLR_Inscricao,
+                                        DATE_FORMAT( evt_evento_categoria.DT_Inicio_Valor , '%d/%m/%Y' ) as DT_Inicio,
+                                        DATE_FORMAT( evt_evento_categoria.DT_Fim_Valor , '%d/%m/%Y' ) as DT_Fim_Valor,
+                                        evt_evento.DSC_Nome as evento 
+                                FROM    evt_evento_categoria inner join evt_evento on evt_evento_categoria.ID_EVT_Evento = evt_evento.ID_EVT 
+                                where   1=1 %s %s";
 
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getID_Evento_Categoria(), $this->getDSC_Nome(), $this->getVLR_Inscricao(), $this->getDT_Inicio_Valor(), $this->getDT_Fim_Valor(), $this->getID_EVT_Evento());
@@ -57,7 +64,16 @@ class aEvt_Evento_Categoria extends mEvt_Evento_Categoria {
     }
 
     public function selectInner($where = '', $order = '') {
-        $sql = sprintf($this->sqlSelecInner, $where, $order);
+        
+        
+        $sql = "SELECT  evt_evento_categoria.ID_Evento_Categoria,
+                                        evt_evento_categoria.DSC_Nome,
+                                        evt_evento_categoria.VLR_Inscricao,
+                                        DATE_FORMAT( evt_evento_categoria.DT_Inicio_Valor , '%d/%m/%Y' ) as DT_Inicio,
+                                        DATE_FORMAT( evt_evento_categoria.DT_Fim_Valor , '%d/%m/%Y' ) as DT_Fim_Valor,
+                                        evt_evento.DSC_Nome as evento 
+                                FROM    evt_evento_categoria inner join evt_evento on evt_evento_categoria.ID_EVT_Evento = evt_evento.ID_EVT ";
+        
         return $this->RunSelect($sql);
     }
 
