@@ -29,7 +29,7 @@ BODY STYLING
 }
 
 body {
-    background: url(../images/Lbg.png) repeat;
+    background: url(../imagens/Lbg.png) repeat;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight:300;
     text-align: left;
@@ -72,7 +72,7 @@ body {
     margin-top: -300px;
 
     /* Fallback */ 
-    background-image: url(../images/gradient.png); 
+    background-image: url(../imagens/gradient.png); 
     background-repeat: no-repeat; 
 
     /* CSS3 Gradient */
@@ -191,12 +191,12 @@ CONTENT
 
 .user-icon {
     top:147px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
-    background: rgba(65,72,72,0.75) url(../images/user-icon.png) no-repeat center;	
+    background: rgba(65,72,72,0.75) url(../imagens/user-icon.png) no-repeat center;	
 }
 
 .pass-icon {
     top:221px;
-    background: rgba(65,72,72,0.75) url(../images/pass-icon.png) no-repeat center;
+    background: rgba(65,72,72,0.75) url(../imagens/pass-icon.png) no-repeat center;
 }
 
 /* Animation */

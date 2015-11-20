@@ -266,13 +266,13 @@ label.error {
 }
 
 .alert-error {
-    background:#FF5252 url('../images/error.png') no-repeat 10px 50%;
+    background:#FF5252 url('../imagens/error.png') no-repeat 10px 50%;
     border:1px solid #f5aca6;
 
 }
 
 .alert-success {
-    background: #0f9d58 url('../images/success.png') no-repeat 10px 50%;
+    background: #0f9d58 url('../imagens/success.png') no-repeat 10px 50%;
     border:1px solid #2ecc71;
 }
 
@@ -284,6 +284,6 @@ label.error {
     width: 128px;
     background: rgba(255,255,255,0.2);
     z-index: 999;
-    background-image: url(../images/ajax-loader_2.gif);
+    background-image: url(../imagens/ajax-loader_2.gif);
     display: none;
 }

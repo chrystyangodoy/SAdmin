@@ -6,6 +6,6 @@
     width: 128px;
     background: rgba(255,255,255,0.2);
     z-index: 9999;
-    background-image: url(../images/ajax-loader_2.gif);
+    background-image: url(../imagens/ajax-loader_2.gif);
     display: none;
 }

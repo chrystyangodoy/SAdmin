@@ -110,8 +110,8 @@ $dadosboleto["especie_doc"] = "DM";
 
 // ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
 // DADOS DA SUA CONTA - BANCO DO BRASIL
-$dadosboleto["agencia"] = "9999"; // Num da agencia, sem digito
-$dadosboleto["conta"] = "99999";  // Num da conta, sem digito
+$dadosboleto["agencia"] = "08788"; // Num da agencia, sem digito
+$dadosboleto["conta"] = "26095";  // Num da conta, sem digito
 // DADOS PERSONALIZADOS - BANCO DO BRASIL
 $dadosboleto["convenio"] = "7777777";  // Num do convênio - REGRA: 6 ou 7 ou 8 dígitos
 $dadosboleto["contrato"] = "999999"; // Num do seu contrato
@@ -119,7 +119,7 @@ $dadosboleto["carteira"] = "18";
 $dadosboleto["variacao_carteira"] = "-019";  // Variação da Carteira, com traço (opcional)
 // TIPO DO BOLETO
 $dadosboleto["formatacao_convenio"] = "7"; // REGRA: 8 p/ Convênio c/ 8 digitos, 7 p/ Convênio c/ 7 d�gitos, ou 6 se Convênio c/ 6 dígitos
-$dadosboleto["formatacao_nosso_numero"] = "2"; // REGRA: Usado apenas p/ Convênio c/ 6 dígitos: informe 1 se for NossoNúmero de até 5 dígitos ou 2 para opção de até 17 dígitos
+$dadosboleto["formatacao_nosso_numero"] = "1"; // REGRA: Usado apenas p/ Convênio c/ 6 dígitos: informe 1 se for NossoNúmero de até 5 dígitos ou 2 para opção de até 17 dígitos
 
 /*
   #################################################
