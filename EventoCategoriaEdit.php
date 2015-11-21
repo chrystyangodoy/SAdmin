@@ -1,12 +1,13 @@
 <?php
 
+session_start();
+include_once './config/ValidaSessao.php';
 require_once './smarty.php';
 require './actions/aEvt_Evento_Categoria.php';
 require_once './actions/aEvt_Evento.php';
 $eventoCateg = new aEvt_Evento_Categoria();
 $evento = new aEvt_Evento();
 
-session_start();
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 

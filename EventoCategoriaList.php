@@ -1,9 +1,10 @@
 <?php
 
+session_start();
+include_once './config/ValidaSessao.php';
 require_once './smarty.php';
 require ('./actions/aEvt_Evento_Categoria.php');
 $eventoCateg = new aEvt_Evento_Categoria();
-session_start();
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 

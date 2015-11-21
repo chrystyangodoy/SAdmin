@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+include_once './config/ValidaSessao.php';
+
 require_once 'smarty.php';
 require_once ('./config/configs.php');
 require_once './actions/aEvt_Evento.php';
@@ -8,7 +11,6 @@ require_once './actions/atb_Tipo_Estado.php';
 require_once './actions/aBsc_Banco.php';
 require_once './config/FeedbackMessage.php';
 
-session_start();
 
 $FeedbackMessage = new FeedbackMessage();
 

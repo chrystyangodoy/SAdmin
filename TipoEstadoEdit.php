@@ -1,10 +1,12 @@
 <?php
 
+session_start();
+include_once './config/ValidaSessao.php';
+
 require_once 'smarty.php';
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 
-session_start();
 
 require './actions/atb_Tipo_Estado.php';
 $tpEstado = new atb_Tipo_Estado();

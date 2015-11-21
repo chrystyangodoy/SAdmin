@@ -1,10 +1,12 @@
 <?php
 
+session_start();
+include_once './config/ValidaSessao.php';
+
 require_once './smarty.php';
 require ('./actions/aBsc_Local_Evento.php');
 $localEvento = new aBsc_Local_Evento();
 
-session_start();
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 

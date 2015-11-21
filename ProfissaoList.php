@@ -1,9 +1,11 @@
 <?php
+session_start();
+include_once './config/ValidaSessao.php';
+
 require_once 'smarty.php';
 require_once './actions/aBsc_Profissao.php';
 $prof = new aBsc_Profissao();
 
-session_start();
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 

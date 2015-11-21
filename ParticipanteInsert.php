@@ -138,10 +138,12 @@ if (isset($_POST['Cadastrar'])) {
 
                     $ass = "Cadastro efetuado com sucesso!";
                     
-                    $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() + ', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
-                            Usuário: '+$cpf +'<br />
-                            Senha: '+$senha+' <br />
-                            Link: acesso acompanhamento';
+                    $msg = 'Sua inscrição no evento '. $evento->getDSC_Nome() .', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
+                            Usuário: '.$cpf .'<br />
+                            Senha: '.$senha." <br />
+                            Link: <a href='".$_SERVER[HTTP_ORIGIN]."/sadmin/Login.php"."'>acesso acompanhamento</a>";
+
+                    
                 } else {
                     $ass = "Cadastro efetuado com sucesso!";
                     $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() + 
@@ -152,8 +154,10 @@ if (isset($_POST['Cadastrar'])) {
                 $emailObj = new eMail();
 
                 $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $msg);
-
-                $FeedbackMessage->setMsg($msg);
+                
+                $msgFeedMessage = 'Cadastro efetuado com sucesso.</br>Verifique seu e-mail.';
+                
+                $FeedbackMessage->setMsg($msgFeedMessage);
                 header("Location: Index.php");
                 die();
             } catch (Exception $e) {

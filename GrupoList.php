@@ -1,9 +1,11 @@
 <?php
+session_start();
+include_once './config/ValidaSessao.php';
+
 require_once 'smarty.php';
 require_once './actions/aGrupoUsuario.php';
 $grupo = new aGrupoUsuario();
 require_once './config/FeedbackMessage.php';
-session_start();
 $FeedbackMessage = new FeedbackMessage();
 
 if (isset($_GET['del'])) {

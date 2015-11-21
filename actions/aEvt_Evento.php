@@ -21,7 +21,7 @@ class aEvt_Evento extends mEvt_Evento {
                                     WHERE       CURRENT_DATE() < DT_Fim";
 
     public function insert() {
-        $sql = sprintf($this->sqlInsert,$this->getID_EVT(), $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(), $this->getDT_Fim(), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora(), $this->getisPromotora(),$this->getID_Banco());
+        $sql = sprintf($this->sqlInsert, $this->getID_EVT(), $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(), $this->getDT_Fim(), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora(), $this->getisPromotora(), $this->getID_Banco());
         return $this->RunQuery($sql);
     }
 
@@ -63,9 +63,57 @@ class aEvt_Evento extends mEvt_Evento {
         $this->setID_Banco($rs[0]['ID_Banco']);
         return $this;
     }
-    
-    public function SelectEventoEmdia(){
+
+    public function SelectEventoEmdia() {
         return $this->RunSelect($this->sqlInnerEventoLocal);
+    }
+
+    public function geraXMLEvento($EventoID) {
+
+        $this->setID_EVT($EventoID);
+
+        $this->load();
+
+        #versao do encoding xml
+        $dom = new DOMDocument("1.0", "windows-1252");
+        #retirar os espacos em branco
+        $dom->preserveWhiteSpace = false;
+        #gerar o codigo
+        $dom->formatOutput = true;
+        #criando o nó principal (DadosCMATO)
+        $root = $dom->createElement("DadosCMATO");
+
+        #setanto nomes e atributos dos elementos xml (nós)
+        $nomeEvento = $dom->createElement("nomeEvento", $this->getDSC_Nome());
+
+        $dataAtual = $DateOfRequest = date("d-m-Y H:i:s", strtotime($_REQUEST["DateOfRequest"]));
+
+        date_default_timezone_set($timezone_identifier);
+        
+        $dataHoraGeracao = $dom->createElement("dataHoraGeracao", $dataAtual);
+
+        $participantes = $dom->createElement("participantes");
+
+        $boletos = $dom->createElement("boletos");
+
+        $root->appendChild($nomeEvento);
+        $root->appendChild($dataHoraGeracao);
+        $root->appendChild($nomeEvento);
+        $root->appendChild($participantes);
+        $root->appendChild($boletos);
+
+        $dom->appendChild($root);
+
+        # Para salvar o arquivo, descomente a linha
+        $dom->save("evento.xml");
+
+//        #cabeçalho da página
+//
+//        header("Content-Type: text/xml");
+//
+//        # imprime o xml na tela
+//
+//        print $dom->saveXML();
     }
 
 }

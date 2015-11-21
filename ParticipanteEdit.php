@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+include_once './config/ValidaSessao.php';
+
 require_once './smarty.php';
 require ('./actions/aBsc_Participante.php');
 require ('./actions/aUsuario.php');
@@ -9,7 +12,6 @@ $user = new aUsuario();
 
 $tipoestado = new atb_Tipo_Estado();
 
-session_start();
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 
