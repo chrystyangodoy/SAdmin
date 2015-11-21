@@ -170,7 +170,7 @@ $(document).ready(function () {
             return false;
         }
     });
-    $("#COD_CPF").keypress(function () {
+    $("#COD_CPF").on('keypress blur' ,function () {
         cpf = $("#COD_CPF").val();
         cpf = jQuery.trim(cpf);
 

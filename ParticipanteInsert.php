@@ -132,15 +132,16 @@ if (isset($_POST['Cadastrar'])) {
 
                 //Informações para gerar o Boleto 
 
+                $ass = '';
+                $msg = '';
                 if ($isParticipanteNovo) {
 
                     $ass = "Cadastro efetuado com sucesso!";
-                    $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() + 
-                            ', será confirmada após pagamento do boleto.<br />
-                            Seus dados para acesso são <br />
-                            Usuário:' + $cpf + '<br />' +
-                            'Senha:' + $senha + '<br />' +
-                            'Link: acesso acompanhamento';
+                    
+                    $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() + ', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
+                            Usuário: '+$cpf +'<br />
+                            Senha: '+$senha+' <br />
+                            Link: acesso acompanhamento';
                 } else {
                     $ass = "Cadastro efetuado com sucesso!";
                     $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() + 
@@ -150,7 +151,7 @@ if (isset($_POST['Cadastrar'])) {
                 require_once './config/eMail.php';
                 $emailObj = new eMail();
 
-                $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
+                $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $msg);
 
                 $FeedbackMessage->setMsg($msg);
                 header("Location: Index.php");
