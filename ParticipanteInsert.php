@@ -132,15 +132,18 @@ if (isset($_POST['Cadastrar'])) {
 
                 //Informações para gerar o Boleto 
 
+                $ass = '';
+                $msg = '';
                 if ($isParticipanteNovo) {
 
                     $ass = "Cadastro efetuado com sucesso!";
-                    $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() + 
-                            ', será confirmada após pagamento do boleto.<br />
-                            Seus dados para acesso são <br />
-                            Usuário:' + $cpf + '<br />' +
-                            'Senha:' + $senha + '<br />' +
-                            'Link: acesso acompanhamento';
+                    
+                    $msg = 'Sua inscrição no evento '. $evento->getDSC_Nome() .', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
+                            Usuário: '.$cpf .'<br />
+                            Senha: '.$senha." <br />
+                            Link: <a href='".$_SERVER[HTTP_ORIGIN]."/sadmin/Login.php"."'>acesso acompanhamento</a>";
+
+                    
                 } else {
                     $ass = "Cadastro efetuado com sucesso!";
                     $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() + 
@@ -150,9 +153,11 @@ if (isset($_POST['Cadastrar'])) {
                 require_once './config/eMail.php';
                 $emailObj = new eMail();
 
-                $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
-
-                $FeedbackMessage->setMsg($msg);
+                $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $msg);
+                
+                $msgFeedMessage = 'Cadastro efetuado com sucesso.</br>Verifique seu e-mail.';
+                
+                $FeedbackMessage->setMsg($msgFeedMessage);
                 header("Location: Index.php");
                 die();
             } catch (Exception $e) {

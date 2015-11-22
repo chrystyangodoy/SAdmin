@@ -1,9 +1,10 @@
 <?php
 
+session_start();
+include_once './config/ValidaSessao.php';
 require_once 'smarty.php';
 require_once './actions/aBsc_Empresa.php';
 require_once './config/FeedbackMessage.php';
-session_start();
 $empresa = new aBsc_Empresa();
 $FeedbackMessage = new FeedbackMessage();
 

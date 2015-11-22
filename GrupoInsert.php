@@ -1,7 +1,9 @@
 <?php
 
-require_once 'smarty.php';
 session_start();
+include_once './config/ValidaSessao.php';
+
+require_once 'smarty.php';
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 require ('./actions/aGrupoUsuario.php');
