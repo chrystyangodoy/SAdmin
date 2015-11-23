@@ -75,7 +75,7 @@ class aEvt_Evento extends mEvt_Evento {
         $this->load();
 
         #versao do encoding xml
-        $dom = new DOMDocument("1.0", "windows-1252");
+        $dom = new DOMDocument("1.0", "ISO-8859-1");
         #retirar os espacos em branco
         $dom->preserveWhiteSpace = false;
         #gerar o codigo
@@ -99,8 +99,8 @@ class aEvt_Evento extends mEvt_Evento {
         $root->appendChild($nomeEvento);
         $root->appendChild($dataHoraGeracao);
         $root->appendChild($nomeEvento);
-        $root->appendChild($participantes);
-        $root->appendChild($boletos);
+//        $root->appendChild($participantes);
+//        $root->appendChild($boletos);
 
         $dom->appendChild($root);
 
