@@ -13,8 +13,8 @@
  */
 class eMail {
 
-    //private $smtp = 'smtp.cs-consoft.com.br';
-    private $smtp = 'mail-ssl.locaweb.com.br';
+    private $smtp = 'smtp.cs-consoft.com.br';
+    //private $smtp = 'mail-ssl.locaweb.com.br';
 
     public function sendEmail($remetente, $destinatario, $assunto, $mensagem)
     {
@@ -68,7 +68,7 @@ class eMail {
         // Define os dados técnicos da Mensagem
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->IsHTML(true); // Define que o e-mail será enviado como HTML
-        //$mail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
+        $mail->CharSet = 'UTF-8'; // Charset da mensagem (opcional)
         // Define a mensagem (Texto e Assunto)
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->Subject = $assunto; // Assunto da mensagem
