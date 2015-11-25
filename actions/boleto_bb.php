@@ -27,42 +27,53 @@
 // +--------------------------------------------------------------------------------------------------------+
 // | Captura de informações para geração do boleto                                                          |
 // | require_once das actions necessárias  
-require_once './actions/aBsc_Banco.php';
-$Banco = new aBsc_Banco();
-require_once './actions/aEvt_Pagamento.php';
-$Pagamento = new aEvt_Pagamento();
-
+require_once './actions/aEvt_Evento.php';
 require_once './actions/aEvt_Evento_Participante.php';
-$DadosEvento = new aEvt_Evento_Participante();
+require_once './actions/aBsc_Local_Evento.php';
+require_once './actions/aBsc_Banco.php';
+require_once './actions/aEvt_Pagamento.php';
 
 $ID_Evt_Partic = $_SESSION['ID_Evt_Part'];
 //$ID_Evt_Partic = '1788cc65c6afe3c2d8bb2023353a390c';
+
+$Evento = new aEvt_Evento();
+$DadosEvento = new aEvt_Evento_Participante();
+$LocalEvento = new absc_local_evento();
+$Banco = new aBsc_Banco();
+$Pagamento = new aEvt_Pagamento();
+//==== GET DADOS DO EVENTO ==================
+//==== Carga dos Dados do Evento ============
 $DadosEvento->setID_EVT_Evento_Pariticipante($ID_Evt_Partic);
 $DadosEvento->load();
 
-$Banco->setID('1');
+$Evento->setID_EVT($DadosEvento->getID_EVT_Evento());
+$Evento->load();
+
+
+$CodBanco = $Evento->getID_Banco();
+//$Banco->setID('1');
+$Banco->setID($CodBanco);
 $Banco->load();
+
 
 $Pagamento->setID_EVT_Evento($ID_Evt_Partic);
 $Pagamento->loadIDEvento();
-
 $DadosEvento->SelectInfoBoleto($ID_Evt_Partic);
-require_once ('./actions/aBsc_Participante.php');
-$partic = new aBsc_Participante();
-require_once ('./actions/aEvt_Evento.php');
-$Evento = new aEvt_Evento();
-$Evento->setID_EVT($DadosEvento->getID_EVT_Evento());
-$Evento->load();
-require_once ('./actions/aBsc_Local_Evento.php');
-$LocalEvento = new absc_local_evento();
+
+
+
 $LocalEvento->setID_Local($Evento->getID_BSC_Local_Evento());
 $LocalEvento->load();
+
+
+require_once ('./actions/aBsc_Participante.php');
+$Partic = new aBsc_Participante();
 // +--------------------------------------------------------------------------------------------------------+
 // ------------------------- DADOS DINÂMICOS DO SEU CLIENTE PARA A GERAÇÃO DO BOLETO (FIXO OU VIA GET) -------------------- //
 // Os valores abaixo podem ser colocados manualmente ou ajustados p/ formulário c/ POST, GET ou de BD (MySql,Postgre,etc)	//
 // DADOS DO BOLETO PARA O SEU CLIENTE
 $dias_de_prazo_para_pagamento = 5;
-$taxa_boleto = 2.95;
+$taxa_boleto = 0.00;
 $data_emissão = date("d/m/Y", strtotime("now"));
 $data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
 //$valor_cobrado = $Pagamento->getVLR_Transacao(); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
@@ -80,9 +91,16 @@ $dadosboleto["data_documento"] = $data_emissão; // Data de emissão do Boleto
 $dadosboleto["data_processamento"] = $data_emissão; // Data de processamento do boleto (opcional)
 $dadosboleto["valor_boleto"] = $valor_boleto;  // Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
 // DADOS DO SEU CLIENTE
-$dadosboleto["sacado"] = "Nome do seu Cliente";
-$dadosboleto["endereco1"] = "Endereço do seu Cliente";
-$dadosboleto["endereco2"] = "Cidade - Estado -  CEP: 00000-000";
+$IDParticipante = $DadosEvento->getID_BSC_Participante();
+$Partic->setID_Participante($IDParticipante);
+$Partic->load();
+
+$dadosboleto["sacado"] = $Partic->getDSC_Nome();
+$dadosboleto["endereco1"] = $Partic->getDSC_Endereco();
+require_once ('./actions/atb_Tipo_Estado.php');
+$Estado = new atb_Tipo_Estado();
+$Estado->setCOD_TIPOEstado($Partic->getCOD_Tipo_Estado());
+$dadosboleto["endereco2"] = $Partic->getDSC_Cidade()." / ".$Estado->getDSC_Nome()." - ".$Partic->getNUM_CEP();
 
 // INFORMACOES PARA O CLIENTE
 $dadosboleto["demonstrativo1"] = "Pagamento em qualquer Agência Banco do Brasil";
@@ -106,8 +124,6 @@ $dadosboleto["valor_unitario"] = "";
 $dadosboleto["aceite"] = "N";
 $dadosboleto["especie"] = "R$";
 $dadosboleto["especie_doc"] = "DM";
-
-
 // ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
 // DADOS DA SUA CONTA - BANCO DO BRASIL
 $dadosboleto["agencia"] = "08788"; // Num da agencia, sem digito
@@ -138,7 +154,6 @@ $dadosboleto["formatacao_nosso_numero"] = "1"; // REGRA: Usado apenas p/ Convên
 
   #################################################
  */
-
 $NomeEmpresa = $Evento->getDSC_Nome_Promotora();
 $cnpjEmpresa = $Evento->getCOD_CNPJ_Promotora();
 
