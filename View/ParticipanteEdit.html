@@ -46,8 +46,6 @@
         <input type="text" class="form-control" id="DSC_Endereco" name="DSC_Endereco" placeholder="Endereço " value="{$DSC_Endereco}">
     </div>
 
-
-
     <h3 class="page-header">Contato</h3>
     <div class="row">
         <div class="form-group col-lg-3">
@@ -88,8 +86,8 @@
     </div>
 
     <div class="form-group">
-        <label >Profissão</label>
-        <input type="text" class="form-control" name="DSC_Profissao_Especialidade" placeholder="Profissão" value="{$DSC_Profissao_Especialidade}">
+        <label >Especialidade da Profissão</label>
+        <input type="text" class="form-control" name="DSC_Profissao_Especialidade" placeholder="Descrição da Especialidade" value="{$DSC_Profissao_Especialidade}">
     </div>
 
     <div class="form-group">
@@ -98,7 +96,6 @@
     </div>
     <div class="form-group">
         <label>Tipo Estado</label>
-
         <select name="COD_Tipo_Estado" id="COD_Tipo_Estado"  class="form-control" style="width: 400px;">
             <option value="0">-</option>
             {foreach from=$listTpUF item=row}

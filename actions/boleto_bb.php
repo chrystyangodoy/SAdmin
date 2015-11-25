@@ -1,30 +1,4 @@
 <?php
-
-// +----------------------------------------------------------------------+
-// | BoletoPhp - Versão Beta                                              |
-// +----------------------------------------------------------------------+
-// | Este arquivo está disponível sob a Licença GPL disponível pela Web   |
-// | em http://pt.wikipedia.org/wiki/GNU_General_Public_License           |
-// | Voc� deve ter recebido uma c�pia da GNU Public License junto com     |
-// | esse pacote; se não, escreva para:                                   |
-// |                                                                      |
-// | Free Software Foundation, Inc.                                       |
-// | 59 Temple Place - Suite 330                                          |
-// | Boston, MA 02111-1307, USA.                                          |
-// +----------------------------------------------------------------------+
-// +----------------------------------------------------------------------+
-// | Originado do Projeto BBBoletoFree que tiveram colabora��es de Daniel |
-// | William Schultz e Leandro Maniezo que por sua vez foi derivado do	  |
-// | PHPBoleto de João Prado Maia e Pablo Martins F. Costa				        |
-// | 														                                   			  |
-// | Se vc quer colaborar, nos ajude a desenvolver p/ os demais bancos :-)|
-// | Acesse o site do Projeto BoletoPhp: www.boletophp.com.br             |
-// +----------------------------------------------------------------------+
-// +--------------------------------------------------------------------------------------------------------+
-// | Equipe Coordenação Projeto BoletoPhp: <boletophp@boletophp.com.br>              		             				|
-// | Desenvolvimento Boleto Banco do Brasil: Daniel William Schultz / Leandro Maniezo / Rogério Dias Pereira|
-// +--------------------------------------------------------------------------------------------------------+
-// +--------------------------------------------------------------------------------------------------------+
 // | Captura de informações para geração do boleto                                                          |
 // | require_once das actions necessárias  
 require_once './actions/aEvt_Evento.php';
@@ -49,22 +23,20 @@ $DadosEvento->load();
 $Evento->setID_EVT($DadosEvento->getID_EVT_Evento());
 $Evento->load();
 
-
 $CodBanco = $Evento->getID_Banco();
-//$Banco->setID('1');
-$Banco->setID($CodBanco);
+if($CodBanco==0 ||$CodBanco==NULL){
+    $Banco->setID('1');    
+}Else{
+    $Banco->setID($CodBanco);
+}
 $Banco->load();
-
 
 $Pagamento->setID_EVT_Evento($ID_Evt_Partic);
 $Pagamento->loadIDEvento();
 $DadosEvento->SelectInfoBoleto($ID_Evt_Partic);
 
-
-
 $LocalEvento->setID_Local($Evento->getID_BSC_Local_Evento());
 $LocalEvento->load();
-
 
 require_once ('./actions/aBsc_Participante.php');
 $Partic = new aBsc_Participante();
@@ -154,16 +126,29 @@ $dadosboleto["formatacao_nosso_numero"] = "1"; // REGRA: Usado apenas p/ Convên
 
   #################################################
  */
+$IsPromotora = $Evento->getisPromotora();
+if($IsPromotora){
 $NomeEmpresa = $Evento->getDSC_Nome_Promotora();
 $cnpjEmpresa = $Evento->getCOD_CNPJ_Promotora();
-
 $Endereço =  $LocalEvento->getDSC_Nome()." - ".$LocalEvento->getDSC_Endereco()." - ".$LocalEvento->getDSC_Bairro()." Telefone: ".$LocalEvento->getNUM_Fone();
-$CidadeEstado = $LocalEvento->getDSC_Cidade();
+$CidadeEstado = $LocalEvento->getDSC_Cidade();    
+} Else{
+require_once './actions/aBsc_Empresa.php';
+$BSC_Empresa = new aBsc_Empresa();
+$BSC_Empresa->setID_Empresa($Evento->getID_Empresa());
+$BSC_Empresa->load();
+
+$NomeEmpresa = $BSC_Empresa->getDSC_RazaoSocial();
+$cnpjEmpresa = $BSC_Empresa->getCOD_CNPJ();
+$EndereçoEvento =  $LocalEvento->getDSC_Nome()." - ".$LocalEvento->getDSC_Endereco()." - ".$LocalEvento->getDSC_Bairro()." Telefone: ".$LocalEvento->getNUM_Fone();
+$CidadeEstadoEvento = $LocalEvento->getDSC_Cidade();
+}
+
 // SEUS DADOS
 $dadosboleto["identificacao"] = $NomeEmpresa;
 $dadosboleto["cpf_cnpj"] = $cnpjEmpresa; //Colocar o CNPJ da Empresa
-$dadosboleto["endereco"] = $Endereço;
-$dadosboleto["cidade_uf"] = $CidadeEstado;
+$dadosboleto["endereco"] = $EndereçoEvento;
+$dadosboleto["cidade_uf"] = $CidadeEstadoEvento;
 $dadosboleto["cedente"] = $NomeEmpresa;
 
 // NÃO ALTERAR!

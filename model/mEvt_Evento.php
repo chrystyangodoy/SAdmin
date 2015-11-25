@@ -23,6 +23,7 @@ class mEvt_Evento extends dbConnection {
     private $COD_Tipo_Estado_promotora;
     private $isPromotora;
     private $ID_Banco;
+    private $ID_Empresa;
 
     public function setID_EVT($ID_EVT) {
         $this->ID_EVT = $ID_EVT;
@@ -174,5 +175,13 @@ class mEvt_Evento extends dbConnection {
 
     public function getID_Banco() {
         return $this->ID_Banco;
+    }
+    
+    public function setID_Empresa($ID_Empresa) {
+        $this->ID_Empresa = $ID_Empresa;
+    }
+
+    public function getID_Empresa() {
+        return $this->ID_Empresa;
     }
 }

@@ -4,13 +4,14 @@ session_start();
 include_once './config/ValidaSessao.php';
 
 require_once './smarty.php';
-require ('./actions/aBsc_Participante.php');
-require ('./actions/aUsuario.php');
+require_once './actions/aBsc_Participante.php';
+require_once './actions/aUsuario.php';
 require_once './actions/atb_Tipo_Estado.php';
+require_once './config/configs.php';
 $partic = new aBsc_Participante();
 $user = new aUsuario();
-
 $tipoestado = new atb_Tipo_Estado();
+$config = new configs();
 
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
@@ -25,12 +26,9 @@ $user->setID_Usuario($ID_Usuario);
 $user->load();
 
 if (isset($_POST['Cadastrar'])) {
-
     //limpa cpf
     $cpf = $config->limpaCPF($_POST['COD_CPF']);
     $email = $_POST['DSC_Email'];
-
-
 
     //validação do CPF
     if ($config->validaCPF($cpf)) {
@@ -44,8 +42,6 @@ if (isset($_POST['Cadastrar'])) {
             $grupo = 99;
 
             //Gera e armazena ID Único Gerado.
-
-
 
             $user->setDTM_Inicio($datainicial);
             $user->setDTM_Fim($datafim);
@@ -87,14 +83,11 @@ if (isset($_POST['Cadastrar'])) {
 require_once './actions/aBsc_Empresa.php';
 require_once './actions/aBsc_Profissao.php';
 
-
 $emp = new aBsc_Empresa();
 $prof = new aBsc_Profissao();
 
 $smarty->assign("listEmp", $emp->select());
 $smarty->assign("listProf", $prof->select());
-
-
 
 $smarty->assign("ID_Participante", $partic->getID_Participante());
 $smarty->assign("COD_CPF", $partic->getCOD_CPF());
@@ -113,7 +106,6 @@ $smarty->assign("NUM_Registro", $partic->getNUM_Registro());
 $smarty->assign("COD_Tipo_Estado", $partic->getCOD_Tipo_Estado());
 $smarty->assign("ID_BSC_Empresa", $partic->getID_BSC_Empresa());
 $smarty->assign("ID_BSC_Profissao", $partic->getID_BSC_Profissao());
-
 
 $smarty->assign("listTpUF", $tipoestado->select());
 

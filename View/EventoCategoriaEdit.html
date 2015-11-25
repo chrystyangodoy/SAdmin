@@ -25,7 +25,7 @@
         <select name="ID_EVT_Evento" id="ID_EVT_Evento"  class="form-control" style="width: 400px;" >
             <option value="0">-</option>
             {foreach from=$listEvento item=row}
-            <option value="{$row.ID_EVT}">{$row.DSC_Nome}</option>
+            <option value="{$row.ID_EVT}" {if $ID_EVT_Evento == $row.ID_EVT} selected {/if}>{$row.DSC_Nome}</option>
             {/foreach}
         </select>
     </div>

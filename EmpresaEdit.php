@@ -14,7 +14,6 @@ $tipoestado = new atb_Tipo_Estado();
 $emp->setID_Empresa($_GET['alt']);
 $emp->load();
 
-
 if (isset($_POST['Salvar'])) {
     $emp->setID_Empresa($_GET['alt']);
     $emp->setCOD_CNPJ($_POST['COD_CNPJ']);
@@ -34,9 +33,9 @@ if (isset($_POST['Salvar'])) {
 }
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
+$smarty -> assign("listTpUF",$tipoestado->select());
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
-
 
 $smarty->assign("ID_Empresa",$emp->getID_Empresa());
 $smarty->assign("COD_CNPJ",$emp->getCOD_CNPJ());
@@ -51,6 +50,5 @@ $smarty->assign("NUM_FAX",$emp->getNUM_FAX());
 $smarty->assign("DSC_EMAIL",$emp->getDSC_EMAIL());
 $smarty->assign("COD_TipoEstado",$emp->getCOD_TipoEstado());
 
-$smarty->assign("listTpUF", $tipoestado->select());
 
 $smarty->display('./View/EmpresaEdit.html');

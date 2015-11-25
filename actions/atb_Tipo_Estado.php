@@ -16,7 +16,7 @@ require './model/mtb_Tipo_Estado.php';
 class atb_Tipo_Estado extends mtb_Tipo_Estado {
 
     protected $sqlInsert = "INSERT INTO tb_tipo_estado(COD_TIPOEstado, DSC_Nome, DSC_Descricao) VALUES ('%s','%s','%s')";
-    protected $sqlUpdate = "update tb_tipo_estado set COD_TIPOEstado= '%s', DSC_Nome= '%s', DSC_Descricao= '%s' where COD_TIPOEstado = '%s'";
+    protected $sqlUpdate = "update tb_tipo_estado set DSC_Nome= '%s', DSC_Descricao= '%s' where COD_TIPOEstado = '%s'";
     protected $sqlDelete = "delete from tb_tipo_estado where COD_TIPOEstado = '%s'";
     protected $sqlSelect = "select * from tb_tipo_estado where 1=1 %s %s";
 
@@ -28,7 +28,7 @@ class atb_Tipo_Estado extends mtb_Tipo_Estado {
 
     public function update()
     {
-        $sql = sprintf($this->sqlUpdate, $this->getCOD_TIPOEstado(), $this->getDSC_Nome(), $this->getDSC_Descricao(),$this->getCOD_TIPOEstado());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Descricao(),$this->getCOD_TIPOEstado());
         return $this->RunQuery($sql);
     }
 
