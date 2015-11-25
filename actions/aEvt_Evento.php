@@ -20,6 +20,29 @@ class aEvt_Evento extends mEvt_Evento {
                                     FROM        evt_evento as evento inner join bsc_local_evento as localEvento on (ID_BSC_Local_Evento = ID_BSC_Local_Evento) 
                                     WHERE       CURRENT_DATE() < DT_Fim";
 
+    
+    protected $sqlSelectXML = "SELECT	bsc_participante.COD_CPF,
+                                        bsc_participante.DSC_Nome AS NOME_COMPLETO,
+                                        evt_evento_participante.DSC_Nome_Crachav AS nomeCracha,
+                                        bsc_participante.DSC_EMAIL,
+                                        bsc_participante.NUM_Fone,
+                                        bsc_participante.NUM_Celular,
+                                        bsc_participante.DSC_Bairro,
+                                        bsc_participante.NUM_CEP,
+                                        bsc_participante.DSC_Cidade,
+                                        tb_tipo_estado.DSC_Nome,
+                                        evt_evento_categoria.DSC_Nome,
+                                        bsc_profissao.ID_Profissao,
+                                        bsc_participante.DSC_Profissao_Especialidade
+
+                                FROM	bsc_participante 
+                                                                LEFT JOIN 	evt_evento_participante ON(bsc_participante.ID_Participante = evt_evento_participante.ID_BSC_Participante)
+                                                                LEFT JOIN	tb_tipo_estado	ON(bsc_participante.COD_Tipo_Estado = tb_tipo_estado.COD_TIPOEstado)
+                                                LEFT JOIN	evt_evento_categoria ON(evt_evento_participante.ID_EVT_Categoria = evt_evento_categoria.ID_Evento_Categoria)
+                                                LEFT JOIN	bsc_profissao	ON (bsc_participante.ID_BSC_Profissao = bsc_profissao.ID_Profissao)
+                                WHERE	evt_evento_participante.ID_BSC_Participante = '%s'";
+
+
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getID_EVT(), $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(), $this->getDT_Fim(), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora(), $this->getisPromotora(), $this->getID_Banco());
         return $this->RunQuery($sql);
@@ -114,6 +137,11 @@ class aEvt_Evento extends mEvt_Evento {
 //        # imprime o xml na tela
 //
 //        print $dom->saveXML();
+    }
+    
+    public function SelectXML($evento_ID){
+        $rs = $this->RunSelect(sprintf($this->sqlSelectXML,$evento_ID));
+        return $rs ;
     }
 
 }

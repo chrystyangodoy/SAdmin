@@ -38,6 +38,24 @@ $root->appendChild($nomeEvento);
 $root->appendChild($participantes);
 $root->appendChild($boletos);
 
+
+
+$listaDadosParticipante = $evento->SelectXML($EventoID);
+
+foreach ($listaDadosParticipante as $dadosParticipante){
+    $ParticipanteTO = $dom->createElement("ParticipanteTO");
+    
+    $cpf = $dom->createElement("cpf",$dadosParticipante['COD_CPF']);
+    $nomeCompleto = $dom->createElement("nomeCompleto",$dadosParticipante['NOME_COMPLETO']);
+    $nomeCracha = $dom->createElement("nomeCracha",$dadosParticipante['nomeCracha']);
+    $email = $dom->createElement("email",$dadosParticipante['DSC_EMAIL']);
+    
+    
+}
+
+
+
+
 $dom->appendChild($root);
 
 # Para salvar o arquivo, descomente a linha
