@@ -1,5 +1,10 @@
 <?php
 
+mb_internal_encoding("UTF-8"); 
+mb_http_output( "iso-8859-1" );  
+ob_start("mb_output_handler");   
+header("Content-Type: text/html; charset=ISO-8859-1",true);
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,7 +19,7 @@
 class eMail {
 
     //private $smtp = 'smtp.cs-consoft.com.br';
-    private $smtp = 'mail-ssl.locaweb.com.br';
+    private $smtp = 'smtp.cs-consoft.com.br';
 
     public function sendEmail($remetente, $destinatario, $assunto, $mensagem)
     {
@@ -42,6 +47,7 @@ class eMail {
 
     public function enviarEMail($detinatario, $nome, $assunto, $mensagem)
     {
+        header('Content-Type: text/html; charset=utf-8');
         // Inclui o arquivo class.phpmailer.php localizado na pasta phpmailer
         require_once './phpMailer/class.phpmailer.php';
         require_once './phpMailer/PHPMailerAutoload.php';
@@ -53,11 +59,11 @@ class eMail {
         $mail->Host = $this->smtp; // Endereço do servidor SMTP
         $mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
         $mail->Port = 587;
-        $mail->Username = ''; // Usuário do servidor SMTP
-        $mail->Password = ''; // Senha do servidor SMTP
+        $mail->Username = 'victor@cs-consoft.com.br'; // Usuário do servidor SMTP
+        $mail->Password = 'ch1234ch'; // Senha do servidor SMTP
         // Define o remetente
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        $mail->From = 'victor@cs-consoft.com'; // Seu e-mail
+        $mail->From = 'chrystyan@cs-consoft.com'; // Seu e-mail
         $mail->FromName = 'Administração'; // Seu nome
         // Define os destinatário(s)
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -68,7 +74,7 @@ class eMail {
         // Define os dados técnicos da Mensagem
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->IsHTML(true); // Define que o e-mail será enviado como HTML
-        //$mail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
+        $mail->CharSet = 'UTF-8'; // Charset da mensagem (opcional)
         // Define a mensagem (Texto e Assunto)
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         $mail->Subject = $assunto; // Assunto da mensagem
