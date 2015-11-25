@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 06-Nov-2015 às 14:54
+-- Generation Time: 25-Nov-2015 às 20:44
 -- Versão do servidor: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `siga_web`
 --
-CREATE DATABASE IF NOT EXISTS `siga_web` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `siga_web`;
 
 -- --------------------------------------------------------
 
@@ -58,7 +56,7 @@ INSERT INTO `bsc_banco` (`ID`, `Agencia`, `Conta`, `Cod_Banco`, `Convenio`, `Con
 DROP TABLE IF EXISTS `bsc_empresa`;
 CREATE TABLE IF NOT EXISTS `bsc_empresa` (
   `ID_Empresa` int(11) NOT NULL,
-  `COD_CNPJ` varchar(14) NOT NULL,
+  `COD_CNPJ` varchar(18) NOT NULL,
   `DSC_RazaoSocial` varchar(100) NOT NULL,
   `DSC_Endereco` varchar(120) NOT NULL,
   `DSC_Bairro` varchar(70) NOT NULL,
@@ -68,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `bsc_empresa` (
   `NUM_Fone` varchar(10) NOT NULL,
   `NUM_FAX` varchar(10) NOT NULL,
   `DSC_EMAIL` varchar(100) NOT NULL,
-  `COD_TipoEstado` int(11) NOT NULL
+  `COD_TipoEstado` varchar(50) NOT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
@@ -76,8 +74,8 @@ CREATE TABLE IF NOT EXISTS `bsc_empresa` (
 --
 
 INSERT INTO `bsc_empresa` (`ID_Empresa`, `COD_CNPJ`, `DSC_RazaoSocial`, `DSC_Endereco`, `DSC_Bairro`, `DSC_Cidade`, `NUM_CEP`, `NUM_InscricaoEstadual`, `NUM_Fone`, `NUM_FAX`, `DSC_EMAIL`, `COD_TipoEstado`) VALUES
-(1, '63.415.021/000', 'Empresa Teste 01', 'Qualquer rua', 'Qualquer bairro', 'Qualquer Cidade', '', '', '', '', '', 0),
-(2, '35.887.541/000', 'Empresa Teste 02', 'Qualquer rua', 'Qualquer bairro', 'Qualquer Cidade', '', '', '', '', '', 0);
+(1, '63.415.021/0001-01', 'Empresa Teste 01', 'Qualquer rua', 'Qualquer bairro', 'Qualquer Cidade', '', '', '', '', '', '528c234df006558ae470fa0ccabe7892'),
+(2, '35.887.541/000', 'Empresa Teste 02', 'Qualquer rua', 'Qualquer bairro', 'Qualquer Cidade', '', '', '', '', '', '0');
 
 -- --------------------------------------------------------
 
@@ -129,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `bsc_participante` (
   `DSC_Profissao_Especialidade` varchar(120) NOT NULL,
   `DSC_Email` varchar(120) NOT NULL,
   `NUM_Registro` varchar(20) NOT NULL,
-  `COD_Tipo_Estado` int(11) NOT NULL,
+  `COD_Tipo_Estado` varchar(50) NOT NULL,
   `ID_BSC_Empresa` int(11) NOT NULL,
   `ID_BSC_Profissao` int(11) NOT NULL,
   `ID_Usuario` varchar(50) NOT NULL
@@ -140,7 +138,9 @@ CREATE TABLE IF NOT EXISTS `bsc_participante` (
 --
 
 INSERT INTO `bsc_participante` (`ID_Participante`, `COD_CPF`, `COD_RG`, `DSC_Nome`, `DSC_Endereco`, `DSC_Bairro`, `DSC_Cidade`, `NUM_CEP`, `NUM_Fone`, `NUM_Celular`, `NUM_FAX`, `DSC_Profissao_Especialidade`, `DSC_Email`, `NUM_Registro`, `COD_Tipo_Estado`, `ID_BSC_Empresa`, `ID_BSC_Profissao`, `ID_Usuario`) VALUES
-('3350c1ab14d5dc3170217a796c095ff5', '52863298291', '4387870', 'Chrystyan Godoy', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '', '', '', '', 'chrystyangodoy@gmail.com', '', 0, 1, 1, '63347d9901277faf92157ef3de7e985e');
+('5de0b0e6dcdafa9b91291162626d0306', '75111189505', '4387870', 'Teste cadastro 02 ', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '', '', '', '', 'chrystyangodoy@gmail.com', '1234546789', '0', 1, 1, '0efb516131412c32fc0ced8966eee024'),
+('3d1c81a0cab8d529c2f386da4349c05e', '61539642224', '4387870', 'Teste de cadastro', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '', '', '', '', 'chrystyangodoy@gmail.com', '1234567890', '0', 1, 1, '7ef34a9ce2930588dd7d4c7bd3aa3463'),
+('3350c1ab14d5dc3170217a796c095ff5', '52863298291', '4387870', 'Chrystyan Godoy', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '', '', '', '', 'chrystyangodoy@gmail.com', '', 'bbb95aac9ba83705cdad5e9e119ef9c3', 1, 1, '63347d9901277faf92157ef3de7e985e');
 
 -- --------------------------------------------------------
 
@@ -261,17 +261,18 @@ CREATE TABLE IF NOT EXISTS `evt_evento` (
   `ID_BSC_Local_Evento` varchar(50) NOT NULL,
   `COD_Tipo_Estado_promotora` varchar(50) NOT NULL,
   `isPromotora` tinyint(1) NOT NULL,
-  `ID_Banco` varchar(50) NOT NULL
+  `ID_Banco` varchar(50) NOT NULL,
+  `ID_Empresa` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `evt_evento`
 --
 
-INSERT INTO `evt_evento` (`ID_EVT`, `DSC_Nome`, `DSC_Presidente`, `DT_Inicio`, `DT_Fim`, `COD_CNPJ_Promotora`, `DSC_Nome_Promotora`, `DSC_Presidente_Promotora`, `DSC_Endereco_Promotora`, `NUM_CEP_Promotora`, `DSC_Cidade_Promotora`, `NUM_Fone_Promotora`, `NUM_FAX_Promotora`, `DSC_EMAIL_Promotora`, `QTD_CargaHorariaMinima`, `ID_BSC_Local_Evento`, `COD_Tipo_Estado_promotora`, `isPromotora`, `ID_Banco`) VALUES
-('528c234df006558ae470fa0ccabe7892', 'Evento 001', 'Presidente Evento', '2015-01-01', '2015-12-31', '101001001/0000', 'Nome da Promotora', 'Presidente Promotora', 'Domingos Marreiros', '66060160', 'BelÃ©m', '91 4006979', '91 4006979', 'promotora@prom.com.br', '0.00', 'a26ce4d7dc4e91404bf315299fb78cda', 'bbb95aac9ba83705cdad5e9e119ef9c3', 0, ''),
-('ec9ed85ee8e502bc2d5f0432434964fb', 'Evento para teste de impressÃ£o de boleto', 'Bill Gates', '0000-00-00', '0000-00-00', '25.271.284/000', 'Microsoft LTDA', 'Bill Gates', 'Domingos Marreiros', '66060160', 'BelÃ©m', '91 4006979', '91 4006979', 'promotora@prom.com.br', '100.00', 'a26ce4d7dc4e91404bf315299fb78cda', 'bbb95aac9ba83705cdad5e9e119ef9c3', 1, '1'),
-('528c234df006558ae470fa0ccabe7895', 'Evento 004', 'Presidente Evento 4', '2015-01-01', '2015-12-31', '101001001/0000', '', '', '', '', '', '', '', '', '0.00', 'a26ce4d7dc4e91404bf315299fb78cda', '0', 0, '');
+INSERT INTO `evt_evento` (`ID_EVT`, `DSC_Nome`, `DSC_Presidente`, `DT_Inicio`, `DT_Fim`, `COD_CNPJ_Promotora`, `DSC_Nome_Promotora`, `DSC_Presidente_Promotora`, `DSC_Endereco_Promotora`, `NUM_CEP_Promotora`, `DSC_Cidade_Promotora`, `NUM_Fone_Promotora`, `NUM_FAX_Promotora`, `DSC_EMAIL_Promotora`, `QTD_CargaHorariaMinima`, `ID_BSC_Local_Evento`, `COD_Tipo_Estado_promotora`, `isPromotora`, `ID_Banco`, `ID_Empresa`) VALUES
+('528c234df006558ae470fa0ccabe7892', 'Evento 001', 'Presidente Evento', '0000-00-00', '0000-00-00', '10.100.100/1-', 'Nome da Promotora', 'Presidente Promotora', 'Domingos Marreiros', '66060160', 'BelÃ©m', '91 4006979', '91 4006979', '91 4006979', '0.00', 'a26ce4d7dc4e91404bf315299fb78cda', 'bbb95aac9ba83705cdad5e9e119ef9c3', 0, '1', '2'),
+('ec9ed85ee8e502bc2d5f0432434964fb', 'Evento para teste de impressÃ£o de boleto', 'Bill Gates', '0000-00-00', '0000-00-00', '25.271.284/000', 'Microsoft LTDA', 'Bill Gates', 'Domingos Marreiros', '66060160', 'BelÃ©m', '91 4006979', '91 4006979', 'promotora@prom.com.br', '100.00', 'a26ce4d7dc4e91404bf315299fb78cda', 'bbb95aac9ba83705cdad5e9e119ef9c3', 1, '1', ''),
+('528c234df006558ae470fa0ccabe7895', 'Evento 004', 'Presidente Evento 4', '2015-01-01', '2015-12-31', '10.100.100/1-', 'Microsoft LTDA', 'Bill Gates', 'Domingos Marreiros', '66060160', 'BelÃ©m', '91 4006979', '91 4006979', '91 4006979', '102.00', 'a26ce4d7dc4e91404bf315299fb78cda', 'bbb95aac9ba83705cdad5e9e119ef9c3', 0, '1', '1');
 
 -- --------------------------------------------------------
 
@@ -329,7 +330,7 @@ CREATE TABLE IF NOT EXISTS `evt_evento_categoria` (
 --
 
 INSERT INTO `evt_evento_categoria` (`ID_Evento_Categoria`, `DSC_Nome`, `VLR_Inscricao`, `DT_Inicio_Valor`, `DT_Fim_Valor`, `ID_EVT_Evento`) VALUES
-('528c234df006558ae470fa0ccabe7892', 'Categoria 01', '10000.00', '2015-01-01', '2015-12-31', '528c234df006558ae470fa0ccabe7895'),
+('528c234df006558ae470fa0ccabe7892', 'Categoria 01', '10000.00', '2015-01-01', '2015-12-31', '528c234df006558ae470fa0ccabe7892'),
 ('454a5f785a4b175974cf43890ab38b09', 'Categoria 03', '200.00', '2016-09-01', '2016-01-01', '528c234df006558ae470fa0ccabe7893');
 
 -- --------------------------------------------------------
@@ -396,6 +397,8 @@ CREATE TABLE IF NOT EXISTS `evt_evento_participante` (
 --
 
 INSERT INTO `evt_evento_participante` (`ID_EVT_Evento_Pariticipante`, `DSC_Nome_Crachav`, `COD_Barras_Cracha`, `VLR_Total`, `VLR_Total_Inscricao`, `QTD_CargaHoraria_Realizada`, `COD_Nivel_Participante`, `ID_EVT_Pagamento`, `ID_EVT_Categoria`, `ID_EVT_Evento`, `ID_BSC_Participante`, `ID_EVT_Participante_Pai`, `COD_Tipo_SIT_Certificado`, `DTM_Entrega_Certificado`, `ID_SEG_DetalheTransacao`, `SIT_EH_Parcelado`, `ID_EVT_EventoGrupo`, `COD_TipoSituacao_Material`, `DTM_EntregaMaterial`, `COD_InscricaoExterno`) VALUES
+('91c32ec9dfb9c8241395e70915d1f23a', 'Teste cadastro 02 ', '75111189505', '10000.00', '10000.00', '0.00', 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7895', '5de0b0e6dcdafa9b91291162626d0306', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
+('b67445742d3d10e440f87317f7dbd71a', 'Teste de cadastro', '61539642224', '10000.00', '10000.00', '0.00', 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7895', '3d1c81a0cab8d529c2f386da4349c05e', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0),
 ('1788cc65c6afe3c2d8bb2023353a390c', 'Chrystyan Godoy', '52863298291', '10000.00', '10000.00', '0.00', 0, 0, '528c234df006558ae470fa0ccabe7892', '528c234df006558ae470fa0ccabe7895', '3350c1ab14d5dc3170217a796c095ff5', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
@@ -427,7 +430,9 @@ CREATE TABLE IF NOT EXISTS `evt_pagamento` (
 --
 
 INSERT INTO `evt_pagamento` (`ID_Pagamento`, `DT_Transacao`, `DT_Pagamento`, `VLR_Transacao`, `VR_Pago`, `NUM_Recibo`, `COD_TipoFormaPagamento`, `COD_TipoOrigemInscricao`, `ID_EVT_Evento`, `ID_EVT_Pagamento_Pai`, `COD_Tipo_Situacao_Pagamento`, `QTD_Parcelas`, `NUM_Parcelas`, `QTD_Parcelas_Pagas`) VALUES
-('7b81808b7a3be6477c4d2fd5f3e3135e', '2015-11-04 02:00:00', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '1788cc65c6afe3c2d8bb2023353a390c', '0', 1, 0, 0, 0);
+('7b81808b7a3be6477c4d2fd5f3e3135e', '2015-11-04 02:00:00', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '1788cc65c6afe3c2d8bb2023353a390c', '0', 1, 0, 0, 0),
+('5e2650c92eec77ce179a921a854c7c7d', '2015-11-20 02:00:00', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, 'b67445742d3d10e440f87317f7dbd71a', '0', 1, 0, 0, 0),
+('2860bcb38bccec301f583b4fe7a4cb10', '2015-11-20 02:00:00', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '91c32ec9dfb9c8241395e70915d1f23a', '0', 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -624,7 +629,9 @@ CREATE TABLE IF NOT EXISTS `seg_usuario` (
 
 INSERT INTO `seg_usuario` (`ID_Usuario`, `DSC_Login`, `DSC_Senha`, `DTM_Inicio`, `DTM_Fim`, `ID_SEG_Grupo`) VALUES
 ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2015-09-04 17:12:34', '0000-00-00 00:00:00', 1),
-('63347d9901277faf92157ef3de7e985e', '52863298291', '202cb962ac59075b964b07152d234b70', '2015-11-04 14:44:23', '2015-11-11 02:00:00', 99);
+('63347d9901277faf92157ef3de7e985e', '52863298291', '202cb962ac59075b964b07152d234b70', '2015-11-04 14:44:23', '2015-11-11 02:00:00', 99),
+('7ef34a9ce2930588dd7d4c7bd3aa3463', '61539642224', '2ef7cc85af66fbef1f8160f8008733b7', '2015-11-20 02:00:00', '2015-11-27 02:00:00', 99),
+('0efb516131412c32fc0ced8966eee024', '75111189505', '8298cdea2c62babcee4d7732553f4e98', '2015-11-20 02:00:00', '2015-11-27 02:00:00', 99);
 
 -- --------------------------------------------------------
 
