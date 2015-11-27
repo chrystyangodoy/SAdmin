@@ -49,7 +49,33 @@ foreach ($listaDadosParticipante as $dadosParticipante){
     $nomeCompleto = $dom->createElement("nomeCompleto",$dadosParticipante['NOME_COMPLETO']);
     $nomeCracha = $dom->createElement("nomeCracha",$dadosParticipante['nomeCracha']);
     $email = $dom->createElement("email",$dadosParticipante['DSC_EMAIL']);
+    $telefone = $dom->createElement("telefone", $dadosParticipante['NUM_Fone']);
+    $celular = $dom->createElement("celular", $dadosParticipante['NUM_Celular']);
+    $endereco = $dom->createElement("endereco", $dadosParticipante['DSC_Endereco']);
+    $bairro = $dom->createElement("bairro", $dadosParticipante['DSC_Bairro']);
+    $cep = $dom->createElement("cep", $dadosParticipante['NUM_CEP']);
+    $cidade = $dom->createElement("cidade", $dadosParticipante['DSC_Cidade']);
+    $uf = $dom->createElement("uf", $dadosParticipante['UF']);
+    $categoria = $dom->createElement("descCategoria", $dadosParticipante['categoria']);
+    $profissao = $dom->createElement("profissao", $dadosParticipante['profissao']);
+    $DSC_Profissao_Especialidade = $dom->createElement("especialidade", $dadosParticipante['DSC_Profissao_Especialidade']);
     
+    $ParticipanteTO->appendChild($cpf);
+    $ParticipanteTO->appendChild($nomeCompleto);
+    $ParticipanteTO->appendChild($nomeCracha);
+    $ParticipanteTO->appendChild($email);
+    $ParticipanteTO->appendChild($telefone);
+    $ParticipanteTO->appendChild($celular);
+    $ParticipanteTO->appendChild($endereco);
+    $ParticipanteTO->appendChild($bairro);
+    $ParticipanteTO->appendChild($cep);
+    $ParticipanteTO->appendChild($cidade);
+    $ParticipanteTO->appendChild($uf);
+    $ParticipanteTO->appendChild($categoria);
+    $ParticipanteTO->appendChild($profissao);
+    $ParticipanteTO->appendChild($DSC_Profissao_Especialidade);
+    
+    $root->appendChild($ParticipanteTO);
     
 }
 

@@ -26,12 +26,13 @@ class aEvt_Evento extends mEvt_Evento {
                                         bsc_participante.DSC_EMAIL,
                                         bsc_participante.NUM_Fone,
                                         bsc_participante.NUM_Celular,
+                                        bsc_participante.DSC_Endereco,
                                         bsc_participante.DSC_Bairro,
                                         bsc_participante.NUM_CEP,
                                         bsc_participante.DSC_Cidade,
-                                        tb_tipo_estado.DSC_Nome,
-                                        evt_evento_categoria.DSC_Nome,
-                                        bsc_profissao.ID_Profissao,
+                                        tb_tipo_estado.DSC_Nome AS UF,
+                                        evt_evento_categoria.DSC_Nome categoria,
+                                        bsc_profissao.DSC_Nome profissao,
                                         bsc_participante.DSC_Profissao_Especialidade
 
                                 FROM	bsc_participante 
