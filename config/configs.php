@@ -7,7 +7,7 @@ class configs {
         //2015-09-01
         if (strpos($dataAmericana, '-')) {
             $d = explode('-', $dataAmericana);
-            $dbr = $d[0] . '/' . $d[1] . '/' . $d[2];
+            $dbr = $d[2] . '/' . $d[1] . '/' . $d[0];
         }
         if(strpos($dataAmericana, '/')){
             $dbr = $dataAmericana;
