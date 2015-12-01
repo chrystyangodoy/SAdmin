@@ -1,28 +1,27 @@
 <?php
 
 session_start();
-if (!(isset($_SESSION['ID_Evento']))) {
-    header("Location: Index.php");
-    die();
-}
+include_once './config/ValidaSessao.php';
 
 require_once './smarty.php';
-require ('./actions/aBsc_Participante.php');
-require ('./actions/aUsuario.php');
+require_once './actions/aBsc_Participante.php';
+require_once './actions/aUsuario.php';
 require_once './actions/atb_Tipo_Estado.php';
+require_once './config/configs.php';
 $partic = new aBsc_Participante();
 $user = new aUsuario();
-
 $tipoestado = new atb_Tipo_Estado();
+$config = new configs();
 
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 
-$ID_Usuario = $_SESSION['ID_Usuario'];
-$ID_Evento = $_SESSION['ID_Evento'];
-$ID_Categoria = $_SESSION['ID_Evento_Categoria'];
+if (!isset($_SESSION['ID_Usuario'])) {
+    header("Location: AreaUsuario.php");
+    die();
+}
 
-$ID_Participante = $partic->getIDParticipantePeloIDUsuario($ID_Usuario);
+$ID_Participante = $partic->getIDParticipantePeloIDUsuario($_SESSION['ID_Usuario']);
 
 $partic->setID_Participante($ID_Participante);
 $partic->load();
@@ -33,19 +32,16 @@ $user->load();
 
 if (isset($_POST['Cadastrar'])) {
 
-    //limpa cpf
-    $cpf = $config->limpaCPF($_POST['COD_CPF']);
     $email = $_POST['DSC_Email'];
 
-    //Gera data incial e final para o cadastro de usuário
+//Gera data incial e final para o cadastro de usuário
+
     $datainicial = date("d/m/Y");
     $datafim = date('d/m/Y', strtotime("+7 days"));
-    //Gera o grupo padrão para Participantes
+//Gera o grupo padrão para Participantes
     $grupo = 99;
 
-    //Gera e armazena ID Único Gerado.
-
-
+//Gera e armazena ID Único Gerado.
 
     $user->setDTM_Inicio($datainicial);
     $user->setDTM_Fim($datafim);
@@ -70,49 +66,21 @@ if (isset($_POST['Cadastrar'])) {
     $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
     $partic->update();
 
-
-
-    require_once './actions/aEvt_Evento_Participante.php';
-    $evtPart = new aEvt_Evento_Participante();
-    if ($evtPart->selectNotExistsEvt($ID_Evento, $ID_Usuario)) {
-        $evtPart->insertPart($ID_Evento, $ID_Usuario, $ID_Categoria);
-        require_once './actions/aEvt_Evento.php';
-        $infoEvt = new aEvt_Evento();
-        $ass = "Confirmação de Inscrição no Evento!";
-        $mens = ("Sua inscrição no evento " . $infoEvt->getDSC_Nome() . " foi efetuada com sucesso!");
-        //Load de informações para envio do email
-        require_once './config/eMail.php';
-        $emailObj = new eMail();
-        require_once ('./actions/aBsc_Participante.php');
-        $partic = new aBsc_Participante();
-        $partic->selectInfoPartic($ID_Usuario);
-        $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $mens);
-
-        $_SESSION['Id_Evento'] = null;
-    } else {
-        $FeedbackMessage->setMsg("Você já está inscrito neste evento!");
-        $FeedbackMessage->setType("error");
-        header("Location: Index.php");
-        die();
-    }
-
-
-    $FeedbackMessage->setMsg("Participante inserido com sucesso!");
-    header("Location: Index.php");
+    $FeedbackMessage->setMsg("Alteração realizada com sucesso!");
+    header("Location: AreaUsuario.php");
     die();
 }
 
+
+
 require_once './actions/aBsc_Empresa.php';
 require_once './actions/aBsc_Profissao.php';
-
 
 $emp = new aBsc_Empresa();
 $prof = new aBsc_Profissao();
 
 $smarty->assign("listEmp", $emp->select());
 $smarty->assign("listProf", $prof->select());
-
-
 
 $smarty->assign("ID_Participante", $partic->getID_Participante());
 $smarty->assign("COD_CPF", $partic->getCOD_CPF());
@@ -132,10 +100,9 @@ $smarty->assign("COD_Tipo_Estado", $partic->getCOD_Tipo_Estado());
 $smarty->assign("ID_BSC_Empresa", $partic->getID_BSC_Empresa());
 $smarty->assign("ID_BSC_Profissao", $partic->getID_BSC_Profissao());
 
-
 $smarty->assign("listTpUF", $tipoestado->select());
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
-$smarty->display('./View/ParticipanteEdit.html');
+$smarty->display('./View/ParticipanteEditInscricao.html');
