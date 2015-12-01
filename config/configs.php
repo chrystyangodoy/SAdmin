@@ -18,7 +18,7 @@ class configs {
     public function dateToUS($dataBrasil) {
         if (strpos($dataBrasil, '/') != 0) {
             $d = explode('/', $dataBrasil);
-            $dam = $d[0] . '-' . $d[1] . '-' . $d[2];
+            $dam = $d[2] . '-' . $d[1] . '-' . $d[0];
         }
         if (strpos($dataBrasil, '-') != 0) {
             $dam = $dataBrasil;

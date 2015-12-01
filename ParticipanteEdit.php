@@ -16,7 +16,7 @@ $config = new configs();
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 
-$ID_Participante = $_GET['ID_Participante'];
+$ID_Participante = $partic->getIDParticipantePeloIDUsuario($_SESSION['ID_Usuario']);
 
 $partic->setID_Participante($ID_Participante);
 $partic->load();

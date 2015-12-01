@@ -2,9 +2,9 @@
 
 
 mb_internal_encoding("UTF-8"); 
-mb_http_output( "iso-8859-1" );  
+mb_http_output( "UTF-8" );  
 ob_start("mb_output_handler");   
-header("Content-Type: text/html; charset=ISO-8859-1",true);
+header("Content-Type: text/html; charset=UTF-8",true);
 
 if (!isset($_GET['ID_EVT_Evento']) and ! isset($_GET['ID_Evento_Categoria'])) {
     header("Location: Index.php");

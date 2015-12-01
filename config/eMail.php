@@ -60,8 +60,6 @@ class eMail {
         $mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
         $mail->Port = 587;
 
-        $mail->Username = 'victor@cs-consoft.com.br'; // Usuário do servidor SMTP
-
         $mail->Username = 'chrystyan@cs-consoft.com'; // Usuário do servidor SMTP
 
         $mail->Password = 'ch1234ch'; // Senha do servidor SMTP
