@@ -1,6 +1,6 @@
 <?php
 
-sessin_start();
+session_start();
 include_once './config/ValidaSessao.php';
 
 require_once 'smarty.php';
