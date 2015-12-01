@@ -53,16 +53,24 @@ class mEvt_Evento extends dbConnection {
         $this->DT_Inicio = $this->dateToUS($DT_Inicio);
     }
 
-    public function getDT_Inicio() {
-        return $this->DT_Inicio;
+    public function getDT_Inicio($us = false) {
+        if ($us) {
+            return $this->DT_Inicio;
+        } else {
+            return $this->dateToBR($this->DT_Inicio);
+        }
     }
 
     public function setDT_Fim($DT_Fim) {
         $this->DT_Fim = $this->dateToUS($DT_Fim);
     }
 
-    public function getDT_Fim() {
-        return $this->DT_Fim;
+    public function getDT_Fim($us = false) {
+        if ($us) {
+            return $this->DT_Fim;
+        } else {
+            return $this->dateToBR($this->DT_Fim);
+        }
     }
 
     public function setCOD_CNPJ_Promotora($COD_CNPJ_Promotora) {
