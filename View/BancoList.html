@@ -6,28 +6,26 @@
     <table id="myTable" class="display" cellspacing="0" width="100%">
     <thead>
         <tr>
+            <th>Banco</th>
             <th>Agência</th>
             <th>Conta</th>
             <th>Código do Banco</th>
             <th>Convênio</th>
             <th>Contrato</th>
             <th>Carteiro</th>
-            <th>Variação da Carteira</th>
-            <th>Nro Documento</th>
             <th>Ações</th>
         </tr>
     </thead>
     <tbody id="myTabContent">
         {foreach from=$lista item=row}
         <tr >
+            <td>{$row.Dsc_Banco}</td>
             <td>{$row.Agencia}</td>
             <td>{$row.Conta}</td>
             <td>{$row.Cod_Banco}</td>
             <td>{$row.Convenio}</td>
             <td>{$row.Contrato}</td>
             <td>{$row.Carteira}</td>
-            <td>{$row.Variacao_Carteira}</td>
-            <td>{$row.numero_documento}</td>
             <td>
                 <a href="BancoEdit.php?alt={$row.ID}" class="col-md-offset-1" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a>
                 <a href="?del={$row.ID}" title="Excluir"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="font-size: 30px;"></span></a>

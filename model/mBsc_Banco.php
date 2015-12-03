@@ -5,6 +5,7 @@ require_once './db/dbConnection.php';
 class mBsc_Banco extends dbConnection {
 
     private $ID;
+    private $Dsc_Banco;
     private $Agencia;
     private $Conta;
     private $Cod_Banco;
@@ -23,6 +24,16 @@ class mBsc_Banco extends dbConnection {
     public function getID()
     {
         return $this->ID;
+    }
+    
+    public function setDsc_Banco($Dsc_Banco)
+    {
+        $this->ID = $Dsc_Banco;
+    }
+
+    public function getDsc_Banco()
+    {
+        return $this->Dsc_Banco;
     }
 
     public function setAgencia($Agencia)

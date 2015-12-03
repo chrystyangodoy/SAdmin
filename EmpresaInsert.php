@@ -22,7 +22,7 @@ if (isset($_POST['Cadastrar'])) {
     $empresa->setCOD_TipoEstado($_POST['COD_TipoEstado']);
     $empresa->insert();
     $FeedbackMessage->setMsg("Empresa inserida com sucesso!");
-    header('location:UsuarioList.php');
+    header('location:EmpresaList.php');
 }
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());

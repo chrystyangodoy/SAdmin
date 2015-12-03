@@ -21,6 +21,7 @@ $banco->load();
 if (isset($_POST['Cadastrar']) && isset($_GET['ID']))
 {
     $banco->setID($_POST['ID_Banco']);
+    $banco->setDsc_Banco($_POST['Dsc_Banco']);
     $banco->setAgencia($_POST['Agencia']);
     $banco->setConta($_POST['Conta']);
     $banco->setCod_Banco($_POST['Cod_Banco']);
@@ -43,6 +44,7 @@ $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 
 $smarty->assign("ID", $banco->getID());
+$smarty->assign("Dsc_Banco",$banco->getDsc_Banco());
 $smarty->assign("Agencia", $banco->getAgencia());
 $smarty->assign("Conta", $banco->getConta());
 $smarty->assign("Cod_Banco", $banco->getCod_Banco());
