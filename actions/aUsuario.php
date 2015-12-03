@@ -5,10 +5,12 @@ require './model/mUsuario.php';
 class aUsuario extends mUsuario {
 
     protected $sqlInsert = "INSERT INTO seg_usuario(ID_Usuario,DSC_Login, DSC_Senha, DTM_Inicio, DTM_Fim, ID_SEG_Grupo) VALUES ('%s','%s',MD5('%s'),'%s','%s','%s')";
-    protected $sqlUpdate = "UPDATE seg_usuario set DSC_Login = '%s',DSC_Senha= '%s',DTM_Inicio= '%s' as DTM_Inicio,DTM_Fim= '%s' as DTM_Fim, ID_SEG_Grupo='%s' where ID_Usuario = '%s'";
+    protected $sqlUpdate = "UPDATE seg_usuario set DSC_Login = '%s',DSC_Senha= '%s',DTM_Inicio= '%s',DTM_Fim= '%s', ID_SEG_Grupo='%s' where ID_Usuario = '%s'";
     protected $sqlDelete = "DELETE FROM seg_usuario WHERE ID_Usuario = '%s'";
     protected $sqlSelect = "SELECT *  FROM seg_usuario WHERE 1=1 %s %s";
-    protected $sqlSelectInnerGrupo = "SELECT *,seg_grupo.ID_Grupo,seg_grupo.DSC_Nome from seg_usuario inner join seg_grupo on (seg_usuario.ID_SEG_Grupo = seg_grupo.ID_Grupo) where 1=1 %s %s";
+    //protected $sqlSelectInnerGrupo = "SELECT DSC_Login, DSC_Senha,DATE_FORMAT(seg_usuario.DTM_Inicio,'%d-%m-%Y') as DTM_Inicio, DATE_FORMAT(seg_usuario.DTM_Fim,'%d-%m-%Y') as DTM_Fim, seg_grupo.ID_Grupo,seg_grupo.DSC_Nome from seg_usuario inner join seg_grupo on (seg_usuario.ID_SEG_Grupo = seg_grupo.ID_Grupo) where 1=1 %s %s";
+    //protected $sqlSelectInnerGrupo = "SELECT *, seg_grupo.ID_Grupo,seg_grupo.DSC_Nome from seg_usuario inner join seg_grupo on (seg_usuario.ID_SEG_Grupo = seg_grupo.ID_Grupo) where 1=1 %s %s";
+    protected $sqlSelectInnerGrupo = "SELECT seg_usuario.ID_Usuario as ID_Usuario ,seg_usuario.DSC_Login as DSC_Login,seg_usuario.DTM_Inicio as DTM_Inicio, seg_usuario.DTM_Fim as DTM_Fim,seg_grupo.DSC_Descricao as DSC_Descricao from seg_usuario inner join seg_grupo on (seg_usuario.ID_SEG_Grupo = seg_grupo.ID_Grupo)";
     protected $sqlSelectInnerTrans = "SELECT *,seg_detalhe_transacao.COD_TIPO_Origem_Transacao seg_detalhe_transacao.COD_Tipo_Sistema_Transacao,seg_detalhe_transacao.DSC_Login_Transacao from seg_usuario inner join seg_detalhe_transacao on (seg_usuario.ID_Usuario = seg_detalhe_transacao.ID_SEG_Usuario) where 1=1 %s %s";
     protected $sqlSelectExists = "SELECT count(*) FROM seg_usuario WHERE 1=1 and DSC_Login='%s'";
     protected $sqlSelectID = "SELECT ID_Usuario FROM seg_usuario WHERE 1=1 and DSC_Login=%s";
@@ -20,7 +22,7 @@ class aUsuario extends mUsuario {
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(false), $this->getDTM_Fim(false), $this->getID_SEG_Grupo(), $this->getID_Usuario());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Login(), $this->getDSC_Senha(), $this->getDTM_Inicio(true), $this->getDTM_Fim(true), $this->getID_SEG_Grupo(), $this->getID_Usuario());
         return $this->RunQuery($sql);
     }
 

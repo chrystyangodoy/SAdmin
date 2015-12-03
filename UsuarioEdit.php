@@ -35,8 +35,8 @@ $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("ID_Usuario",$user->getID_Usuario());
 $smarty->assign("DSC_Login",$user->getDSC_Login());
 $smarty->assign("DSC_Senha",$user->getDSC_Senha());
-$smarty->assign("DTM_Inicio",$user->getDTM_Inicio());
-$smarty->assign("DTM_Fim",$user->getDTM_Fim());
+$smarty->assign("DTM_Inicio",$user->getDTM_Inicio(true));
+$smarty->assign("DTM_Fim",$user->getDTM_Fim(true));
 $smarty -> assign("listGrupo",$grupo->select());
 $smarty->assign("ID_SEG_Grupo",$user->getID_SEG_Grupo());
 

@@ -43,6 +43,7 @@ class mUsuario extends dbConnection {
     public function getDTM_Inicio($us = false) {
         if ($us) {
             return $this->DTM_Inicio;
+            //return $this->dateToUS($DTM_Inicio);
         } else {
             return $this->dateToBR($this->DTM_Inicio);
         }
@@ -55,6 +56,7 @@ class mUsuario extends dbConnection {
 
     public function getDTM_Fim($us = false) {
         if ($us) {
+            //return $this->dateToUS($DTM_Fim);
             return $this->DTM_Fim;
         } else {
             return $this->dateToBR($this->DTM_Fim);
