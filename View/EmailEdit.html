@@ -1,0 +1,32 @@
+{include file="./Template/HeaderAdmin.html"}
+
+<form id="Salvar" form method="post">
+    <input type="hidden" class="form-control" name="ID_Email" id="ID_Email" value="{$ID_Email}">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Servidor SMTP</label>
+        <input type="text" class="form-control"  name="smtp" id="smtp" value="{$smtp}" placeholder="Endereço do Servidor SMTP">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Usuário</label>
+        <input type="text" class="form-control" name="userName" id="userName" value="{$userName}" placeholder="Usuário do Email Padrão.">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Senha</label>
+        <input type="password" class="form-control" name="Password" id="Password" value="{$Password}" placeholder="Senha do Email Padrão.">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Remetente Padrão</label>
+        <input type="text" class="form-control"  name="remetente" id="remetente" value="{$remetente}" placeholder="Nome do Remetente Padrão de Email's">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Assunto Padrão</label>
+        <input type="text" class="form-control" name="assunto" id="assunto" value="{$assunto}" placeholder="Assunto Padrão do Email de Inscrição.">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Mensagem Padrão</label>
+        <input type="text" class="form-control" name="mensagem" id="mensagem" value="{$mensagem}" placeholder="Mensagem Padrão do Email de Inscrição.">
+    </div>
+    <button type="submit" class="btn" name="Salvar" value="Salvar">Salvar</button>
+    <a href="EmailList.php" class="btn btn-default">Cancelar</a>
+</form>
+{include file="./Template/footer.html"}

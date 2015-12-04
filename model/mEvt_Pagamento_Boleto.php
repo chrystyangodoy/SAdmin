@@ -2,7 +2,7 @@
 
 require_once './db/dbConnection.php';
 
-class mBsc_Banco extends dbConnection {
+class mEvt_Pagamento_Boleto extends dbConnection {
 
     private $ID_Pagamento_Boleto;
     private $NUM_Boleto;
