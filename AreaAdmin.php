@@ -20,6 +20,7 @@ $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("lista", $lista);
 
+$smarty->assign("Titulo", "");
 //$smarty->display('./View/AreaAdmin.html');
 $smarty->display('./View/Administracao.html');
 //----------------------------------------------------------

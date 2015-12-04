@@ -6,6 +6,7 @@ class mConfig_Email extends dbConnection {
 
     private $ID_Email;
     private $smtp;
+    private $port;
     private $remetente;
     private $assunto;
     private $mensagem;
@@ -30,6 +31,16 @@ class mConfig_Email extends dbConnection {
     public function getsmtp()
     {
         return $this->smtp;
+    }
+    
+    public function setport($port)
+    {
+        $this->port = $port;
+    }
+    
+    public function getport()
+    {
+        return $this->port;
     }
     
     public function setremetente($remetente)

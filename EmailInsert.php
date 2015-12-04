@@ -14,6 +14,7 @@ if (isset($_POST['Cadastrar'])) {
     $idUnico = $config->idUnico();
     $ConfigEmail->setID_Email($idUnico);
     $ConfigEmail->setsmtp($_POST['smtp']);
+    $ConfigEmail->setport($_POST['port']);
     $ConfigEmail->setremetente($_POST['remetente']);
     $ConfigEmail->setassunto($_POST['assunto']);
     $ConfigEmail->setmensagem($_POST['mensagem']);

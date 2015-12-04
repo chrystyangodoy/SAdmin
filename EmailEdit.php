@@ -18,6 +18,7 @@ $ConfigEmail->load();
 if (isset($_POST['Salvar']))
 {
     $ConfigEmail->setsmtp($_POST['smtp']);
+    $ConfigEmail->setport($_POST['port']);
     $ConfigEmail->setremetente($_POST['remetente']);
     $ConfigEmail->setassunto($_POST['assunto']);
     $ConfigEmail->setmensagem($_POST['mensagem']);
@@ -37,6 +38,7 @@ $smarty->assign("type", $FeedbackMessage->getType());
 
 $smarty->assign("ID_Email", $ConfigEmail->getID_Email());
 $smarty->assign("smtp", $ConfigEmail->getsmtp());
+$smarty->assign("Port", $ConfigEmail->getport());
 $smarty->assign("remetente",$ConfigEmail->getremetente());
 $smarty->assign("assunto", $ConfigEmail->getassunto());
 $smarty->assign("mensagem", $ConfigEmail->getmensagem());

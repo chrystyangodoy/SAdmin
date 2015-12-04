@@ -7,8 +7,8 @@
     <thead>
         <tr>
             <th>Servidor SMTP</th>
+            <th>Porta SMTP</th>
             <th>Usuário</th>
-            <th>Senha</th>
             <th>Remetente Padrão</th>
             <th>Assunto Padrão</th>
             <th>Mensagem Padrão</th>
@@ -19,8 +19,8 @@
         {foreach from=$lista item=row}
         <tr >
             <td>{$row.smtp}</td>
+            <td>{$row.Port}</td>
             <td>{$row.userName}</td>
-            <td>{$row.Password}</td>
             <td>{$row.remetente}</td>
             <td>{$row.assunto}</td>
             <td>{$row.mensagem}</td>
