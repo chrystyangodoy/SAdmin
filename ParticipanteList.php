@@ -13,10 +13,10 @@ if (isset($_GET['del'])) {
     $partic->setID_Participante($_GET['del']);
     $partic->delete();
 }
-$smarty->assign("Titulo", " - Lista de Participantes.");
+
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
-
 $smarty->assign("lista",$partic->select());
+$smarty->assign("Titulo", " - Lista de Participantes.");
 $smarty->display('./View/ParticipanteList.html');
