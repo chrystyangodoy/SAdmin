@@ -18,5 +18,6 @@ $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("lista", $empresa->select());
+$smarty->assign("Titulo", " - Listar Empresas.");
 $smarty->display('./View/EmpresaList.html');
 

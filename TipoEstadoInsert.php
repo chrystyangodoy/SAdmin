@@ -22,7 +22,7 @@ if (isset($_POST['Cadastrar']))
 
     $FeedbackMessage->setMsg("Estado inserido com sucesso!");
 }
-
+$smarty->assign("Titulo", " - Inserir Estado.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());

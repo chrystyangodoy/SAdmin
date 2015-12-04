@@ -87,5 +87,5 @@ $smarty->assign("COD_Tipo_Estado_promotora", $evento->getCOD_Tipo_Estado_promoto
 $smarty->assign("isPromotora", $evento->getisPromotora());
 $smarty->assign("ID_Banco", $evento->getID_Banco());
 $smarty->assign("ID_Empresa", $evento->getID_Empresa());
-
+$smarty->assign("Titulo", " - Editar Evento.");
 $smarty->display('./View/EventoEdit.html');

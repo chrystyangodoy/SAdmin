@@ -13,7 +13,7 @@ if (isset($_GET['del'])) {
     $user->setID_Usuario($_GET['del']);
     $user->delete();
 }
-
+$smarty->assign("Titulo", " - Lista de Usuários.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());

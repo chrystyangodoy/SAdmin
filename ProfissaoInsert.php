@@ -16,7 +16,7 @@ if (isset($_POST['Cadastrar'])) {
     $FeedbackMessage->setMsg("Profissão inserida com sucesso!");
     header('location:ProfissaoList.php');
 }
-
+$smarty->assign("Titulo", " - Inserir Profissão.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());

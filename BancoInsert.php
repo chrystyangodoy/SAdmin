@@ -29,5 +29,5 @@ if (isset($_POST['Cadastrar'])) {
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
-
+$smarty->assign("Titulo", " - Inserir Banco.");
 $smarty->display('./View/BancoInsert.html');

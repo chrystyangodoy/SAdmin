@@ -61,6 +61,6 @@ $smarty->assign("DSC_Nome_Contato", $localevento->getDSC_Nome_Contato());
 $smarty->assign("COD_TIPOEstado", $localevento->getCOD_TIPOEstado());
 
 
-
+$smarty->assign("Titulo", " - Editar Local do Evento.");
 $smarty->assign("listTpUF", $tipoestado->select());
 $smarty->display('./View/LocalEventoEdit.html');

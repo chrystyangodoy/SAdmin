@@ -32,4 +32,5 @@ $smarty->assign("ID_Grupo", $grupo->getID_Grupo());
 $smarty->assign("DSC_Nome", $grupo->getDSC_Nome());
 $smarty->assign("DSC_Descricao", $grupo->getDSC_Descricao());
 
+$smarty->assign("Titulo", " - Editar Grupo.");
 $smarty->display('./View/GrupoEdit.html');

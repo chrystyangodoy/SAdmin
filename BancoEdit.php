@@ -54,5 +54,5 @@ $smarty->assign("Carteira", $banco->getCarteira());
 $smarty->assign("Variacao_Carteira", $banco->getVariacao_Carteira());
 $smarty->assign("numero_documento", $banco->getnumero_documento());
 $smarty->assign("COD_CNPJ_Promotora", $banco->getCOD_CNPJ_Promotora());
-
+$smarty->assign("Titulo", " - Editar Banco.");
 $smarty->display('./View/BancoEdit.html');

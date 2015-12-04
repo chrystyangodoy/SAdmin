@@ -55,5 +55,5 @@ $smarty->assign("listTpUF", $tipoestado->select());
 $smarty->assign("listBanco", $banco->select());
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
-
+$smarty->assign("Titulo", " - Inserir Evento.");
 $smarty->display('./View/EventoInsert.html');

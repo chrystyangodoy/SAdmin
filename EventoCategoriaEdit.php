@@ -43,5 +43,5 @@ $smarty->assign("DT_Fim_Valor", $eventoCateg->getDT_Fim_Valor());
 
 $smarty->assign("ID_EVT_Evento", $eventoCateg->getID_EVT_Evento());
 $smarty->assign("listEvento", $evento->select());
-
+$smarty->assign("Titulo", " - Editar Categorias de Evento.");
 $smarty->display('./View/EventoCategoriaEdit.html');

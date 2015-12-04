@@ -16,6 +16,7 @@ if(isset($_POST['Cadastrar'])){
     $FeedbackMessage->setMsg("Tipo de Participação inserido com sucesso!");
     header('location:TbTipoParticipacaoList.php');
 }
+$smarty->assign("Titulo", " - Inserir Tipo de Participação.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());

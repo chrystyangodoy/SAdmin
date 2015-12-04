@@ -26,6 +26,7 @@ if (isset($_POST['Salvar']))
     $FeedbackMessage->setMsg("Estado atualizado com sucesso!");
     header("Location: TipoEstadoList.php");
 }
+$smarty->assign("Titulo", " - Edição do Estado.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());

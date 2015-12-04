@@ -28,6 +28,7 @@ if(isset($_POST['Salvar'])){
     $FeedbackMessage->setMsg("Usuário atualizado com sucesso!");
     header("Location: UsuarioList.php");
 }
+$smarty->assign("Titulo", " - Edição do Usuários.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());

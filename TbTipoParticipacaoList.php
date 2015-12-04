@@ -14,6 +14,7 @@ if(isset($_GET['exc'])){
     $TpPart->delete();
     header('location:TbTipoParticipacaoList.php');
 }
+$smarty->assign("Titulo", " - Lista de Tipos de Participação.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());

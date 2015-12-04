@@ -205,7 +205,7 @@ $smarty->assign("listEmp", $emp->select());
 $smarty->assign("listProf", $prof->select());
 $smarty->assign("listEstado", $estado->select());
 
-
+$smarty->assign("Titulo", " - Inserir Participante.");
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->display('./View/ParticipanteInsert.html');

@@ -35,7 +35,7 @@ if (isset($_REQUEST['ID_Evento_Categoria']) and isset($_REQUEST['CPF_Participant
 $msg = $FeedbackMessage->getMsg();
 $type = $FeedbackMessage->getType();
 
-
+$smarty->assign("Titulo", " - Acompanhamento Inscrições.");
 $smarty->assign("msg", $msg);
 $smarty->assign("type", $type);
 

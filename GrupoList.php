@@ -17,4 +17,5 @@ $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("lista",$grupo->select());
 
+$smarty->assign("Titulo", " - Lista de Grupos.");
 $smarty->display('./View/GrupoList.html');

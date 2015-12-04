@@ -107,8 +107,9 @@ $smarty->assign("COD_Tipo_Estado", $partic->getCOD_Tipo_Estado());
 $smarty->assign("ID_BSC_Empresa", $partic->getID_BSC_Empresa());
 $smarty->assign("ID_BSC_Profissao", $partic->getID_BSC_Profissao());
 
+$smarty->assign("Titulo", " - Editar Participante.");
 $smarty->assign("listTpUF", $tipoestado->select());
-
+$smarty->assign("Titulo", " - Editar Participante.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());

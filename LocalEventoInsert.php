@@ -41,5 +41,6 @@ $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 
+$smarty->assign("Titulo", " - Inserir Local do Evento.");
 $smarty->assign("listTpUF", $tipoestado->select());
 $smarty->display('./View/LocalEventoInsert.html');

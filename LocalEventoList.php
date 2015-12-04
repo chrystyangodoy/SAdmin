@@ -19,5 +19,6 @@ $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 
+$smarty->assign("Titulo", " - Lista de Locais de Evento.");
 $smarty->assign("lista", $localEvento->selectInner());
 $smarty->display('./View/LocalEventoList.html');

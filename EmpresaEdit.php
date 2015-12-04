@@ -49,6 +49,5 @@ $smarty->assign("NUM_Fone",$emp->getNUM_Fone());
 $smarty->assign("NUM_FAX",$emp->getNUM_FAX());
 $smarty->assign("DSC_EMAIL",$emp->getDSC_EMAIL());
 $smarty->assign("COD_TipoEstado",$emp->getCOD_TipoEstado());
-
-
+$smarty->assign("Titulo", " - Editar Empresa.");
 $smarty->display('./View/EmpresaEdit.html');

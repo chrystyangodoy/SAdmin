@@ -28,7 +28,7 @@ if(isset($_POST['Cadastrar'])){
     $FeedbackMessage->setMsg("Usuário inserido com sucesso!");
     header('location:UsuarioList.php');
 }
-
+$smarty->assign("Titulo", " - Inserir Usuários.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());

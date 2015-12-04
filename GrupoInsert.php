@@ -23,4 +23,5 @@ $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 
+$smarty->assign("Titulo", " - Inserir Grupo.");
 $smarty->display('./View/GrupoInsert.html');

@@ -13,6 +13,7 @@ if (isset($_GET['del'])) {
     $prof->setID_Profissao($_GET['del']);
     $prof->delete();
 }
+$smarty->assign("Titulo", " - Lista de Profissões.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());

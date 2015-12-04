@@ -102,6 +102,7 @@ $smarty->assign("ID_BSC_Profissao", $partic->getID_BSC_Profissao());
 
 $smarty->assign("listTpUF", $tipoestado->select());
 
+$smarty->assign("Titulo", " - Inscrição do Participante.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());

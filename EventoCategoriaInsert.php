@@ -32,5 +32,5 @@ $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty -> assign("listEvento",$evento->select());
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
-
+$smarty->assign("Titulo", " - Inserir Categoria do Evento.");
 $smarty->display('./View/EventoCategoriaInsert.html');
