@@ -18,7 +18,7 @@ $ConfigEmail->load();
 if (isset($_POST['Salvar']))
 {
     $ConfigEmail->setsmtp($_POST['smtp']);
-    $ConfigEmail->setport($_POST['port']);
+    $ConfigEmail->setport($_POST['Port']);
     $ConfigEmail->setremetente($_POST['remetente']);
     $ConfigEmail->setassunto($_POST['assunto']);
     $ConfigEmail->setmensagem($_POST['mensagem']);
