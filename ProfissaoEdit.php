@@ -21,7 +21,7 @@ if (isset($_POST['Salvar']))
     $prof->setDSC_Descricao($_POST['DSC_Descricao']);
     $prof->update();
     $FeedbackMessage->setMsg("Estado atualizado com sucesso!");
-    header("Location: TipoEstadoList.php");
+    header("Location: ProfissaoList.php");
 }
 $smarty->assign("Titulo", " - Editar Profissão.");
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
