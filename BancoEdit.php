@@ -18,9 +18,8 @@ $ID_Banco = $_GET['alt'];
 $banco->setID($ID_Banco);
 $banco->load();
 
-if (isset($_POST['Cadastrar']) && isset($_GET['ID']))
+if (isset($_POST['Salvar']))
 {
-    $banco->setID($_POST['ID_Banco']);
     $banco->setDsc_Banco($_POST['Dsc_Banco']);
     $banco->setAgencia($_POST['Agencia']);
     $banco->setConta($_POST['Conta']);

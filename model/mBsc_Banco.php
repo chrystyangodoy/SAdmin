@@ -28,7 +28,7 @@ class mBsc_Banco extends dbConnection {
     
     public function setDsc_Banco($Dsc_Banco)
     {
-        $this->ID = $Dsc_Banco;
+        $this->Dsc_Banco = $Dsc_Banco;
     }
 
     public function getDsc_Banco()
@@ -68,7 +68,7 @@ class mBsc_Banco extends dbConnection {
 
     public function setConvenio($Convenio)
     {
-        $this->DSC_Bairro = $Convenio;
+        $this->Convenio = $Convenio;
     }
 
     public function getConvenio()
