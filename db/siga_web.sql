@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Dez-2015 às 15:04
+-- Generation Time: 07-Dez-2015 às 17:35
 -- Versão do servidor: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -134,7 +134,8 @@ CREATE TABLE IF NOT EXISTS `config_email` (
   `assunto` varchar(100) NOT NULL,
   `mensagem` varchar(200) NOT NULL,
   `userName` varchar(100) NOT NULL,
-  `Password` varchar(100) NOT NULL
+  `Password` varchar(100) NOT NULL,
+  `isAtivo` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

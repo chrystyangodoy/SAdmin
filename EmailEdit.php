@@ -24,6 +24,7 @@ if (isset($_POST['Salvar']))
     $ConfigEmail->setmensagem($_POST['mensagem']);
     $ConfigEmail->setuserName($_POST['userName']);
     $ConfigEmail->setPassword($_POST['Password']);
+    $ConfigEmail->setisAtivo($_POST['isAtivo']);
 
     $ConfigEmail->update();
 
@@ -44,6 +45,7 @@ $smarty->assign("assunto", $ConfigEmail->getassunto());
 $smarty->assign("mensagem", $ConfigEmail->getmensagem());
 $smarty->assign("userName", $ConfigEmail->getuserName());
 $smarty->assign("Password", $ConfigEmail->getPassword());
+$smarty->assign("isAtivo", $ConfigEmail->getisAtivo());
 
 $smarty->assign("Titulo", " - Editar Configuração de Email.");
 $smarty->display('./View/EmailEdit.html');
