@@ -54,8 +54,7 @@ class eMail {
         
         require_once './actions/aConfig_Email.php';
         $Config_Email = new aConfig_Email();
-        $Config_Email->setID_Email('61612126cf8e67c01056710601df787f');
-        $Config_Email->load();
+        $Config_Email->loadAtivo();
         
         // Inicia a classe PHPMailer
         $mail = new PHPMailer();

@@ -15,18 +15,18 @@ require './model/mConfig_Email.php';
 
 class aConfig_Email extends mConfig_Email {
 
-    protected $sqlInsert = "INSERT INTO Config_Email(ID_Email, smtp, port, remetente, assunto, mensagem, userName, Password) VALUES ('%s','%s','%s','%s','%s','%s','%s')";
-    protected $sqlUpdate = "update Config_Email set smtp = '%s', port = '%s', remetente = '%s', assunto = '%s', mensagem = '%s', userName = '%s', Password = '%s' WHERE ID_Email = '%s'";
+    protected $sqlInsert = "INSERT INTO Config_Email(ID_Email, smtp, port, remetente, assunto, mensagem, userName, Password,isAtivo) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
+    protected $sqlUpdate = "update Config_Email set smtp = '%s', port = '%s', remetente = '%s', assunto = '%s', mensagem = '%s', userName = '%s', Password = '%s', isAtivo='%s' WHERE ID_Email = '%s'";
     protected $sqlDelete = "delete from Config_Email where ID_Email = '%s'";
-    protected $sqlSelect = "select * from Config_Email where 1=1 %s %s";
+    protected $sqlSelect = "select * from Config_Email where 1=1  and isAtivo=1 %s %s";
 
     public function insert() {
-        $sql = sprintf($this->sqlInsert, $this->getID_Email(),$this->getsmtp(),$this->getport(),$this->getremetente(),$this->getassunto(),$this->getmensagem(),$this->getuserName(),$this->getPassword());
+        $sql = sprintf($this->sqlInsert, $this->getID_Email(),$this->getsmtp(),$this->getport(),$this->getremetente(),$this->getassunto(),$this->getmensagem(),$this->getuserName(),$this->getPassword(),$this->getisAtivo());
         return $this->RunQuery($sql);
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getsmtp(),$this->getport(),$this->getremetente(),$this->getassunto(),$this->getmensagem(),$this->getuserName(),$this->getPassword(),$this->getID_Email());
+        $sql = sprintf($this->sqlUpdate, $this->getsmtp(),$this->getport(),$this->getremetente(),$this->getassunto(),$this->getmensagem(),$this->getuserName(),$this->getPassword(),$this->getisAtivo(),$this->getID_Email());
         return $this->RunQuery($sql);
     }
 
@@ -50,7 +50,20 @@ class aConfig_Email extends mConfig_Email {
         $this->setmensagem($rs[0]['mensagem']);
         $this->setuserName($rs[0]['userName']);
         $this->setPassword($rs[0]['Password']);
+        $this->setisAtivo($rs[0]['isAtivo']);
         return $this;
     }
-
+    public function loadAtivo() {
+        $rs = $this->select();
+        $this->setID_Email($rs[0]['ID_Email']);
+        $this->setsmtp($rs[0]['smtp']);
+        $this->setport($rs[0]['Port']);
+        $this->setremetente($rs[0]['remetente']);
+        $this->setassunto($rs[0]['assunto']);
+        $this->setmensagem($rs[0]['mensagem']);
+        $this->setuserName($rs[0]['userName']);
+        $this->setPassword($rs[0]['Password']);
+        $this->setisAtivo($rs[0]['isAtivo']);
+        return $this;
+    }
 }

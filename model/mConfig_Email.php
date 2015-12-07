@@ -12,6 +12,7 @@ class mConfig_Email extends dbConnection {
     private $mensagem;
     private $userName;
     private $Password;
+    private $isAtivo;
     
     public function setID_Email($ID_Email)
     {
@@ -91,5 +92,15 @@ class mConfig_Email extends dbConnection {
     public function getPassword()
     {
         return $this->Password;
+    }
+    
+    public function setisAtivo($isAtivo)
+    {
+        $this->isAtivo = $isAtivo;
+    }
+
+    public function getisAtivo()
+    {
+        return $this->isAtivo;
     }
 }
