@@ -36,7 +36,7 @@
             <option value="0">Inativo</option>
             <option value="1">Ativo</option>
             {foreach from=$lista item=row}
-            <option value="{$row.isAtivo}" {if $isAtivo != $row.isAtivo} selected {/if}>Ativo</option>
+            <option value="{$row.isAtivo}" {if $isAtivo == $row.isAtivo} selected {/if}>Ativo</option>
             {/foreach}
         </select>
     </div>

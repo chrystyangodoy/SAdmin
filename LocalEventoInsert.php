@@ -10,9 +10,6 @@ require_once './actions/atb_Tipo_Estado.php';
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 
-
-
-
 $localevento = new aBsc_Local_Evento();
 $tipoestado = new atb_Tipo_Estado();
 $config = new configs();
@@ -35,6 +32,7 @@ if (isset($_POST['Cadastrar']))
     $localevento->insert();
 
     $FeedbackMessage->setMsg("Evento inserido com sucesso!");
+    //header('location:LocalEventoList.php');
 }
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);

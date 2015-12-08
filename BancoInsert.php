@@ -10,9 +10,10 @@ $banco = new aBsc_Banco();
 require_once './config/configs.php';
 $config = new configs();
 
-if (isset($_POST['Cadastrar'])) {
+if (isset($_POST['Salvar'])) {
     $idUnico = $config->idUnico();
     $banco->setID($idUnico);
+    $banco->setDsc_Banco($_POST['Dsc_Banco']);
     $banco->setAgencia($_POST['Agencia']);
     $banco->setConta($_POST['Conta']);
     $banco->setCod_Banco($_POST['Cod_Banco']);

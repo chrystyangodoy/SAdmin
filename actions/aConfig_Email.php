@@ -18,7 +18,8 @@ class aConfig_Email extends mConfig_Email {
     protected $sqlInsert = "INSERT INTO Config_Email(ID_Email, smtp, port, remetente, assunto, mensagem, userName, Password,isAtivo) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
     protected $sqlUpdate = "update Config_Email set smtp = '%s', port = '%s', remetente = '%s', assunto = '%s', mensagem = '%s', userName = '%s', Password = '%s', isAtivo='%s' WHERE ID_Email = '%s'";
     protected $sqlDelete = "delete from Config_Email where ID_Email = '%s'";
-    protected $sqlSelect = "select * from Config_Email where 1=1  and isAtivo=1 %s %s";
+    protected $sqlSelect = "select * from Config_Email";
+    protected $sqlSelectAtivo = "select * from Config_Email  where 1=1  and isAtivo=1 %s %s";
 
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getID_Email(),$this->getsmtp(),$this->getport(),$this->getremetente(),$this->getassunto(),$this->getmensagem(),$this->getuserName(),$this->getPassword(),$this->getisAtivo());
@@ -39,6 +40,11 @@ class aConfig_Email extends mConfig_Email {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
+    
+    public function selectAtivo() {
+        $sql = sprintf($this->sqlSelectAtivo);
+        return $this->RunSelect($sql);
+    }
 
     public function load() {
         $rs = $this->select(sprintf("and ID_Email='%s'", $this->getID_Email()));
@@ -54,7 +60,7 @@ class aConfig_Email extends mConfig_Email {
         return $this;
     }
     public function loadAtivo() {
-        $rs = $this->select();
+        $rs = $this->selectAtivo();
         $this->setID_Email($rs[0]['ID_Email']);
         $this->setsmtp($rs[0]['smtp']);
         $this->setport($rs[0]['Port']);

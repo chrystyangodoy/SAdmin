@@ -38,9 +38,8 @@ $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("ID_Evento_Categoria", $eventoCateg->getID_Evento_Categoria());
 $smarty->assign("DSC_Nome", $eventoCateg->getDSC_Nome());
 $smarty->assign("VLR_Inscricao", $eventoCateg->getVLR_Inscricao());
-$smarty->assign("DT_Inicio_Valor", $eventoCateg->getDT_Inicio_Valor());
-$smarty->assign("DT_Fim_Valor", $eventoCateg->getDT_Fim_Valor());
-
+$smarty->assign("DT_Inicio_Valor", $eventoCateg->getDT_Inicio_Valor(false));
+$smarty->assign("DT_Fim_Valor", $eventoCateg->getDT_Fim_Valor(false));
 $smarty->assign("ID_EVT_Evento", $eventoCateg->getID_EVT_Evento());
 $smarty->assign("listEvento", $evento->select());
 $smarty->assign("Titulo", " - Editar Categorias de Evento.");

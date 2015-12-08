@@ -29,12 +29,12 @@ class aEvt_Evento_Categoria extends mEvt_Evento_Categoria {
                                 where   1=1 %s %s";
 
     public function insert() {
-        $sql = sprintf($this->sqlInsert, $this->getID_Evento_Categoria(), $this->getDSC_Nome(), $this->getVLR_Inscricao(), $this->getDT_Inicio_Valor(), $this->getDT_Fim_Valor(), $this->getID_EVT_Evento());
+        $sql = sprintf($this->sqlInsert, $this->getID_Evento_Categoria(), $this->getDSC_Nome(), $this->getVLR_Inscricao(), $this->getDT_Inicio_Valor(true), $this->getDT_Fim_Valor(true), $this->getID_EVT_Evento());
         return $this->RunQuery($sql);
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getVLR_Inscricao(), $this->getDT_Inicio_Valor(), $this->getDT_Fim_Valor(), $this->getID_EVT_Evento(), $this->getID_Evento_Categoria());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getVLR_Inscricao(), $this->getDT_Inicio_Valor(true), $this->getDT_Fim_Valor(true), $this->getID_EVT_Evento(), $this->getID_Evento_Categoria());
         return $this->RunQuery($sql);
     }
 

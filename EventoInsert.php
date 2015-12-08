@@ -47,6 +47,8 @@ if (isset($_POST['Cadastrar']))
     $evento->insert();
 
     $FeedbackMessage->setMsg("Evento inserido com sucesso!");
+    header('location:EventoList.php');
+    
 }
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);

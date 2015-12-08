@@ -46,19 +46,27 @@ class mEvt_Evento_Categoria extends dbConnection {
     }
     
     public function setDT_Inicio_Valor($DT_Inicio_Valor) {
-        $this->DT_Inicio_Valor = $DT_Inicio_Valor;
+        $this->DT_Inicio_Valor = $this->dateToUS($DT_Inicio_Valor);
     }
 
-    public function getDT_Inicio_Valor() {
-        return $this->DT_Inicio_Valor;
+    public function getDT_Inicio_Valor($us = false) {
+        if ($us) {
+            return $this->DT_Inicio_Valor;
+        } else {
+            return $this->dateToBR($this->DT_Inicio_Valor);
+        }
     }
     
     public function setDT_Fim_Valor($DT_Fim_Valor) {
-        $this->DT_Fim_Valor = $DT_Fim_Valor;
+        $this->DT_Fim_Valor = $this->dateToUS($DT_Fim_Valor);
     }
 
-    public function getDT_Fim_Valor() {
-        return $this->DT_Fim_Valor;
+    public function getDT_Fim_Valor($us = false) {
+        if ($us) {
+            return $this->DT_Fim_Valor;
+        } else {
+            return $this->dateToBR($this->DT_Fim_Valor);
+        }
     }
     
     public function setID_EVT_Evento($ID_EVT_Evento) {

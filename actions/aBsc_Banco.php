@@ -4,7 +4,7 @@ require './model/mBsc_Banco.php';
 
 class aBsc_Banco extends mBsc_Banco {
 
-    protected $sqlInsert = "INSERT INTO bsc_banco(ID, Dsc_Banco,  Agencia, Conta, Cod_Banco, Convenio, Contrato, Carteira, Variacao_Carteira, numero_documento, COD_CNPJ_Promotora) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
+    protected $sqlInsert = "INSERT INTO bsc_banco(ID, Dsc_Banco, Agencia, Conta, Cod_Banco, Convenio, Contrato, Carteira, Variacao_Carteira, numero_documento, COD_CNPJ_Promotora) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
     protected $sqlUpdate = "update bsc_banco set Dsc_Banco='%s',Agencia= '%s', Conta= '%s', Cod_Banco= '%s', Convenio= '%s', Contrato= '%s', Carteira= '%s', Variacao_Carteira= '%s', numero_documento= '%s', COD_CNPJ_Promotora= '%s' where ID= '%s'";
     protected $sqlDelete = "delete from bsc_banco where ID = '%s'";
     protected $sqlSelect = "select * from bsc_banco where 1=1 %s %s";
