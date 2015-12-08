@@ -59,6 +59,8 @@ foreach ($listaDadosParticipante as $dadosParticipante){
     $categoria = $dom->createElement("descCategoria", $dadosParticipante['categoria']);
     $profissao = $dom->createElement("profissao", $dadosParticipante['profissao']);
     $DSC_Profissao_Especialidade = $dom->createElement("especialidade", $dadosParticipante['DSC_Profissao_Especialidade']);
+    $Conselho = $dom->createElement("conselho", '');
+    $vlr_total = $dom->createElement("valorTotal", $dadosParticipante['VLR_Total']);
     
     $ParticipanteTO->appendChild($cpf);
     $ParticipanteTO->appendChild($nomeCompleto);
@@ -74,24 +76,27 @@ foreach ($listaDadosParticipante as $dadosParticipante){
     $ParticipanteTO->appendChild($categoria);
     $ParticipanteTO->appendChild($profissao);
     $ParticipanteTO->appendChild($DSC_Profissao_Especialidade);
+    $ParticipanteTO->appendChild($Conselho);
+    $ParticipanteTO->appendChild($vlr_total);
     
-    $root->appendChild($ParticipanteTO);
+    
+    $participantes->appendChild($ParticipanteTO);
     
 }
 
-
+$root->appendChild($participantes);
 
 
 $dom->appendChild($root);
 
 # Para salvar o arquivo, descomente a linha
 
-$dom->save( "evento.xml");
-//        #cabeçalho da página
+//$dom->save( "evento.xml");
+        #cabeçalho da página
+
+header("Content-Type: text/xml");
 //
-//header("Content-Type: text/xml");
-////
-////        # imprime o xml na tela
-////
-//print $dom->saveXML();
+//        # imprime o xml na tela
+//
+print $dom->saveXML();
 
