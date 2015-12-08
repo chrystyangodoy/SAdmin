@@ -20,6 +20,7 @@ if (isset($_POST['Cadastrar'])) {
     $ConfigEmail->setmensagem($_POST['mensagem']);
     $ConfigEmail->setuserName($_POST['userName']);
     $ConfigEmail->setPassword($_POST['Password']);
+    $ConfigEmail->setisAtivo($_POST['isAtivo']);
     $ConfigEmail->insert();
     $FeedbackMessage->setMsg("Configuração de Email inserida com sucesso!");
     header('location:EmailList.php');
