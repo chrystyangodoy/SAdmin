@@ -1,15 +1,14 @@
 <?php
 
-
 class configs {
 
-        public function dateToBR($dataAmericana) {
+    public function dateToBR($dataAmericana) {
         //2015-09-01
         if (strpos($dataAmericana, '-')) {
             $d = explode('-', $dataAmericana);
             $dbr = $d[2] . '/' . $d[1] . '/' . $d[0];
         }
-        if(strpos($dataAmericana, '/')){
+        if (strpos($dataAmericana, '/')) {
             $dbr = $dataAmericana;
         }
         return $dbr;
@@ -38,6 +37,20 @@ class configs {
         $d = explode(' ', $dataTimeBrasil);
         $dtam = $this->dateToUS($d[0] . ' ' . $d[1]);
         return $dam;
+    }
+
+    public function moedaToUS($get_valor) {
+        $source = array('.', ',');
+        $replace = array('', '.');
+        $valor = str_replace($source, $replace, $get_valor); //remove os pontos e substitui a virgula pelo ponto
+        return $valor; //retorna o valor formatado para gravar no banco
+    }
+
+    public function moedaToBR($get_valor) {
+        $source = array(',', '.');
+        $replace = array('', ',');
+        $valor = str_replace($source, $replace, $get_valor); //remove os pontos e substitui a virgula pelo ponto
+        return $valor; //retorna o valor formatado para gravar no banco
     }
 
     //Retira os caracteres especiais do CPF

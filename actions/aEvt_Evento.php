@@ -33,14 +33,16 @@ class aEvt_Evento extends mEvt_Evento {
                                         tb_tipo_estado.DSC_Nome AS UF,
                                         evt_evento_categoria.DSC_Nome categoria,
                                         bsc_profissao.DSC_Nome profissao,
-                                        bsc_participante.DSC_Profissao_Especialidade
+                                        bsc_participante.DSC_Profissao_Especialidade,
+                                        evt_evento_participante.VLR_Total
 
                                 FROM	bsc_participante 
                                                                 LEFT JOIN 	evt_evento_participante ON(bsc_participante.ID_Participante = evt_evento_participante.ID_BSC_Participante)
                                                                 LEFT JOIN	tb_tipo_estado	ON(bsc_participante.COD_Tipo_Estado = tb_tipo_estado.COD_TIPOEstado)
                                                 LEFT JOIN	evt_evento_categoria ON(evt_evento_participante.ID_EVT_Categoria = evt_evento_categoria.ID_Evento_Categoria)
                                                 LEFT JOIN	bsc_profissao	ON (bsc_participante.ID_BSC_Profissao = bsc_profissao.ID_Profissao)
-                                WHERE	evt_evento_participante.ID_BSC_Participante = '%s'";
+                                                
+                                WHERE	evt_evento_participante.ID_EVT_Evento = '%s'";
 
     
     public function insert() {
@@ -140,7 +142,8 @@ class aEvt_Evento extends mEvt_Evento {
 //        print $dom->saveXML();
     }
     public function SelectXML($evento_ID){
-        $rs = $this->RunSelect(sprintf($this->sqlSelectXML,$evento_ID));
+        $sql = sprintf($this->sqlSelectXML,$evento_ID);
+        $rs = $this->RunSelect($sql);
         return $rs ;
     }
 }

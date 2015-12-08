@@ -12,6 +12,10 @@ $('#DT_Inicio').mask('99/99/9999');
 $('#DT_Fim').mask('99/99/9999');
 $('#COD_CNPJ_Promotora').mask('99.999.999/9999-99');
 $('#COD_CNPJ_Promotora').mask('99.999.999/9999-99');
+$('#NUM_CEP_Promotora').mask('99.999-999');
+$('#NUM_Fone_Promotora').mask('(99)9999-99999');
+$('#NUM_FAX_Promotora').mask('(99)9999-99999');
+$('#QTD_CargaHorariaMinima').mask('9999');
 
 //Validações
     $('#Cadastrar').validate({
@@ -28,7 +32,7 @@ $('#COD_CNPJ_Promotora').mask('99.999.999/9999-99');
             DSC_Cidade_Promotora: {required: true},
             NUM_Fone_Promotora: {required: true},
             NUM_FAX_Promotora: {required: true},
-            DSC_EMAIL_Promotora: {required: true},
+            DSC_EMAIL_Promotora: {required: true,email:true},
             QTD_CargaHorariaMinima: {required: true},
             ID_BSC_Local_Evento: {required: true, validaComboBox: true},
             COD_Tipo_Estado_promotora: {required: true, validaComboBox: true}
@@ -46,7 +50,7 @@ $('#COD_CNPJ_Promotora').mask('99.999.999/9999-99');
             DSC_Cidade_Promotora: {required: 'Preencha o campo'},
             NUM_Fone_Promotora: {required: 'Preencha o campo'},
             NUM_FAX_Promotora: {required: 'Preencha o campo'},
-            DSC_EMAIL_Promotora: {required: 'Preencha o campo'},
+            DSC_EMAIL_Promotora: {required: 'Preencha o campo',email:'Preencha um e-mail válido'},
             QTD_CargaHorariaMinima: {required: 'Preencha o campo'},
             ID_BSC_Local_Evento: {required: 'Preencha o campo', validaComboBox: 'Preencha o campo'},
             COD_Tipo_Estado_promotora: {required: 'Preencha o campo', validaComboBox: 'Preencha o campo'}
