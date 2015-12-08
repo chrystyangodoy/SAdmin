@@ -19,8 +19,8 @@ if (isset($_POST['Cadastrar'])) {
     $eventoCategoria->setID_Evento_Categoria($idUnico);
     $eventoCategoria->setDSC_Nome($_POST['DSC_Nome']);
     $eventoCategoria->setVLR_Inscricao($_POST['VLR_Inscricao']);
-    $eventoCategoria->setDT_Inicio_Valor($_POST['DT_Inicio_Valor']);
-    $eventoCategoria->setDT_Fim_Valor($_POST['DT_Fim_Valor']);
+    $eventoCategoria->setDT_Inicio_Valor($eventoCategoria->dateToUS($_POST['DT_Inicio_Valor']));
+    $eventoCategoria->setDT_Fim_Valor($eventoCategoria->dateToUS($_POST['DT_Fim_Valor']));
     $eventoCategoria->setID_EVT_Evento($_POST['ID_EVT_Evento']);
     
     $eventoCategoria->insert();
