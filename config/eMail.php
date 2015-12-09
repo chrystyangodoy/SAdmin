@@ -64,12 +64,12 @@ class eMail {
         //$mail->Host = $this->smtp; // Endereço do servidor SMTP
         $mail->Host =$Config_Email->getsmtp();
         $mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
-        if($Config_Email->getport()!=null){
-            //$mail->Port =587;
-            $mail->Port = $Config_Email->getport();
-        }else{
+//        if($Config_Email->getport()!=null){
+//            //$mail->Port =587;
+//            $mail->Port = $Config_Email->getport();
+//        }else{
             $mail->Port = 587;    
-        }
+//        }
         
 //        $mail->Username = 'chrystyan@cs-consoft.com.br'; // Usuário do servidor SMTP     
 //        $mail->Password = 'ch1234ch'; // Senha do servidor SMTP
@@ -80,7 +80,7 @@ class eMail {
         //$mail->From = 'chrystyan@cs-consoft.com.br'; // Seu e-mail
         //$mail->FromName = 'Administração'; // Seu nome
         $mail->From = $Config_Email->getuserName();
-        $mail->FromName = $Config_Email->getuserName();
+        $mail->FromName = 'Administração'; // Seu nome
         
         // Define os destinatário(s)
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

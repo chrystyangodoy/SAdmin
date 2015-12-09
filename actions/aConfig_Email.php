@@ -15,7 +15,7 @@ require './model/mConfig_Email.php';
 
 class aConfig_Email extends mConfig_Email {
 
-    protected $sqlInsert = "INSERT INTO Config_Email(ID_Email, smtp, port, remetente, assunto, mensagem, userName, Password,isAtivo) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
+    protected $sqlInsert = "INSERT INTO Config_Email(ID_Email, smtp, port, remetente, assunto, mensagem, userName, Password, isAtivo) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')";
     protected $sqlUpdate = "update Config_Email set smtp = '%s', port = '%s', remetente = '%s', assunto = '%s', mensagem = '%s', userName = '%s', Password = '%s', isAtivo='%s' WHERE ID_Email = '%s'";
     protected $sqlDelete = "delete from Config_Email where ID_Email = '%s'";
     protected $sqlSelect = "select * from Config_Email";
