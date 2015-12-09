@@ -35,11 +35,10 @@ $boletos = $dom->createElement("boletos");
 $root->appendChild($nomeEvento);
 $root->appendChild($dataHoraGeracao);
 $root->appendChild($nomeEvento);
-$root->appendChild($participantes);
-$root->appendChild($boletos);
 
 
 
+//foreach para popular a tag participanteTO
 $listaDadosParticipante = $evento->SelectXML($EventoID);
 
 foreach ($listaDadosParticipante as $dadosParticipante){
@@ -85,6 +84,25 @@ foreach ($listaDadosParticipante as $dadosParticipante){
 }
 
 $root->appendChild($participantes);
+
+//foreach para popular a tag boletos
+$listaDadosBoleto = $evento->SelectXMLBoelto($EventoID);
+
+foreach ($listaDadosBoleto as $dadosBoleto) {
+    $BoletoTO = $dom->createElement("BoletoTO");
+    
+    $tipoInscricao = $dom->createElement("tipoInscricao", 1);
+    $codigoInscricaoSacado = $dom->createElement("codigoInscricaoSacado", 0);
+    $nossoNumero = $dom->createElement("nossoNumero", 0);
+    $numeroParcela = $dom->createElement("numeroParcela", $dadosBoleto['QTD_Parcelas']);
+    $valor = $dom->createElement("valor", $dadosBoleto['VLR_Transacao']);
+    $situacaoPagamento = $dom->createElement("situacaoPagamento", $dadosBoleto['situacao']);
+    $dataEmissao = $dom->createElement("dataEmissao", $evento->dateTimeToBR($dadosBoleto['DT_Transacao']));
+    $dataPagamento = $dom->createElement("dataPagamento", '00/00/0000');
+    
+}
+
+$root->appendChild($boletos);
 
 
 $dom->appendChild($root);
