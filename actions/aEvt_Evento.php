@@ -19,8 +19,7 @@ class aEvt_Evento extends mEvt_Evento {
                                                 localEvento.DSC_EMAIL
                                     FROM        evt_evento as evento left join bsc_local_evento as localEvento on (ID_BSC_Local_Evento = ID_BSC_Local_Evento) 
                                     WHERE       CURRENT_DATE() < DT_Fim";
-
-        protected $sqlSelectXML = "SELECT	bsc_participante.COD_CPF,
+    protected $sqlSelectXML = "SELECT	bsc_participante.COD_CPF,
                                         bsc_participante.DSC_Nome AS NOME_COMPLETO,
                                         evt_evento_participante.DSC_Nome_Crachav AS nomeCracha,
                                         bsc_participante.DSC_EMAIL,
@@ -43,8 +42,17 @@ class aEvt_Evento extends mEvt_Evento {
                                                 LEFT JOIN	bsc_profissao	ON (bsc_participante.ID_BSC_Profissao = bsc_profissao.ID_Profissao)
                                                 
                                 WHERE	evt_evento_participante.ID_EVT_Evento = '%s'";
+    protected $sqlSelectXMLBoleto = "SELECT	bsc_banco.numero_documento,
+                                                evt_pagamento.QTD_Parcelas,
+                                                evt_pagamento.VLR_Transacao,
+                                                'N' as situacao, 
+                                                evt_pagamento.DT_Transacao 
+                                        FROM 	evt_pagamento 
+                                                                                        LEFT JOIN evt_pagamento_boleto on evt_pagamento.ID_Pagamento = evt_pagamento_boleto.ID_EVT_Pagamento
+                                                                                        LEFT JOIN evt_evento ON evt_evento.ID_EVT = evt_pagamento.ID_EVT_Evento
+                                                                                        LEFT JOIN bsc_banco ON bsc_banco.ID = evt_evento.ID_Banco
+                                        WHERE	evt_evento.ID_EVT = '%S'";
 
-    
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getID_EVT(), $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(true), $this->getDT_Fim(true), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora(), $this->getisPromotora(), $this->getID_Banco(), $this->getID_Empresa());
         return $this->RunQuery($sql);
@@ -115,7 +123,7 @@ class aEvt_Evento extends mEvt_Evento {
         $dataAtual = $DateOfRequest = date("d-m-Y H:i:s", strtotime($_REQUEST["DateOfRequest"]));
 
         date_default_timezone_set($timezone_identifier);
-        
+
         $dataHoraGeracao = $dom->createElement("dataHoraGeracao", $dataAtual);
 
         $participantes = $dom->createElement("participantes");
@@ -141,9 +149,17 @@ class aEvt_Evento extends mEvt_Evento {
 //
 //        print $dom->saveXML();
     }
-    public function SelectXML($evento_ID){
-        $sql = sprintf($this->sqlSelectXML,$evento_ID);
+
+    public function SelectXML($evento_ID) {
+        $sql = sprintf($this->sqlSelectXML, $evento_ID);
         $rs = $this->RunSelect($sql);
-        return $rs ;
+        return $rs;
     }
+
+    public function SelectXMLBoelto($evento_ID) {
+        $sql = sprintf($this->sqlSelectXMLBoleto, $evento_ID);
+        $rs = $this->RunSelect($sql);
+        return $rs;
+    }
+
 }
