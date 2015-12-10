@@ -30,8 +30,14 @@
         <input type="text" class="form-control" name="mensagem" id="mensagem" placeholder="Mensagem Padrão do Email de Inscrição.">
     </div>
     <div class="form-group">
-        <label for="exampleInputPassword1">Ativo</label>
-        <input type="text" class="form-control" name="isAtivo" id="isAtivo" placeholder="Mensagem Padrão do Email de Inscrição.">
+        <label for="exampleInputEmail1">Ativo</label>        
+        <select name="isAtivo">
+            <option value="0">Inativo</option>
+            <option value="1">Ativo</option>
+            {foreach from=$lista item=row}
+            <option value="{$row.isAtivo}" {if $isAtivo == $row.isAtivo} selected {/if}>Ativo</option>
+            {/foreach}
+        </select>
     </div>
     <button type="submit" class="btn" name="Cadastrar" value="Cadastrar">Salvar</button>
     <a href="EmailList.php" class="btn btn-default">Cancelar</a>
