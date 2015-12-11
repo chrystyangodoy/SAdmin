@@ -60,22 +60,23 @@ class eMail {
         // Define os dados do servidor e tipo de conexão
         $mail->IsSMTP(); // Define que a mensagem será SMTP
         $mail->SMTPDebug = 1;
-        //$mail->Port = 587;    
-        $mail->Port = $Config_Email->getport();
-        //$mail->Host = $this->smtp; // Endereço do servidor SMTP
-        $mail->Host =$Config_Email->getsmtp();
+        $mail->Port = 587;    
+        //$mail->Port = $Config_Email->getport();
+        $mail->Host = $this->smtp; // Endereço do servidor SMTP
+        //$mail->Host =$Config_Email->getsmtp();
         $mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
-        $mail->Username = $Config_Email->getuserName();
-        $mail->Password =$Config_Email->getPassword();
-        $mail->FromName = 'Administração'; // Seu nome
-        $mail->From = $Config_Email->getuserName();
-        $mail->AddAddress($detinatario, $nome);
-        //Define o remetente
-        //$mail->Username = 'chrystyan@cs-consoft.com.br'; // Usuário do servidor SMTP     
-        //$mail->Password = 'ch1234ch'; // Senha do servidor SMTP
-        //$mail->From = 'chrystyan@cs-consoft.com.br'; // Seu e-mail
+        //$mail->Username = $Config_Email->getuserName();
+        //$mail->Password =$Config_Email->getPassword();
         //$mail->FromName = 'Administração'; // Seu nome
+        //$mail->From = $Config_Email->getuserName();
+        //$mail->AddAddress($detinatario, $nome);
+        //Define o remetente
+        $mail->Username = 'chrystyan@cs-consoft.com.br'; // Usuário do servidor SMTP     
+        $mail->Password = 'ch1234ch'; // Senha do servidor SMTP
+        $mail->From = 'chrystyan@cs-consoft.com.br'; // Seu e-mail
+        $mail->FromName = 'Administração'; // Seu nome
         // Define os destinatário(s)        
+        $mail->AddAddress($detinatario, $nome);
         //$mail->AddAddress('ciclano@site.net');
         //$mail->AddCC('ciclano@site.net', 'Ciclano'); // Copia
         //$mail->AddBCC('fulano@dominio.com.br', 'Fulano da Silva'); // Cópia Oculta
@@ -85,8 +86,8 @@ class eMail {
         $mail->CharSet = 'UTF-8'; // Charset da mensagem (opcional)
         // Define a mensagem (Texto e Assunto)
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-        $assunto  = $Config_Email->getassunto();
-        $mensagem =$Config_Email->getmensagem();
+        //$assunto  = $Config_Email->getassunto();
+        //$mensagem =$Config_Email->getmensagem();
         $mail->Subject = $assunto; // Assunto da mensagem
         $mail->Body = $mensagem;
         $mail->AltBody = "Este é o corpo da mensagem de teste, em Texto Plano! \r\n :)";
