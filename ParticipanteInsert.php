@@ -149,7 +149,7 @@ if (isset($_POST['Cadastrar'])) {
                             Senha: '.$senha." <br />
                             Link: <a href='".$_SERVER[HTTP_HOST]."/sadmin/Login.php"."'>acesso acompanhamento</a>";
                           //Link: <a href='".$_SERVER[HTTP_ORIGIN]
-                    
+
                     
                 } else {
                     $ass = "Cadastro efetuado com sucesso!";
