@@ -147,8 +147,9 @@ if (isset($_POST['Cadastrar'])) {
                     $msg = 'Sua inscrição no evento '. $evento->getDSC_Nome() .', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
                             Usuário: '.$cpf .'<br />
                             Senha: '.$senha." <br />
-                            Link: <a href='".$_SERVER[HTTP_ORIGIN]."/sadmin/Login.php"."'>acesso acompanhamento</a>";
-
+                            Link: <a href='".$_SERVER[HTTP_HOST]."/sadmin/Login.php"."'>acesso acompanhamento</a>";
+                          //Link: <a href='".$_SERVER[HTTP_ORIGIN]
+                    
                     
                 } else {
                     $ass = "Cadastro efetuado com sucesso!";
