@@ -70,6 +70,7 @@ class eMail {
         $mail->FromName = 'Administração'; // Seu nome
         $mail->From = $Config_Email->getuserName();
         $mail->AddAddress($detinatario, $nome);
+        
         //Define o remetente
 //        $mail->Username = 'chrystyan@cs-consoft.com.br'; // Usuário do servidor SMTP     
 //        $mail->Password = 'ch1234ch'; // Senha do servidor SMTP
