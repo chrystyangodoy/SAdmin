@@ -148,7 +148,6 @@ if (isset($_POST['Cadastrar'])) {
                             Usuário: '.$cpf .'<br />
                             Senha: '.$senha." <br />
                             Link: <a href='".$_SERVER[HTTP_HOST]."/sadmin/Login.php"."'>acesso acompanhamento</a>";
-                          //Link: <a href='".$_SERVER[HTTP_ORIGIN]
 
                     
                 } else {
