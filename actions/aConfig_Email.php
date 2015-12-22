@@ -19,7 +19,7 @@ class aConfig_Email extends mConfig_Email {
     protected $sqlUpdate = "update Config_Email set smtp = '%s', port = '%s', remetente = '%s', assunto = '%s', mensagem = '%s', userName = '%s', Password = '%s', isAtivo='%s' WHERE ID_Email = '%s'";
     protected $sqlDelete = "delete from Config_Email where ID_Email = '%s'";
     protected $sqlSelect = "select * from Config_Email";
-    protected $sqlSelectAtivo = "select * from Config_Email  where isAtivo=1";
+    protected $sqlSelectAtivo = "select * from config_email  where isAtivo=1";
 
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getID_Email(),$this->getsmtp(),$this->getport(),$this->getremetente(),$this->getassunto(),$this->getmensagem(),$this->getuserName(),$this->getPassword(),$this->getisAtivo());

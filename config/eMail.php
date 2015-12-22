@@ -19,7 +19,7 @@ header("Content-Type: text/html; charset=ISO-8859-1",true);
 class eMail {
 
     //private $smtp = 'smtp.cs-consoft.com.br';
-    private $smtp = 'smtp.cs-consoft.com.br';
+    private $smtp = 'smtp.atualpromocoes.com.br';
 
     public function sendEmail($remetente, $destinatario, $assunto, $mensagem)
     {
@@ -53,29 +53,30 @@ class eMail {
         require_once './phpMailer/PHPMailerAutoload.php';
         
         require_once './actions/aConfig_Email.php';
-        $Config_Email = new aConfig_Email();
-        $Config_Email->loadAtivo();
+        //$Config_Email = new aConfig_Email();
+        //$Config_Email->loadAtivo();
         // Inicia a classe PHPMailer
         $mail = new PHPMailer();
+        // ativa o envio de e-mails em HTML, se false, desativa.
+        $mail->isMail();
         // Define os dados do servidor e tipo de conexão
         $mail->IsSMTP(); // Define que a mensagem será SMTP
 //        $mail->SMTPDebug = 1;
-        //$mail->Port = 587;    
-        $mail->Port = $Config_Email->getport();
-//        $mail->Host = $this->smtp; // Endereço do servidor SMTP
-        $mail->Host =$Config_Email->getsmtp();
+        $mail->Port = 587;    
+        //$mail->Port = $Config_Email->getport();
+        $mail->Host = $this->smtp; // Endereço do servidor SMTP
+        //$mail->Host =$Config_Email->getsmtp();
         $mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
-        $mail->Username = $Config_Email->getuserName();
-        $mail->Password =$Config_Email->getPassword();
-        $mail->FromName = 'Administração'; // Seu nome
-        $mail->From = $Config_Email->getuserName();
-        $mail->AddAddress($detinatario, $nome);
+        //$mail->Username = $Config_Email->getuserName();
+        //$mail->Password =$Config_Email->getPassword();
+        //$mail->FromName = 'Administração'; // Seu nome
+        //$mail->From = $Config_Email->getuserName();
         
         //Define o remetente
-//        $mail->Username = 'chrystyan@cs-consoft.com.br'; // Usuário do servidor SMTP     
-//        $mail->Password = 'ch1234ch'; // Senha do servidor SMTP
-//        $mail->From = 'chrystyan@cs-consoft.com.br'; // Seu e-mail
-//        $mail->FromName = 'Administração'; // Seu nome
+        $mail->Username = 'adm_sigaweb@atualpromocoes.com.br'; // Usuário do servidor SMTP     
+        $mail->Password = 'adm1234adm'; // Senha do servidor SMTP
+        $mail->From = 'adm_sigaweb@atualpromocoes.com.br'; // Seu e-mail
+        $mail->FromName = 'Administração'; // Seu nome
         // Define os destinatário(s)        
         $mail->AddAddress($detinatario, $nome);
         //$mail->AddAddress('ciclano@site.net');
