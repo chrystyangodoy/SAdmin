@@ -92,6 +92,19 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         //Set feito no metodo selectInner $pagamento->setVLR_Transacao($VLR_Transacao);
         $this->setVR_Pago(0);
         $this->insert();
+        require_once './actions/aEvt_Evento.php';
+        $Evento = new aEvt_Evento();
+        require_once './actions/aBsc_Banco.php';
+        $Banco = new aBsc_Banco();
+        
+        $Evento->setID_EVT($this->getID_EVT_Evento()); 
+        $Evento->load();
+        
+        $Banco->setID($Evento->getID_Banco());
+        $Banco->load();
+        $nosso_Nro = $Banco->getnumero_documento()+1;
+        $Banco->setnumero_documento($nosso_Nro);
+        $Banco->update();
     }
 
     public function loadIDEvento() {
