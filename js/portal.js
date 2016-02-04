@@ -9,6 +9,7 @@ function ListaEventoCategoriaPopUp(ID_EVT_Evento, DSC_Nome) {
     $.getJSON("getEventoCategoriaPorEventoID.php", {ID_EVT_Evento: ID_EVT_Evento}, function (data) {
         $.each(data, function (index, item) {
             $('#conteudoTabelaCategoria')
+
                     .append(
                             "<tr>" +
                             "<td>" + item.DSC_Nome + "</td>" +

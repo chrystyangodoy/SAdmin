@@ -211,5 +211,14 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
             return false;
         }
     }
+    
+    public function loadParticPagto()
+    {
+        $rs = $this->select(sprintf("and ID_BSC_Participante='%s'", $this->getID_BSC_Participante()));
+        $this->setID_EVT_Evento_Pariticipante($rs[0]['ID_EVT_Evento_Pariticipante']);
+        $this->setID_EVT_Pagamento($rs[0]['ID_EVT_Pagamento']);
+        $this->setID_BSC_Participante($rs[0]['ID_BSC_Participante']);
+        return $this;
+    }
 
 }

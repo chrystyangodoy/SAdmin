@@ -20,7 +20,9 @@ class aEvt_Pagamento extends mEvt_Pagamento {
     protected $sqlDelete = "delete from evt_pagamento where ID_Pagamento='%s'";
     protected $sqlSelect = "select * from evt_pagamento where 1=1 %s %s";
     protected $sqlSelectInner = "SELECT evt_evento_participante.ID_EVT_Evento,evt_evento_categoria.VLR_Inscricao FROM `evt_evento_participante` INNER JOIN bsc_participante ON evt_evento_participante.ID_BSC_Participante = bsc_participante.ID_Participante INNER JOIN evt_evento_categoria ON evt_evento_participante.ID_EVT_Categoria = evt_evento_categoria.ID_Evento_Categoria WHERE evt_evento_participante.ID_EVT_Evento = '%s' AND bsc_participante.COD_CPF = '%s'";
-
+    protected $sqlSelectInnerPagto = "SELECT evt_evento_participante.DSC_Nome_Crachav,evt_evento_participante.VLR_Total_Inscricao,evt_pagamento.COD_Tipo_Situacao_Pagamento FROM evt_evento_participante INNER JOIN evt_pagamento ON evt_pagamento.ID_EVT_Evento = evt_evento_participante.ID_EVT_Evento_Pariticipante WHERE evt_evento_participante.ID_EVT_Evento = '%s'";
+    protected $sqlUpdateSituacao = "update evt_pagamento set COD_Tipo_Situacao_Pagamento='%s' WHERE ID_Pagamento='%s'";
+    
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getID_Pagamento(), $this->getDT_Transacao(), $this->getDT_Pagamento(), $this->getVLR_Transacao(), $this->getVR_Pago(), $this->getNUM_Recibo(), $this->getCOD_TipoFormaPagamento(), $this->getCOD_TipoOrigemInscricao(), $this->getID_EVT_Evento(), $this->getID_EVT_Pagamento_Pai(), $this->getCOD_Tipo_Situacao_Pagamento(), $this->getQTD_Parcelas(), $this->getNUM_Parcelas(), $this->getQTD_Parcelas_Pagas());
         return $this->RunQuery($sql);
@@ -126,4 +128,18 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         return $this;
     }
 
+    public function selectInnerPagto($ID_EVT) {
+        $sql ="SELECT evt_evento_participante.DSC_Nome_Crachav,evt_evento_participante.VLR_Total_Inscricao,evt_pagamento.COD_Tipo_Situacao_Pagamento, evt_pagamento.ID_Pagamento FROM evt_evento_participante INNER JOIN evt_pagamento ON evt_pagamento.ID_EVT_Evento = evt_evento_participante.ID_EVT_Evento_Pariticipante WHERE evt_evento_participante.ID_EVT_Evento = '$ID_EVT' and evt_pagamento.COD_Tipo_Situacao_Pagamento=0";
+        return $this->RunSelect($sql);
+    }
+    
+    public function selectInnerPagtoPartic($ID_BSC_Participante) {
+        $sql ="SELECT evt_evento.DSC_Nome, evt_evento_participante.DSC_Nome_Crachav,evt_evento_participante.VLR_Total_Inscricao,evt_pagamento.COD_Tipo_Situacao_Pagamento, evt_pagamento.ID_Pagamento FROM evt_evento_participante INNER JOIN evt_pagamento ON evt_pagamento.ID_EVT_Evento = evt_evento_participante.ID_EVT_Evento_Pariticipante INNER JOIN evt_evento ON evt_evento.ID_EVT = evt_evento_participante.ID_EVT_Evento  WHERE evt_evento_participante.ID_BSC_Participante = '$ID_BSC_Participante'";
+        return $this->RunSelect($sql);
+    }
+    
+    public function updateStatus() {
+        $sql = sprintf($this->sqlUpdateSituacao, $this->getCOD_Tipo_Situacao_Pagamento(), $this->getID_Pagamento());
+        return $this->RunQuery($sql);
+    }
 }
