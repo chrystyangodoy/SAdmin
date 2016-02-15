@@ -1,4 +1,6 @@
 <?php
+require_once './config/FeedbackMessage.php';
+$FeedbackMessage = new FeedbackMessage();
 require_once './actions/aEvt_Pagamento.php';
 $Pagto = new aEvt_Pagamento();
 

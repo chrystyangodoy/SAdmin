@@ -9,7 +9,8 @@ class aEvt_Evento extends mEvt_Evento {
     protected $sqlDelete = "delete from evt_evento where ID_EVT = '%s'";
     protected $sqlSelect = "select * from evt_evento where 1=1 %s %s";
     protected $sqlInnerEventoLocal = "SELECT 	evento.ID_EVT, 
-                                                evento.DSC_Nome, 
+                                                evento.DSC_Nome,
+                                                evento.Logo_Evento,
                                                 DATE_FORMAT( evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, 
                                                 DATE_FORMAT( evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, 
                                                 localEvento.DSC_Endereco,

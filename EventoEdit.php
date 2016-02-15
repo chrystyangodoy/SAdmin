@@ -94,7 +94,8 @@ if (isset($_POST['Cadastrar']) && isset($_GET['ID_EVT'])) {
     {
         $FeedbackMessage->setMsg("Você não enviou nenhum arquivo!");
     }
-    $evento->setLogo_Evento($_POST['Logo_Evento']);  
+    //$evento->setLogo_Evento($_POST['Logo_Evento']);  
+    $evento->setLogo_Evento($destino);
     $evento->update();
     
     $FeedbackMessage->setMsg("Evento atualizado com sucesso!");
