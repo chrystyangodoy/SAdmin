@@ -77,7 +77,11 @@
                         <div class="col-md-4 col-sm-6 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
                             <div class="card">
                                 <div class="card-header">
+                                    {if {$row.Logo_Evento} != ""} 
                                     <img src="{$row.Logo_Evento}"/>
+                                    {else}
+                                    <img src="portal/assets/images/portfolio/Eventos.jpg"/>
+                                    {/if}
                                     <!--<img src="portal/assets/images/portfolio/portfolio2-thumb.jpg"/>-->
                                 </div>
                                 <div class="card-content">
@@ -301,7 +305,7 @@
                                 <input type="hidden" id="AcompanhamentoEVTID">
                                 <input type="text" class="form-control" id="AcompanhamentoCPF" placeholder="CPF">
                                 <a id="btnAcompanhar" style="display: none"></a>
-                                
+
                             </div>
                         </form>
                     </div>
