@@ -49,6 +49,52 @@ if (isset($_POST['Cadastrar']) && isset($_GET['ID_EVT'])) {
     $evento->setisPromotora($_POST['isPromotora']);
     $evento->setID_Banco($_POST['ID_Banco']);
     $evento->setID_Empresa($_POST['ID_Empresa']);
+    
+    if (isset($_FILES['Logo_Evento']['name']) && $_FILES["Logo_Evento"]["error"] == 0)
+    {
+        $FeedbackMessage->setMsg("Você enviou o arquivo: <strong>" . $_FILES['Logo_Evento']['name'] . "</strong><br />");
+        //echo "Você enviou o arquivo: <strong>" . $_FILES['Logo_Evento']['name'] . "</strong><br />";
+        $FeedbackMessage->setMsg("Este arquivo é do tipo: <strong>" . $_FILES['Logo_Evento']['type'] . "</strong><br />");
+        //echo "Este arquivo é do tipo: <strong>" . $_FILES['Logo_Evento']['type'] . "</strong><br />";
+        $FeedbackMessage->setMsg("Temporáriamente foi salvo em: <strong>" . $_FILES['Logo_Evento']['tmp_name'] . "</strong><br />");
+        //echo "Temporáriamente foi salvo em: <strong>" . $_FILES['Logo_Evento']['tmp_name'] . "</strong><br />";
+        $FeedbackMessage->setMsg("Seu tamanho é: <strong>" . $_FILES['Logo_Evento']['size'] . "</strong> Bytes<br /><br />");
+        //echo "Seu tamanho é: <strong>" . $_FILES['Logo_Evento']['size'] . "</strong> Bytes<br /><br />";
+
+        $arquivo_tmp = $_FILES['Logo_Evento']['tmp_name'];
+        $nome = $_FILES['Logo_Evento']['name'];
+        // Pega a extensao
+        $extensao = strrchr($nome, '.');
+        // Converte a extensao para mimusculo
+        $extensao = strtolower($extensao);
+        // Somente imagens, .jpg;.jpeg;.gif;.png
+        // Aqui eu enfilero as extesões permitidas e separo por ';'
+        // Isso server apenas para eu poder pesquisar dentro desta String
+        if (strstr('.jpg;.jpeg;.gif;.png', $extensao))
+        {
+            // Cria um nome único para esta imagem
+            // Evita que duplique as imagens no servidor.
+            $novoNome = md5(microtime()) . $extensao;
+            // Concatena a pasta com o nome
+            $destino = 'imgEvento/' . $novoNome;
+            // tenta mover o arquivo para o destino
+            if (@move_uploaded_file($arquivo_tmp, $destino))
+            {
+                $FeedbackMessage->setMsg("Arquivo salvo com sucesso em : <strong>" . $destino . "</strong><br/>");
+                //echo "Arquivo salvo com sucesso em : <strong>" . $destino . "</strong><br />";
+                //echo "<img src=" . $destino . "/>";
+            }
+            else
+                $FeedbackMessage->setMsg("Erro ao salvar o arquivo. Aparentemente você não tem permissão de escrita.");
+        }
+        else
+            $FeedbackMessage->setMsg("Você poderá enviar apenas arquivos *.jpg;*.jpeg;*.gif;*.png.");
+    }
+    else
+    {
+        $FeedbackMessage->setMsg("Você não enviou nenhum arquivo!");
+    }
+    $evento->setLogo_Evento($_POST['Logo_Evento']);  
     $evento->update();
     
     $FeedbackMessage->setMsg("Evento atualizado com sucesso!");

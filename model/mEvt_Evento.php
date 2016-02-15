@@ -24,6 +24,8 @@ class mEvt_Evento extends dbConnection {
     private $isPromotora;
     private $ID_Banco;
     private $ID_Empresa;
+    private $Logo_Evento;
+    private $Ctrl_Inscricao;
 
     public function setID_EVT($ID_EVT) {
         $this->ID_EVT = $ID_EVT;
@@ -192,4 +194,19 @@ class mEvt_Evento extends dbConnection {
     public function getID_Empresa() {
         return $this->ID_Empresa;
     }
+    public function setLogo_Evento($Logo_Evento) {
+        $this->Logo_Evento = $Logo_Evento;
+    }
+
+    public function getLogo_Evento() {
+        return $this->Logo_Evento;
+    }
+    public function setCtrl_Inscricao($Ctrl_Inscricao) {
+        $this->Ctrl_Inscricao = $Ctrl_Inscricao;
+    }
+
+    public function getCtrl_Inscricao() {
+        return $this->Ctrl_Inscricao;
+    }
+    
 }
