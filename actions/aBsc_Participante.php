@@ -15,9 +15,6 @@ class aBsc_Participante extends mBsc_Participante {
 
     protected $sqlSelectParticipanteEvento = "";
 
-
-
-
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getID_Participante(), $this->getCOD_CPF(), $this->getCOD_RG(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Usuario());
         return $this->RunQuery($sql);
@@ -120,6 +117,16 @@ class aBsc_Participante extends mBsc_Participante {
     public function getParticipanteEvente($eventoID){
         $rs = $this->select(sprintf($this->sqlSelectParticipanteEvento));
         return $rs;
+    }
+    
+    public function SelectPartEvento()
+    {
+        //$idParticipante = $partic->getID_Participante();
+        try {
+            return $this->RunSelect("SELECT bsc_participante.ID_Participante,bsc_participante.DSC_NOME AS DSC_Nome, bsc_participante.NUM_Celular AS NUM_Celular, evt_evento.DSC_Nome as DSC_NomeEv, evt_evento_participante.ID_EVT_Evento_Pariticipante,evt_evento.ID_EVT as ID_EVT, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL,evt_evento.Logo_Evento as Logo_Evento, evt_pagamento.COD_Tipo_Situacao_Pagamento AS COD_Tipo_Situacao_Pagamento FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) INNER JOIN evt_pagamento ON (evt_evento_participante.ID_EVT_Evento_Pariticipante = evt_pagamento.ID_EVT_Evento) INNER JOIN bsc_participante ON (bsc_participante.ID_Participante = evt_evento_participante.ID_BSC_Participante) WHERE 1=1");
+        } catch (Exception $ex) {
+            return $ex . error_get_last();
+        }
     }
 
 }

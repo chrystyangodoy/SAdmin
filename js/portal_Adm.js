@@ -5,7 +5,7 @@ function updatePagto(ID_Pagamento, COD_Tipo_Situacao_Pagamento) {
     $.getJSON("getStatusPagtoEventoID.php", {ID_Pagamento: ID_Pagamento, COD_Tipo_Situacao_Pagamento: CodSituacao}, function (data) {
         showAlert('', 'Atualizado!');
     });
-
+   // $('#conteudoParticEvento').re
 }
 
 function OnclickAcompanhamento(ID_EVT_Evento, DSC_Nome) {
@@ -18,7 +18,7 @@ function OnclickAcompanhamento(ID_EVT_Evento, DSC_Nome) {
 
             $('#conteudoParticEvento')
                     .append(
-                            "<tr>" +
+                            "<tr id=Linha" + index + ">" +
                             "<td>" + item.DSC_Nome_Crachav + "</td>" +
                             "<td class='formatcurrency'>" + item.VLR_Total_Inscricao + "</td>" +
                             "<td>" +

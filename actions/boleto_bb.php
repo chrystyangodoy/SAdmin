@@ -115,22 +115,32 @@ $dadosboleto["carteira"] = $Banco->getCarteira();
 //$dadosboleto["variacao_carteira"] = "-019";  // Variação da Carteira, com traço (opcional)
 $dadosboleto["variacao_carteira"] = $Banco->getVariacao_Carteira();
 // TIPO DO BOLETO
-//$dadosboleto["formatacao_convenio"] = "7"; // REGRA: 8 p/ Convênio c/ 8 digitos, 7 p/ Convênio c/ 7 d�gitos, ou 6 se Convênio c/ 6 dígitos
-$dadosboleto["formatacao_convenio"] = strlen($Banco->getConvenio());
-//$dadosboleto["formatacao_nosso_numero"] = "1"; // REGRA: Usado apenas p/ Convênio c/ 6 dígitos: informe 1 se for NossoNúmero de até 5 dígitos ou 2 para opção de até 17 dígitos
+$dadosboleto["formatacao_convenio"] = "7"; // REGRA: 8 p/ Convênio c/ 8 digitos, 7 p/ Convênio c/ 7 d�gitos, ou 6 se Convênio c/ 6 dígitos
 $nro_dig_Convenio = strlen($Banco->getConvenio());
-$nro_dig_NossoNumero = strlen($Banco->getnumero_documento());
-if ($nro_dig_Convenio == 6)
+if($nro_dig_Convenio==8)
 {
+  $dadosboleto["formatacao_convenio"] = "8";  
+}
+if($nro_dig_Convenio==7)
+{
+  $dadosboleto["formatacao_convenio"] = "7";  
+}
+if($nro_dig_Convenio<=6)
+{
+  $dadosboleto["formatacao_convenio"] = "6";  
+}
+
+//$dadosboleto["formatacao_nosso_numero"] = "1"; // REGRA: Usado apenas p/ Convênio c/ 6 dígitos: informe 1 se for NossoNúmero de até 5 dígitos ou 2 para opção de até 17 dígitos
+$nro_dig_NossoNumero = strlen($Banco->getnumero_documento());
+
     if ($nro_dig_NossoNumero <= 5)
     {
         $dadosboleto["formatacao_nosso_numero"] = 1;
     }
-    Else
+    else
     {
         $dadosboleto["formatacao_nosso_numero"] = 2;
     }
-}
 /*
   #################################################
   DESENVOLVIDO PARA CARTEIRA 18

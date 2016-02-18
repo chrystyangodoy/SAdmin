@@ -25,6 +25,5 @@ if (isset($_REQUEST['ID_Pagamento']) && isset($_REQUEST['COD_Tipo_Situacao_Pagam
                 $msgFeedMessage = 'Confirmação de Pagamento enviada com sucesso.';
                 $FeedbackMessage->setMsg($msgFeedMessage);
                 die();
-    
 }
 echo 1;

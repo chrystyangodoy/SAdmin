@@ -6,15 +6,37 @@
 <div class="col-md-4 col-sm-6 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
     <div class="card">
         <div class="card-header">
-            <img src="portal/assets/images/portfolio/portfolio2-thumb.jpg"/>
+            {if {$row.Logo_Evento} != ""} 
+            <img src="{$row.Logo_Evento}"/>
+            {else}
+            <img src="portal/assets/images/portfolio/Eventos.jpg"/>
+            {/if}
+
+            <!--<img src="./portal/assets/images/portfolio/portfolio2-thumb.jpg"/>-->
         </div>
         <div class="card-content">
             <h3>{$row.DSC_Nome}</h3>
             <h4>{$row.DT_Inicio}</h4>
             <p>{$row.DSC_Endereco}, {$row.DSC_Cidade} - {$row.DSC_Bairro}</p>
         </div>
+        {if $row.COD_Tipo_Situacao_Pagamento eq 0}
+        <div class="card-text text-center alert-success">
+            <h3 class="bg-info">Inscrição não Confirmado</h3>
+        </div>
+        {elseif $row.COD_Tipo_Situacao_Pagamento eq 1}
+        <div class="card-text text-center alert-success">
+            <h3 class="bg-success">Inscrição Confirmada (Cortesia)</h3>
+        </div>
+        {else $row.COD_Tipo_Situacao_Pagamento eq 2}    
+        <div class="card-text text-center">
+            <h3 class="bg-success">Inscrição Confirmada</h3>
+            <!--<h3 class="alert-success" style="font-style:italic;">{$row.COD_Tipo_Situacao_Pagamento} - Pago</h3>-->
+        </div>
+        {/if}
         <div class="card-footer">
-            <a href='Boleto.php?ID_EVT_Evento_Pariticipante={$row.ID_EVT_Evento_Pariticipante}' target="_blank">Boleto</a>
+            <a href='Boleto.php?ID_EVT_Evento_Pariticipante={$row.ID_EVT_Evento_Pariticipante}' target="_blank">
+            <button type="button" class="btn btn-primary">Boleto</button>
+            </a>
         </div>
     </div>
 </div>
