@@ -1,6 +1,7 @@
 
 function desabilitaCampos() {
     $('#DSC_Nome').attr("disabled", true).val("");
+    $('#Nome_Cracha').attr("disabled", true).val("");
     $('#DSC_Email').attr("disabled", true).val("");
     $('#COD_RG').attr("disabled", true).val("");
     $('#NUM_CEP').attr("disabled", true).val("");
@@ -23,6 +24,7 @@ function desabilitaCampos() {
 
 function habilitaCampos() {
     $('#DSC_Nome').attr("disabled", false);
+    $('#Nome_Cracha').attr("disabled", false).val("");
     $('#DSC_Email').attr("disabled", false);
     $('#COD_RG').attr("disabled", false);
     $('#NUM_CEP').attr("disabled", false);
@@ -141,7 +143,6 @@ $(document).ready(function () {
             DSC_Endereco: {required: 'Preencha o campo Endereço'},
             ID_BSC_Empresa: {validaComboBox: 'Preencha o campo Empresa'},
             ID_BSC_Profissao: {validaComboBox: 'Preencha o campo Profissão'}
-
         },
         /*     errorPlacement: function (error, element) {
          $(element).tooltipster('update', $(error).text());
@@ -170,7 +171,15 @@ $(document).ready(function () {
             return false;
         }
     });
-    $("#COD_CPF").on('keypress blur' ,function () {
+
+    $("#COD_CPF").on('keypress blur', function () {
+        var CPFinfo = $("#COD_CPF").val();
+        if (CPFinfo != "" || CPFinfo != 0) {
+            desabilitaId_Estrangeiro();
+        } else {
+            habilitaId_Estrangeiro();
+        }
+
         cpf = $("#COD_CPF").val();
         cpf = jQuery.trim(cpf);
 
@@ -193,7 +202,6 @@ $(document).ready(function () {
                     console.log('campos habilitados');
                 } else {
                     desabilitaCampos();
-
                     console.log("CPF Já Cadastrado.");
                     showAlert('error', 'Você já possui cadastro no sistema.');
                     $('#modalLogin').modal('show');
@@ -216,6 +224,67 @@ $(document).ready(function () {
         }
     });
 
+    $("#Id_Estrangeiro").on('keypress blur', function (e) {
+        var IdEstinfo = $("#Id_Estrangeiro").val();
+            if (IdEstinfo != "" || IdEstinfo != 0) {
+                desabilitaCPF();
+            } else {
+                habilitaCPF();
+            }
+        if (e.which == 13) {
+            Id_Estrangeiro = $("#Id_Estrangeiro").val();
+            desabilitaCPF();
+            console.log('keypress');
+//        if (Id_EstrangeiroValido(Id_Estrangeiro)) {
+//          console.log("ID Estrangeiro Válido!");
+            console.log("Inicio do getJson. Imagem!");
+            $("#loadImg").css("display", "block").fadeIn();
+            var Id_EstrangeiroNaoCadastradoEvento = isId_EstrangeiroCadatradoEvento(Id_Estrangeiro, getUrlParameter('ID_EVT_Evento'));
+            console.log("Não cadastrardo: " + Id_EstrangeiroNaoCadastradoEvento);
+            if (Id_EstrangeiroNaoCadastradoEvento == 1) {
+                var Id_EstrangeironaoCadastrado = isId_EstrangeiroCadastrado(Id_Estrangeiro);
+                console.log("Id_Estrangeiro cadastrardo: " + Id_EstrangeironaoCadastrado);
+                if (Id_EstrangeironaoCadastrado == 1) {
+                    habilitaCampos();
+                    //$('#DSC_Nome').focus();
+                    console.log('campos habilitados');
+                }
+                else {
+                    desabilitaCampos();
+                    console.log("ID Estrangeiro Já Cadastrado.");
+                    showAlert('error', 'Você já possui cadastro no sistema.');
+                    $('#modalLogin').modal('show');
+                    $('#Username').val(cpf);
+                    $('#Password').focus();
+                }
+            } else {
+                showAlert('error', 'ID Estrangeiro já cadastrado para este Evento');
+            }
+            $("#loadImg").css("display", "none").fadeOut();
+        }
+    });
+
+    function desabilitaCPF() {
+        $('#COD_CPF').attr("disabled", true).val("");
+        $('#COD_CPF').attr("required",false).val("");
+        $('#COD_CPF').attr("cpfValidacao",false).val("");
+        $('#COD_CPF').attr("cpfCadastradoEvento",false).val("");
+        //COD_CPF: {required: true, cpfValidacao: true, cpfCadastradoEvento: true},
+    }
+    function habilitaCPF() {
+        $('#COD_CPF').attr("disabled", false).val("");
+        $('#COD_CPF').attr("required",true).val("");
+        $('#COD_CPF').attr("cpfValidacao",true).val("");
+        $('#COD_CPF').attr("cpfCadastradoEvento",true).val("");
+    }
+
+    function desabilitaId_Estrangeiro() {
+        $('#Id_Estrangeiro').attr("disabled", true).val("");
+    }
+    function habilitaId_Estrangeiro() {
+        $('#Id_Estrangeiro').attr("disabled", false);
+    }
+
     $('#btnLogin').click(function () {
         $("#loadImg").css("display", "block").fadeIn();
         username = $('#Username').val();
@@ -235,9 +304,11 @@ $(document).ready(function () {
                 console.log('each');
 
                 $('#DSC_Nome').val(item.DSC_Nome);
+                $('#Nome_Cracha').val(item.DSC_Nome);
                 $('#DSC_Email').val(item.DSC_Email);
                 $('#COD_RG').val(item.COD_RG);
-                $('#COD_RG').val(item.COD_RG);
+                $('#COD_CPF').val(item.COD_CPF);
+                $('#Id_Estrangeiro').val(item.Id_Estrangeiro);
                 $('#DSC_Endereco').val(item.DSC_Endereco);
                 $('#DSC_Bairro').val(item.DSC_Bairro);
                 $('#DSC_Bairro').val(item.DSC_Bairro);

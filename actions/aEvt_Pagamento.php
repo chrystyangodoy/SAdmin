@@ -73,6 +73,16 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         return $this;
     }
 
+    public function selectInnerId_Estrangeiro($ID_EVT, $Id_Estrangeiro) {
+        $sql = "SELECT evt_evento_participante.ID_EVT_Evento_Pariticipante,evt_evento_categoria.VLR_Inscricao FROM evt_evento_participante INNER JOIN bsc_participante ON evt_evento_participante.ID_BSC_Participante = bsc_participante.ID_Participante INNER JOIN evt_evento_categoria ON evt_evento_participante.ID_EVT_Categoria = evt_evento_categoria.ID_Evento_Categoria WHERE evt_evento_participante.ID_EVT_Evento = '$ID_EVT' AND bsc_participante.Id_Estrangeiro = '$Id_Estrangeiro'";
+        $rs = $this->RunSelect($sql);
+        if (!empty($rs)) {
+            $this->setID_EVT_Evento($rs[0]['ID_EVT_Evento_Pariticipante']);
+            $this->setVLR_Transacao($rs[0]['VLR_Inscricao']);
+        }
+        return $this;
+    }
+    
     public function geraInfoPagamento() {
 
         $this->setCOD_TipoFormaPagamento(0);

@@ -44,6 +44,7 @@ if (isset($_POST['Cadastrar']))
     $evento->setCOD_Tipo_Estado_promotora($_POST['COD_Tipo_Estado_promotora']);
     $evento->setisPromotora($_POST['isPromotora']);
     $evento->setID_Banco($_POST['ID_Banco']);
+    $evento->setID_Empresa($_POST['ID_Empresa']);
 
     if (isset($_FILES['Logo_Evento']['name']) && $_FILES["Logo_Evento"]["error"] == 0)
     {
@@ -89,7 +90,8 @@ if (isset($_POST['Cadastrar']))
     {
         $FeedbackMessage->setMsg("Você não enviou nenhum arquivo!");
     }
-    $evento->setLogo_Evento($_POST['Logo_Evento']);
+    //$evento->setLogo_Evento($_POST['Logo_Evento']);
+    $evento->setLogo_Evento($destino);
     $evento->insert();
 
     $FeedbackMessage->setMsg("Evento inserido com sucesso!");

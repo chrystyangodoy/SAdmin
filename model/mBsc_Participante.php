@@ -7,6 +7,8 @@ class mBsc_Participante extends dbConnection {
     private $ID_Participante;
     private $COD_CPF;
     private $COD_RG;
+    private $Id_Estrangeiro;
+    private $Nome_Cracha;
     private $DSC_Nome;
     private $DSC_Endereco;
     private $DSC_Bairro;
@@ -47,6 +49,22 @@ class mBsc_Participante extends dbConnection {
         return $this->COD_RG;
     }
 
+    public function setId_Estrangeiro($Id_Estrangeiro) {
+        $this->Id_Estrangeiro = $Id_Estrangeiro;
+    }
+
+    public function getId_Estrangeiro() {
+        return $this->Id_Estrangeiro;
+    }
+    
+    public function setNome_Cracha($Nome_Cracha) {
+        $this->Nome_Cracha = $Nome_Cracha;
+    }
+
+    public function getNome_Cracha() {
+        return $this->Nome_Cracha;
+    }
+    
     public function setDSC_Nome($DSC_Nome) {
         $this->DSC_Nome = $DSC_Nome;
     }

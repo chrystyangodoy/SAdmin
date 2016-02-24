@@ -37,6 +37,7 @@ function getUrlParameter(sParam) {
         }
     }
 }
+
 function isCPFCadastrado(cpf) {
     resultado = 0;
     $.ajax({
@@ -50,8 +51,6 @@ function isCPFCadastrado(cpf) {
     });
     return resultado;
 }
-
-
 
 function isCPFCadatradoEvento(cpf, evento) {
     resultado = 0;
@@ -72,6 +71,48 @@ function isCPFCadastradoEdit(cpf, idParticipante) {
     $.ajax({
         url: "getCPFCasdastradoEdit.php",
         data: {cpf: cpf, ID_Participante: idParticipante},
+        type: "POST",
+        async: false,
+        success: function (data) {
+            resultado = data;
+        }
+    });
+    return resultado;
+}
+
+function isId_EstrangeiroCadastrado(Id_Estrangeiro) {
+    resultado = 0;
+    $.ajax({
+        url: "getIDEstCasdastrado.php",
+        data: {Id_Estrangeiro: Id_Estrangeiro},
+        type: "POST",
+        async: false,
+        success: function (data) {
+            resultado = data;
+        }
+    });
+    return resultado;
+}
+
+function isId_EstrangeiroCadatradoEvento(Id_Estrangeiro, evento) {
+    resultado = 0;
+    $.ajax({
+        url: "getIDEstCasdastradoEvento.php",
+        data: {Id_Estrangeiro: Id_Estrangeiro, eventoID: evento},
+        type: "POST",
+        async: false,
+        success: function (data) {
+            resultado = data;
+        }
+    });
+    return resultado;
+}
+
+function isId_EstrangeiroCadastradoEdit(Id_Estrangeiro, idParticipante) {
+    resultado = 0;
+    $.ajax({
+        url: "getIDEstCasdastradoEdit.php",
+        data: {Id_Estrangeiro: Id_Estrangeiro, ID_Participante: idParticipante},
         type: "POST",
         async: false,
         success: function (data) {
@@ -126,6 +167,10 @@ function CPFValido(cpf) {
     }
     if ((cpf.charAt(9) != a[9]) || (cpf.charAt(10) != a[10]) || cpf.match(expReg))
         return false;
+    return true;
+}
+
+function Id_EstrangeiroValido(Id_Estrangeiro) {
     return true;
 }
 

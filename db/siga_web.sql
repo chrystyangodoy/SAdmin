@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 07-Dez-2015 às 17:35
+-- Generation Time: 19-Fev-2016 às 13:08
 -- Versão do servidor: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -232,7 +232,9 @@ CREATE TABLE IF NOT EXISTS `evt_evento` (
   `COD_Tipo_Estado_promotora` varchar(50) NOT NULL,
   `isPromotora` tinyint(1) NOT NULL,
   `ID_Banco` varchar(50) NOT NULL,
-  `ID_Empresa` varchar(50) NOT NULL
+  `ID_Empresa` varchar(50) NOT NULL,
+  `Logo_Evento` varchar(500) NOT NULL COMMENT 'Logo ou Imagem do Evento',
+  `Ctrl_Inscricao` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -337,7 +339,8 @@ CREATE TABLE IF NOT EXISTS `evt_evento_participante` (
   `ID_EVT_EventoGrupo` int(11) NOT NULL,
   `COD_TipoSituacao_Material` int(11) NOT NULL,
   `DTM_EntregaMaterial` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `COD_InscricaoExterno` int(11) NOT NULL
+  `COD_InscricaoExterno` int(11) NOT NULL,
+  `Num_Inscricao` int(5) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -929,10 +932,6 @@ ALTER TABLE `tb_tipo_situacao_pagamento`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `bsc_banco`
---
-ALTER TABLE `bsc_banco`;
 --
 -- AUTO_INCREMENT for table `bsc_empresa`
 --

@@ -1,1 +1,0 @@
-ALTER TABLE `evt_evento` ADD `Ctrl_Inscricao` INT NOT NULL AFTER `Logo_Evento`;

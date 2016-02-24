@@ -1,15 +1,15 @@
 <?php
 
+mb_internal_encoding("UTF-8");
+mb_http_output("UTF-8");
+ob_start("mb_output_handler");
+header("Content-Type: text/html; charset=UTF-8", true);
 
-mb_internal_encoding("UTF-8"); 
-mb_http_output( "UTF-8" );  
-ob_start("mb_output_handler");   
-header("Content-Type: text/html; charset=UTF-8",true);
-
- if (!isset($_GET['ID_EVT_Evento']) and ! isset($_GET['ID_Evento_Categoria'])) {
+if (!isset($_GET['ID_EVT_Evento']) and ! isset($_GET['ID_Evento_Categoria']))
+{
     header("Location: Index.php");
     die();
-   }
+}
 
 session_start();
 
@@ -24,7 +24,8 @@ $FeedbackMessage = new FeedbackMessage();
 $ID_Evento = $_GET['ID_EVT_Evento'];
 $ID_Evento_Categoria = $_GET['ID_Evento_Categoria'];
 
-if (isset($_POST['Cadastrar'])) {
+if (isset($_POST['Cadastrar']))
+{
     require_once './actions/aEvt_Evento_Participante.php';
     require_once ('./config/configs.php');
     require ('./actions/aBsc_Participante.php');
@@ -40,11 +41,11 @@ if (isset($_POST['Cadastrar'])) {
     $user = new aUsuario();
 
     $config = new configs();
-    
+
     $evento = new aEvt_Evento();
-    
+
     $evento->setID_EVT($ID_Evento);
-    
+
     $evento->load();
 
     //limpa cpf
@@ -52,33 +53,38 @@ if (isset($_POST['Cadastrar'])) {
     $email = $_POST['DSC_Email'];
 
     $id_Participante = '';
-    if (isset($_COOKIE['ID_Participante'])) {
+    if (isset($_COOKIE['ID_Participante']))
+    {
 
         $id_Participante = $_COOKIE['ID_Participante'];
     }
 
     $idUnico = '';
 
-    if (isset($_COOKIE['ID_Usuario'])) {
+    if (isset($_COOKIE['ID_Usuario']))
+    {
         $idUnico = $_COOKIE['ID_Usuario'];
     }
 
     $isParticipanteNovo = TRUE;
 
-    if ($id_Participante == '') {
+    if ($id_Participante == '')
+    {
         $isParticipanteNovo = TRUE;
-    } else {
+    }
+    else
+    {
         $isParticipanteNovo = FALSE;
     }
 
-    
-    //validação do CPF
-    if ($config->validaCPF($cpf)) {
-        //verifica se o CPF já foi cadastrado
-        if ($partic->selectNotExistsCPF($cpf) || $id_Participante != '') {
+    //Verifica se Participante é Estrangeiro
+    if ($cpf == "")
+    {
+        if ($partic->selectNotExistsId_Estrangeiro($Id_Estrangeiro) || $id_Participante != '')
+        {
             try {
-                if ($isParticipanteNovo) {
-
+                if ($isParticipanteNovo)
+                {
                     //Gera data incial e final para o cadastro de usuário
                     $datainicial = date("d/m/Y");
                     $datafim = date('d/m/Y', strtotime("+7 days"));
@@ -89,24 +95,22 @@ if (isset($_POST['Cadastrar'])) {
                     //Gera e armazena ID Único Gerado.
                     $idUnico = $config->idUnico();
                     $user->setID_Usuario($idUnico);
-                    $user->setDSC_Login($cpf);
+                    $user->setDSC_Login($Id_Estrangeiro);
                     $user->setDSC_Senha($senha);
                     $user->setDTM_Inicio($datainicial);
                     $user->setDTM_Fim($datafim);
                     $user->setID_SEG_Grupo($grupo);
                     $user->insert();
-
                     //Insere participante
-
                     $id_Participante = $config->idUnico();
                 }
-
-
                 $partic->setID_Participante($id_Participante);
 
                 $partic->setCOD_CPF($cpf);
+                $partic->setId_Estrangeiro($Id_Estrangeiro);
                 $partic->setCOD_RG($_POST['COD_RG']);
                 $partic->setDSC_Nome($_POST['DSC_Nome']);
+                $partic->setNome_Cracha($_POST['Nome_Cracha']);
                 $partic->setDSC_Endereco($_POST['DSC_Endereco']);
                 $partic->setDSC_Bairro($_POST['DSC_Bairro']);
                 $partic->setDSC_Cidade($_POST['DSC_Cidade']);
@@ -122,47 +126,42 @@ if (isset($_POST['Cadastrar'])) {
                 $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
                 $partic->setID_Usuario($idUnico);
 
-                if ($isParticipanteNovo) {
+                if ($isParticipanteNovo)
+                {
                     $partic->insert();
-                } else {
+                }
+                else
+                {
                     $partic->update();
                 }
-
                 //Insere Evento_Participante
-                $evtPart->insertPartEvt($ID_Evento, $id_Participante, $ID_Evento_Categoria);
-
+                $evtPart->insertPartEvtId_Estrangeiro($ID_Evento, $id_Participante, $ID_Evento_Categoria);
                 //Insere Informações para gerar o Boleto 
                 $pagamento = new aEvt_Pagamento();
-                $pagamento->selectInner($ID_Evento, $cpf);
+                $pagamento->selectInnerId_Estrangeiro($ID_Evento, $Id_Estrangeiro);
                 $pagamento->geraInfoPagamento();
-
                 //Informações para gerar o Boleto 
-
                 $ass = '';
                 $msg = '';
-                if ($isParticipanteNovo) {
-
+                if ($isParticipanteNovo)
+                {
                     $ass = "Cadastro efetuado com sucesso!";
-                    
-                    $msg = 'Sua inscrição no evento '. $evento->getDSC_Nome() .', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
-                            Usuário: '.$cpf .'<br />
-                            Senha: '.$senha." <br />
-                            Link: <a href='".$_SERVER[HTTP_HOST]."/SAdmin/Login.php"."'>acesso acompanhamento</a>";
-
-                    
-                } else {
+                    $msg = 'Sua inscrição no evento ' . $evento->getDSC_Nome() . ', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
+                            Usuário: ' . $Id_Estrangeiro . '<br />
+                            Senha: ' . $senha . " <br />
+                            Link: <a href='" . $_SERVER[HTTP_HOST] . "/SAdmin/Login.php" . "'>acesso acompanhamento</a>";
+                }
+                else
+                {
                     $ass = "Cadastro efetuado com sucesso!";
-                    $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() + 
+                    $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() +
                             ', será confirmada após pagamento do boleto.';
                 }
-
                 require_once './config/eMail.php';
                 $emailObj = new eMail();
 
                 $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $msg);
-                
                 $msgFeedMessage = 'Cadastro efetuado com sucesso.</br>Verifique seu e-mail.';
-                
                 $FeedbackMessage->setMsg($msgFeedMessage);
                 header("Location: Index.php");
                 die();
@@ -171,13 +170,134 @@ if (isset($_POST['Cadastrar'])) {
                 $FeedbackMessage->setType("error");
                 header("Location: Index.php");
             }
-        } else {
-            $FeedbackMessage->setMsg("CPF já cadastrado para este Evento!");
+        }
+        else
+        {
+            $FeedbackMessage->setMsg("ID Estrangeiro já cadastrado para este Evento!");
             $FeedbackMessage->setType("error");
         }
-    } else {
-        $FeedbackMessage->setMsg("CPF inválido!");
-        $FeedbackMessage->setType("error");
+    }
+    else
+    {
+        //validação do CPF
+        if ($config->validaCPF($cpf))
+        {
+            //verifica se o CPF já foi cadastrado
+            if ($partic->selectNotExistsCPF($cpf) || $id_Participante != '')
+            {
+                try {
+                    if ($isParticipanteNovo)
+                    {
+                        //Gera data incial e final para o cadastro de usuário
+                        $datainicial = date("d/m/Y");
+                        $datafim = date('d/m/Y', strtotime("+7 days"));
+                        //Gera Senha Aleatória
+                        $senha = $gerasenha->geraSenha(6);
+                        //Gera o grupo padrão para Participantes
+                        $grupo = 99;
+                        //Gera e armazena ID Único Gerado.
+                        $idUnico = $config->idUnico();
+                        $user->setID_Usuario($idUnico);
+                        $user->setDSC_Login($cpf);
+                        $user->setDSC_Senha($senha);
+                        $user->setDTM_Inicio($datainicial);
+                        $user->setDTM_Fim($datafim);
+                        $user->setID_SEG_Grupo($grupo);
+                        $user->insert();
+
+                        //Insere participante
+
+                        $id_Participante = $config->idUnico();
+                    }
+
+
+                    $partic->setID_Participante($id_Participante);
+
+                    $partic->setCOD_CPF($cpf);
+                    $partic->setId_Estrangeiro($Id_Estrangeiro);
+                    $partic->setCOD_RG($_POST['COD_RG']);
+                    $partic->setDSC_Nome($_POST['DSC_Nome']);
+                    $partic->setNome_Cracha($_POST['Nome_Cracha']);
+                    $partic->setDSC_Endereco($_POST['DSC_Endereco']);
+                    $partic->setDSC_Bairro($_POST['DSC_Bairro']);
+                    $partic->setDSC_Cidade($_POST['DSC_Cidade']);
+                    $partic->setNUM_CEP($_POST['NUM_CEP']);
+                    $partic->setNUM_Fone($_POST['NUM_Fone']);
+                    $partic->setNUM_Celular($_POST['NUM_Celular']);
+                    $partic->setNUM_FAX($_POST['NUM_FAX']);
+                    $partic->setDSC_Profissao_Especialidade($_POST['DSC_Profissao_Especialidade']);
+                    $partic->setDSC_Email($email);
+                    $partic->setNUM_Registro($_POST['NUM_Registro']);
+                    $partic->setCOD_Tipo_Estado($_POST['COD_Tipo_Estado']);
+                    $partic->setID_BSC_Empresa($_POST['ID_BSC_Empresa']);
+                    $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
+                    $partic->setID_Usuario($idUnico);
+
+                    if ($isParticipanteNovo)
+                    {
+                        $partic->insert();
+                    }
+                    else
+                    {
+                        $partic->update();
+                    }
+
+                    //Insere Evento_Participante
+                    $evtPart->insertPartEvt($ID_Evento, $id_Participante, $ID_Evento_Categoria);
+
+                    //Insere Informações para gerar o Boleto 
+                    $pagamento = new aEvt_Pagamento();
+                    $pagamento->selectInner($ID_Evento, $cpf);
+                    $pagamento->geraInfoPagamento();
+
+                    //Informações para gerar o Boleto 
+
+                    $ass = '';
+                    $msg = '';
+                    if ($isParticipanteNovo)
+                    {
+
+                        $ass = "Cadastro efetuado com sucesso!";
+
+                        $msg = 'Sua inscrição no evento ' . $evento->getDSC_Nome() . ', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
+                            Usuário: ' . $cpf . '<br />
+                            Senha: ' . $senha . " <br />
+                            Link: <a href='" . $_SERVER[HTTP_HOST] . "/SAdmin/Login.php" . "'>acesso acompanhamento</a>";
+                    }
+                    else
+                    {
+                        $ass = "Cadastro efetuado com sucesso!";
+                        $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() +
+                                ', será confirmada após pagamento do boleto.';
+                    }
+
+                    require_once './config/eMail.php';
+                    $emailObj = new eMail();
+
+                    $envio = $emailObj->enviarEMail($partic->getDSC_Email(), $partic->getDSC_Nome(), $ass, $msg);
+
+                    $msgFeedMessage = 'Cadastro efetuado com sucesso.</br>Verifique seu e-mail.';
+
+                    $FeedbackMessage->setMsg($msgFeedMessage);
+                    header("Location: Index.php");
+                    die();
+                } catch (Exception $e) {
+                    $FeedbackMessage->setMsg("Desculpe! Ocorreu um erro inesperado!");
+                    $FeedbackMessage->setType("error");
+                    header("Location: Index.php");
+                }
+            }
+            else
+            {
+                $FeedbackMessage->setMsg("CPF já cadastrado para este Evento!");
+                $FeedbackMessage->setType("error");
+            }
+        }
+        else
+        {
+            $FeedbackMessage->setMsg("CPF inválido!");
+            $FeedbackMessage->setType("error");
+        }
     }
 }
 
