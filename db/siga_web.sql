@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 19-Fev-2016 às 13:08
+-- Generation Time: 24-Fev-2016 às 17:55
 -- Versão do servidor: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `bsc_banco`
 --
 
+DROP TABLE IF EXISTS `bsc_banco`;
 CREATE TABLE IF NOT EXISTS `bsc_banco` (
   `ID` varchar(50) NOT NULL,
   `Dsc_Banco` varchar(60) NOT NULL,
@@ -46,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `bsc_banco` (
 -- Estrutura da tabela `bsc_empresa`
 --
 
+DROP TABLE IF EXISTS `bsc_empresa`;
 CREATE TABLE IF NOT EXISTS `bsc_empresa` (
   `ID_Empresa` int(11) NOT NULL,
   `COD_CNPJ` varchar(18) NOT NULL,
@@ -67,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `bsc_empresa` (
 -- Estrutura da tabela `bsc_local_evento`
 --
 
+DROP TABLE IF EXISTS `bsc_local_evento`;
 CREATE TABLE IF NOT EXISTS `bsc_local_evento` (
   `ID_Local` varchar(50) NOT NULL,
   `DSC_Nome` varchar(50) NOT NULL,
@@ -87,10 +90,13 @@ CREATE TABLE IF NOT EXISTS `bsc_local_evento` (
 -- Estrutura da tabela `bsc_participante`
 --
 
+DROP TABLE IF EXISTS `bsc_participante`;
 CREATE TABLE IF NOT EXISTS `bsc_participante` (
   `ID_Participante` varchar(50) NOT NULL,
   `COD_CPF` char(14) NOT NULL,
   `COD_RG` varchar(10) NOT NULL,
+  `Id_Estrangeiro` varchar(50) NOT NULL,
+  `Nome_Cracha` varchar(50) NOT NULL,
   `DSC_Nome` varchar(100) NOT NULL,
   `DSC_Endereco` varchar(300) NOT NULL,
   `DSC_Bairro` varchar(100) NOT NULL,
@@ -114,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `bsc_participante` (
 -- Estrutura da tabela `bsc_profissao`
 --
 
+DROP TABLE IF EXISTS `bsc_profissao`;
 CREATE TABLE IF NOT EXISTS `bsc_profissao` (
   `ID_Profissao` int(11) NOT NULL,
   `DSC_Nome` varchar(70) NOT NULL,
@@ -126,6 +133,7 @@ CREATE TABLE IF NOT EXISTS `bsc_profissao` (
 -- Estrutura da tabela `config_email`
 --
 
+DROP TABLE IF EXISTS `config_email`;
 CREATE TABLE IF NOT EXISTS `config_email` (
   `ID_Email` varchar(50) NOT NULL,
   `smtp` varchar(100) NOT NULL,
@@ -144,6 +152,7 @@ CREATE TABLE IF NOT EXISTS `config_email` (
 -- Estrutura da tabela `evt_ativ_complementar`
 --
 
+DROP TABLE IF EXISTS `evt_ativ_complementar`;
 CREATE TABLE IF NOT EXISTS `evt_ativ_complementar` (
   `COD_ATIV_Complementar` int(11) NOT NULL,
   `DSC_Nome` varchar(150) NOT NULL,
@@ -163,6 +172,7 @@ CREATE TABLE IF NOT EXISTS `evt_ativ_complementar` (
 -- Estrutura da tabela `evt_ativ_comp_categoria`
 --
 
+DROP TABLE IF EXISTS `evt_ativ_comp_categoria`;
 CREATE TABLE IF NOT EXISTS `evt_ativ_comp_categoria` (
   `COD_ATIV_Comp_Categoria` int(11) NOT NULL,
   `DSC_Nome` varchar(70) NOT NULL,
@@ -178,6 +188,7 @@ CREATE TABLE IF NOT EXISTS `evt_ativ_comp_categoria` (
 -- Estrutura da tabela `evt_empenho`
 --
 
+DROP TABLE IF EXISTS `evt_empenho`;
 CREATE TABLE IF NOT EXISTS `evt_empenho` (
   `ID_Empenho` int(11) NOT NULL,
   `COD_Empenho` varchar(15) NOT NULL,
@@ -197,6 +208,7 @@ CREATE TABLE IF NOT EXISTS `evt_empenho` (
 -- Estrutura da tabela `evt_empenho_participante`
 --
 
+DROP TABLE IF EXISTS `evt_empenho_participante`;
 CREATE TABLE IF NOT EXISTS `evt_empenho_participante` (
   `ID_Empenho_Participante` int(11) NOT NULL,
   `COD_CPF` char(11) NOT NULL,
@@ -212,6 +224,7 @@ CREATE TABLE IF NOT EXISTS `evt_empenho_participante` (
 -- Estrutura da tabela `evt_evento`
 --
 
+DROP TABLE IF EXISTS `evt_evento`;
 CREATE TABLE IF NOT EXISTS `evt_evento` (
   `ID_EVT` varchar(50) NOT NULL,
   `DSC_Nome` varchar(100) NOT NULL,
@@ -243,6 +256,7 @@ CREATE TABLE IF NOT EXISTS `evt_evento` (
 -- Estrutura da tabela `evt_evento_apontamento`
 --
 
+DROP TABLE IF EXISTS `evt_evento_apontamento`;
 CREATE TABLE IF NOT EXISTS `evt_evento_apontamento` (
   `COD_EventoApontamento` int(11) NOT NULL,
   `COD_BarrasCracha` varchar(13) NOT NULL,
@@ -259,6 +273,7 @@ CREATE TABLE IF NOT EXISTS `evt_evento_apontamento` (
 -- Estrutura da tabela `evt_evento_apont_ativ_comp`
 --
 
+DROP TABLE IF EXISTS `evt_evento_apont_ativ_comp`;
 CREATE TABLE IF NOT EXISTS `evt_evento_apont_ativ_comp` (
   `ID_Evento_Apont_Ativ_Comp` int(11) NOT NULL,
   `COD_BarrasCracha` varchar(13) NOT NULL,
@@ -276,6 +291,7 @@ CREATE TABLE IF NOT EXISTS `evt_evento_apont_ativ_comp` (
 -- Estrutura da tabela `evt_evento_categoria`
 --
 
+DROP TABLE IF EXISTS `evt_evento_categoria`;
 CREATE TABLE IF NOT EXISTS `evt_evento_categoria` (
   `ID_Evento_Categoria` varchar(50) NOT NULL,
   `DSC_Nome` varchar(150) NOT NULL,
@@ -291,6 +307,7 @@ CREATE TABLE IF NOT EXISTS `evt_evento_categoria` (
 -- Estrutura da tabela `evt_evento_grupo`
 --
 
+DROP TABLE IF EXISTS `evt_evento_grupo`;
 CREATE TABLE IF NOT EXISTS `evt_evento_grupo` (
   `ID_EVT_EventoGrupo` varchar(50) NOT NULL,
   `DSC_Nome` varchar(100) NOT NULL,
@@ -319,6 +336,7 @@ CREATE TABLE IF NOT EXISTS `evt_evento_grupo` (
 -- Estrutura da tabela `evt_evento_participante`
 --
 
+DROP TABLE IF EXISTS `evt_evento_participante`;
 CREATE TABLE IF NOT EXISTS `evt_evento_participante` (
   `ID_EVT_Evento_Pariticipante` varchar(50) NOT NULL,
   `DSC_Nome_Crachav` varchar(70) NOT NULL,
@@ -349,6 +367,7 @@ CREATE TABLE IF NOT EXISTS `evt_evento_participante` (
 -- Estrutura da tabela `evt_pagamento`
 --
 
+DROP TABLE IF EXISTS `evt_pagamento`;
 CREATE TABLE IF NOT EXISTS `evt_pagamento` (
   `ID_Pagamento` varchar(50) NOT NULL,
   `DT_Transacao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -372,6 +391,7 @@ CREATE TABLE IF NOT EXISTS `evt_pagamento` (
 -- Estrutura da tabela `evt_pagamento_boleto`
 --
 
+DROP TABLE IF EXISTS `evt_pagamento_boleto`;
 CREATE TABLE IF NOT EXISTS `evt_pagamento_boleto` (
   `ID_Pagamento_Boleto` int(11) NOT NULL,
   `NUM_Boleto` varchar(30) NOT NULL,
@@ -385,6 +405,7 @@ CREATE TABLE IF NOT EXISTS `evt_pagamento_boleto` (
 -- Estrutura da tabela `evt_pagamento_cartao`
 --
 
+DROP TABLE IF EXISTS `evt_pagamento_cartao`;
 CREATE TABLE IF NOT EXISTS `evt_pagamento_cartao` (
   `ID_Pagamento_Cartao` int(11) NOT NULL,
   `NUM_Cartao` varchar(15) NOT NULL,
@@ -399,6 +420,7 @@ CREATE TABLE IF NOT EXISTS `evt_pagamento_cartao` (
 -- Estrutura da tabela `evt_pagamento_cheque`
 --
 
+DROP TABLE IF EXISTS `evt_pagamento_cheque`;
 CREATE TABLE IF NOT EXISTS `evt_pagamento_cheque` (
   `ID_Pagamento_Cheque` int(11) NOT NULL,
   `COD_Cheque` varchar(12) NOT NULL,
@@ -413,6 +435,7 @@ CREATE TABLE IF NOT EXISTS `evt_pagamento_cheque` (
 -- Estrutura da tabela `evt_pagamento_cortesia`
 --
 
+DROP TABLE IF EXISTS `evt_pagamento_cortesia`;
 CREATE TABLE IF NOT EXISTS `evt_pagamento_cortesia` (
   `ID_Pagamento_Cortesia` int(11) NOT NULL,
   `ID_BSC_Empresa` int(11) NOT NULL,
@@ -425,6 +448,7 @@ CREATE TABLE IF NOT EXISTS `evt_pagamento_cortesia` (
 -- Estrutura da tabela `evt_pagamento_deposito`
 --
 
+DROP TABLE IF EXISTS `evt_pagamento_deposito`;
 CREATE TABLE IF NOT EXISTS `evt_pagamento_deposito` (
   `ID_Pagamento_Deposito` int(11) NOT NULL,
   `NUM_Deposito` varchar(20) NOT NULL,
@@ -438,6 +462,7 @@ CREATE TABLE IF NOT EXISTS `evt_pagamento_deposito` (
 -- Estrutura da tabela `evt_pagamento_empenho`
 --
 
+DROP TABLE IF EXISTS `evt_pagamento_empenho`;
 CREATE TABLE IF NOT EXISTS `evt_pagamento_empenho` (
   `ID_Pagamento_Empenho` int(11) NOT NULL,
   `ID_EVT_Empenho` int(11) NOT NULL,
@@ -450,6 +475,7 @@ CREATE TABLE IF NOT EXISTS `evt_pagamento_empenho` (
 -- Estrutura da tabela `evt_participacao`
 --
 
+DROP TABLE IF EXISTS `evt_participacao`;
 CREATE TABLE IF NOT EXISTS `evt_participacao` (
   `ID_EVT_Participacao` int(11) NOT NULL,
   `COD_TIPO_Participacao` int(11) NOT NULL,
@@ -465,6 +491,7 @@ CREATE TABLE IF NOT EXISTS `evt_participacao` (
 -- Estrutura da tabela `evt_staging_leitor_opn`
 --
 
+DROP TABLE IF EXISTS `evt_staging_leitor_opn`;
 CREATE TABLE IF NOT EXISTS `evt_staging_leitor_opn` (
   `ID_StagingLeitorOPN` int(11) NOT NULL,
   `COD_Dispositivo_Leitura` int(11) NOT NULL,
@@ -483,6 +510,7 @@ CREATE TABLE IF NOT EXISTS `evt_staging_leitor_opn` (
 -- Estrutura da tabela `evt_sub_evento`
 --
 
+DROP TABLE IF EXISTS `evt_sub_evento`;
 CREATE TABLE IF NOT EXISTS `evt_sub_evento` (
   `ID_SUB_Evento` int(11) NOT NULL,
   `DSC_Titulo` varchar(100) NOT NULL,
@@ -498,6 +526,7 @@ CREATE TABLE IF NOT EXISTS `evt_sub_evento` (
 -- Estrutura da tabela `seg_detalhe_transacao`
 --
 
+DROP TABLE IF EXISTS `seg_detalhe_transacao`;
 CREATE TABLE IF NOT EXISTS `seg_detalhe_transacao` (
   `ID_Detalhe_Transacao` int(11) NOT NULL,
   `COD_TIPO_Origem_Transacao` int(11) NOT NULL,
@@ -513,6 +542,7 @@ CREATE TABLE IF NOT EXISTS `seg_detalhe_transacao` (
 -- Estrutura da tabela `seg_grupo`
 --
 
+DROP TABLE IF EXISTS `seg_grupo`;
 CREATE TABLE IF NOT EXISTS `seg_grupo` (
   `ID_Grupo` int(11) NOT NULL,
   `DSC_Nome` varchar(20) NOT NULL,
@@ -525,6 +555,7 @@ CREATE TABLE IF NOT EXISTS `seg_grupo` (
 -- Estrutura da tabela `seg_usuario`
 --
 
+DROP TABLE IF EXISTS `seg_usuario`;
 CREATE TABLE IF NOT EXISTS `seg_usuario` (
   `ID_Usuario` varchar(50) NOT NULL,
   `DSC_Login` varchar(50) NOT NULL,
@@ -540,6 +571,7 @@ CREATE TABLE IF NOT EXISTS `seg_usuario` (
 -- Estrutura da tabela `tb_tipo_abordagem_ativ_comp`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_abordagem_ativ_comp`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_abordagem_ativ_comp` (
   `COD_Tipo_Abordagem_Ativ_Comp` int(11) NOT NULL,
   `DSC_Nome` varchar(70) NOT NULL,
@@ -552,6 +584,7 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_abordagem_ativ_comp` (
 -- Estrutura da tabela `tb_tipo_apontamento`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_apontamento`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_apontamento` (
   `COD_TipoApontamento` int(11) NOT NULL,
   `DSC_Nome` varchar(50) NOT NULL,
@@ -564,6 +597,7 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_apontamento` (
 -- Estrutura da tabela `tb_tipo_coleta_dados`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_coleta_dados`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_coleta_dados` (
   `COD_Tipo_Coleta_Dados` int(11) NOT NULL,
   `DSC_Nome` varchar(50) NOT NULL,
@@ -576,6 +610,7 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_coleta_dados` (
 -- Estrutura da tabela `tb_tipo_estado`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_estado`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_estado` (
   `COD_TIPOEstado` varchar(50) NOT NULL,
   `DSC_Nome` varchar(50) NOT NULL,
@@ -588,6 +623,7 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_estado` (
 -- Estrutura da tabela `tb_tipo_forma_pagamento`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_forma_pagamento`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_forma_pagamento` (
   `COD_Tipo_Forma_Pagamento` int(11) NOT NULL,
   `DSC_Nome` varchar(50) NOT NULL,
@@ -600,6 +636,7 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_forma_pagamento` (
 -- Estrutura da tabela `tb_tipo_origem_inscricao`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_origem_inscricao`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_origem_inscricao` (
   `COD_Tipo_Origem_Inscricao` int(11) NOT NULL,
   `DSC_Nome` varchar(50) NOT NULL,
@@ -612,6 +649,7 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_origem_inscricao` (
 -- Estrutura da tabela `tb_tipo_origem_transacao`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_origem_transacao`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_origem_transacao` (
   `COD_Tipo_Origem_Transacao` int(11) NOT NULL,
   `DSC_Nome` varchar(50) NOT NULL,
@@ -624,6 +662,7 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_origem_transacao` (
 -- Estrutura da tabela `tb_tipo_participacao`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_participacao`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_participacao` (
   `COD_Tipo_Participacao` int(11) NOT NULL,
   `DSC_Nome` varchar(70) NOT NULL,
@@ -636,6 +675,7 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_participacao` (
 -- Estrutura da tabela `tb_tipo_sistema_transacao`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_sistema_transacao`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_sistema_transacao` (
   `COD_Tipo_Sistema_Transacao` int(11) NOT NULL,
   `DSC_Nome` varchar(50) NOT NULL,
@@ -648,6 +688,7 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_sistema_transacao` (
 -- Estrutura da tabela `tb_tipo_situacao_certificado`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_situacao_certificado`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_situacao_certificado` (
   `COD_Tipo_Situacao_Certificado` int(11) NOT NULL,
   `DSC_Nome` varchar(50) NOT NULL,
@@ -660,6 +701,7 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_situacao_certificado` (
 -- Estrutura da tabela `tb_tipo_situacao_material`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_situacao_material`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_situacao_material` (
   `COD_Tipo_Situacao_Material` int(11) NOT NULL,
   `DSC_Nome` varchar(50) NOT NULL,
@@ -672,6 +714,7 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_situacao_material` (
 -- Estrutura da tabela `tb_tipo_situacao_pagamento`
 --
 
+DROP TABLE IF EXISTS `tb_tipo_situacao_pagamento`;
 CREATE TABLE IF NOT EXISTS `tb_tipo_situacao_pagamento` (
   `COD_Tipo_Situacao_Pagamento` int(11) NOT NULL,
   `DSC_Nome` varchar(50) NOT NULL,
