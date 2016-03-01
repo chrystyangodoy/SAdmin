@@ -9,7 +9,7 @@
             <tr>
                 <th>Nome</th>
                 <th>Descrição</th>
-                <th>Opções</th>
+                <th  class="text-right">Ações</th>
             </tr>
         </thead>
         <tbody id="myTabContent">
@@ -18,7 +18,7 @@
                 <td>{$row.DSC_Nome}</td>
                 <td>{$row.DSC_Descricao}</td>
 
-                <td class="col-lg-2">
+                <td class="col-lg-2 text-right">
                     <a href="TipoEstadoEdit.php?alt={$row.COD_TIPOEstado}" class="col-md-offset-1" title="Editar"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
                     <a href="?del={$row.COD_TIPOEstado}" title="Excluir"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                 </td>

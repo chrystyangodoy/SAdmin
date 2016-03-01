@@ -4,40 +4,44 @@ require './model/mBsc_Participante.php';
 
 class aBsc_Participante extends mBsc_Participante {
 
-    protected $sqlInsert = "INSERT INTO bsc_participante(ID_Participante, COD_CPF, COD_RG,Id_Estrangeiro,Nome_Cracha, DSC_Nome, DSC_Endereco, DSC_Bairro, DSC_Cidade, NUM_CEP, NUM_Fone, NUM_Celular, NUM_FAX, DSC_Profissao_Especialidade, DSC_Email, NUM_Registro, COD_Tipo_Estado, ID_BSC_Empresa, ID_BSC_Profissao, ID_Usuario) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
-    protected $sqlUpdate = "UPDATE bsc_participante SET COD_CPF= '%s',COD_RG= '%s',Id_Estrangeiro= '%s', Nome_Cracha= '%s', DSC_Nome= '%s',DSC_Endereco= '%s',DSC_Bairro= '%s',DSC_Cidade= '%s',NUM_CEP= '%s',NUM_Fone= '%s',NUM_Celular= '%s',NUM_FAX= '%s',DSC_Profissao_Especialidade= '%s',DSC_Email= '%s',NUM_Registro= '%s',COD_Tipo_Estado= '%s',ID_BSC_Empresa= '%s',ID_BSC_Profissao= '%s' WHERE ID_Participante = '%s'";
+    protected $sqlInsert = "INSERT INTO bsc_participante(ID_Participante, COD_CPF, COD_RG,Id_Estrangeiro,Nome_Cracha, DSC_Nome, DSC_Endereco, DSC_Bairro, DSC_Cidade, NUM_CEP, NUM_Fone, NUM_Celular, NUM_FAX, DSC_Profissao_Especialidade, DSC_Email, NUM_Registro, COD_Tipo_Estado, ID_BSC_Empresa, ID_BSC_Profissao, ID_Usuario, Cod_Participante) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
+    protected $sqlUpdate = "UPDATE bsc_participante SET COD_CPF= '%s',COD_RG= '%s',Id_Estrangeiro= '%s', Nome_Cracha= '%s', DSC_Nome= '%s',DSC_Endereco= '%s',DSC_Bairro= '%s',DSC_Cidade= '%s',NUM_CEP= '%s',NUM_Fone= '%s',NUM_Celular= '%s',NUM_FAX= '%s',DSC_Profissao_Especialidade= '%s',DSC_Email= '%s',NUM_Registro= '%s',COD_Tipo_Estado= '%s',ID_BSC_Empresa= '%s',ID_BSC_Profissao ='%s', Cod_Participante='%s' WHERE ID_Participante = '%s'";
     protected $sqlDelete = "DELETE FROM bsc_participante WHERE ID_Participante = '%s'";
     protected $sqlSelect = "SELECT * FROM bsc_participante WHERE 1=1 %s %s";
     protected $sqlSelectExist = "SELECT count(0) AS COUNTCPF FROM bsc_participante WHERE 1=1 and COD_CPF='%s'";
     protected $sqlSelectExistIDEst = "SELECT count(0) AS COUNTIDEst FROM bsc_participante WHERE 1=1 and Id_Estrangeiro='%s'";
     protected $sqlSelectExistEdit = "SELECT count(0) AS COUNTCPF FROM bsc_participante WHERE 1=1 and COD_CPF='%s' and ID_Participante <> '%s'";
     protected $sqlSelectExistEditIDEst = "SELECT count(0) AS COUNTIDEst FROM bsc_participante WHERE 1=1 and Id_Estrangeiro='%s' and ID_Participante <> '%s'";
-    protected $sqlinsertPartUs = "INSERT INTO bsc_participante(COD_CPF,COD_RG,Nome_Cracha,DSC_Nome,DSC_Endereco,DSC_Bairro,DSC_Cidade,NUM_CEP,NUM_Fone,NUM_Celular,NUM_FAX,DSC_Profissao_Especialidade,DSC_Email,NUM_Registro,COD_Tipo_Estado,ID_BSC_Empresa,ID_BSC_Profissao) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
-    protected $sqlSelectInfoEvt = "SELECT bsc_participante.ID_Participante, bsc_participante.DSC_Nome,bsc_participante.Nome_Cracha, bsc_participante.COD_CPF, bsc_participante.DSC_Email FROM bsc_participante LEFT JOIN seg_usuario ON bsc_participante.ID_Usuario = seg_usuario.ID_Usuario WHERE seg_usuario.ID_Usuario = '%s'";
-
+    protected $sqlinsertPartUs = "INSERT INTO bsc_participante(COD_CPF,COD_RG,Nome_Cracha,DSC_Nome,DSC_Endereco,DSC_Bairro,DSC_Cidade,NUM_CEP,NUM_Fone,NUM_Celular,NUM_FAX,DSC_Profissao_Especialidade,DSC_Email,NUM_Registro,COD_Tipo_Estado,ID_BSC_Empresa,ID_BSC_Profissao,Cod_Participante) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
+    protected $sqlSelectInfoEvt = "SELECT bsc_participante.ID_Participante, bsc_participante.DSC_Nome,bsc_participante.Nome_Cracha, bsc_participante.COD_CPF, bsc_participante.DSC_Email, bsc_participante.Cod_Participante FROM bsc_participante LEFT JOIN seg_usuario ON bsc_participante.ID_Usuario = seg_usuario.ID_Usuario WHERE seg_usuario.ID_Usuario = '%s'";
     protected $sqlSelectParticipanteEvento = "";
 
-    public function insert() {
-        $sql = sprintf($this->sqlInsert, $this->getID_Participante(), $this->getCOD_CPF(), $this->getCOD_RG(), $this->getId_Estrangeiro(), $this->getNome_Cracha(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Usuario());
+    public function insert()
+    {
+        $sql = sprintf($this->sqlInsert, $this->getID_Participante(), $this->getCOD_CPF(), $this->getCOD_RG(), $this->getId_Estrangeiro(), $this->getNome_Cracha(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Usuario(), $this->getCod_Participante());
         return $this->RunQuery($sql);
     }
 
-    public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getCOD_CPF(), $this->getCOD_RG(),$this->getId_Estrangeiro(), $this->getNome_Cracha(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Participante());
+    public function update()
+    {
+        $sql = sprintf($this->sqlUpdate, $this->getCOD_CPF(), $this->getCOD_RG(), $this->getId_Estrangeiro(), $this->getNome_Cracha(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Usuario(), $this->getCod_Participante(), $this->getID_Participante());
         return $this->RunQuery($sql);
     }
 
-    public function delete() {
+    public function delete()
+    {
         $sql = sprintf($this->sqlDelete, $this->getID_Participante());
         return $this->RunQuery($sql);
     }
 
-    public function select($where = '', $order = '') {
+    public function select($where = '', $order = '')
+    {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
 
-    public function load() {
+    public function load()
+    {
         $rs = $this->select(sprintf("and ID_Participante='%s'", $this->getID_Participante()));
         $this->setID_Participante($rs[0]['ID_Participante']);
         $this->setCOD_CPF($rs[0]['COD_CPF']);
@@ -58,56 +62,75 @@ class aBsc_Participante extends mBsc_Participante {
         $this->setCOD_Tipo_Estado($rs[0]['COD_Tipo_Estado']);
         $this->setID_BSC_Empresa($rs[0]['ID_BSC_Empresa']);
         $this->setID_BSC_Profissao($rs[0]['ID_BSC_Profissao']);
-        $id_usuario = $rs[0]['ID_Usuario'];
-        $this->setID_Usuario($id_usuario);
+        $this->setId_usuario($rs[0]['ID_Usuario']);
+        $this->setCod_Participante($rs[0]['Cod_Participante']);
         return $this;
     }
 
-    public function insertPartUs() {
-        $sql = sprintf($this->sqlinsertPartUs, $this->getCOD_CPF(), $this->getCOD_RG(), $this->getNome_Cracha(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Usuario());
+    public function insertPartUs()
+    {
+        $sql = sprintf($this->sqlinsertPartUs, $this->getCOD_CPF(), $this->getCOD_RG(), $this->getNome_Cracha(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Usuario(), $this->getCod_Participante());
         return $this->RunQuery($sql);
     }
 
-    public function selectNotExistsCPF($COD_CPF) {
+    public function selectNotExistsCPF($COD_CPF)
+    {
         $rs = $this->RunSelect(sprintf($this->sqlSelectExist, $COD_CPF));
         $count = $rs[0]['COUNTCPF'];
-        if ($count == 0) {
+        if ($count == 0)
+        {
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
-       
-    public function selectNotExistsId_Estrangeiro($Id_Estrangeiro) {
+
+    public function selectNotExistsId_Estrangeiro($Id_Estrangeiro)
+    {
         $rs = $this->RunSelect(sprintf($this->sqlSelectExistIDEst, $Id_Estrangeiro));
         $count = $rs[0]['COUNTIDEst'];
-        if ($count == 0) {
+        if ($count == 0)
+        {
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
 
-    public function selectNotExistsCPFEdit($COD_CPF, $ID_Participante) {
+    public function selectNotExistsCPFEdit($COD_CPF, $ID_Participante)
+    {
         $rs = $this->RunSelect(sprintf($this->sqlSelectExistEdit, $COD_CPF, $ID_Participante));
         $count = $rs[0]['COUNTCPF'];
-        if ($count == 0) {
+        if ($count == 0)
+        {
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
 
-    public function selectNotExistsId_EstrangeiroEdit($Id_Estrangeiro, $ID_Participante) {
+    public function selectNotExistsId_EstrangeiroEdit($Id_Estrangeiro, $ID_Participante)
+    {
         $rs = $this->RunSelect(sprintf($this->sqlSelectExistEditIDEst, $Id_Estrangeiro, $ID_Participante));
         $count = $rs[0]['COUNTIDEst'];
-        if ($count == 0) {
+        if ($count == 0)
+        {
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
-    public function selectInfoPartic($ID_Usuario) {
+
+    public function selectInfoPartic($ID_Usuario)
+    {
         $rs = $this->RunSelect(sprintf($this->sqlSelectInfoEvt, $ID_Usuario));
         //$rs = sprintf($this->sqlSelectInfoEvt, $ID_Usuario);
         $this->setID_Participante($rs[0]['ID_Participante']);
@@ -115,34 +138,42 @@ class aBsc_Participante extends mBsc_Participante {
         $this->setNome_Cracha($rs[0]['Nome_Cracha']);
         $this->setCOD_CPF($rs[0]['COD_CPF']);
         $this->setDSC_Email($rs[0]['DSC_Email']);
+        $this->setCod_Participante($rs[0]['Cod_Participante']);
         //return $this->RunSelect($rs);
         return $this;
     }
 
-    public function selectParticPorCPF() {
+    public function selectParticPorCPF()
+    {
         $rs = $this->select(sprintf("and COD_CPF='%s'", $this->getCOD_CPF()));
         return $rs;
     }
-    
-        public function selectParticPorID() {
+
+    public function selectParticPorID()
+    {
         $rs = $this->select(sprintf("and ID_Participante='%s'", $this->getID_Participante()));
         return $rs;
     }
 
-    public function getIDParticipantePeloIDUsuario($ID_Usuario) {
+    public function getIDParticipantePeloIDUsuario($ID_Usuario)
+    {
         $rs = $this->select(sprintf("and ID_Usuario='%s'", $ID_Usuario));
-        if (empty($rs)) {
+        if (empty($rs))
+        {
             return null;
-        } else {
+        }
+        else
+        {
             return $rs[0]['ID_Participante'];
         }
     }
-    
-    public function getParticipanteEvente($eventoID){
+
+    public function getParticipanteEvente($eventoID)
+    {
         $rs = $this->select(sprintf($this->sqlSelectParticipanteEvento));
         return $rs;
     }
-    
+
     public function SelectPartEvento()
     {
         //$idParticipante = $partic->getID_Participante();
@@ -153,4 +184,9 @@ class aBsc_Participante extends mBsc_Participante {
         }
     }
 
+    public function countPartic()
+    {
+        $COUNT = $this->RunSelect("SELECT COUNT(ID_Participante)+1 as COUNT FROM bsc_participante");
+        return $COUNT[0]['COUNT'];
+    }
 }

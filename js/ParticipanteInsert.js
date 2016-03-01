@@ -45,7 +45,6 @@ function habilitaCampos() {
     $('.btn-primary').attr("disabled", false);
 }
 
-
 $(document).ready(function () {
 
     function limpa_formulario_cep() {
@@ -219,7 +218,6 @@ $(document).ready(function () {
                 showAlert('error', 'CPF já cadastrado para este Evento');
             }
 
-
             $("#loadImg").css("display", "none").fadeOut();
         }
     });
@@ -311,7 +309,6 @@ $(document).ready(function () {
                 $('#Id_Estrangeiro').val(item.Id_Estrangeiro);
                 $('#DSC_Endereco').val(item.DSC_Endereco);
                 $('#DSC_Bairro').val(item.DSC_Bairro);
-                $('#DSC_Bairro').val(item.DSC_Bairro);
                 $('#DSC_Cidade').val(item.DSC_Cidade);
                 $('#NUM_CEP').val(item.NUM_CEP);
                 $('#NUM_Fone').val(item.NUM_Fone);
@@ -332,7 +329,6 @@ $(document).ready(function () {
 
             });
 
-
             if (isSenhaCorreta) {
 
                 habilitaCampos();
@@ -343,7 +339,6 @@ $(document).ready(function () {
 
                 showAlert('error', 'Usuário ou senha incorreto');
             }
-
 
             $("#loadImg").css("display", "none").fadeOut();
             $('#Username').val('');

@@ -12,7 +12,7 @@
                 <th>Email</th>
                 <th>Contato</th>
                 <th>Estado</th>
-                <th>Ações</th>
+                <th class="text-right">Ações</th>
             </tr>
         </thead>
         <tbody id="myTabContent">
@@ -24,7 +24,7 @@
                 <td>{$row.DSC_Nome_Contato}</td>
                 <td>{$row.DSC_EMAIL}</td>
                 <td>{$row.DSC_Nome}</td>
-                <td class="col-lg-2">
+                <td class="col-lg-2 text-right">
                     <a href="LocalEventoEdit.php?ID_Local={$row.ID_Local}" class="col-md-offset-1" title="Editar"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
                     <a href="?del={$row.ID_Local}" title="Excluir"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                 </td>

@@ -6,10 +6,10 @@
     <table id="myTable" class="display" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th>ID</th>
+            <th class="text-center">Código</th>
             <th>Nome</th>
             <th>Descrição</th>
-            <th>Ações</th>
+            <th class="text-right">Ações</th>
         </tr>
     </thead>
     <tbody id="myTabContent">
@@ -18,7 +18,7 @@
             <td>{$row.ID_Profissao}</td>
             <td>{$row.DSC_Nome}</td>
             <td>{$row.DSC_Descricao}</td>
-            <td>
+            <td class="text-right">
                 <a href="ProfissaoEdit.php?alt={$row.ID_Profissao}" class="col-md-offset-1" title="Editar"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
                 <a href="?del={$row.ID_Profissao}" title="Excluir"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a>
             </td>            

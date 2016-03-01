@@ -24,6 +24,7 @@ class mBsc_Participante extends dbConnection {
     private $ID_BSC_Empresa;
     private $ID_BSC_Profissao;
     private $ID_Usuario;
+    private $Cod_Participante;
 
     public function setID_Participante($ID_Participante) {
         $this->ID_Participante = $ID_Participante;
@@ -184,5 +185,12 @@ class mBsc_Participante extends dbConnection {
     public function getID_Usuario() {
         return $this->ID_Usuario;
     }
+    
+    public function setCod_Participante($Cod_Participante) {
+        $this->Cod_Participante = $Cod_Participante;
+    }
 
+    public function getCod_Participante() {
+        return $this->Cod_Participante;
+    }
 }

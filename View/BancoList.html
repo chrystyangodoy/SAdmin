@@ -13,7 +13,7 @@
             <th>Convênio</th>
             <th>Contrato</th>
             <th>Carteiro</th>
-            <th>Ações</th>
+            <th class="text-right">Ações</th>
         </tr>
     </thead>
     <tbody id="myTabContent">
@@ -26,7 +26,7 @@
             <td>{$row.Convenio}</td>
             <td>{$row.Contrato}</td>
             <td>{$row.Carteira}</td>
-            <td>
+            <td class="text-right">
                 <a href="BancoEdit.php?alt={$row.ID}" class="col-md-offset-1" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a>
                 <a href="?del={$row.ID}" title="Excluir"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="font-size: 30px;"></span></a>
             </td>            

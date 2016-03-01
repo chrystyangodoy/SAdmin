@@ -7,23 +7,24 @@
     <table id="myTable" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
+                <th class="text-center">Código</th>
                 <th>Nome</th>
                 <th>Cidade</th>
                 <th>Telefone</th>
-                <th>Ações</th>
+                <th class="text-right">Ações</th>
             </tr>
         </thead>
         <tbody id="myTabContent">
             {foreach from=$lista item=row}
             <tr >
+                <td class="text-center">{$row.Cod_Evento}</td>
                 <td>{$row.DSC_Nome}</td>
                 <td>{$row.DSC_Cidade_Promotora}</td>
                 <td>{$row.NUM_Fone_Promotora}</td>
-                <td>
+                <td class="text-right">
                     <a href="EventoEdit.php?ID_EVT={$row.ID_EVT}" class="col-md-offset-1" title="Editar"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                     <a href="?del={$row.ID_EVT}" title="Excluir"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                     <a href="EventoXML.php?eventoid={$row.ID_EVT}" title="Exportar XML" target="_blank"><span class="btn btn-default glyphicon glyphicon-export" aria-hidden="true"></span></a>
-
                     <a href='#mywork' title="Acompanhar Inscrições" onclick="OnclickAcompanhamento('{$row.ID_EVT}', '{$row.DSC_Nome}');"><span class="btn btn-default glyphicon glyphicon-credit-card" aria-hidden="true"></span></a>
                 </td>
             </tr>

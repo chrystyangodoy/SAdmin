@@ -13,7 +13,7 @@
                 <th>Data Inicial</th>
                 <th>Data Final</th>
                 <th>Evento</th>
-                <th>Ações</th>
+                <th class="text-right">Ações</th>
             </tr>
         </thead>
         <tbody id="myTabContent">
@@ -24,7 +24,7 @@
                 <td>{$row.DT_Inicio}</td>
                 <td>{$row.DT_Fim_Valor}</td>
                 <td>{$row.evento}</td>
-                <td class="col-lg-2">
+                <td class="col-lg-2 text-right">
                     <a href="EventoCategoriaEdit.php?ID_Evento_Categoria={$row.ID_Evento_Categoria}" class="col-md-offset-1" title="Editar"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                     <a href="?del={$row.ID_Evento_Categoria}" title="Excluir"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                 </td>

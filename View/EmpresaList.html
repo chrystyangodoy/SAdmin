@@ -6,12 +6,12 @@
     <table id="myTable" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>Código</th>
                 <th>Razão Social</th>
                 <th>Descrição</th>
                 <th>Telefone</th>
                 <th>Email</th>
-                <th>Ações</th>
+                <th class="text-right">Ações</th>
             </tr>
         </thead>
         <tbody id="myTabContent">
@@ -22,7 +22,7 @@
                 <td>{$row.DSC_Endereco}</td>
                 <td>{$row.NUM_Fone}</td>
                 <td>{$row.DSC_EMAIL}</td>
-                <td>
+                <td class="text-right">
                     <a href="EmpresaEdit.php?alt={$row.ID_Empresa}" onclick="win('EmpresaEdit.php?alt={$row.ID_Empresa}', 300, 300)" title="Editar"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
                     <a href="?del={$row.ID_Empresa}" title="Excluir"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                 </td>

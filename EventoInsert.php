@@ -92,6 +92,11 @@ if (isset($_POST['Cadastrar']))
     }
     //$evento->setLogo_Evento($_POST['Logo_Evento']);
     $evento->setLogo_Evento($destino);
+    //Seta o Código do Evento com nro atual de registros no banco mais a data atual do cadastro.
+    $count = $evento->countEvt();
+    $date = date("Ymd");
+    //
+    $evento->setCod_Evento($date.$count);
     $evento->insert();
 
     $FeedbackMessage->setMsg("Evento inserido com sucesso!");

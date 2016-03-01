@@ -13,7 +13,7 @@
             <th>Assunto Padrão</th>
             <th>Mensagem Padrão</th>
             <th>Ativo?</th>
-            <th>Ações</th>
+            <th class="text-right">Ações</th>
         </tr>
     </thead>
     <tbody id="myTabContent">
@@ -26,7 +26,7 @@
             <td>{$row.assunto}</td>
             <td>{$row.mensagem}</td>
             <td>{$row.isAtivo}</td>
-            <td>
+            <td class="text-right">
                 <a href="EmailEdit.php?alt={$row.ID_Email}" class="col-md-offset-1" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a>
                 <a href="?del={$row.ID_Email}" title="Excluir"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="font-size: 30px;"></span></a>
             </td>            

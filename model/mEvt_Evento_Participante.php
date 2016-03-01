@@ -35,7 +35,7 @@ class mEvt_Evento_Participante extends dbConnection {
     private $COD_TipoSituacao_Material;
     private $DTM_EntregaMaterial;
     private $COD_InscricaoExterno;
-
+    
     public function setID_EVT_Evento_Pariticipante($ID_EVT_Evento_Pariticipante) {
         $this->ID_EVT_Evento_Pariticipante = $ID_EVT_Evento_Pariticipante;
     }
@@ -156,5 +156,4 @@ class mEvt_Evento_Participante extends dbConnection {
     public function getCOD_InscricaoExterno() {
         return $this->COD_InscricaoExterno;
     }
-
 }

@@ -4,13 +4,14 @@ require './model/mEvt_Evento.php';
 
 class aEvt_Evento extends mEvt_Evento {
 
-    protected $sqlInsert = "INSERT INTO evt_evento(ID_EVT, DSC_Nome, DSC_Presidente, DT_Inicio, DT_Fim, COD_CNPJ_Promotora, DSC_Nome_Promotora, DSC_Presidente_Promotora, DSC_Endereco_Promotora, NUM_CEP_Promotora, DSC_Cidade_Promotora, NUM_Fone_Promotora, NUM_FAX_Promotora, DSC_EMAIL_Promotora, QTD_CargaHorariaMinima, ID_BSC_Local_Evento, COD_Tipo_Estado_promotora, isPromotora, ID_Banco, ID_Empresa, Logo_Evento, Ctrl_Inscricao) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
-    protected $sqlUpdate = "update evt_evento set DSC_Nome= '%s', DSC_Presidente= '%s', DT_Inicio= '%s', DT_Fim= '%s', COD_CNPJ_Promotora= '%s', DSC_Nome_Promotora= '%s', DSC_Presidente_Promotora= '%s', DSC_Endereco_Promotora= '%s', NUM_CEP_Promotora= '%s', DSC_Cidade_Promotora= '%s', NUM_Fone_Promotora= '%s', NUM_FAX_Promotora= '%s', DSC_EMAIL_Promotora= '%s', QTD_CargaHorariaMinima= '%s', ID_BSC_Local_Evento= '%s', COD_Tipo_Estado_promotora= '%s', isPromotora = '%s', ID_Banco = '%s', ID_Empresa = '%s', Logo_Evento = '%s',Ctrl_Inscricao = '%s' where ID_EVT = '%s'";
+    protected $sqlInsert = "INSERT INTO evt_evento(ID_EVT, DSC_Nome, DSC_Presidente, DT_Inicio, DT_Fim, COD_CNPJ_Promotora, DSC_Nome_Promotora, DSC_Presidente_Promotora, DSC_Endereco_Promotora, NUM_CEP_Promotora, DSC_Cidade_Promotora, NUM_Fone_Promotora, NUM_FAX_Promotora, DSC_EMAIL_Promotora, QTD_CargaHorariaMinima, ID_BSC_Local_Evento, COD_Tipo_Estado_promotora, isPromotora, ID_Banco, ID_Empresa, Logo_Evento, Ctrl_Inscricao,Cod_Evento) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
+    protected $sqlUpdate = "update evt_evento set DSC_Nome= '%s', DSC_Presidente= '%s', DT_Inicio= '%s', DT_Fim= '%s', COD_CNPJ_Promotora= '%s', DSC_Nome_Promotora= '%s', DSC_Presidente_Promotora= '%s', DSC_Endereco_Promotora= '%s', NUM_CEP_Promotora= '%s', DSC_Cidade_Promotora= '%s', NUM_Fone_Promotora= '%s', NUM_FAX_Promotora= '%s', DSC_EMAIL_Promotora= '%s', QTD_CargaHorariaMinima= '%s', ID_BSC_Local_Evento= '%s', COD_Tipo_Estado_promotora= '%s', isPromotora = '%s', ID_Banco = '%s', ID_Empresa = '%s', Logo_Evento = '%s',Ctrl_Inscricao = '%s', Cod_Evento='%s' where ID_EVT = '%s'";
     protected $sqlDelete = "delete from evt_evento where ID_EVT = '%s'";
     protected $sqlSelect = "select * from evt_evento where 1=1 %s %s";
     protected $sqlInnerEventoLocal = "SELECT 	evento.ID_EVT, 
                                                 evento.DSC_Nome,
                                                 evento.Logo_Evento,
+                                                evento.Cod_Evento,
                                                 DATE_FORMAT( evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, 
                                                 DATE_FORMAT( evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, 
                                                 localEvento.DSC_Endereco,
@@ -55,12 +56,12 @@ class aEvt_Evento extends mEvt_Evento {
                                         WHERE	evt_evento.ID_EVT = '%S'";
 
     public function insert() {
-        $sql = sprintf($this->sqlInsert, $this->getID_EVT(), $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(true), $this->getDT_Fim(true), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora(), $this->getisPromotora(), $this->getID_Banco(), $this->getID_Empresa(),$this->getLogo_Evento(),$this->getCtrl_Inscricao());
+        $sql = sprintf($this->sqlInsert, $this->getID_EVT(), $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(true), $this->getDT_Fim(true), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora(), $this->getisPromotora(), $this->getID_Banco(), $this->getID_Empresa(),$this->getLogo_Evento(),$this->getCtrl_Inscricao(),$this->getCod_Evento());
         return $this->RunQuery($sql);
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(true), $this->getDT_Fim(true), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora(), $this->getisPromotora(), $this->getID_Banco(), $this->getID_Empresa(),$this->getLogo_Evento(),$this->getCtrl_Inscricao(), $this->getID_EVT());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(true), $this->getDT_Fim(true), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora(), $this->getisPromotora(), $this->getID_Banco(), $this->getID_Empresa(),$this->getLogo_Evento(),$this->getCtrl_Inscricao(),$this->getCod_Evento(), $this->getID_EVT());
         return $this->RunQuery($sql);
     }
 
@@ -98,6 +99,7 @@ class aEvt_Evento extends mEvt_Evento {
         $this->setID_Empresa($rs[0]['ID_Empresa']);
         $this->setLogo_Evento($rs[0]['Logo_Evento']);
         $this->setCtrl_Inscricao($rs[0]['Ctrl_Inscricao']);
+        $this->setCod_Evento($rs[0]['Cod_Evento']);
         return $this;
     }
 
@@ -164,5 +166,9 @@ class aEvt_Evento extends mEvt_Evento {
         $rs = $this->RunSelect($sql);
         return $rs;
     }
-
+    
+    public function countEvt() {
+        $COUNT = $this->RunSelect("SELECT COUNT(ID_EVT)+1 as COUNT FROM evt_evento");
+        return $COUNT[0]['COUNT'];
+    }
 }

@@ -126,6 +126,10 @@ if (isset($_POST['Cadastrar']))
                 $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
                 $partic->setID_Usuario($idUnico);
 
+                //Informa Código do Participante = Nro Atual do registro;
+                $Count = $partic->countPartic();
+                $partic->setCod_Participante($Count);
+
                 if ($isParticipanteNovo)
                 {
                     $partic->insert();
@@ -146,7 +150,7 @@ if (isset($_POST['Cadastrar']))
                 if ($isParticipanteNovo)
                 {
                     $ass = "Cadastro efetuado com sucesso!";
-                    $msg = 'Sua inscrição no evento ' . $evento->getDSC_Nome() . ', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
+                    $msg = 'Sua inscrição no evento ' . $evento->getCod_Evento() . '-' . $evento->getDSC_Nome() . ', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
                             Usuário: ' . $Id_Estrangeiro . '<br />
                             Senha: ' . $senha . " <br />
                             Link: <a href='" . $_SERVER[HTTP_HOST] . "/SAdmin/Login.php" . "'>acesso acompanhamento</a>";
@@ -154,7 +158,7 @@ if (isset($_POST['Cadastrar']))
                 else
                 {
                     $ass = "Cadastro efetuado com sucesso!";
-                    $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() +
+                    $msg = 'Sua inscrição no evento' + $evento->getCod_Evento() + '-' + $evento->getDSC_Nome() +
                             ', será confirmada após pagamento do boleto.';
                 }
                 require_once './config/eMail.php';
@@ -210,7 +214,6 @@ if (isset($_POST['Cadastrar']))
                         $id_Participante = $config->idUnico();
                     }
 
-
                     $partic->setID_Participante($id_Participante);
 
                     $partic->setCOD_CPF($cpf);
@@ -233,6 +236,10 @@ if (isset($_POST['Cadastrar']))
                     $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
                     $partic->setID_Usuario($idUnico);
 
+                    //Informa Código do Participante = Nro Atual do registro;
+                    $Count = $partic->countPartic();
+                    $partic->setCod_Participante($Count);
+                    
                     if ($isParticipanteNovo)
                     {
                         $partic->insert();
@@ -259,7 +266,7 @@ if (isset($_POST['Cadastrar']))
 
                         $ass = "Cadastro efetuado com sucesso!";
 
-                        $msg = 'Sua inscrição no evento ' . $evento->getDSC_Nome() . ', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
+                        $msg = 'Sua inscrição no evento '.$evento->getCod_Evento() . '-' . $evento->getDSC_Nome() . ', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
                             Usuário: ' . $cpf . '<br />
                             Senha: ' . $senha . " <br />
                             Link: <a href='" . $_SERVER[HTTP_HOST] . "/SAdmin/Login.php" . "'>acesso acompanhamento</a>";
@@ -267,7 +274,7 @@ if (isset($_POST['Cadastrar']))
                     else
                     {
                         $ass = "Cadastro efetuado com sucesso!";
-                        $msg = 'Sua inscrição no evento' + $evento->getDSC_Nome() +
+                        $msg = 'Sua inscrição no evento' +$evento->getCod_Evento()+'-'+ $evento->getDSC_Nome() +
                                 ', será confirmada após pagamento do boleto.';
                     }
 

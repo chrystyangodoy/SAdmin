@@ -11,7 +11,7 @@
                 <th>Data Inicio</th>
                 <th>Data Fim</th>
                 <th>Descrição Grupo</th>
-                <th>Ações</th>
+                <th class="text-right">Ações</th>
             </tr>
         </thead>
         <tbody id="myTabContent">
@@ -21,7 +21,7 @@
                 <td>{$row.DTM_Inicio}</td>
                 <td>{$row.DTM_Fim}</td>
                 <td>{$row.DSC_Descricao}</td>
-                <td>
+                <td class="text-right">
                     <a href="UsuarioEdit.php?alt={$row.ID_Usuario}" class="col-md-offset-1" title="Editar"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                     <a href="?del={$row.ID_Usuario}" title="Excluir"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                 </td>
