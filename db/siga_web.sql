@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Fev-2016 às 17:55
+-- Generation Time: 01-Mar-2016 às 20:47
 -- Versão do servidor: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -41,6 +41,13 @@ CREATE TABLE IF NOT EXISTS `bsc_banco` (
   `COD_CNPJ_Promotora` int(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `bsc_banco`
+--
+
+INSERT INTO `bsc_banco` (`ID`, `Dsc_Banco`, `Agencia`, `Conta`, `Cod_Banco`, `Convenio`, `Contrato`, `Carteira`, `Variacao_Carteira`, `numero_documento`, `COD_CNPJ_Promotora`) VALUES
+('3bdfa2bf001bc6731712ca143ae2b3c5', 'Banco do Brasil', '3372-4', '336981-9', '1', '1234', '233434', 'Boleto', '1', 9093, 10100);
+
 -- --------------------------------------------------------
 
 --
@@ -61,7 +68,14 @@ CREATE TABLE IF NOT EXISTS `bsc_empresa` (
   `NUM_FAX` varchar(10) NOT NULL,
   `DSC_EMAIL` varchar(100) NOT NULL,
   `COD_TipoEstado` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `bsc_empresa`
+--
+
+INSERT INTO `bsc_empresa` (`ID_Empresa`, `COD_CNPJ`, `DSC_RazaoSocial`, `DSC_Endereco`, `DSC_Bairro`, `DSC_Cidade`, `NUM_CEP`, `NUM_InscricaoEstadual`, `NUM_Fone`, `NUM_FAX`, `DSC_EMAIL`, `COD_TipoEstado`) VALUES
+(1, '59481422000179', 'Super PromoÃ§oes e Eventos', 'Rua Domingos Marreiros 1212', 'FÃ¡tima', 'BelÃ©m', '66.060-1', '3453432444', '9878978979', '', 'cleytonqcosta@gmail.com', 'ParÃ¡');
 
 -- --------------------------------------------------------
 
@@ -83,6 +97,13 @@ CREATE TABLE IF NOT EXISTS `bsc_local_evento` (
   `DSC_Nome_Contato` varchar(100) NOT NULL,
   `COD_TIPOEstado` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `bsc_local_evento`
+--
+
+INSERT INTO `bsc_local_evento` (`ID_Local`, `DSC_Nome`, `DSC_Endereco`, `DSC_Bairro`, `DSC_Cidade`, `NUM_CEO`, `NUM_Fone`, `NUM_FAX`, `DSC_EMAIL`, `DSC_Nome_Contato`, `COD_TIPOEstado`) VALUES
+('31fa2c1f83dc17394e02c227f473cd7d', 'Hangar Centro de ConvenÃ§Ãµes da AmazÃ´nia', 'Avenida Dr. Freitas SN', 'FÃ¡tima', 'BelÃ©m', '45345435', '(91) 8874-', '(98) 7897-', 'cleytonqcosta@gmail.com', 'jio', '304736ff9a38778bb5e04560a51a4085');
 
 -- --------------------------------------------------------
 
@@ -111,8 +132,16 @@ CREATE TABLE IF NOT EXISTS `bsc_participante` (
   `COD_Tipo_Estado` varchar(50) NOT NULL,
   `ID_BSC_Empresa` int(11) NOT NULL,
   `ID_BSC_Profissao` int(11) NOT NULL,
-  `ID_Usuario` varchar(50) NOT NULL
+  `ID_Usuario` varchar(50) NOT NULL,
+  `Cod_Participante` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `bsc_participante`
+--
+
+INSERT INTO `bsc_participante` (`ID_Participante`, `COD_CPF`, `COD_RG`, `Id_Estrangeiro`, `Nome_Cracha`, `DSC_Nome`, `DSC_Endereco`, `DSC_Bairro`, `DSC_Cidade`, `NUM_CEP`, `NUM_Fone`, `NUM_Celular`, `NUM_FAX`, `DSC_Profissao_Especialidade`, `DSC_Email`, `NUM_Registro`, `COD_Tipo_Estado`, `ID_BSC_Empresa`, `ID_BSC_Profissao`, `ID_Usuario`, `Cod_Participante`) VALUES
+('bc24356261782a1db3f0306fd98826e0', '52863298291', '4387870', '', '', 'Chrystyan Godoy', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '(91) 4006-9800', '', '', 'AdministraÃ§Ã£o', 'chrystyangodoy@gmail.com', '1234546789', '304736ff9a38778bb5e04560a51a4085', 1, 1, '88d6f6bf17fc5af881b08f0db97cb62e', '1');
 
 -- --------------------------------------------------------
 
@@ -125,7 +154,16 @@ CREATE TABLE IF NOT EXISTS `bsc_profissao` (
   `ID_Profissao` int(11) NOT NULL,
   `DSC_Nome` varchar(70) NOT NULL,
   `DSC_Descricao` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `bsc_profissao`
+--
+
+INSERT INTO `bsc_profissao` (`ID_Profissao`, `DSC_Nome`, `DSC_Descricao`) VALUES
+(1, 'Estudante', 'Estudantes'),
+(2, 'MÃ©dico', 'Cardiologista'),
+(3, 'Analista de Sistemas', 'Programador de Sistemas');
 
 -- --------------------------------------------------------
 
@@ -145,6 +183,13 @@ CREATE TABLE IF NOT EXISTS `config_email` (
   `Password` varchar(100) NOT NULL,
   `isAtivo` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `config_email`
+--
+
+INSERT INTO `config_email` (`ID_Email`, `smtp`, `Port`, `remetente`, `assunto`, `mensagem`, `userName`, `Password`, `isAtivo`) VALUES
+('c7cc5bdf9bdebc5618c610ed631435d6', 'smtp.atualpromocoes.com.br', '587', 'Administrador', 'Obrigado por realizar sua inscriÃ§Ã£o em nosso Evento', 'ApÃ³s realizar pagamento do boleto no link que segue aguarde email com confirmaÃ§Ã£o da inscriÃ§Ã£o', 'adm_sigaweb@atualpromocoes.com.br ', 'adm1234adm', 1);
 
 -- --------------------------------------------------------
 
@@ -247,8 +292,18 @@ CREATE TABLE IF NOT EXISTS `evt_evento` (
   `ID_Banco` varchar(50) NOT NULL,
   `ID_Empresa` varchar(50) NOT NULL,
   `Logo_Evento` varchar(500) NOT NULL COMMENT 'Logo ou Imagem do Evento',
-  `Ctrl_Inscricao` int(11) NOT NULL
+  `Ctrl_Inscricao` varchar(20) NOT NULL,
+  `Cod_Evento` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `evt_evento`
+--
+
+INSERT INTO `evt_evento` (`ID_EVT`, `DSC_Nome`, `DSC_Presidente`, `DT_Inicio`, `DT_Fim`, `COD_CNPJ_Promotora`, `DSC_Nome_Promotora`, `DSC_Presidente_Promotora`, `DSC_Endereco_Promotora`, `NUM_CEP_Promotora`, `DSC_Cidade_Promotora`, `NUM_Fone_Promotora`, `NUM_FAX_Promotora`, `DSC_EMAIL_Promotora`, `QTD_CargaHorariaMinima`, `ID_BSC_Local_Evento`, `COD_Tipo_Estado_promotora`, `isPromotora`, `ID_Banco`, `ID_Empresa`, `Logo_Evento`, `Ctrl_Inscricao`, `Cod_Evento`) VALUES
+('335b38c5779a99886a31b2179ef87a8d', 'Evento para teste de impressÃ£o de boleto', 'Bill Gates', '2016-01-01', '2016-03-20', '14.357.767/000', 'Microsoft LTDA', 'MARIANA DA SILVA', 'Domingos Marreiros', '66.060-1', 'BelÃ©m', '(91)4006-9', '(91)4006-9', 'EVENTO@EVENTO.COM.BR', '120.00', '31fa2c1f83dc17394e02c227f473cd7d', '304736ff9a38778bb5e04560a51a4085', 0, '3bdfa2bf001bc6731712ca143ae2b3c5', '', 'imgEvento/f19e56fb1868983b10575586553c1cf4.jpg', '0', ''),
+('84181b14cb2ebe80b7912c31134dcdae', 'Evento 006', 'GODOY', '2016-01-01', '2016-03-20', '14.357.767/000', 'MARIA DA SILVA', 'MARIANA DA SILVA', 'Domingos Marreiros', '66.060-1', 'BelÃ©m', '(91)4006-9', '(91)4006-9', 'EVENTO@EVENTO.COM.BR', '100.00', '31fa2c1f83dc17394e02c227f473cd7d', '304736ff9a38778bb5e04560a51a4085', 0, '0', '0', 'imgEvento/95b761cb528c10bff1296627069a6adf.jpg', '0', ''),
+('a4c6412111f139e460168051cf947ca9', 'Evento 003', 'Bill Gates', '2016-01-01', '2016-04-30', '14.357.767/000', 'Microsoft LTDA', 'Bill Gates', 'Domingos Marreiros', '66.060-1', 'BelÃ©m', '(91)4006-9', '(91)4006-9', 'promotora@prom.com.br', '100.00', '31fa2c1f83dc17394e02c227f473cd7d', '304736ff9a38778bb5e04560a51a4085', 0, '0', '', 'imgEvento/b893d2b2893c23ac615508db45ce8867.jpg', '', '201602293');
 
 -- --------------------------------------------------------
 
@@ -300,6 +355,17 @@ CREATE TABLE IF NOT EXISTS `evt_evento_categoria` (
   `DT_Fim_Valor` date NOT NULL,
   `ID_EVT_Evento` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `evt_evento_categoria`
+--
+
+INSERT INTO `evt_evento_categoria` (`ID_Evento_Categoria`, `DSC_Nome`, `VLR_Inscricao`, `DT_Inicio_Valor`, `DT_Fim_Valor`, `ID_EVT_Evento`) VALUES
+('c66b032b04fb91ae862f1450ddd2d7a4', 'Estudante', '50.00', '2015-12-01', '2016-12-30', 'd011ee02cea6eff6b59df5944a7abe26'),
+('ceaedda02997a9da3953e3a74201b290', 'MÃ©dico', '300.00', '2015-12-01', '2016-12-30', 'd011ee02cea6eff6b59df5944a7abe26'),
+('713711adb967a1492a1310b1b697ba6b', 'Profissional Associado', '250.00', '2015-12-01', '2016-12-30', 'd011ee02cea6eff6b59df5944a7abe26'),
+('a4d7aa068dadcd89c32f5781e93f3dd6', 'Estudante', '70.00', '2016-01-01', '2016-01-15', 'd011ee02cea6eff6b59df5944a7abe26'),
+('d7e0c61b21981a3c9d88226644a71947', 'Palestras', '100.00', '2016-01-01', '2016-03-20', '335b38c5779a99886a31b2179ef87a8d');
 
 -- --------------------------------------------------------
 
@@ -357,9 +423,27 @@ CREATE TABLE IF NOT EXISTS `evt_evento_participante` (
   `ID_EVT_EventoGrupo` int(11) NOT NULL,
   `COD_TipoSituacao_Material` int(11) NOT NULL,
   `DTM_EntregaMaterial` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `COD_InscricaoExterno` int(11) NOT NULL,
-  `Num_Inscricao` int(5) NOT NULL
+  `COD_InscricaoExterno` varchar(20) NOT NULL,
+  `Num_Inscricao` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `evt_evento_participante`
+--
+
+INSERT INTO `evt_evento_participante` (`ID_EVT_Evento_Pariticipante`, `DSC_Nome_Crachav`, `COD_Barras_Cracha`, `VLR_Total`, `VLR_Total_Inscricao`, `QTD_CargaHoraria_Realizada`, `COD_Nivel_Participante`, `ID_EVT_Pagamento`, `ID_EVT_Categoria`, `ID_EVT_Evento`, `ID_BSC_Participante`, `ID_EVT_Participante_Pai`, `COD_Tipo_SIT_Certificado`, `DTM_Entrega_Certificado`, `ID_SEG_DetalheTransacao`, `SIT_EH_Parcelado`, `ID_EVT_EventoGrupo`, `COD_TipoSituacao_Material`, `DTM_EntregaMaterial`, `COD_InscricaoExterno`, `Num_Inscricao`) VALUES
+('f9c94d5135594b4b761ad078e2914be5', 'Cleyton Carlos Queiroz Costa', '66129273215', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', 'f22b54f28abf053d4da5fa0c1fd61010', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
+('c3c64780366fc51e53e048a43ac859e8', 'Cleyton Carlos Queiroz Costa', '66129273215', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '8b9170dfbb995813227a6d459274c015', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
+('9365f2c9496e73446642814f1b163332', 'Chrystyan Godoy', '52863298291', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', 'bb62a69d87cc5f6ef7623de86a7e0d19', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
+('0504acd402eff3a9190e9b010ad70078', 'Renato AraÃºjo de Souza Filho', '83966853396', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '3d16762825fcdfd93b57610f871c2f6a', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
+('9e7f398e2a1b12dfc18a0e7597d56808', 'Douglas Wolff', '44145246608', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '0bf7877d73cee371879fe175c27429e5', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
+('1ea11a07340504d6a4afdf6280fa9e6b', 'Romero Silva Arcanjo', '57964859382', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '0f3fa5b8d881ce5d0b766c19c1674a8b', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
+('6c6139dbfbc4d2579fffa214a2f58acd', 'Jaqueline Arcanjo dos Santos', '25517954278', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', 'a87849d8ecc5a1483db7069ac86526a5', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
+('990132ff84ca1c2f3f70e8e1583da8ac', 'JoÃ£o De Souto.', '94671561808', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '073c3014efec8a731335fce156b89148', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
+('acf4c034f576a84f5a28ea020a381cd3', 'Jessica da Rocha', '67854535507', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '4fefe071d406e6b77963e577d530b267', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
+('56c993a1887370b5da372ab659e1c411', 'Cleyton Carlos Queiroz Costa', '18677538399', '300.00', '300.00', '0.00', 0, 0, 'ceaedda02997a9da3953e3a74201b290', 'd011ee02cea6eff6b59df5944a7abe26', '4d7be967c4ce2062ab1fc2d18132a24d', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
+('959fa3ef7630f8b48b52fbcc4fecec4b', 'Joao Paulo Souza', '75402629234', '300.00', '300.00', '0.00', 0, 0, 'ceaedda02997a9da3953e3a74201b290', 'd011ee02cea6eff6b59df5944a7abe26', '62f85622935ed4d47a06408fd0fa4ebc', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
+('0439620ee332ea7b954c54699c018136', '', '52863298291', '100.00', '100.00', '0.00', 0, 0, 'd7e0c61b21981a3c9d88226644a71947', '335b38c5779a99886a31b2179ef87a8d', 'bb62a69d87cc5f6ef7623de86a7e0d19', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '1', '0');
 
 -- --------------------------------------------------------
 
@@ -384,6 +468,24 @@ CREATE TABLE IF NOT EXISTS `evt_pagamento` (
   `NUM_Parcelas` int(11) NOT NULL,
   `QTD_Parcelas_Pagas` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `evt_pagamento`
+--
+
+INSERT INTO `evt_pagamento` (`ID_Pagamento`, `DT_Transacao`, `DT_Pagamento`, `VLR_Transacao`, `VR_Pago`, `NUM_Recibo`, `COD_TipoFormaPagamento`, `COD_TipoOrigemInscricao`, `ID_EVT_Evento`, `ID_EVT_Pagamento_Pai`, `COD_Tipo_Situacao_Pagamento`, `QTD_Parcelas`, `NUM_Parcelas`, `QTD_Parcelas_Pagas`) VALUES
+('f5f3d856497bc74e076685b00786a7b9', '2016-02-03 15:33:57', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, 'f9c94d5135594b4b761ad078e2914be5', '0', 1, 0, 0, 0),
+('31df5b51bc7857c234018504a7d454ca', '2016-02-15 14:02:37', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, 'c3c64780366fc51e53e048a43ac859e8', '0', 0, 0, 0, 0),
+('38a3965e4ff39c68a553adba9caa3481', '2016-02-15 14:02:48', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '9365f2c9496e73446642814f1b163332', '0', 2, 0, 0, 0),
+('e9751fcabd5c676d6fb536d8144288ad', '2016-02-18 03:42:14', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '0504acd402eff3a9190e9b010ad70078', '0', 1, 0, 0, 0),
+('ba89a2c0a16d4eb4e5907c8967e57b7b', '2016-02-15 14:02:29', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '9e7f398e2a1b12dfc18a0e7597d56808', '0', 0, 0, 0, 0),
+('6e414809e3e589a3283f947dcdfd2006', '2016-02-03 15:32:08', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '1ea11a07340504d6a4afdf6280fa9e6b', '0', 0, 0, 0, 0),
+('530d0d3d255dc9c77f1605f73fbfe2e7', '2016-02-03 15:32:05', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '6c6139dbfbc4d2579fffa214a2f58acd', '0', 0, 0, 0, 0),
+('3bead11d7e73efd2786f98a3f333467a', '2016-02-15 14:01:05', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '990132ff84ca1c2f3f70e8e1583da8ac', '0', 1, 0, 0, 0),
+('5a5c1b4fe7fdf84bfa60ad89cf1e657f', '2016-02-15 13:57:28', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, 'acf4c034f576a84f5a28ea020a381cd3', '0', 1, 0, 0, 0),
+('5d98f37122a14358fb545e6e6ffeae04', '2016-02-15 15:33:50', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '56c993a1887370b5da372ab659e1c411', '0', 2, 0, 0, 0),
+('ce72afef5ff8114c2bfd29b8ae99e2b5', '2016-02-15 14:02:25', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '959fa3ef7630f8b48b52fbcc4fecec4b', '0', 0, 0, 0, 0),
+('46520049e85c3f30a12cdca5521f6931', '2016-02-24 03:00:00', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '0439620ee332ea7b954c54699c018136', '0', 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -547,7 +649,15 @@ CREATE TABLE IF NOT EXISTS `seg_grupo` (
   `ID_Grupo` int(11) NOT NULL,
   `DSC_Nome` varchar(20) NOT NULL,
   `DSC_Descricao` varchar(100) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `seg_grupo`
+--
+
+INSERT INTO `seg_grupo` (`ID_Grupo`, `DSC_Nome`, `DSC_Descricao`) VALUES
+(1, 'Administradores', 'Grupo de Administradores do Sistema'),
+(99, 'Participantes de Eve', 'Grupo de Participantes de Eventos');
 
 -- --------------------------------------------------------
 
@@ -564,6 +674,14 @@ CREATE TABLE IF NOT EXISTS `seg_usuario` (
   `DTM_Fim` date NOT NULL,
   `ID_SEG_Grupo` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `seg_usuario`
+--
+
+INSERT INTO `seg_usuario` (`ID_Usuario`, `DSC_Login`, `DSC_Senha`, `DTM_Inicio`, `DTM_Fim`, `ID_SEG_Grupo`) VALUES
+('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2015-12-01', '2099-12-31', 0),
+('88d6f6bf17fc5af881b08f0db97cb62e', '52863298291', 'c0b30ea9e7349c5f3edcbefeb478d518', '2016-03-01', '2016-03-08', 99);
 
 -- --------------------------------------------------------
 
@@ -616,6 +734,39 @@ CREATE TABLE IF NOT EXISTS `tb_tipo_estado` (
   `DSC_Nome` varchar(50) NOT NULL,
   `DSC_Descricao` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tb_tipo_estado`
+--
+
+INSERT INTO `tb_tipo_estado` (`COD_TIPOEstado`, `DSC_Nome`, `DSC_Descricao`) VALUES
+('a4f3a8de36bdd5001e345c13718aca11', 'AC', 'Acre'),
+('67547fa96b3d22d8982562efebf58952', 'AL', 'Alagoas'),
+('6250b01c82a22e925135a2840f93b538', 'AM', 'Amazonas'),
+('f7d824d3d4abbc3d5c056c91e9333f34', 'AP', 'AmapÃ¡'),
+('b2e8a1b52dbbcd2bfd5d512d9427f5e1', 'BA', 'Bahia'),
+('6dfbceb43a5f052e83ee5136131d965c', 'CE', 'CearÃ¡'),
+('c6ce0dc588e058f72b92cacb19991d20', 'DF', 'Distrito Federal'),
+('983d020cc165553b49de8663659ddba4', 'ES', 'Espirito Santo'),
+('91024e0dfd116e5ccefa6a3d79bc8d50', 'GO', 'Goias'),
+('1e2df70beaa4612752155ecc39a9efd2', 'MA', 'MaranhÃ£o'),
+('36e561f31d651f417ba651534fb50cb5', 'MT', 'Mato Grosso'),
+('f5f14377214c2006c71b72b40b6da0de', 'MS', 'Mato Grosso do Sul'),
+('68fc0f4f690020a062a1e51139dd1de0', 'MG', 'Minas Gerais'),
+('304736ff9a38778bb5e04560a51a4085', 'PA', 'ParÃ¡'),
+('8b0f6670c366eafae1f273ba0c7b723b', 'PB', 'Paraiba'),
+('fae7a484c19d516b1b2a5d50a1f1ec38', 'PR', 'ParanÃ¡'),
+('e6398a281496ffd628166dcb18a4aea0', 'PE', 'Pernambuco'),
+('4d62aeb6b56287df27dc720699992d6b', 'PI', 'PiauÃ­'),
+('cc68c779aa3cf0db42522aee11ef366a', 'RJ', 'Rio de Janeiro'),
+('ef1504b43aed1ac923065ba5d3853265', 'RN', 'Rio Grande do Norte'),
+('499c97d19f3f1d192d94e9f2a95bb3bf', 'RS', 'Rio Grande do Sul'),
+('38637a52f112b8303ddd97b2e49c3ed8', 'RO', 'RondÃ´nia'),
+('73a03c3c3504d2179a593238d64ad2f1', 'RR', 'Roraima'),
+('695ce19d8e4e9fa719ce4305ebc690af', 'SC', 'Santa Catarina'),
+('08f34663e59b00509abf06e4a8d57bec', 'SP', 'SÃ£o Paulo'),
+('5f4fa59f4a31fa1ea03c8319ad402ebf', 'SE', 'Sergipe'),
+('d95fb31a097d5b2d49f5d075e7853e9a', 'TO', 'Tocantins');
 
 -- --------------------------------------------------------
 
@@ -979,12 +1130,12 @@ ALTER TABLE `tb_tipo_situacao_pagamento`
 -- AUTO_INCREMENT for table `bsc_empresa`
 --
 ALTER TABLE `bsc_empresa`
-  MODIFY `ID_Empresa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Empresa` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `bsc_profissao`
 --
 ALTER TABLE `bsc_profissao`
-  MODIFY `ID_Profissao` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Profissao` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `evt_ativ_complementar`
 --
@@ -1069,7 +1220,7 @@ ALTER TABLE `seg_detalhe_transacao`
 -- AUTO_INCREMENT for table `seg_grupo`
 --
 ALTER TABLE `seg_grupo`
-  MODIFY `ID_Grupo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Grupo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=100;
 --
 -- AUTO_INCREMENT for table `tb_tipo_abordagem_ativ_comp`
 --
