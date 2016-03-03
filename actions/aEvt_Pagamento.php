@@ -84,7 +84,6 @@ class aEvt_Pagamento extends mEvt_Pagamento {
     }
     
     public function geraInfoPagamento() {
-
         $this->setCOD_TipoFormaPagamento(0);
         $this->setCOD_Tipo_Situacao_Pagamento(0); //set igual a zero para Situação Aberto.
         $this->setDT_Pagamento('01-01-1980');

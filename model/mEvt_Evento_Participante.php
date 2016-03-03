@@ -16,7 +16,7 @@ require_once './db/dbConnection.php';
 class mEvt_Evento_Participante extends dbConnection {
 
     private $ID_EVT_Evento_Pariticipante;
-    private $DSC_Nome_Crachav;
+    private $DSC_Nome_Cracha;
     private $COD_Barras_Cracha;
     private $VLR_Total;
     private $VLR_Total_Inscricao;
@@ -35,6 +35,7 @@ class mEvt_Evento_Participante extends dbConnection {
     private $COD_TipoSituacao_Material;
     private $DTM_EntregaMaterial;
     private $COD_InscricaoExterno;
+    private $Num_Inscricao;
     
     public function setID_EVT_Evento_Pariticipante($ID_EVT_Evento_Pariticipante) {
         $this->ID_EVT_Evento_Pariticipante = $ID_EVT_Evento_Pariticipante;
@@ -42,11 +43,11 @@ class mEvt_Evento_Participante extends dbConnection {
     public function getID_EVT_Evento_Pariticipante() {
         return $this->ID_EVT_Evento_Pariticipante;
     }
-    public function setDSC_Nome_Crachav($DSC_Nome_Crachav) {
-        $this->DSC_Nome_Crachav = $DSC_Nome_Crachav;
+    public function setDSC_Nome_Cracha($DSC_Nome_Cracha) {
+        $this->DSC_Nome_Cracha = $DSC_Nome_Cracha;
     }
-    public function getDSC_Nome_Crachav() {
-        return $this->DSC_Nome_Crachav;
+    public function getDSC_Nome_Cracha() {
+        return $this->DSC_Nome_Cracha;
     }
     public function setCOD_Barras_Cracha($COD_Barras_Cracha) {
         $this->COD_Barras_Cracha = $COD_Barras_Cracha;
@@ -156,4 +157,11 @@ class mEvt_Evento_Participante extends dbConnection {
     public function getCOD_InscricaoExterno() {
         return $this->COD_InscricaoExterno;
     }
+    public function setNum_Inscricao($Num_Inscricao) {
+        $this->Num_Inscricao = $Num_Inscricao;
+    }
+    public function getNum_Inscricao() {
+        return $this->Num_Inscricao;
+    }
+    
 }

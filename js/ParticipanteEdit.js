@@ -41,7 +41,7 @@ jQuery.validator.addMethod("cpfCadastradoEdit", function (value, element) {
     value = value.replace('.', '');
     cpf = value.replace('-', '');
     idParticipante = $("#ID_Participante").val();
-    resultado = isCPFCadastradoEdit(cpf,idParticipante);
+    resultado = isCPFCadastradoEdit(cpf, idParticipante);
     return this.optional(element) || resultado == 1;
 
     //Retorna 1 caso não tenha cadastro
@@ -82,11 +82,11 @@ $(document).ready(function () {
             if (validacep.test(cep)) {
 
                 //Preenche os campos com "..." enquanto consulta webservice.
-                $("#DSC_Endereco").val("...")
-                $("#DSC_Bairro").val("...")
-                $("#DSC_Cidade").val("...")
-                $("#uf").val("...")
-                $("#ibge").val("...")
+                $("#DSC_Endereco").val("...");
+                $("#DSC_Bairro").val("...");
+                $("#DSC_Cidade").val("...");
+                $("#uf").val("...");
+                $("#ibge").val("...");
 
                 //Consulta o webservice viacep.com.br/
                 $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
@@ -141,8 +141,8 @@ $(document).ready(function () {
             DSC_Cidade: {required: true},
             DSC_Bairro: {required: true},
             DSC_Endereco: {required: true},
-            ID_BSC_Empresa: {validaComboBox: true},
-            ID_BSC_Profissao: {validaComboBox: true}
+//            ID_BSC_Empresa: {validaComboBox: true},
+//            ID_BSC_Profissao: {validaComboBox: true}
         },
         messages: {
             DSC_Nome: {required: 'Preencha o campo nome'},
@@ -152,8 +152,8 @@ $(document).ready(function () {
             DSC_Cidade: {required: 'Preencha o campo Cidade'},
             DSC_Bairro: {required: 'Preencha o campo Bairro'},
             DSC_Endereco: {required: 'Preencha o campo Endereço'},
-            ID_BSC_Empresa: {validaComboBox: 'Preencha o campo Empresa'},
-            ID_BSC_Profissao: {validaComboBox: 'Preencha o campo Profissão'}
+//            ID_BSC_Empresa: {validaComboBox: 'Preencha o campo Empresa'},
+//            ID_BSC_Profissao: {validaComboBox: 'Preencha o campo Profissão'}
 
         },
         /*     errorPlacement: function (error, element) {
@@ -188,7 +188,7 @@ $(document).ready(function () {
     $("#COD_CPF").blur(function () {
         cpf = $("#COD_CPF").val();
         idParticipante = $("#ID_Participante").val();
-        get = isCPFCadastradoEdit()(cpf,idParticipante);
+        get = isCPFCadastradoEdit()(cpf, idParticipante);
 
         if (get == 0) {
             showAlert('error', 'CPF já Cadastrado');

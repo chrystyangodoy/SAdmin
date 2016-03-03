@@ -50,6 +50,7 @@ function OnclickAcompParticpante(ID_BSC_Participante, DSC_Nome) {
                             "<td>" +
                             "<input type='hidden' class='form-control' name='ID_Pagamento' id='ID_Pagamento' value='" + item.ID_Pagamento + "'>" +
                             "<select id='COD_Tipo_Situacao_Pagamento" + index + "' class='COD_Tipo_Situacao_Pagamento' onchange = updatePagto('" + item.ID_Pagamento + "','COD_Tipo_Situacao_Pagamento" + index + "')>" +
+                            "<option value='0'>--</option>" +
                             "<option value='0'>0 - Não Pago</option>" +
                             "<option value='1'>1 - Cortesia</option>" +
                             "<option value='2'>2 - Baixa</option>" +

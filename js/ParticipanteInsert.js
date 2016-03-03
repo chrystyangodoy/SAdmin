@@ -24,7 +24,7 @@ function desabilitaCampos() {
 
 function habilitaCampos() {
     $('#DSC_Nome').attr("disabled", false);
-    $('#Nome_Cracha').attr("disabled", false).val("");
+    $('#Nome_Cracha').attr("disabled", false);
     $('#DSC_Email').attr("disabled", false);
     $('#COD_RG').attr("disabled", false);
     $('#NUM_CEP').attr("disabled", false);
@@ -55,7 +55,6 @@ $(document).ready(function () {
         $("#uf").val("");
         $("#ibge").val("");
     }
-
 //Quando o campo cep perde o foco.
     $("#NUM_CEP").blur(function () {
 
@@ -129,8 +128,8 @@ $(document).ready(function () {
             DSC_Cidade: {required: true},
             DSC_Bairro: {required: true},
             DSC_Endereco: {required: true},
-            ID_BSC_Empresa: {validaComboBox: true},
-            ID_BSC_Profissao: {validaComboBox: true}
+//            ID_BSC_Empresa: {validaComboBox: true},
+//            ID_BSC_Profissao: {validaComboBox: true}
         },
         messages: {
             DSC_Nome: {required: 'Preencha o campo nome'},
@@ -140,8 +139,8 @@ $(document).ready(function () {
             DSC_Cidade: {required: 'Preencha o campo Cidade'},
             DSC_Bairro: {required: 'Preencha o campo Bairro'},
             DSC_Endereco: {required: 'Preencha o campo Endereço'},
-            ID_BSC_Empresa: {validaComboBox: 'Preencha o campo Empresa'},
-            ID_BSC_Profissao: {validaComboBox: 'Preencha o campo Profissão'}
+//            ID_BSC_Empresa: {validaComboBox: 'Preencha o campo Empresa'},
+//            ID_BSC_Profissao: {validaComboBox: 'Preencha o campo Profissão'}
         },
         /*     errorPlacement: function (error, element) {
          $(element).tooltipster('update', $(error).text());
@@ -197,7 +196,7 @@ $(document).ready(function () {
                 var CPFnaoCadastrado = isCPFCadastrado(cpf);
                 if (CPFnaoCadastrado == 1) {
                     habilitaCampos();
-                    $('#DSC_Nome').focus();
+                   //$('#DSC_Nome').focus();
                     console.log('campos habilitados');
                 } else {
                     desabilitaCampos();
@@ -212,24 +211,21 @@ $(document).ready(function () {
 
                     $('#Username').val(cpf);
                     $('#Password').focus();
-
                 }
             } else {
                 showAlert('error', 'CPF já cadastrado para este Evento');
             }
-
             $("#loadImg").css("display", "none").fadeOut();
         }
     });
 
-    $("#Id_Estrangeiro").on('keypress blur', function (e) {
+    $("#Id_Estrangeiro").on('keypress blur', function () {
         var IdEstinfo = $("#Id_Estrangeiro").val();
             if (IdEstinfo != "" || IdEstinfo != 0) {
                 desabilitaCPF();
             } else {
                 habilitaCPF();
             }
-        if (e.which == 13) {
             Id_Estrangeiro = $("#Id_Estrangeiro").val();
             desabilitaCPF();
             console.log('keypress');
@@ -244,7 +240,7 @@ $(document).ready(function () {
                 console.log("Id_Estrangeiro cadastrardo: " + Id_EstrangeironaoCadastrado);
                 if (Id_EstrangeironaoCadastrado == 1) {
                     habilitaCampos();
-                    //$('#DSC_Nome').focus();
+                  // $('#DSC_Nome').focus();
                     console.log('campos habilitados');
                 }
                 else {
@@ -259,7 +255,6 @@ $(document).ready(function () {
                 showAlert('error', 'ID Estrangeiro já cadastrado para este Evento');
             }
             $("#loadImg").css("display", "none").fadeOut();
-        }
     });
 
     function desabilitaCPF() {
@@ -302,7 +297,7 @@ $(document).ready(function () {
                 console.log('each');
 
                 $('#DSC_Nome').val(item.DSC_Nome);
-                $('#Nome_Cracha').val(item.DSC_Nome);
+                $('#Nome_Cracha').val(item.Nome_Cracha);
                 $('#DSC_Email').val(item.DSC_Email);
                 $('#COD_RG').val(item.COD_RG);
                 $('#COD_CPF').val(item.COD_CPF);

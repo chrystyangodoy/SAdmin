@@ -1,8 +1,6 @@
 <?php
-
 session_start();
 include_once './config/ValidaSessao.php';
-
 require_once './smarty.php';
 require_once './actions/aBsc_Participante.php';
 require_once './actions/aUsuario.php';
@@ -71,8 +69,6 @@ if (isset($_POST['Cadastrar'])) {
     die();
 }
 
-
-
 require_once './actions/aBsc_Empresa.php';
 require_once './actions/aBsc_Profissao.php';
 
@@ -86,6 +82,7 @@ $smarty->assign("ID_Participante", $partic->getID_Participante());
 $smarty->assign("COD_CPF", $partic->getCOD_CPF());
 $smarty->assign("COD_RG", $partic->getCOD_RG());
 $smarty->assign("DSC_Nome", $partic->getDSC_Nome());
+$smarty->assign("Nome_Cracha", $partic->getNome_Cracha());
 $smarty->assign("DSC_Endereco", $partic->getDSC_Endereco());
 $smarty->assign("DSC_Bairro", $partic->getDSC_Bairro());
 $smarty->assign("DSC_Cidade", $partic->getDSC_Cidade());
@@ -99,6 +96,7 @@ $smarty->assign("NUM_Registro", $partic->getNUM_Registro());
 $smarty->assign("COD_Tipo_Estado", $partic->getCOD_Tipo_Estado());
 $smarty->assign("ID_BSC_Empresa", $partic->getID_BSC_Empresa());
 $smarty->assign("ID_BSC_Profissao", $partic->getID_BSC_Profissao());
+$smarty->assign("Id_Estrangeiro", $partic->getId_Estrangeiro());
 
 $smarty->assign("listTpUF", $tipoestado->select());
 

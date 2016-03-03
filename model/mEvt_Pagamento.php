@@ -120,7 +120,7 @@ class mEvt_Pagamento extends dbConnection {
     }
     public function setQTD_Parcelas($QTD_Parcelas)
     {
-        $this->COD_Tipo_Situacao_Pagamento = $QTD_Parcelas;
+        $this->QTD_Parcelas = $QTD_Parcelas;
     }
     public function getQTD_Parcelas()
     {
@@ -128,7 +128,7 @@ class mEvt_Pagamento extends dbConnection {
     }
     public function setNUM_Parcelas($NUM_Parcelas)
     {
-        $this->COD_Tipo_Situacao_Pagamento = $NUM_Parcelas;
+        $this->NUM_Parcelas = $NUM_Parcelas;
     }
     public function getNUM_Parcelas()
     {

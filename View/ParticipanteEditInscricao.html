@@ -16,7 +16,7 @@
     </div>
     <div class="form-group col-lg-12 row">
         <label >Nome Cracha</label>
-        <input type="text" class="form-control col-lg-12" name="Nome_Cracha" id="Nome_Cracha" placeholder="Nome do Cracha" disabled>
+        <input type="text" class="form-control col-lg-12" name="Nome_Cracha" id="Nome_Cracha" value="{$Nome_Cracha}" placeholder="Nome do Cracha">
     </div>
     <div class="row">
         <div class="form-group col-lg-6">
@@ -25,13 +25,20 @@
         </div>
 
         <div class="form-group col-md-2">
+            <label>CPF</label>
+            <input type="text" class="form-control" name="COD_CPF" placeholder="" id="COD_CPF" value="{$COD_CPF}" disabled>
+        </div>
+        
+        <div class="form-group col-md-2">
+            <label>Identidade Estrangeiro</label>
+            <input type="text" class="form-control" name="Id_Estrangeiro" placeholder="" id="Id_Estrangeiro" value="{$Id_Estrangeiro}" disabled>
+        </div>
+        
+        <div class="form-group col-md-2">
             <label >RG</label>
             <input type="text" class="form-control" id="COD_RG"  name="COD_RG" placeholder="RG" value="{$COD_RG}">
         </div>
-        <div class="form-group col-md-3">
-            <label>Identidade Estrangeiro</label>
-            <input type="text" class="form-control" name="Id_Estrangeiro" placeholder="" id="Id_Estrangeiro">
-        </div>
+        
     </div>
     <h3 class="page-header">Endereço</h3>
     <div class="form-group col-lg-3 row">

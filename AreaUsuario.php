@@ -9,9 +9,11 @@ $FeedbackMessage = new FeedbackMessage();
 require_once './actions/aEvt_Evento_Participante.php';
 $evtPart = new aEvt_Evento_Participante();
 $idUser = $_SESSION['ID_Usuario'];
+//$lista = $evtPart->SelectEvtPartc($idUser);
 $lista = $evtPart->SelectEvtPartc($idUser);
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
+//$smarty->assign("dscUser", $idUser);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("lista", $lista);

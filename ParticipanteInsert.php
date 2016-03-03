@@ -10,15 +10,10 @@ if (!isset($_GET['ID_EVT_Evento']) and ! isset($_GET['ID_Evento_Categoria']))
     header("Location: Index.php");
     die();
 }
-
 session_start();
-
 require_once './smarty.php';
-
 require_once './config/FeedbackMessage.php';
-
 require_once './actions/aEvt_Pagamento.php';
-
 $FeedbackMessage = new FeedbackMessage();
 
 $ID_Evento = $_GET['ID_EVT_Evento'];
@@ -28,24 +23,17 @@ if (isset($_POST['Cadastrar']))
 {
     require_once './actions/aEvt_Evento_Participante.php';
     require_once ('./config/configs.php');
-    require ('./actions/aBsc_Participante.php');
-    require ('./actions/aUsuario.php');
+    require_once ('./actions/aBsc_Participante.php');
+    require_once ('./actions/aUsuario.php');
     require_once './config/geraSenha.php';
     require_once './actions/aEvt_Evento.php';
-
     $evtPart = new aEvt_Evento_Participante();
     $partic = new aBsc_Participante();
-
     $gerasenha = new geraSenha();
-
     $user = new aUsuario();
-
     $config = new configs();
-
     $evento = new aEvt_Evento();
-
     $evento->setID_EVT($ID_Evento);
-
     $evento->load();
 
     //limpa cpf
@@ -55,19 +43,15 @@ if (isset($_POST['Cadastrar']))
     $id_Participante = '';
     if (isset($_COOKIE['ID_Participante']))
     {
-
         $id_Participante = $_COOKIE['ID_Participante'];
     }
-
     $idUnico = '';
-
     if (isset($_COOKIE['ID_Usuario']))
     {
         $idUnico = $_COOKIE['ID_Usuario'];
     }
 
     $isParticipanteNovo = TRUE;
-
     if ($id_Participante == '')
     {
         $isParticipanteNovo = TRUE;
@@ -107,7 +91,7 @@ if (isset($_POST['Cadastrar']))
                 $partic->setID_Participante($id_Participante);
 
                 $partic->setCOD_CPF($cpf);
-                $partic->setId_Estrangeiro($Id_Estrangeiro);
+                $partic->setId_Estrangeiro($_POST['Id_Estrangeiro']);
                 $partic->setCOD_RG($_POST['COD_RG']);
                 $partic->setDSC_Nome($_POST['DSC_Nome']);
                 $partic->setNome_Cracha($_POST['Nome_Cracha']);
@@ -208,16 +192,15 @@ if (isset($_POST['Cadastrar']))
                         $user->setDTM_Fim($datafim);
                         $user->setID_SEG_Grupo($grupo);
                         $user->insert();
-
-                        //Insere participante
-
+                        //=====================================                        
+                        //Gerar Novo ID_Participante
                         $id_Participante = $config->idUnico();
+                        //=====================================
                     }
 
                     $partic->setID_Participante($id_Participante);
-
                     $partic->setCOD_CPF($cpf);
-                    $partic->setId_Estrangeiro($Id_Estrangeiro);
+                    $partic->setId_Estrangeiro($_POST['Id_Estrangeiro']);
                     $partic->setCOD_RG($_POST['COD_RG']);
                     $partic->setDSC_Nome($_POST['DSC_Nome']);
                     $partic->setNome_Cracha($_POST['Nome_Cracha']);
@@ -235,11 +218,10 @@ if (isset($_POST['Cadastrar']))
                     $partic->setID_BSC_Empresa($_POST['ID_BSC_Empresa']);
                     $partic->setID_BSC_Profissao($_POST['ID_BSC_Profissao']);
                     $partic->setID_Usuario($idUnico);
-
                     //Informa Código do Participante = Nro Atual do registro;
                     $Count = $partic->countPartic();
                     $partic->setCod_Participante($Count);
-                    
+
                     if ($isParticipanteNovo)
                     {
                         $partic->insert();
@@ -248,25 +230,20 @@ if (isset($_POST['Cadastrar']))
                     {
                         $partic->update();
                     }
-
                     //Insere Evento_Participante
                     $evtPart->insertPartEvt($ID_Evento, $id_Participante, $ID_Evento_Categoria);
-
-                    //Insere Informações para gerar o Boleto 
+                    //Inserir Informações para gerar o Boleto 
                     $pagamento = new aEvt_Pagamento();
                     $pagamento->selectInner($ID_Evento, $cpf);
                     $pagamento->geraInfoPagamento();
-
-                    //Informações para gerar o Boleto 
-
+                    
                     $ass = '';
                     $msg = '';
                     if ($isParticipanteNovo)
                     {
-
                         $ass = "Cadastro efetuado com sucesso!";
 
-                        $msg = 'Sua inscrição no evento '.$evento->getCod_Evento() . '-' . $evento->getDSC_Nome() . ', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
+                        $msg = 'Sua inscrição no evento ' . $evento->getCod_Evento() . '-' . $evento->getDSC_Nome() . ', será confirmada após pagamento do boleto.<br />Seus dados para acesso são <br />
                             Usuário: ' . $cpf . '<br />
                             Senha: ' . $senha . " <br />
                             Link: <a href='" . $_SERVER[HTTP_HOST] . "/SAdmin/Login.php" . "'>acesso acompanhamento</a>";
@@ -274,7 +251,7 @@ if (isset($_POST['Cadastrar']))
                     else
                     {
                         $ass = "Cadastro efetuado com sucesso!";
-                        $msg = 'Sua inscrição no evento' +$evento->getCod_Evento()+'-'+ $evento->getDSC_Nome() +
+                        $msg = 'Sua inscrição no evento' + $evento->getCod_Evento() + '-' + $evento->getDSC_Nome() +
                                 ', será confirmada após pagamento do boleto.';
                     }
 

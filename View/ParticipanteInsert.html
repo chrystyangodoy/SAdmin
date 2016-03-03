@@ -51,7 +51,6 @@
             window.onload = function () {
                 showAlert('{$type}', '{$msg}');
             }
-
         </script>
     </head>
     <body>
@@ -81,7 +80,6 @@
                             {$DSC_Evento} 
                         </h1>
                         <h3 class="page-header">{$DSC_Categoria}</h3>
-
                     </div>
                 </div>
                 <div class="row">
@@ -89,17 +87,17 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
 
-
                                 <form id="Cadastrar" form method="post" action="">
                                     <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar"  disabled>Cadastrar</button>
                                     <a href="Index.php" class="btn btn-default">Cancelar</a>
                                     <h3 class="page-header">Dados Pessoais</h3>
-                                    <div class="form-group col-md-3">
+                                    
+                                    <div class="form-group col-lg-4">
                                         <label>CPF</label>
                                         <input type="text" class="form-control" name="COD_CPF" placeholder="CPF" id="COD_CPF">
                                     </div>
 
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label>Identidade Estrangeiro</label>
                                         <input type="text" class="form-control" name="Id_Estrangeiro" placeholder="Identificação do Estrangeiro" id="Id_Estrangeiro">
                                     </div>
@@ -195,7 +193,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label >Especialidade</label>
-                                        <input type="text" class="form-control" name="DSC_Profissao_Especialidade" id="DSC_Profissao_Especialidade" placeholder="Profissão" disabled>
+                                        <input type="text" class="form-control" name="DSC_Profissao_Especialidade" id="DSC_Profissao_Especialidade" placeholder="Especialidade" disabled>
                                     </div>
 
                                     <div class="form-group">
@@ -210,7 +208,6 @@
                                     <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar"  disabled>Cadastrar</button>
                                     <a href="Index.php" class="btn btn-default">Cancelar</a>
                                 </form>
-
                                 <!DOCTYPE html>
                             </div>
                         </div>
@@ -229,9 +226,7 @@
                     </div>
                     <div class="modal-body">
 
-
                         <div class="form-inline">
-
 
                             <div class="form-group">
                                 <div class="input-group">
@@ -250,12 +245,11 @@
 
                         </div>
 
-
                         <!--END LOGIN FORM-->
 
                     </div>
                     <div class="modal-footer">
-                        <a href="EsqueciSenha.php">Esquice minha senha</a>
+                        <a href="EsqueciSenha.php">Esquici minha senha</a>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

@@ -15,8 +15,8 @@ require './model/mEvt_Evento_Participante.php';
 
 class aEvt_Evento_Participante extends mEvt_Evento_Participante {
 
-    protected $sqlInsert = "INSERT INTO evt_evento_participante(ID_EVT_Evento_Pariticipante, DSC_Nome_Crachav, COD_Barras_Cracha, VLR_Total, VLR_Total_Inscricao, QTD_CargaHoraria_Realizada, COD_Nivel_Participante, ID_EVT_Pagamento, ID_EVT_Categoria, ID_EVT_Evento, ID_BSC_Participante, ID_EVT_Participante_Pai, COD_Tipo_SIT_Certificado, DTM_Entrega_Certificado, ID_SEG_DetalheTransacao, SIT_EH_Parcelado, ID_EVT_EventoGrupo, COD_TipoSituacao_Material, DTM_EntregaMaterial, COD_InscricaoExterno) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
-    protected $sqlUpdate = "update evt_evento_participante set DSC_Nome_Crachav='%s', COD_Barras_Cracha='%s', VLR_Total='%s', VLR_Total_Inscricao='%s', QTD_CargaHoraria_Realizada='%s', COD_Nivel_Participante='%s', ID_EVT_Pagamento='%s', ID_EVT_Categoria='%s', ID_EVT_Evento='%s', ID_BSC_Participante='%s', ID_EVT_Participante_Pai='%s', COD_Tipo_SIT_Certificado='%s', DTM_Entrega_Certificado='%s', ID_SEG_DetalheTransacao='%s', SIT_EH_Parcelado='%s', ID_EVT_EventoGrupo='%s', COD_TipoSituacao_Material='%s', DTM_EntregaMaterial='%s', COD_InscricaoExterno='%s', Cod_Evento='%s' where ID_EVT_Evento_Pariticipante='%s'";
+    protected $sqlInsert = "INSERT INTO evt_evento_participante(ID_EVT_Evento_Pariticipante, DSC_Nome_Cracha, COD_Barras_Cracha, VLR_Total, VLR_Total_Inscricao, QTD_CargaHoraria_Realizada, COD_Nivel_Participante, ID_EVT_Pagamento, ID_EVT_Categoria, ID_EVT_Evento, ID_BSC_Participante, ID_EVT_Participante_Pai, COD_Tipo_SIT_Certificado, DTM_Entrega_Certificado, ID_SEG_DetalheTransacao, SIT_EH_Parcelado, ID_EVT_EventoGrupo, COD_TipoSituacao_Material, DTM_EntregaMaterial, COD_InscricaoExterno, Num_Inscricao) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
+    protected $sqlUpdate = "update evt_evento_participante set DSC_Nome_Cracha='%s', COD_Barras_Cracha='%s', VLR_Total='%s', VLR_Total_Inscricao='%s', QTD_CargaHoraria_Realizada='%s', COD_Nivel_Participante='%s', ID_EVT_Pagamento='%s', ID_EVT_Categoria='%s', ID_EVT_Evento='%s', ID_BSC_Participante='%s', ID_EVT_Participante_Pai='%s', COD_Tipo_SIT_Certificado='%s', DTM_Entrega_Certificado='%s', ID_SEG_DetalheTransacao='%s', SIT_EH_Parcelado='%s', ID_EVT_EventoGrupo='%s', COD_TipoSituacao_Material='%s', DTM_EntregaMaterial='%s', COD_InscricaoExterno='%s', Num_Inscricao='%s' where ID_EVT_Evento_Pariticipante='%s'";
     protected $sqlDelete = "delete from evt_evento_participante where ID_EVT = '%s'";
     protected $sqlSelect = "select * from evt_evento_participante where 1=1 %s %s";
     protected $sqlSelectExistEvt = "SELECT count(0) AS COUNT_EVT FROM evt_evento_participante WHERE 1=1 and ID_EVT_Evento='%s' and ID_BSC_Participante='%s'";
@@ -32,13 +32,13 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
 
     public function insert()
     {
-        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Crachav(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno());
+        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Cracha(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno(),$this->getNum_Inscricao());
         return $this->RunQuery($sql);
     }
 
     public function update()
     {
-        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome_Crachav(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno(), $this->getID_EVT_Evento_Pariticipante());
+        $sql = sprintf($this->sqlUpdate, $this->getDSC_Nome_Cracha(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno(),$this->getNum_Inscricao(), $this->getID_EVT_Evento_Pariticipante());
         return $this->RunQuery($sql);
     }
 
@@ -77,6 +77,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $this->setCOD_TipoSituacao_Material($rs[0]['COD_TipoSituacao_Material']);
         $this->setDTM_EntregaMaterial($rs[0]['DTM_EntregaMaterial']);
         $this->setCOD_InscricaoExterno($rs[0]['COD_InscricaoExterno']);
+        $this->setNum_Inscricao($rs[0]['Num_Inscricao']);
         return $this;
     }
 
@@ -96,27 +97,25 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
 
         $this->setID_EVT_Categoria($ID_Categoria);
         $this->setID_BSC_Participante($partic->getID_Participante());
-        $this->setDSC_Nome_Crachav($partic->getDSC_Nome());
+        $this->setDSC_Nome_Cracha($partic->getDSC_Nome());
         $this->setCOD_Barras_Cracha($partic->getCOD_CPF());
 
-        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Crachav(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno());
+        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Cracha(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno());
         return $this->RunQuery($sql);
     }
 
     public function insertPartEvt($id_Evt, $id_Partic, $ID_Categoria = null)
     {
         require_once ('./config/configs.php');
-        require_once ('./actions/aBsc_Participante.php');
-
         $config = new configs();
+        $NewIDEvtPartic = $config->idUnico();
+        require_once ('./actions/aBsc_Participante.php');
         $partic = new aBsc_Participante();
-
         $partic->setID_Participante($id_Partic);
         $partic->load();
 
-        $this->setID_EVT_Evento_Pariticipante($config->idUnico());
+        $this->setID_EVT_Evento_Pariticipante($NewIDEvtPartic);
         $this->setID_EVT_Evento($id_Evt);
-
         $this->setID_EVT_Categoria($ID_Categoria);
         
         require_once ('./actions/aEvt_Evento_Categoria.php');
@@ -127,7 +126,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $this->setVLR_Total($evt_catg->getVLR_Inscricao());
         $this->setVLR_Total_Inscricao($evt_catg->getVLR_Inscricao());
         $this->setID_BSC_Participante($partic->getID_Participante());
-        $this->setDSC_Nome_Crachav($partic->getNome_Cracha());
+        $this->setDSC_Nome_Cracha($partic->getNome_Cracha());
         $this->setCOD_Barras_Cracha($partic->getCOD_CPF());
         //Verificar uma forma de o número ser dinamico aleatórios e que não se repete como o newguid();
         require_once ('./actions/aEvt_Evento.php');
@@ -135,12 +134,16 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $Evento->getID_EVT($id_Evt);
         $Evento->load();
         
+        //$CodInscricao = $Evento->NroCtrlInsc();
         $CodInscricao = $Evento->getCtrl_Inscricao()+1;
         $Evento->setCtrl_Inscricao($CodInscricao);
+        //$Evento->updateCtrl_Insc($CodInscricao, $id_Evt);
         
         $this->setCOD_InscricaoExterno($CodInscricao);
-
-        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Crachav(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno());
+        $this->setNum_Inscricao($CodInscricao);
+        
+        
+        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Cracha(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno(),$this->getNum_Inscricao());
         return $this->RunQuery($sql);
     }
 
@@ -168,7 +171,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $this->setVLR_Total($evt_catg->getVLR_Inscricao());
         $this->setVLR_Total_Inscricao($evt_catg->getVLR_Inscricao());
         $this->setID_BSC_Participante($partic->getID_Participante());
-        $this->setDSC_Nome_Crachav($partic->getNome_Cracha());
+        $this->setDSC_Nome_Cracha($partic->getNome_Cracha());
         $this->setCOD_Barras_Cracha($partic->getId_Estrangeiro());
         //Verificar uma forma de o número ser dinamico aleatórios e que não se repete como o newguid();
         require_once ('./actions/aEvt_Evento.php');
@@ -180,8 +183,10 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $Evento->setCtrl_Inscricao($CodInscricao);
         
         $this->setCOD_InscricaoExterno($CodInscricao);
+        $CodInscricao2 = $Evento->NroInscricao($id_Evt);
+        $this->setNum_Inscricao($CodInscricao2);
 
-        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Crachav(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno());
+        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Cracha(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno());
         return $this->RunQuery($sql);
     }
     
