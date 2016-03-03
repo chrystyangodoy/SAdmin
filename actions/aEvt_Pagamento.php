@@ -143,7 +143,7 @@ class aEvt_Pagamento extends mEvt_Pagamento {
     }
     
     public function selectInnerPagtoPartic($ID_BSC_Participante) {
-        $sql ="SELECT evt_evento.DSC_Nome, evt_evento_participante.DSC_Nome_Crachav,evt_evento_participante.VLR_Total_Inscricao,evt_pagamento.COD_Tipo_Situacao_Pagamento, evt_pagamento.ID_Pagamento FROM evt_evento_participante INNER JOIN evt_pagamento ON evt_pagamento.ID_EVT_Evento = evt_evento_participante.ID_EVT_Evento_Pariticipante INNER JOIN evt_evento ON evt_evento.ID_EVT = evt_evento_participante.ID_EVT_Evento  WHERE evt_evento_participante.ID_BSC_Participante = '$ID_BSC_Participante'";
+        $sql ="SELECT evt_evento.DSC_Nome, evt_evento_participante.DSC_Nome_Cracha,evt_evento_participante.VLR_Total_Inscricao,evt_pagamento.COD_Tipo_Situacao_Pagamento, evt_pagamento.ID_Pagamento FROM evt_evento_participante INNER JOIN evt_pagamento ON evt_pagamento.ID_EVT_Evento = evt_evento_participante.ID_EVT_Evento_Pariticipante INNER JOIN evt_evento ON evt_evento.ID_EVT = evt_evento_participante.ID_EVT_Evento  WHERE evt_evento_participante.ID_BSC_Participante = '$ID_BSC_Participante'";
         return $this->RunSelect($sql);
     }
     
