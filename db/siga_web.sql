@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 01-Mar-2016 às 20:47
+-- Generation Time: 03-Mar-2016 às 07:22
 -- Versão do servidor: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -141,7 +141,8 @@ CREATE TABLE IF NOT EXISTS `bsc_participante` (
 --
 
 INSERT INTO `bsc_participante` (`ID_Participante`, `COD_CPF`, `COD_RG`, `Id_Estrangeiro`, `Nome_Cracha`, `DSC_Nome`, `DSC_Endereco`, `DSC_Bairro`, `DSC_Cidade`, `NUM_CEP`, `NUM_Fone`, `NUM_Celular`, `NUM_FAX`, `DSC_Profissao_Especialidade`, `DSC_Email`, `NUM_Registro`, `COD_Tipo_Estado`, `ID_BSC_Empresa`, `ID_BSC_Profissao`, `ID_Usuario`, `Cod_Participante`) VALUES
-('bc24356261782a1db3f0306fd98826e0', '52863298291', '4387870', '', '', 'Chrystyan Godoy', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '(91) 4006-9800', '', '', 'AdministraÃ§Ã£o', 'chrystyangodoy@gmail.com', '1234546789', '304736ff9a38778bb5e04560a51a4085', 1, 1, '88d6f6bf17fc5af881b08f0db97cb62e', '1');
+('660be24e7e9dd047fc459bd31f4abf9d', '52863298291', '4387870', '', 'Chrystyan Godoy', 'Chrystyan Godoy', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '(91) 4006-9800', '(91) 98452-8097', '', 'AdministraÃ§Ã£o', 'chrystyangodoy@gmail.com', '1234546789', '304736ff9a38778bb5e04560a51a4085', 1, 1, '9853e24014538299da854535719592d3', '1'),
+('3623e7d28c1d17d3f51aafb055a3b6ae', '61539642224', '4387870', '', '', 'Participante 02', 'Rua Domingos Marreiros', 'Umarizal', 'BelÃ©m', '66.060-160', '(91) 4006-9800', '(91) 98452-8097', '', '', 'chrystyangodoy@gmail.com', '', '0', 0, 0, '744702faf61ad8bad4e5c8153418c8ef', '2');
 
 -- --------------------------------------------------------
 
@@ -280,10 +281,10 @@ CREATE TABLE IF NOT EXISTS `evt_evento` (
   `DSC_Nome_Promotora` varchar(60) NOT NULL,
   `DSC_Presidente_Promotora` varchar(60) NOT NULL,
   `DSC_Endereco_Promotora` varchar(100) NOT NULL,
-  `NUM_CEP_Promotora` char(8) NOT NULL,
+  `NUM_CEP_Promotora` char(10) NOT NULL,
   `DSC_Cidade_Promotora` varchar(30) NOT NULL,
-  `NUM_Fone_Promotora` varchar(10) NOT NULL,
-  `NUM_FAX_Promotora` varchar(10) NOT NULL,
+  `NUM_Fone_Promotora` varchar(20) NOT NULL,
+  `NUM_FAX_Promotora` varchar(20) NOT NULL,
   `DSC_EMAIL_Promotora` varchar(100) NOT NULL,
   `QTD_CargaHorariaMinima` decimal(8,2) NOT NULL,
   `ID_BSC_Local_Evento` varchar(50) NOT NULL,
@@ -292,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `evt_evento` (
   `ID_Banco` varchar(50) NOT NULL,
   `ID_Empresa` varchar(50) NOT NULL,
   `Logo_Evento` varchar(500) NOT NULL COMMENT 'Logo ou Imagem do Evento',
-  `Ctrl_Inscricao` varchar(20) NOT NULL,
+  `Ctrl_Inscricao` varchar(10) NOT NULL,
   `Cod_Evento` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -301,9 +302,9 @@ CREATE TABLE IF NOT EXISTS `evt_evento` (
 --
 
 INSERT INTO `evt_evento` (`ID_EVT`, `DSC_Nome`, `DSC_Presidente`, `DT_Inicio`, `DT_Fim`, `COD_CNPJ_Promotora`, `DSC_Nome_Promotora`, `DSC_Presidente_Promotora`, `DSC_Endereco_Promotora`, `NUM_CEP_Promotora`, `DSC_Cidade_Promotora`, `NUM_Fone_Promotora`, `NUM_FAX_Promotora`, `DSC_EMAIL_Promotora`, `QTD_CargaHorariaMinima`, `ID_BSC_Local_Evento`, `COD_Tipo_Estado_promotora`, `isPromotora`, `ID_Banco`, `ID_Empresa`, `Logo_Evento`, `Ctrl_Inscricao`, `Cod_Evento`) VALUES
-('335b38c5779a99886a31b2179ef87a8d', 'Evento para teste de impressÃ£o de boleto', 'Bill Gates', '2016-01-01', '2016-03-20', '14.357.767/000', 'Microsoft LTDA', 'MARIANA DA SILVA', 'Domingos Marreiros', '66.060-1', 'BelÃ©m', '(91)4006-9', '(91)4006-9', 'EVENTO@EVENTO.COM.BR', '120.00', '31fa2c1f83dc17394e02c227f473cd7d', '304736ff9a38778bb5e04560a51a4085', 0, '3bdfa2bf001bc6731712ca143ae2b3c5', '', 'imgEvento/f19e56fb1868983b10575586553c1cf4.jpg', '0', ''),
-('84181b14cb2ebe80b7912c31134dcdae', 'Evento 006', 'GODOY', '2016-01-01', '2016-03-20', '14.357.767/000', 'MARIA DA SILVA', 'MARIANA DA SILVA', 'Domingos Marreiros', '66.060-1', 'BelÃ©m', '(91)4006-9', '(91)4006-9', 'EVENTO@EVENTO.COM.BR', '100.00', '31fa2c1f83dc17394e02c227f473cd7d', '304736ff9a38778bb5e04560a51a4085', 0, '0', '0', 'imgEvento/95b761cb528c10bff1296627069a6adf.jpg', '0', ''),
-('a4c6412111f139e460168051cf947ca9', 'Evento 003', 'Bill Gates', '2016-01-01', '2016-04-30', '14.357.767/000', 'Microsoft LTDA', 'Bill Gates', 'Domingos Marreiros', '66.060-1', 'BelÃ©m', '(91)4006-9', '(91)4006-9', 'promotora@prom.com.br', '100.00', '31fa2c1f83dc17394e02c227f473cd7d', '304736ff9a38778bb5e04560a51a4085', 0, '0', '', 'imgEvento/b893d2b2893c23ac615508db45ce8867.jpg', '', '201602293');
+('335b38c5779a99886a31b2179ef87a8d', 'TESTANDO AMBIENTE', '', '2016-01-01', '2016-04-30', '14.357.767/000', '', '', '', '', '', '', '', '', '0.00', '31fa2c1f83dc17394e02c227f473cd7d', '304736ff9a38778bb5e04560a51a4085', 0, '3bdfa2bf001bc6731712ca143ae2b3c5', '1', 'imgEvento/b244812882c1934ad01944eab2182459.jpg', '1', '201602291'),
+('84181b14cb2ebe80b7912c31134dcdae', 'Evento 006', 'GODOY', '2016-01-01', '2016-03-20', '14.357.767/000', 'MARIA DA SILVA', 'MARIANA DA SILVA', 'Domingos Marreiros', '66.060-1', 'BelÃ©m', '(91)4006-9', '(91)4006-9', 'EVENTO@EVENTO.COM.BR', '100.00', '31fa2c1f83dc17394e02c227f473cd7d', '304736ff9a38778bb5e04560a51a4085', 0, '3bdfa2bf001bc6731712ca143ae2b3c5', '1', 'imgEvento/95b761cb528c10bff1296627069a6adf.jpg', '0', '201602292'),
+('a4c6412111f139e460168051cf947ca9', 'Evento 003', 'Bill Gates', '2016-01-01', '2016-04-30', '14.357.767/000', 'Microsoft LTDA', 'Bill Gates', 'Domingos Marreiros', '66.060-1', 'BelÃ©m', '(91)4006-9', '(91)4006-9', 'promotora@prom.com.br', '100.00', '31fa2c1f83dc17394e02c227f473cd7d', '304736ff9a38778bb5e04560a51a4085', 0, '3bdfa2bf001bc6731712ca143ae2b3c5', '1', 'imgEvento/b893d2b2893c23ac615508db45ce8867.jpg', '0', '201602293');
 
 -- --------------------------------------------------------
 
@@ -405,7 +406,7 @@ CREATE TABLE IF NOT EXISTS `evt_evento_grupo` (
 DROP TABLE IF EXISTS `evt_evento_participante`;
 CREATE TABLE IF NOT EXISTS `evt_evento_participante` (
   `ID_EVT_Evento_Pariticipante` varchar(50) NOT NULL,
-  `DSC_Nome_Crachav` varchar(70) NOT NULL,
+  `DSC_Nome_Cracha` varchar(70) NOT NULL,
   `COD_Barras_Cracha` varchar(13) NOT NULL,
   `VLR_Total` decimal(8,2) NOT NULL,
   `VLR_Total_Inscricao` decimal(8,2) NOT NULL,
@@ -431,19 +432,8 @@ CREATE TABLE IF NOT EXISTS `evt_evento_participante` (
 -- Extraindo dados da tabela `evt_evento_participante`
 --
 
-INSERT INTO `evt_evento_participante` (`ID_EVT_Evento_Pariticipante`, `DSC_Nome_Crachav`, `COD_Barras_Cracha`, `VLR_Total`, `VLR_Total_Inscricao`, `QTD_CargaHoraria_Realizada`, `COD_Nivel_Participante`, `ID_EVT_Pagamento`, `ID_EVT_Categoria`, `ID_EVT_Evento`, `ID_BSC_Participante`, `ID_EVT_Participante_Pai`, `COD_Tipo_SIT_Certificado`, `DTM_Entrega_Certificado`, `ID_SEG_DetalheTransacao`, `SIT_EH_Parcelado`, `ID_EVT_EventoGrupo`, `COD_TipoSituacao_Material`, `DTM_EntregaMaterial`, `COD_InscricaoExterno`, `Num_Inscricao`) VALUES
-('f9c94d5135594b4b761ad078e2914be5', 'Cleyton Carlos Queiroz Costa', '66129273215', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', 'f22b54f28abf053d4da5fa0c1fd61010', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
-('c3c64780366fc51e53e048a43ac859e8', 'Cleyton Carlos Queiroz Costa', '66129273215', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '8b9170dfbb995813227a6d459274c015', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
-('9365f2c9496e73446642814f1b163332', 'Chrystyan Godoy', '52863298291', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', 'bb62a69d87cc5f6ef7623de86a7e0d19', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
-('0504acd402eff3a9190e9b010ad70078', 'Renato AraÃºjo de Souza Filho', '83966853396', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '3d16762825fcdfd93b57610f871c2f6a', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
-('9e7f398e2a1b12dfc18a0e7597d56808', 'Douglas Wolff', '44145246608', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '0bf7877d73cee371879fe175c27429e5', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
-('1ea11a07340504d6a4afdf6280fa9e6b', 'Romero Silva Arcanjo', '57964859382', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '0f3fa5b8d881ce5d0b766c19c1674a8b', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
-('6c6139dbfbc4d2579fffa214a2f58acd', 'Jaqueline Arcanjo dos Santos', '25517954278', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', 'a87849d8ecc5a1483db7069ac86526a5', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
-('990132ff84ca1c2f3f70e8e1583da8ac', 'JoÃ£o De Souto.', '94671561808', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '073c3014efec8a731335fce156b89148', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
-('acf4c034f576a84f5a28ea020a381cd3', 'Jessica da Rocha', '67854535507', '50.00', '50.00', '0.00', 0, 0, 'c66b032b04fb91ae862f1450ddd2d7a4', 'd011ee02cea6eff6b59df5944a7abe26', '4fefe071d406e6b77963e577d530b267', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
-('56c993a1887370b5da372ab659e1c411', 'Cleyton Carlos Queiroz Costa', '18677538399', '300.00', '300.00', '0.00', 0, 0, 'ceaedda02997a9da3953e3a74201b290', 'd011ee02cea6eff6b59df5944a7abe26', '4d7be967c4ce2062ab1fc2d18132a24d', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
-('959fa3ef7630f8b48b52fbcc4fecec4b', 'Joao Paulo Souza', '75402629234', '300.00', '300.00', '0.00', 0, 0, 'ceaedda02997a9da3953e3a74201b290', 'd011ee02cea6eff6b59df5944a7abe26', '62f85622935ed4d47a06408fd0fa4ebc', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '0', '0'),
-('0439620ee332ea7b954c54699c018136', '', '52863298291', '100.00', '100.00', '0.00', 0, 0, 'd7e0c61b21981a3c9d88226644a71947', '335b38c5779a99886a31b2179ef87a8d', 'bb62a69d87cc5f6ef7623de86a7e0d19', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '1', '0');
+INSERT INTO `evt_evento_participante` (`ID_EVT_Evento_Pariticipante`, `DSC_Nome_Cracha`, `COD_Barras_Cracha`, `VLR_Total`, `VLR_Total_Inscricao`, `QTD_CargaHoraria_Realizada`, `COD_Nivel_Participante`, `ID_EVT_Pagamento`, `ID_EVT_Categoria`, `ID_EVT_Evento`, `ID_BSC_Participante`, `ID_EVT_Participante_Pai`, `COD_Tipo_SIT_Certificado`, `DTM_Entrega_Certificado`, `ID_SEG_DetalheTransacao`, `SIT_EH_Parcelado`, `ID_EVT_EventoGrupo`, `COD_TipoSituacao_Material`, `DTM_EntregaMaterial`, `COD_InscricaoExterno`, `Num_Inscricao`) VALUES
+('d12341f3a8ad02ead64066d7dc11feba', 'Chrystyan Godoy', '52863298291', '100.00', '100.00', '0.00', 0, 0, 'd7e0c61b21981a3c9d88226644a71947', '335b38c5779a99886a31b2179ef87a8d', '660be24e7e9dd047fc459bd31f4abf9d', 0, 0, '0000-00-00 00:00:00', 0, '', 0, 0, '0000-00-00 00:00:00', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -474,18 +464,7 @@ CREATE TABLE IF NOT EXISTS `evt_pagamento` (
 --
 
 INSERT INTO `evt_pagamento` (`ID_Pagamento`, `DT_Transacao`, `DT_Pagamento`, `VLR_Transacao`, `VR_Pago`, `NUM_Recibo`, `COD_TipoFormaPagamento`, `COD_TipoOrigemInscricao`, `ID_EVT_Evento`, `ID_EVT_Pagamento_Pai`, `COD_Tipo_Situacao_Pagamento`, `QTD_Parcelas`, `NUM_Parcelas`, `QTD_Parcelas_Pagas`) VALUES
-('f5f3d856497bc74e076685b00786a7b9', '2016-02-03 15:33:57', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, 'f9c94d5135594b4b761ad078e2914be5', '0', 1, 0, 0, 0),
-('31df5b51bc7857c234018504a7d454ca', '2016-02-15 14:02:37', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, 'c3c64780366fc51e53e048a43ac859e8', '0', 0, 0, 0, 0),
-('38a3965e4ff39c68a553adba9caa3481', '2016-02-15 14:02:48', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '9365f2c9496e73446642814f1b163332', '0', 2, 0, 0, 0),
-('e9751fcabd5c676d6fb536d8144288ad', '2016-02-18 03:42:14', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '0504acd402eff3a9190e9b010ad70078', '0', 1, 0, 0, 0),
-('ba89a2c0a16d4eb4e5907c8967e57b7b', '2016-02-15 14:02:29', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '9e7f398e2a1b12dfc18a0e7597d56808', '0', 0, 0, 0, 0),
-('6e414809e3e589a3283f947dcdfd2006', '2016-02-03 15:32:08', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '1ea11a07340504d6a4afdf6280fa9e6b', '0', 0, 0, 0, 0),
-('530d0d3d255dc9c77f1605f73fbfe2e7', '2016-02-03 15:32:05', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '6c6139dbfbc4d2579fffa214a2f58acd', '0', 0, 0, 0, 0),
-('3bead11d7e73efd2786f98a3f333467a', '2016-02-15 14:01:05', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '990132ff84ca1c2f3f70e8e1583da8ac', '0', 1, 0, 0, 0),
-('5a5c1b4fe7fdf84bfa60ad89cf1e657f', '2016-02-15 13:57:28', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, 'acf4c034f576a84f5a28ea020a381cd3', '0', 1, 0, 0, 0),
-('5d98f37122a14358fb545e6e6ffeae04', '2016-02-15 15:33:50', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '56c993a1887370b5da372ab659e1c411', '0', 2, 0, 0, 0),
-('ce72afef5ff8114c2bfd29b8ae99e2b5', '2016-02-15 14:02:25', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '959fa3ef7630f8b48b52fbcc4fecec4b', '0', 0, 0, 0, 0),
-('46520049e85c3f30a12cdca5521f6931', '2016-02-24 03:00:00', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, '0439620ee332ea7b954c54699c018136', '0', 1, 0, 0, 0);
+('ebdc3898a70159a74e8f49c489ad18e4', '2016-03-03 05:07:50', '0000-00-00 00:00:00', '0.00', '0.00', '0', 0, 0, 'd12341f3a8ad02ead64066d7dc11feba', '0', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -681,7 +660,8 @@ CREATE TABLE IF NOT EXISTS `seg_usuario` (
 
 INSERT INTO `seg_usuario` (`ID_Usuario`, `DSC_Login`, `DSC_Senha`, `DTM_Inicio`, `DTM_Fim`, `ID_SEG_Grupo`) VALUES
 ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '2015-12-01', '2099-12-31', 0),
-('88d6f6bf17fc5af881b08f0db97cb62e', '52863298291', 'c0b30ea9e7349c5f3edcbefeb478d518', '2016-03-01', '2016-03-08', 99);
+('9853e24014538299da854535719592d3', '52863298291', '81dc9bdb52d04dc20036dbd8313ed055', '2016-03-03', '2016-03-10', 99),
+('744702faf61ad8bad4e5c8153418c8ef', '61539642224', 'fcdaacbcf7f4ffc4145ae23206bc5bc9', '2016-03-03', '2016-03-10', 99);
 
 -- --------------------------------------------------------
 
