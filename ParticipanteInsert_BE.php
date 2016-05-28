@@ -8,7 +8,10 @@ header("Content-Type: text/html; charset=UTF-8", true);
 session_start();
 require_once './smarty.php';
 require_once './config/FeedbackMessage.php';
-
+require_once './actions/aEvt_Evento.php';
+$evento = new aEvt_Evento();
+require_once './actions/aEvt_Evento_Categoria.php';
+$CategoriaEVT = new aEvt_Evento_Categoria();    
 $FeedbackMessage = new FeedbackMessage();
 
 if (isset($_POST['Cadastrar']))
@@ -212,6 +215,7 @@ require_once './actions/aBsc_Empresa.php';
 require_once './actions/aBsc_Profissao.php';
 require_once './actions/atb_Tipo_Estado.php';
 
+
 $emp = new aBsc_Empresa();
 $prof = new aBsc_Profissao();
 $estado = new atb_Tipo_Estado();
@@ -220,6 +224,10 @@ $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("listEmp", $emp->select());
 $smarty->assign("listProf", $prof->select());
 $smarty->assign("listEstado", $estado->select());
+$smarty->assign("listEvento", $evento->SelectEventoEmdia());
+
+$smarty->assign("lstCatEVT", $CategoriaEVT->select());
+
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("Titulo", " - Inserir Participante.");

@@ -174,6 +174,8 @@ if ($IsPromotora)
 else
 {
     $IDEmpresa = $Evento->getID_Empresa();
+    $NomeEvento = $Evento->getDSC_Nome();
+    
     require './actions/aBsc_Empresa.php';
     
     $Empresa = new aBsc_Empresa();
@@ -185,12 +187,14 @@ else
     $EndereçoEvento = $LocalEvento->getDSC_Nome() . " - " . $LocalEvento->getDSC_Endereco() . " - " . $LocalEvento->getDSC_Bairro() . " Telefone: " . $LocalEvento->getNUM_Fone();
     $CidadeEstadoEvento = $LocalEvento->getDSC_Cidade();
 }
-
+$nroIncricao = $DadosEvento->getNum_Inscricao();
 // SEUS DADOS
-$dadosboleto["identificacao"] = $NomeEmpresa;
+$dadosboleto["identificacao"] = $NomeEvento ." (".$NomeEmpresa.")";
 $dadosboleto["cpf_cnpj"] = $cnpjEmpresa; //Colocar o CNPJ da Empresa
 $dadosboleto["endereco"] = $EndereçoEvento;
 $dadosboleto["cidade_uf"] = $CidadeEstadoEvento;
+$dadosboleto["NomeEvento"] = $NomeEvento;
+$dadosboleto["NroInscEvento"] = $nroIncricao;
 $dadosboleto["cedente"] = $NomeEmpresa;
 
 // NÃO ALTERAR!

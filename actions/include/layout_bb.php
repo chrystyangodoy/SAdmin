@@ -82,9 +82,9 @@
 /* *** CABECALHO *** */
 
 #instr_header {
-	background: url("./imagens/logo_empresa.png") no-repeat top left;
+	/*background: url("./imagens/logo_empresa.png") no-repeat top left;
 	padding-left: 160px;
-	height: 65px;
+	height: 65px;*/
 }
 
 #instr_header h1 {
@@ -494,10 +494,11 @@ div.barcode {
 <div id="container">
 
 	<div id="instr_header">
-		<h1><?php echo $dadosboleto["identificacao"]; ?> <?php echo isset($dadosboleto["cpf_cnpj"]) ? $dadosboleto["cpf_cnpj"] : '' ?></h1>
-		<address><?php echo $dadosboleto["endereco"]; ?><br></address>
-		<address><?php echo $dadosboleto["cidade_uf"]; ?></address>
-	</div>	<!-- id="instr_header" -->
+		<h1><?php echo $dadosboleto["identificacao"]; ?></h1>
+                <?php echo isset($dadosboleto["cpf_cnpj"]) ? $dadosboleto["cpf_cnpj"] : " " ?>
+		<address><?php echo $dadosboleto["endereco"]." ".$dadosboleto["cidade_uf"]; ?></address>
+	</div>	
+        <!-- id="instr_header" -->
 
 	<div id="">
 <!--
@@ -537,7 +538,7 @@ div.barcode {
 			<p>Corte na linha pontilhada</p>
 		</div>
     <table cellspacing=0 cellpadding=0 width=666 border=0><TBODY><TR><TD class=ct width=666><div align=right><b class=cp>Recibo
-do Sacado</b></div></TD></tr></tbody></table>
+do Pagador</b></div></TD></tr></tbody></table>
 		<table class="header" border=0 cellspacing="0" cellpadding="0">
 		<tbody>
 		<tr>
@@ -553,15 +554,22 @@ do Sacado</b></div></TD></tr></tbody></table>
 		<table class="line" cellspacing="0" cellpadding="0">
 		<tbody>
 		<tr class="titulos">
-			<td class="cedente">Cedente</TD>
-			<td class="ag_cod_cedente">Ag&ecirc;ncia / C&oacute;digo do Cedente</td>
+                    <td class="cedente">Benefici&aacute;rio</TD>
+			<td class="ag_cod_cedente">Ag&ecirc;ncia / C&oacute;digo do Benefici&aacute;rio</td>
 			<td class="especie">Esp&eacute;cie</TD>
 			<td class="qtd">Quantidade</TD>
 			<td class="nosso_numero">Nosso n&uacute;mero</td>
 		</tr>
 
 		<tr class="campos">
-			<td class="cedente"><?php echo $dadosboleto["cedente"]; ?>&nbsp;</td>
+                        
+			<td class="cedente">
+                        <div>
+                            <div style="font-size: 14px; font-weight: bold;"><?php echo $dadosboleto["NomeEvento"]?></div>
+                            <div><?php echo "(".$dadosboleto["cedente"]." | Nro da Insc: ".$dadosboleto["NroInscEvento"].")"?></div>
+                        </div>
+                            <!--<?php echo $dadosboleto["cedente"]; ?>&nbsp;-->
+                        </td>
 			<td class="ag_cod_cedente"><?php echo $dadosboleto["agencia_codigo"]?> &nbsp;</td>
 			<td class="especie"><?php echo $dadosboleto["especie"]?>&nbsp;</td>
 			<TD class="qtd"><?php echo $dadosboleto["quantidade"]?>&nbsp;</td>
@@ -612,7 +620,7 @@ do Sacado</b></div></TD></tr></tbody></table>
 		<table class="line" cellspacing="0" cellpadding="0">
 		<tbody>
 		<tr class="titulos">
-			<td class="sacado">Sacado</td>
+			<td class="sacado">Pagador</td>
 		</tr>
 		<tr class="campos">
 			<td class="sacado"><?php echo $dadosboleto["sacado"]?></td>
@@ -659,11 +667,16 @@ do Sacado</b></div></TD></tr></tbody></table>
 		<table class="line" cellspacing="0" cellpadding="0">
 		<tbody>
 		<tr class="titulos">
-			<td class="cedente2">Cedente</td>
-			<td class="ag_cod_cedente2">Ag&ecirc;ncia/C&oacute;digo cedente</td>
+			<td class="cedente2">Benefici&aacute;rio</td>
+			<td class="ag_cod_cedente2">Ag&ecirc;ncia/C&oacute;digo Benefici&aacute;rio</td>
 		</tr>
 		<tr class="campos">
-			<td class="cedente2"><?php echo $dadosboleto["cedente"]?></td>
+                    <td class="cedente2">
+                        <div>
+                        <div style="font-size: 14px; font-weight: bold;"><?php echo $dadosboleto["NomeEvento"]?></div>
+                        <div><?php echo "(".$dadosboleto["cedente"]." | Nro da Insc: ".$dadosboleto["NroInscEvento"].")"?></div>
+                        </div>
+                        </td>
 			<td class="ag_cod_cedente2"><?php echo $dadosboleto["agencia_codigo"]?></td>
 		</tr>
 		</tbody>
@@ -719,7 +732,7 @@ do Sacado</b></div></TD></tr></tbody></table>
 			<tbody>
 			<tr class="titulos">
 				<td class="instrucoes">
-						Instru&ccedil;&otilde;es (Texto de responsabilidade do cedente)
+						Instru&ccedil;&otilde;es (Texto de responsabilidade do Benefici&aacute;rio)
 				</td>
 			</tr>
 			<tr class="campos">
@@ -808,7 +821,7 @@ do Sacado</b></div></TD></tr></tbody></table>
 		<table class="line" cellspacing="0" cellPadding="0">
 		<tbody>
 		<tr class="titulos">
-			<td class="sacado2">Sacado</td>
+			<td class="sacado2">Pagador</td>
 		</tr>
 		<tr class="campos">
 			<td class="sacado2">
@@ -823,7 +836,7 @@ do Sacado</b></div></TD></tr></tbody></table>
 		<table class="line" cellspacing="0" cellpadding="0">
 		<tbody>
 		<tr class="titulos">
-			<td class="sacador_avalista" colspan="2">Sacador/Avalista</td>
+			<td class="sacador_avalista" colspan="2">Pagador/Avalista</td>
 		</tr>
 		<tr class="campos">
 			<td class="sacador_avalista">&nbsp;</td>
