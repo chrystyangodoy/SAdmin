@@ -64,7 +64,7 @@ class aEvt_Pagamento extends mEvt_Pagamento {
 
     public function selectInner($ID_EVT, $CPF_Participante) {
         //$sql = sprintf($this->selectInner,$ID_EVT,$CPF_Participante);
-        $sql = "SELECT evt_evento_participante.ID_EVT_Evento_Pariticipante,evt_evento_categoria.VLR_Inscricao FROM evt_evento_participante INNER JOIN bsc_participante ON evt_evento_participante.ID_BSC_Participante = bsc_participante.ID_Participante INNER JOIN evt_evento_categoria ON evt_evento_participante.ID_EVT_Categoria = evt_evento_categoria.ID_Evento_Categoria WHERE evt_evento_participante.ID_EVT_Evento = '$ID_EVT' AND bsc_participante.COD_CPF = '$CPF_Participante'";
+        $sql = "SELECT evt_evento_participante.ID_EVT_Evento_Pariticipante,evt_evento_participante.Num_Inscricao,evt_evento_categoria.VLR_Inscricao FROM evt_evento_participante INNER JOIN bsc_participante ON evt_evento_participante.ID_BSC_Participante = bsc_participante.ID_Participante INNER JOIN evt_evento_categoria ON evt_evento_participante.ID_EVT_Categoria = evt_evento_categoria.ID_Evento_Categoria WHERE evt_evento_participante.ID_EVT_Evento = '$ID_EVT' AND bsc_participante.COD_CPF = '$CPF_Participante'";
         $rs = $this->RunSelect($sql);
         if (!empty($rs)) {
             $this->setID_EVT_Evento($rs[0]['ID_EVT_Evento_Pariticipante']);

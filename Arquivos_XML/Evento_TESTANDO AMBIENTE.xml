@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<DadosCMATO>
+  <dataHoraGeracao>30/05/2016 04:18:03 pm</dataHoraGeracao>
+  <nomeEvento>TESTANDO AMBIENTE</nomeEvento>
+  <participantes>
+    <ParticipanteTO>
+      <cpf>52863298291</cpf>
+      <nomeCompleto>Chrystyan Godoy</nomeCompleto>
+      <nomeCracha>Chrystyan Godoy</nomeCracha>
+      <email>chrystyangodoy@gmail.com</email>
+      <telefone>(91) 4006-9800</telefone>
+      <celular>(91) 98452-8097</celular>
+      <endereco>Rua Domingos Marreiros</endereco>
+      <bairro>Umarizal</bairro>
+      <cep>66.060-160</cep>
+      <cidade>Belém</cidade>
+      <uf>PA</uf>
+      <descCategoria>Palestras</descCategoria>
+      <profissao>Estudante</profissao>
+      <especialidade>Administração</especialidade>
+      <conselho/>
+      <valorTotal>100.00</valorTotal>
+    </ParticipanteTO>
+  </participantes>
+  <boletos/>
+</DadosCMATO>
