@@ -24,7 +24,7 @@
                 <td class="text-right">
                     <a href="EventoEdit.php?ID_EVT={$row.ID_EVT}" class="col-md-offset-1" title="Editar"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                     <a href="?del={$row.ID_EVT}" title="Excluir"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                    <a href="EventoXML.php?eventoid={$row.ID_EVT}" title="Exportar XML" target="_blank"><span class="btn btn-default glyphicon glyphicon-export" aria-hidden="true"></span></a>
+                    <a href="EventoXML.php?eventoid={$row.ID_EVT}" title="Exportar XML" target="_Self"><span class="btn btn-default glyphicon glyphicon-export" aria-hidden="true"></span></a>
                     <a href='#mywork' title="Acompanhar Inscrições" onclick="OnclickAcompanhamento('{$row.ID_EVT}', '{$row.DSC_Nome}');"><span class="btn btn-default glyphicon glyphicon-credit-card" aria-hidden="true"></span></a>
                 </td>
             </tr>
