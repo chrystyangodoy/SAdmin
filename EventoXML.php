@@ -1,46 +1,31 @@
 <?php
-
 require_once './actions/aEvt_Evento.php';
-
 $EventoID = $_GET['eventoid'];
-
 $evento = new aEvt_Evento();
-
 $evento->setID_EVT($EventoID);
-
 $evento->load();
-
+$NomeEvt = $evento->getDSC_Nome();
 #versao do encoding xml
 $dom = new DOMDocument("1.0", "windows-1252");
+//$dom = new DOMDocument("1.0", "ISO-8859-1");
 #retirar os espacos em branco
-$dom->preserveWhiteSpace = false;
+$dom->preserveWhiteSpace = true;
 #gerar o codigo
 $dom->formatOutput = true;
 #criando o nó principal (DadosCMATO)
 $root = $dom->createElement("DadosCMATO");
-
 #setanto nomes e atributos dos elementos xml (nós)
 $nomeEvento = $dom->createElement("nomeEvento", $evento->getDSC_Nome());
-
 date_default_timezone_set('America/Belem');
-
 $dataAtual = date('d/m/Y h:i:s a', time());
-
 $dataHoraGeracao = $dom->createElement("dataHoraGeracao", $dataAtual);
-
 $participantes = $dom->createElement("participantes");
-
 $boletos = $dom->createElement("boletos");
-
 $root->appendChild($nomeEvento);
 $root->appendChild($dataHoraGeracao);
 $root->appendChild($nomeEvento);
-
-
-
 //foreach para popular a tag participanteTO
 $listaDadosParticipante = $evento->SelectXML($EventoID);
-
 foreach ($listaDadosParticipante as $dadosParticipante){
     $ParticipanteTO = $dom->createElement("ParticipanteTO");
     
@@ -82,12 +67,9 @@ foreach ($listaDadosParticipante as $dadosParticipante){
     $participantes->appendChild($ParticipanteTO);
     
 }
-
 $root->appendChild($participantes);
-
 //foreach para popular a tag boletos
 $listaDadosBoleto = $evento->SelectXMLBoelto($EventoID);
-
 foreach ($listaDadosBoleto as $dadosBoleto) {
     $BoletoTO = $dom->createElement("BoletoTO");
     
@@ -101,20 +83,14 @@ foreach ($listaDadosBoleto as $dadosBoleto) {
     $dataPagamento = $dom->createElement("dataPagamento", '00/00/0000');
     
 }
-
 $root->appendChild($boletos);
-
-
 $dom->appendChild($root);
-
 # Para salvar o arquivo, descomente a linha
-
-//$dom->save( "evento.xml");
+//$dom->save( "./Arquivos_XML/evento_"+$NomeEvt+".xml");
+$dom->save("./Arquivos_XML/"."Evento_".$NomeEvt.".xml");
         #cabeçalho da página
-
-header("Content-Type: text/xml");
+//header("Content-Type: text/xml");
 //
 //        # imprime o xml na tela
 //
-print $dom->saveXML();
-
+//print $dom->saveXML();

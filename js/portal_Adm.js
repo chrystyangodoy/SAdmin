@@ -46,6 +46,7 @@ function OnclickAcompParticpante(ID_BSC_Participante, DSC_Nome) {
                     .append(
                             "<tr>" +
                             "<td>" + item.DSC_Nome + "</td>" +
+                            "<td>" + item.Num_Inscricao + "</td>" +
                             "<td class='formatcurrency'>" + item.VLR_Total_Inscricao + "</td>" +
                             "<td>" +
                             "<input type='hidden' class='form-control' name='ID_Pagamento' id='ID_Pagamento' value='" + item.ID_Pagamento + "'>" +

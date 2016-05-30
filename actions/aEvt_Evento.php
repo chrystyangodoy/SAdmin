@@ -22,27 +22,25 @@ class aEvt_Evento extends mEvt_Evento {
                                     FROM        evt_evento as evento left join bsc_local_evento as localEvento on (ID_BSC_Local_Evento = ID_BSC_Local_Evento) 
                                     WHERE       CURRENT_DATE() < DT_Fim";
     protected $sqlSelectXML = "SELECT	bsc_participante.COD_CPF,
-                                        bsc_participante.DSC_Nome AS NOME_COMPLETO,
-                                        evt_evento_participante.DSC_Nome_Crachav AS nomeCracha,
-                                        bsc_participante.DSC_EMAIL,
-                                        bsc_participante.NUM_Fone,
-                                        bsc_participante.NUM_Celular,
-                                        bsc_participante.DSC_Endereco,
-                                        bsc_participante.DSC_Bairro,
-                                        bsc_participante.NUM_CEP,
-                                        bsc_participante.DSC_Cidade,
-                                        tb_tipo_estado.DSC_Nome AS UF,
-                                        evt_evento_categoria.DSC_Nome categoria,
-                                        bsc_profissao.DSC_Nome profissao,
-                                        bsc_participante.DSC_Profissao_Especialidade,
-                                        evt_evento_participante.VLR_Total
-
+		bsc_participante.DSC_Nome AS NOME_COMPLETO,
+		evt_evento_participante.DSC_Nome_Cracha as nomeCracha,
+		bsc_participante.DSC_EMAIL,
+		bsc_participante.NUM_Fone,
+		bsc_participante.NUM_Celular,
+		bsc_participante.DSC_Endereco,
+		bsc_participante.DSC_Bairro,
+		bsc_participante.NUM_CEP,
+		bsc_participante.DSC_Cidade,
+		tb_tipo_estado.DSC_Nome AS UF,
+		evt_evento_categoria.DSC_Nome categoria,
+		bsc_profissao.DSC_Nome profissao,
+		bsc_participante.DSC_Profissao_Especialidade,
+		evt_evento_participante.VLR_Total
                                 FROM	bsc_participante 
-                                                                LEFT JOIN 	evt_evento_participante ON(bsc_participante.ID_Participante = evt_evento_participante.ID_BSC_Participante)
-                                                                LEFT JOIN	tb_tipo_estado	ON(bsc_participante.COD_Tipo_Estado = tb_tipo_estado.COD_TIPOEstado)
-                                                LEFT JOIN	evt_evento_categoria ON(evt_evento_participante.ID_EVT_Categoria = evt_evento_categoria.ID_Evento_Categoria)
-                                                LEFT JOIN	bsc_profissao	ON (bsc_participante.ID_BSC_Profissao = bsc_profissao.ID_Profissao)
-                                                
+								LEFT JOIN 	evt_evento_participante ON(bsc_participante.ID_Participante = evt_evento_participante.ID_BSC_Participante)
+								LEFT JOIN	tb_tipo_estado	ON(bsc_participante.COD_Tipo_Estado = tb_tipo_estado.COD_TIPOEstado)
+								LEFT JOIN	evt_evento_categoria ON(evt_evento_participante.ID_EVT_Categoria = evt_evento_categoria.ID_Evento_Categoria)
+								LEFT JOIN	bsc_profissao	ON (bsc_participante.ID_BSC_Profissao = bsc_profissao.ID_Profissao)                                                
                                 WHERE	evt_evento_participante.ID_EVT_Evento = '%s'";
     protected $sqlSelectXMLBoleto = "SELECT	bsc_banco.numero_documento,
                                                 evt_pagamento.QTD_Parcelas,
