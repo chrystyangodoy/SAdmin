@@ -18,8 +18,9 @@
         <script type="text/javascript">
             function redirecionar(ID_EVT) {
                 if (confirm("Deseja exportar evento?")) {
-                    window.location = "EventoXML.php?eventoid="+ID_EVT;
                     alert("O arquivo esta no diretório <Arquivos_XML>")
+                    //window.self.location.href = "EventoXML.php?eventoid=" + ID_EVT;
+                    window.open("EventoXML.php?eventoid=" + ID_EVT, '_blank');
                 }
             }
         </script>
@@ -34,7 +35,7 @@
                 <td class="text-right">
                     <a href="EventoEdit.php?ID_EVT={$row.ID_EVT}" class="col-md-offset-1" title="Editar"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                     <a href="?del={$row.ID_EVT}" title="Excluir"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-
+                    <!--<a href="EventoXML.php?eventoid={$row.ID_EVT}" title="Exportar XML" target="_Self"><span class="btn btn-default glyphicon glyphicon-export" aria-hidden="true"></span></a>-->
                     <a href="javascript:func()" onclick="redirecionar('{$row.ID_EVT}');"  title="Exportar XML"><span class="btn btn-default glyphicon glyphicon-export" aria-hidden="true"></span></a>
                     <a href='#mywork' title="Acompanhar Inscrições" onclick="OnclickAcompanhamento('{$row.ID_EVT}', '{$row.DSC_Nome}');"><span class="btn btn-default glyphicon glyphicon-credit-card" aria-hidden="true"></span></a>
                 </td>
