@@ -52,6 +52,10 @@ class aEvt_Evento extends mEvt_Evento {
                                                                                         LEFT JOIN evt_evento ON evt_evento.ID_EVT = evt_pagamento.ID_EVT_Evento
                                                                                         LEFT JOIN bsc_banco ON bsc_banco.ID = evt_evento.ID_Banco
                                         WHERE	evt_evento.ID_EVT = '%S'";
+    //IMPLEMENTAR CRUDS CURSO RELACIONADO AO EVENTO.
+    protected $sqlSelectXMLCurso = "";
+    //IMPLEMENTAR CRUDS CURSO RELACIONADO AO EVENTO.
+    
     protected $sqlUpdateCtrl_Insc = "update evt_evento set Ctrl_Inscricao = '%s' where ID_EVT = '%s'";
 
     public function insert()
@@ -171,6 +175,13 @@ class aEvt_Evento extends mEvt_Evento {
     public function SelectXMLBoelto($evento_ID)
     {
         $sql = sprintf($this->sqlSelectXMLBoleto, $evento_ID);
+        $rs = $this->RunSelect($sql);
+        return $rs;
+    }
+    
+    public function SelectXMLCurso($evento_ID)
+    {
+        $sql = sprintf($this->sqlSelectXMLCurso, $evento_ID);
         $rs = $this->RunSelect($sql);
         return $rs;
     }

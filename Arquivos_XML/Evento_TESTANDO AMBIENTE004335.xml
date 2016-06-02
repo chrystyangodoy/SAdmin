@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="windows-1252"?>
-<DadosCMATO>
-  <dataHoraGeracao>30/05/2016 04:21:16 pm</dataHoraGeracao>
+<DadosEventoTO>
+  <dataHoraGeracao>02/06/2016 12:43:35 am</dataHoraGeracao>
   <nomeEvento>TESTANDO AMBIENTE</nomeEvento>
   <participantes>
-    <ParticipanteTO>
+    <ParticipanteEventoTO>
       <cpf>52863298291</cpf>
       <nomeCompleto>Chrystyan Godoy</nomeCompleto>
       <nomeCracha>Chrystyan Godoy</nomeCracha>
@@ -20,7 +20,6 @@
       <especialidade>Administração</especialidade>
       <conselho/>
       <valorTotal>100.00</valorTotal>
-    </ParticipanteTO>
+    </ParticipanteEventoTO>
   </participantes>
-  <boletos/>
-</DadosCMATO>
+</DadosEventoTO>
