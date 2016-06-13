@@ -46,6 +46,9 @@ foreach ($listaDadosParticipante as $dadosParticipante) {
     $DSC_Profissao_Especialidade = $dom->createElement("especialidade", $dadosParticipante['DSC_Profissao_Especialidade']);
     $Conselho = $dom->createElement("conselho", '');
     $vlr_total = $dom->createElement("valorTotal", $dadosParticipante['VLR_Total']);
+    $nroParcelas = $dom->createElement("numeroParcelasPagamento", 1);
+    $codigoInscricao = $dom->createElement("codigoInscricao", $dadosParticipante['Num_Inscricao']);
+    $situacaoInscricao = $dom->createElement("situacaoInscricao", $dadosParticipante['COD_Tipo_Situacao_Pagamento']);   
 
     $ParticipanteTO->appendChild($cpf);
     $ParticipanteTO->appendChild($nomeCompleto);
@@ -63,6 +66,9 @@ foreach ($listaDadosParticipante as $dadosParticipante) {
     $ParticipanteTO->appendChild($DSC_Profissao_Especialidade);
     $ParticipanteTO->appendChild($Conselho);
     $ParticipanteTO->appendChild($vlr_total);
+    $ParticipanteTO->appendChild($nroParcelas);
+    $ParticipanteTO->appendChild($codigoInscricao);
+    $ParticipanteTO->appendChild($situacaoInscricao);
 
 
     $participantes->appendChild($ParticipanteTO);

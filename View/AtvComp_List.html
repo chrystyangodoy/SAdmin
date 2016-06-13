@@ -1,0 +1,35 @@
+{include file="./Template/HeaderAdmin.html"}
+<div style="padding-bottom: 10px;">
+    <a class="btn btn-primary" href="AtvCompInsert.php" role="button">Novo</a>    
+</div>
+<div>
+    <table id="myTable" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th class="text-center">Código</th>
+            <th>Nome</th>
+            <th>Ministrantes</th>
+            <th>Data de Realização</th>
+            <th>Carga Horária</th>
+            <th class="text-right">Ações</th>
+        </tr>
+    </thead>
+    <tbody id="myTabContent">
+        {foreach from=$listAtv item=row}
+        <tr >
+            <td>{$row.COD_ATIV_Complementar}</td>
+            <td>{$row.DSC_Nome}</td>
+            <td>{$row.DSC_Ministrantes}</td>
+            <td>{$row.DT_Realizacao}</td>
+            <td>{$row.QTD_CargaHoraria}</td>
+            <td class="text-right">
+                <a href="AtvCompEdit.php?alt={$row.COD_ATIV_Complementar}" class="col-md-offset-1" title="Editar"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
+                <a href="?del={$row.COD_ATIV_Complementar}" title="Excluir"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            </td>            
+        </tr>
+        {/foreach}
+    </tbody>
+</table>
+</div>
+
+{include file="./Template/footer.html"}
