@@ -36,6 +36,7 @@ class mEvt_Evento_Participante extends dbConnection {
     private $DTM_EntregaMaterial;
     private $COD_InscricaoExterno;
     private $Num_Inscricao;
+    private $DataInscricao;
     
     public function setID_EVT_Evento_Pariticipante($ID_EVT_Evento_Pariticipante) {
         $this->ID_EVT_Evento_Pariticipante = $ID_EVT_Evento_Pariticipante;
@@ -162,6 +163,23 @@ class mEvt_Evento_Participante extends dbConnection {
     }
     public function getNum_Inscricao() {
         return $this->Num_Inscricao;
+    }
+   
+    public function setDataInscricao($DataInscricao)
+    {
+        $this->DataInscricao = $this->dateToUS($DataInscricao);
+    }
+
+    public function getDataInscricao($us = false)
+    {
+        if ($us)
+        {
+            return $this->DataInscricao;
+        }
+        else
+        {
+            return $this->dateToBR($this->DataInscricao);
+        }
     }
     
 }
