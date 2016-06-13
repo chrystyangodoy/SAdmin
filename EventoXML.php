@@ -45,6 +45,7 @@ foreach ($listaDadosParticipante as $dadosParticipante) {
     $profissao = $dom->createElement("profissao", $dadosParticipante['profissao']);
     $DSC_Profissao_Especialidade = $dom->createElement("especialidade", $dadosParticipante['DSC_Profissao_Especialidade']);
     $Conselho = $dom->createElement("conselho", '');
+    $DataInscricao = $dom->createElement("DataInscricao", '');//Nâo há campo na tabela de evt_participante.
     $vlr_total = $dom->createElement("valorTotal", $dadosParticipante['VLR_Total']);
     $nroParcelas = $dom->createElement("numeroParcelasPagamento", 1);
     $codigoInscricao = $dom->createElement("codigoInscricao", $dadosParticipante['Num_Inscricao']);
