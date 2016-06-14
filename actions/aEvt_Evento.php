@@ -37,7 +37,7 @@ class aEvt_Evento extends mEvt_Evento {
 		bsc_participante.DSC_Profissao_Especialidade,
 		evt_evento_participante.VLR_Total,
                 evt_evento_participante.Num_Inscricao,
-		evt_pagamento.COD_Tipo_Situacao_Pagamento
+		evt_pagamento.COD_Tipo_Situacao_Pagamento,
                 evt_evento_participante.DataInscricao
                                 FROM	bsc_participante 
 								LEFT JOIN 	evt_evento_participante ON(bsc_participante.ID_Participante = evt_evento_participante.ID_BSC_Participante)

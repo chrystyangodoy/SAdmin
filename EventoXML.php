@@ -66,6 +66,7 @@ foreach ($listaDadosParticipante as $dadosParticipante) {
     $ParticipanteTO->appendChild($profissao);
     $ParticipanteTO->appendChild($DSC_Profissao_Especialidade);
     $ParticipanteTO->appendChild($Conselho);
+    $ParticipanteTO->appendChild($DataInscricao);
     $ParticipanteTO->appendChild($vlr_total);
     $ParticipanteTO->appendChild($nroParcelas);
     $ParticipanteTO->appendChild($codigoInscricao);

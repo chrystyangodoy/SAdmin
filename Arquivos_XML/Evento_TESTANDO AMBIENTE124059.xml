@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<DadosEventoTO>
+  <dataHoraGeracao>14/06/2016 12:40:59 pm</dataHoraGeracao>
+  <nomeEvento>TESTANDO AMBIENTE</nomeEvento>
+  <participantes>
+    <ParticipanteEventoTO>
+      <cpf>52863298291</cpf>
+      <nomeCompleto>Chrystyan Godoy</nomeCompleto>
+      <nomeCracha>Chrystyan Godoy</nomeCracha>
+      <email>chrystyangodoy@gmail.com</email>
+      <telefone>(91) 4006-9800</telefone>
+      <celular>(91) 98452-8097</celular>
+      <endereco>Rua Domingos Marreiros</endereco>
+      <bairro>Umarizal</bairro>
+      <cep>66.060-160</cep>
+      <cidade>Belém</cidade>
+      <uf>PA</uf>
+      <descCategoria>Palestras</descCategoria>
+      <profissao>Estudante</profissao>
+      <especialidade>Administração</especialidade>
+      <conselho/>
+      <valorTotal>100.00</valorTotal>
+      <numeroParcelasPagamento>1</numeroParcelasPagamento>
+      <codigoInscricao>1</codigoInscricao>
+      <situacaoInscricao>0</situacaoInscricao>
+    </ParticipanteEventoTO>
+  </participantes>
+</DadosEventoTO>
