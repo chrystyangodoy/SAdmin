@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="mirchu team make this design. mirchu web and technology blog">
+        <meta name="author" content="Waqas Hussain">
+        <link rel="icon" href="WebBlocks/assets/icons/favicon.ico">
+        <link href="./css/Card.css" rel="stylesheet" type="text/css"/>
+        <!-- <title>Atual Eventos</title>-->
+
+        <!-- Bootstrap core CSS -->
+        <link href="WebBlocks/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>
+        <!-- Custom styles for this template -->
+        <link href="WebBlocks/assets/MDicons/css/MDicon.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="WebBlocks/assets/css/animate.css">
+        <link rel="stylesheet" href="WebBlocks/assets/css/themes/default/default-nivo-theme.css" type="text/css">
+        <link rel="stylesheet" href="WebBlocks/assets/css/nivo-lightbox.css" type="text/css">
+        <link href="WebBlocks/assets/css/style.min.css" rel="stylesheet">
+        <link href="./css/Alert.css" rel="stylesheet" type="text/css"/>
+        <link href="./css/ImgLoad.css" rel="stylesheet" type="text/css"/>
+
+        <script src="./js/jquery.mask.js" type="text/javascript"></script>
+        <script src="./js/ParticipanteEdit.js" type="text/javascript"></script>
+        <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="./js/additional-methods.min.js" type="text/javascript"></script>
+        <script src="./js/Customizacoes.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div id="alert"></div>
+        <!-- Preloader -->
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+
+        <section id="mywork" class="section">
+            <div class="container">
+                <div class="row">
+                    <h2 class="heading wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">Eventos</h2>
+                    <div class="portfolio-grid">
+                        {foreach from=$lista item=row}
+                        <div class="col-md-4 col-sm-6 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
+                            <div class="card">
+                                <div class="card-header">
+                                    {if {$row.Logo_Evento} != ""} 
+                                    <img src="{$row.Logo_Evento}"/>
+                                    {else}
+                                    <img src="WebBlocks/assets/images/portfolio/Eventos.jpg"/>
+                                    {/if}
+                                </div>
+                                <h6>{$row.Cod_Evento}</h6>
+                                <div class="card-content">
+                                    <h3>{$row.DSC_Nome}</h3>                                    
+                                    <h4>{$row.DT_Inicio}</h4>
+                                    <p>{$row.DSC_Endereco}, {$row.DSC_Cidade} - {$row.DSC_Bairro}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href='Login.php'>Acompanhar</a>  
+                                    <a href='#mywork' onclick="ListaEventoCategoriaPopUp('{$row.ID_EVT}', '{$row.DSC_Nome}');">Participar</a>
+                                </div>
+                            </div>
+                        </div>
+                        {foreachelse}
+                        Sem evento disponível
+                        {/foreach}
+                    </div>      
+                </div>
+            </div>
+        </section>
+    
+        <a href="#" class="back-to-top"><i class="mdicon up"></i></a>
+        <!-- /.modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body" id="corpoPopUp">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Valor da Inscrição</th>
+                                    <th>Data Inicio</th>
+                                    <th>Data Fim</th>
+                                </tr>
+                            </thead>
+                            <tbody id="conteudoTabelaCategoria">
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <!--Modal Acompanhamento-->
+        <div class="modal fade" id="modalAcompanhamento">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="NomeEventoAcompanhamento"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="ParticipanteAcompanhamento.php" id="AcompanhamentoForm">
+                            <div class="form-group">
+                                <label for="exampleInputName2">CPF</label>
+                                <input type="hidden" id="AcompanhamentoEVTID">
+                                <input type="text" class="form-control" id="AcompanhamentoCPF" placeholder="CPF">
+                                <a id="btnAcompanhar" style="display: none"></a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" onclick="OnclickAcompanhamento();">Acompanhar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!--Final Modal Acompanhamento-->
+
+        <div id="loadImg"></div>
+        <!-- Bootstrap core JavaScript
+            ================================================== --> 
+        <!-- Placed at the end of the document so the pages load faster --> 
+        <script src="WebBlocks/assets/js/jquery.min.js"></script> 
+        <script src="./js/jquery.formatCurrency-1.4.0.min.js" type="text/javascript"></script>
+        <script src="WebBlocks/assets/js/bootstrap.min.js"></script>
+        <!-- smooth scrolling -->
+        <script src="WebBlocks/assets/js/smooth-scroll.js"></script>
+
+        <!-- animation scrolling -->
+        <script src="WebBlocks/assets/js/wow.min.js"></script>
+
+        <!-- hover captions -->
+        <script src="WebBlocks/assets/js/jquery.hcaptions.js"></script>
+
+        <!-- hover detail page -->
+        <script src="WebBlocks/assets/js/nivo-lightbox.min.js"></script>
+
+        <!-- Form Validation -->
+        <script src="WebBlocks/assets/js/bootstrapValidator.min.js"></script>
+
+        <!-- animation scrolling -->
+        <script src="WebBlocks/assets/js/app.min.js"></script>
+        <script src="./js/jquery.dateFormat.js" type="text/javascript"></script>
+        <script src="./js/Customizacoes.js" type="text/javascript"></script>
+        <script src="./js/portal.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+                            $(document).ready(function () {
+                                showAlert('{$type}', '{$msg}');
+                            });
+        </script>
+    </body>
+</html>

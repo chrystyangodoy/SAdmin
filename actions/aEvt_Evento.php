@@ -21,6 +21,7 @@ class aEvt_Evento extends mEvt_Evento {
                                                 localEvento.DSC_EMAIL
                                     FROM        evt_evento as evento left join bsc_local_evento as localEvento on (ID_BSC_Local_Evento = ID_BSC_Local_Evento) 
                                     WHERE       CURRENT_DATE() < DT_Fim";
+    
     protected $sqlSelectXML = "SELECT bsc_participante.COD_CPF,
 		bsc_participante.DSC_Nome AS NOME_COMPLETO,
 		evt_evento_participante.DSC_Nome_Cracha as nomeCracha,
@@ -46,6 +47,7 @@ class aEvt_Evento extends mEvt_Evento {
 								LEFT JOIN	bsc_profissao	ON (bsc_participante.ID_BSC_Profissao = bsc_profissao.ID_Profissao)                                                
                                 LEFT JOIN   evt_pagamento on evt_evento_participante.ID_EVT_Evento_Pariticipante = evt_pagamento.ID_EVT_Evento
                                 WHERE	evt_evento_participante.ID_EVT_Evento = '%s'";
+    
     protected $sqlSelectXMLBoleto = "SELECT	bsc_banco.numero_documento,
                                                 evt_pagamento.QTD_Parcelas,
                                                 evt_pagamento.VLR_Transacao,
@@ -55,13 +57,27 @@ class aEvt_Evento extends mEvt_Evento {
                                                                                         LEFT JOIN evt_pagamento_boleto on evt_pagamento.ID_Pagamento = evt_pagamento_boleto.ID_EVT_Pagamento
                                                                                         LEFT JOIN evt_evento ON evt_evento.ID_EVT = evt_pagamento.ID_EVT_Evento
                                                                                         LEFT JOIN bsc_banco ON bsc_banco.ID = evt_evento.ID_Banco
-                                        WHERE	evt_evento.ID_EVT = '%S'";
+                                        WHERE	evt_evento.ID_EVT = '%s'";
     //IMPLEMENTAR CRUDS CURSO RELACIONADO AO EVENTO.
     protected $sqlSelectXMLCurso = "";
     //IMPLEMENTAR CRUDS CURSO RELACIONADO AO EVENTO.
     
     protected $sqlUpdateCtrl_Insc = "update evt_evento set Ctrl_Inscricao = '%s' where ID_EVT = '%s'";
 
+    protected $sqlWbEventoLocal = "SELECT 	evento.ID_EVT , 
+                                                evento.DSC_Nome as DSC_Nome,
+                                                evento.Logo_Evento,
+                                                evento.Cod_Evento,
+                                                DATE_FORMAT(evento.DT_Inicio ,'%d/%m/%Y') as DT_Inicio, 
+                                                DATE_FORMAT(evento.DT_Fim ,'%d/%m/%Y') as DT_Fim, 
+                                                localEvento.DSC_Endereco,
+                                                localEvento.DSC_Bairro,
+                                                localEvento.DSC_Cidade,
+                                                localEvento.NUM_Fone,
+                                                localEvento.DSC_EMAIL
+                                    FROM        evt_evento as evento left join bsc_local_evento as localEvento on (ID_BSC_Local_Evento = ID_BSC_Local_Evento) 
+                                    WHERE       CURRENT_DATE() < DT_Fim and ID_EVT = '%s'";
+    
     public function insert()
     {
         $sql = sprintf($this->sqlInsert, $this->getID_EVT(), $this->getDSC_Nome(), $this->getDSC_Presidente(), $this->getDT_Inicio(true), $this->getDT_Fim(true), $this->getCOD_CNPJ_Promotora(), $this->getDSC_Nome_Promotora(), $this->getDSC_Presidente_Promotora(), $this->getDSC_Endereco_Promotora(), $this->getNUM_CEP_Promotora(), $this->getDSC_Cidade_Promotora(), $this->getNUM_Fone_Promotora(), $this->getNUM_FAX_Promotora(), $this->getDSC_EMAIL_Promotora(), $this->getQTD_CargaHorariaMinima(), $this->getID_BSC_Local_Evento(), $this->getCOD_Tipo_Estado_promotora(), $this->getisPromotora(), $this->getID_Banco(), $this->getID_Empresa(), $this->getLogo_Evento(), $this->getCtrl_Inscricao(), $this->getCod_Evento());
@@ -210,4 +226,10 @@ class aEvt_Evento extends mEvt_Evento {
 
     protected $sqlNroInscricao = "SELECT Ctrl_Inscricao+1 as Ctrl_Inscricao FROM evt_evento where ID_EVT='%s'";
 
+    public function wbEvento($evento_ID)
+    {
+        $sql = sprintf($this->sqlWbEventoLocal, $evento_ID);
+        return $this->RunQuery($sql);
+        
+    }
 }

@@ -5,7 +5,7 @@ require './model/mBsc_Participante.php';
 class aBsc_Participante extends mBsc_Participante {
 
     protected $sqlInsert = "INSERT INTO bsc_participante(ID_Participante, COD_CPF, COD_RG,Id_Estrangeiro,Nome_Cracha, DSC_Nome, DSC_Endereco, DSC_Bairro, DSC_Cidade, NUM_CEP, NUM_Fone, NUM_Celular, NUM_FAX, DSC_Profissao_Especialidade, DSC_Email, NUM_Registro, COD_Tipo_Estado, ID_BSC_Empresa, ID_BSC_Profissao, ID_Usuario, Cod_Participante) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')";
-    protected $sqlUpdate = "UPDATE bsc_participante SET COD_CPF= '%s',COD_RG= '%s',Id_Estrangeiro= '%s', Nome_Cracha= '%s', DSC_Nome= '%s',DSC_Endereco= '%s',DSC_Bairro= '%s',DSC_Cidade= '%s',NUM_CEP= '%s',NUM_Fone= '%s',NUM_Celular= '%s',NUM_FAX= '%s',DSC_Profissao_Especialidade= '%s',DSC_Email= '%s',NUM_Registro= '%s',COD_Tipo_Estado= '%s',ID_BSC_Empresa= '%s',ID_BSC_Profissao ='%s', Cod_Participante='%s' WHERE ID_Participante = '%s'";
+    protected $sqlUpdate = "UPDATE bsc_participante SET COD_CPF= '%s',COD_RG= '%s',Id_Estrangeiro= '%s', Nome_Cracha= '%s', DSC_Nome= '%s',DSC_Endereco= '%s',DSC_Bairro= '%s',DSC_Cidade= '%s',NUM_CEP= '%s',NUM_Fone= '%s',NUM_Celular= '%s',NUM_FAX= '%s',DSC_Profissao_Especialidade= '%s',DSC_Email= '%s',NUM_Registro= '%s',COD_Tipo_Estado= '%s',ID_BSC_Empresa= '%s',ID_BSC_Profissao ='%s',ID_Usuario ='%s', Cod_Participante='%s' WHERE ID_Participante = '%s'";
     protected $sqlDelete = "DELETE FROM bsc_participante WHERE ID_Participante = '%s'";
     protected $sqlSelect = "SELECT * FROM bsc_participante WHERE 1=1 %s %s";
     protected $sqlSelectExist = "SELECT count(0) AS COUNTCPF FROM bsc_participante WHERE 1=1 and COD_CPF='%s'";

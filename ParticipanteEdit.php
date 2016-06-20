@@ -35,14 +35,11 @@ if (isset($_POST['Cadastrar'])) {
         //verifica se o CPF já foi cadastrado
         if ($partic->selectNotExistsCPFEdit($cpf, $ID_Participante)) {
             //Gera data incial e final para o cadastro de usuário
-
             $datainicial = date("d/m/Y");
             $datafim = date('d/m/Y', strtotime("+7 days"));
             //Gera o grupo padrão para Participantes
             $grupo = 99;
-
             //Gera e armazena ID Único Gerado.
-
             $user->setDTM_Inicio($datainicial);
             $user->setDTM_Fim($datafim);
             $user->setID_SEG_Grupo($grupo);
@@ -60,7 +57,7 @@ if (isset($_POST['Cadastrar'])) {
             $partic->setNUM_Celular($_POST['NUM_Celular']);
             $partic->setNUM_FAX($_POST['NUM_FAX']);
             $partic->setDSC_Profissao_Especialidade($_POST['DSC_Profissao_Especialidade']);
-            $partic->setDSC_Email($email);
+            $partic->setDSC_Email($_POST['DSC_Email']);
             $partic->setNUM_Registro($_POST['NUM_Registro']);
             $partic->setCOD_Tipo_Estado($_POST['COD_Tipo_Estado']);
             $partic->setID_BSC_Empresa($_POST['ID_BSC_Empresa']);

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<DadosEventoTO>
+  <dataHoraGeracao>15/06/2016 09:42:13 am</dataHoraGeracao>
+  <nomeEvento>TESTANDO AMBIENTE</nomeEvento>
+  <participantes>
+    <ParticipanteEventoTO>
+      <cpf>52863298291</cpf>
+      <nomeCompleto>Chrystyan Godoy</nomeCompleto>
+      <nomeCracha>Chrystyan Godoy</nomeCracha>
+      <email>chrystyangodoy@gmail.com</email>
+      <telefone>(91) 4006-9800</telefone>
+      <celular>(91) 98452-8097</celular>
+      <endereco>Rua Domingos Marreiros</endereco>
+      <bairro>Umarizal</bairro>
+      <cep>66.060-160</cep>
+      <cidade>Belém</cidade>
+      <uf>PA</uf>
+      <descCategoria>Palestras</descCategoria>
+      <profissao>Estudante</profissao>
+      <especialidade>Administração</especialidade>
+      <conselho/>
+      <dataInscricao>31/12/1969</dataInscricao>
+      <valorTotal>100.00</valorTotal>
+      <numeroParcelasPagamento>1</numeroParcelasPagamento>
+      <codigoInscricao>1</codigoInscricao>
+      <situacaoInscricao>0</situacaoInscricao>
+    </ParticipanteEventoTO>
+    <ParticipanteEventoTO>
+      <cpf>02075659290</cpf>
+      <nomeCompleto>Milca</nomeCompleto>
+      <nomeCracha>Milca</nomeCracha>
+      <email>milca@milca.com.br</email>
+      <telefone/>
+      <celular/>
+      <endereco>Rua Domingos Marreiros</endereco>
+      <bairro>Umarizal</bairro>
+      <cep>66.060-160</cep>
+      <cidade>Belém</cidade>
+      <uf>PA</uf>
+      <descCategoria>Palestras</descCategoria>
+      <profissao>Estudante</profissao>
+      <especialidade/>
+      <conselho/>
+      <dataInscricao>31/12/1969</dataInscricao>
+      <valorTotal>100.00</valorTotal>
+      <numeroParcelasPagamento>1</numeroParcelasPagamento>
+      <codigoInscricao>2</codigoInscricao>
+      <situacaoInscricao>0</situacaoInscricao>
+    </ParticipanteEventoTO>
+    <ParticipanteEventoTO>
+      <cpf>78888617418</cpf>
+      <nomeCompleto>milca</nomeCompleto>
+      <nomeCracha>milca</nomeCracha>
+      <email>milca@milca.com.br</email>
+      <telefone/>
+      <celular/>
+      <endereco>Rua Domingos Marreiros</endereco>
+      <bairro>Umarizal</bairro>
+      <cep>66.060-160</cep>
+      <cidade>Belém</cidade>
+      <uf/>
+      <descCategoria>Palestras</descCategoria>
+      <profissao>Estudante</profissao>
+      <especialidade>Administração</especialidade>
+      <conselho/>
+      <dataInscricao>31/12/1969</dataInscricao>
+      <valorTotal>100.00</valorTotal>
+      <numeroParcelasPagamento>1</numeroParcelasPagamento>
+      <codigoInscricao>3</codigoInscricao>
+      <situacaoInscricao>0</situacaoInscricao>
+    </ParticipanteEventoTO>
+    <ParticipanteEventoTO>
+      <cpf>38203730477</cpf>
+      <nomeCompleto>Milca</nomeCompleto>
+      <nomeCracha>Milca</nomeCracha>
+      <email>milca@milca.com.br</email>
+      <telefone/>
+      <celular/>
+      <endereco>Rua Domingos Marreiros</endereco>
+      <bairro>Umarizal</bairro>
+      <cep>66.060-160</cep>
+      <cidade>Belém</cidade>
+      <uf>PA</uf>
+      <descCategoria>Palestras</descCategoria>
+      <profissao>Médico</profissao>
+      <especialidade>Administração</especialidade>
+      <conselho/>
+      <dataInscricao>31/12/1969</dataInscricao>
+      <valorTotal>100.00</valorTotal>
+      <numeroParcelasPagamento>1</numeroParcelasPagamento>
+      <codigoInscricao>4</codigoInscricao>
+      <situacaoInscricao>0</situacaoInscricao>
+    </ParticipanteEventoTO>
+  </participantes>
+</DadosEventoTO>

@@ -27,6 +27,7 @@ $root->appendChild($dataHoraGeracao);
 $root->appendChild($nomeEvento);
 //foreach para popular a tag participanteTO
 $listaDadosParticipante = $evento->SelectXML($EventoID);
+
 foreach ($listaDadosParticipante as $dadosParticipante) {
     $ParticipanteTO = $dom->createElement("ParticipanteEventoTO");
 
@@ -45,7 +46,8 @@ foreach ($listaDadosParticipante as $dadosParticipante) {
     $profissao = $dom->createElement("profissao", $dadosParticipante['profissao']);
     $DSC_Profissao_Especialidade = $dom->createElement("especialidade", $dadosParticipante['DSC_Profissao_Especialidade']);
     $Conselho = $dom->createElement("conselho", '');
-    $DataInscricao = $dom->createElement("DataInscricao", $dadosParticipante['DataInscricao']);//Nâo há campo na tabela de evt_participante.
+    
+    $DataInscricao = $dom->createElement("dataInscricao", $dadosParticipante['DataInscricao']);//Nâo há campo na tabela de evt_participante.
     $vlr_total = $dom->createElement("valorTotal", $dadosParticipante['VLR_Total']);
     $nroParcelas = $dom->createElement("numeroParcelasPagamento", 1);
     $codigoInscricao = $dom->createElement("codigoInscricao", $dadosParticipante['Num_Inscricao']);
@@ -66,12 +68,14 @@ foreach ($listaDadosParticipante as $dadosParticipante) {
     $ParticipanteTO->appendChild($profissao);
     $ParticipanteTO->appendChild($DSC_Profissao_Especialidade);
     $ParticipanteTO->appendChild($Conselho);
+    
+    //$date = new DateTime($DataInscricao);
+
     $ParticipanteTO->appendChild($DataInscricao);
     $ParticipanteTO->appendChild($vlr_total);
     $ParticipanteTO->appendChild($nroParcelas);
     $ParticipanteTO->appendChild($codigoInscricao);
     $ParticipanteTO->appendChild($situacaoInscricao);
-
 
     $participantes->appendChild($ParticipanteTO);
 }
