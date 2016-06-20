@@ -218,14 +218,6 @@ class aEvt_Evento extends mEvt_Evento {
         return $this->RunQuery($sql);
     }
 
-    public function NroInscricao($ID_EVT)
-    {
-        $sql = sprintf($this->sqlNroInscricao, $ID_EVT);
-        return $this->setCtrl_Inscricao($sql[0]['Ctrl_Inscricao']);
-    }
-
-    protected $sqlNroInscricao = "SELECT Ctrl_Inscricao+1 as Ctrl_Inscricao FROM evt_evento where ID_EVT='%s'";
-
     public function wbEvento($evento_ID)
     {
         $sql = sprintf($this->sqlWbEventoLocal, $evento_ID);

@@ -82,6 +82,7 @@ if (isset($_POST['Cadastrar']))
 
                 $countPart = $partic->countPartic();
                 $partic->setCod_Participante($countPart);
+                
                 if ($isParticipanteNovo)
                 {
                     $partic->insert();
