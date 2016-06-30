@@ -1,4 +1,5 @@
 <?php
+
 // | Captura de informações para geração do boleto                                                          |
 // | require_once das actions necessárias  
 require_once './actions/aEvt_Evento.php';
@@ -9,6 +10,7 @@ require_once './actions/aEvt_Pagamento.php';
 
 $ID_Evt_Partic = $_SESSION['ID_Evt_Part'];
 //$ID_Evt_Partic = 'd12341f3a8ad02ead64066d7dc11feba';
+$ID_PagtoParc = $_SESSION['ID_PagtoParc'];
 
 $Evento = new aEvt_Evento();
 $DadosEvento = new aEvt_Evento_Participante();
@@ -24,18 +26,22 @@ $Evento->setID_EVT($DadosEvento->getID_EVT_Evento());
 $Evento->load();
 
 $CodBanco = $Evento->getID_Banco();
-if ($CodBanco == 0 || $CodBanco == NULL)
-{
+if ($CodBanco == 0 || $CodBanco == NULL) {
     $Banco->setID('1');
-}
-else
-{
+} else {
     $Banco->setID($CodBanco);
 }
 $Banco->load();
 
-$Pagamento->setID_EVT_Evento($ID_Evt_Partic);
-$Pagamento->loadIDEvento();
+if ($ID_PagtoParc <> 0 or $ID_PagtoParc <> NULL) {
+    $Pagamento->setID_Pagamento($ID_PagtoParc);
+    $Pagamento->loadIDPagto();
+} else {
+    $Pagamento->setID_EVT_Evento($ID_Evt_Partic);
+    $Pagamento->loadIDEvento();
+}
+
+
 $DadosEvento->SelectInfoBoleto($ID_Evt_Partic);
 
 $LocalEvento->setID_Local($Evento->getID_BSC_Local_Evento());
@@ -106,7 +112,7 @@ $dadosboleto["agencia"] = $Banco->getAgencia();
 $dadosboleto["agencia"] = str_replace("-", "", $Banco->getAgencia());
 //$dadosboleto["conta"] = "26095";  // Num da conta, sem digito
 $dadosboleto["conta"] = $Banco->getConta();
-$dadosboleto["conta"] = str_replace("-", "",$Banco->getConta());
+$dadosboleto["conta"] = str_replace("-", "", $Banco->getConta());
 // DADOS PERSONALIZADOS - BANCO DO BRASIL
 //$dadosboleto["convenio"] = "7777777";// Num do convênio - REGRA: 6 ou 7 ou 8 dígitos
 $dadosboleto["convenio"] = $Banco->getConvenio();
@@ -119,31 +125,25 @@ $dadosboleto["variacao_carteira"] = $Banco->getVariacao_Carteira();
 // TIPO DO BOLETO
 $dadosboleto["formatacao_convenio"] = "7"; // REGRA: 8 p/ Convênio c/ 8 digitos, 7 p/ Convênio c/ 7 d�gitos, ou 6 se Convênio c/ 6 dígitos
 $nro_dig_Convenio = strlen($Banco->getConvenio());
-if($nro_dig_Convenio==8)
-{
-  $dadosboleto["formatacao_convenio"] = "8";  
+if ($nro_dig_Convenio == 8) {
+    $dadosboleto["formatacao_convenio"] = "8";
 }
-if($nro_dig_Convenio==7)
-{
-  $dadosboleto["formatacao_convenio"] = "7";  
+if ($nro_dig_Convenio == 7) {
+    $dadosboleto["formatacao_convenio"] = "7";
 }
-if($nro_dig_Convenio<=6)
-{
-  $dadosboleto["formatacao_convenio"] = "6";  
+if ($nro_dig_Convenio <= 6) {
+    $dadosboleto["formatacao_convenio"] = "6";
 }
 
 //$dadosboleto["formatacao_nosso_numero"] = "1"; // REGRA: Usado apenas p/ Convênio c/ 6 dígitos: informe 1 se for NossoNúmero de até 5 dígitos ou 2 para opção de até 17 dígitos
 $nro_dig_NossoNumero = strlen($Banco->getnumero_documento());
 
-    if ($nro_dig_NossoNumero <= 5)
-    {
-        $dadosboleto["formatacao_nosso_numero"] = 1;
-    }
-    else
-    {
-        $dadosboleto["formatacao_nosso_numero"] = 2;
-    }
-    
+if ($nro_dig_NossoNumero <= 5) {
+    $dadosboleto["formatacao_nosso_numero"] = 1;
+} else {
+    $dadosboleto["formatacao_nosso_numero"] = 2;
+}
+
 /*
   #################################################
   DESENVOLVIDO PARA CARTEIRA 18
@@ -161,23 +161,20 @@ $nro_dig_NossoNumero = strlen($Banco->getnumero_documento());
 
   #################################################
  */
-    
+
 $IsPromotora = $Evento->getisPromotora();
 
-if ($IsPromotora)
-{
+if ($IsPromotora) {
     $NomeEmpresa = $Evento->getDSC_Nome_Promotora();
     $cnpjEmpresa = $Evento->getCOD_CNPJ_Promotora();
     $Endereço = $LocalEvento->getDSC_Nome() . " - " . $LocalEvento->getDSC_Endereco() . " - " . $LocalEvento->getDSC_Bairro() . " Telefone: " . $LocalEvento->getNUM_Fone();
     $CidadeEstado = $LocalEvento->getDSC_Cidade();
-}
-else
-{
+} else {
     $IDEmpresa = $Evento->getID_Empresa();
     $NomeEvento = $Evento->getDSC_Nome();
-    
+
     require './actions/aBsc_Empresa.php';
-    
+
     $Empresa = new aBsc_Empresa();
     $Empresa->setID_Empresa($IDEmpresa);
     $Empresa->load();
@@ -189,7 +186,7 @@ else
 }
 $nroIncricao = $DadosEvento->getNum_Inscricao();
 // SEUS DADOS
-$dadosboleto["identificacao"] = $NomeEvento ." (".$NomeEmpresa.")";
+$dadosboleto["identificacao"] = $NomeEvento . " (" . $NomeEmpresa . ")";
 $dadosboleto["cpf_cnpj"] = $cnpjEmpresa; //Colocar o CNPJ da Empresa
 $dadosboleto["endereco"] = $EndereçoEvento;
 $dadosboleto["cidade_uf"] = $CidadeEstadoEvento;

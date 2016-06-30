@@ -1,0 +1,28 @@
+{include file="./Template/Header.html"}
+<div>
+    <table id="myTable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Nome do Evento</th>
+                <th class="text-center">Nro da Parcela</th>
+                <th class="text-right">Valor da Parcela</th>
+                <th class="text-right">Ações</th>
+            </tr>
+        </thead>
+        <tbody id="myTabContent">
+            {foreach from=$lista item=row}
+            <tr >
+                <td>{$row.DSC_Nome}</td>
+                <td align="center">{$row.Num_Parcelas}</td>
+                <td align="right">R$ {$row.VLR_Transacao}</td>
+                <td class="text-right">
+                    <a href='Boleto.php?ID_EVT_Evento_Pariticipante={$row.ID_EVT_Evento_Pariticipante}&ID_Pagamento={$row.ID_Pagamento}' target="_blank">
+                        <button type="button" class="btn btn-primary">Boleto</button>
+                    </a>
+                </td>            
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</div>
+{include file="./Template/footer.html"}
