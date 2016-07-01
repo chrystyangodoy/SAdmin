@@ -15,6 +15,18 @@ require_once './config/FeedbackMessage.php';
 require_once './actions/aEvt_Pagamento.php';
 $FeedbackMessage = new FeedbackMessage();
 
+require_once './actions/aBsc_Empresa.php';
+require_once './actions/aBsc_Profissao.php';
+require_once './actions/atb_Tipo_Estado.php';
+require_once './actions/aEvt_Evento.php';
+require_once './actions/aEvt_Evento_Categoria.php';
+
+$emp = new aBsc_Empresa();
+$prof = new aBsc_Profissao();
+$estado = new atb_Tipo_Estado();
+$evento = new aEvt_Evento();
+$categoria = new aEvt_Evento_Categoria();
+
 $ID_Evento = $_GET['ID_EVT_Evento'];
 $ID_Evento_Categoria = $_GET['ID_Evento_Categoria'];
 
@@ -53,6 +65,7 @@ if (isset($_POST['Cadastrar'])) {
     } else {
         $isParticipanteNovo = FALSE;
     }
+    $Id_Estrangeiro = $_POST['Id_Estrangeiro'];
 
     //Verifica se Participante é Estrangeiro
     if ($cpf == "") {
@@ -116,7 +129,9 @@ if (isset($_POST['Cadastrar'])) {
                 $pagamento->selectInnerId_Estrangeiro($ID_Evento, $Id_Estrangeiro);
 
                 $nroParcelas = $_POST['NUM_Parcelas'];
-                $pagamento->geraInfoPagamento($nroParcelas);
+                $categoria->setID_Evento_Categoria($ID_Evento_Categoria);
+                $VlrTotalPag = $evtPart->getVLR_Total();
+                $pagamento->geraInfoPagamento($nroParcelas, $VlrTotalPag);
 
                 //Informações para gerar o Boleto 
                 $ass = '';
@@ -214,7 +229,9 @@ if (isset($_POST['Cadastrar'])) {
                     $pagamento->selectInner($ID_Evento, $cpf);
 
                     $nroParcelas = $_POST['NUM_Parcelas'];
-                    $pagamento->geraInfoPagamento($nroParcelas);
+                    $categoria->setID_Evento_Categoria($ID_Evento_Categoria);
+                    $VlrTotalPag = $evtPart->getVLR_Total();
+                    $pagamento->geraInfoPagamento($nroParcelas,$VlrTotalPag);
 
                     $ass = '';
                     $msg = '';
@@ -256,18 +273,6 @@ if (isset($_POST['Cadastrar'])) {
         }
     }
 }
-
-require_once './actions/aBsc_Empresa.php';
-require_once './actions/aBsc_Profissao.php';
-require_once './actions/atb_Tipo_Estado.php';
-require_once './actions/aEvt_Evento.php';
-require_once './actions/aEvt_Evento_Categoria.php';
-
-$emp = new aBsc_Empresa();
-$prof = new aBsc_Profissao();
-$estado = new atb_Tipo_Estado();
-$evento = new aEvt_Evento();
-$categoria = new aEvt_Evento_Categoria();
 
 $evento->setID_EVT($ID_Evento);
 $evento->load();

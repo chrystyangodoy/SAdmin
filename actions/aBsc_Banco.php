@@ -35,7 +35,7 @@ class aBsc_Banco extends mBsc_Banco {
 
     public function load()
     {
-        $rs = $this->select(sprintf("and ID='%s'", $this->getID()));
+        $rs = $this->select(sprintf(" and ID='%s'", $this->getID()));
         $this->setID($rs[0]['ID']);
         $this->setDsc_Banco($rs[0]['Dsc_Banco']);
         $this->setAgencia($rs[0]['Agencia']);

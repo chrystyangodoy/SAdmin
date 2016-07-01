@@ -50,23 +50,17 @@ class aEvt_Pagamento_Boleto extends mEvt_Pagamento_Boleto {
         return $this;
     }
 
-    public function geraParcelasPagto($id_Pagamento, $Parcelas) {
+    public function geraParcelasPagto($id_Pagamento, $Nro_Documento) {
         require_once ('./config/configs.php');
         $config = new configs();
-        $i = 0;
-        $total = $Parcelas;
+        $idNovo = $config->idUnico();
         
-        while ($i < $total) {
-            $codInicial = $i + 1;
-            $idNovo = $config->idUnico();
-            $this->setID($idNovo);
-            $this->setID_Pagamento_Boleto($id_Pagamento);
-            $this->setNUM_Boleto($codInicial);
-            //Verificar onde implementar o Codigo de barras.
-            $this->setCOD_Barras_Boleto($codInicial);
-            $this->insert();
-            $i++;
-        }
+        $this->setID($idNovo);
+        $this->setID_Pagamento_Boleto($id_Pagamento);
+        $this->setNUM_Boleto($Nro_Documento);
+        //Verificar onde implementar o Codigo de barras.
+        $this->setCOD_Barras_Boleto(0);
+        $this->insert();
     }
 
 }

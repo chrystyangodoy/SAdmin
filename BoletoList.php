@@ -16,13 +16,10 @@ $evtPart = new aEvt_Evento_Participante();
 $lista = $evtPart->SelectEvtPartcParcelas($idUser,$ID_EvtPart,$ID_PagtoPai);
 
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
-//$smarty->assign("dscUser", $idUser);
+
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("lista", $lista);
 
 $smarty->display('./View/BoletoList.html');
-//$smarty->display('./View_Participante/AreaParticipante.html');
-
-//----------------------------------------------------------
 

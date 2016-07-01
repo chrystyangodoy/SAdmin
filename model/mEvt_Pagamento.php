@@ -56,7 +56,7 @@ class mEvt_Pagamento extends dbConnection {
     }
     public function setVLR_Transacao($VLR_Transacao)
     {
-        $this->DT_Transacao = $VLR_Transacao;
+        $this->VLR_Transacao = $VLR_Transacao;
     }
     public function getVLR_Transacao()
     {

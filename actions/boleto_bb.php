@@ -60,7 +60,12 @@ $data_emissão = date("d/m/Y", strtotime("now"));
 $data_venc = $Evento->getDT_Fim();
 //$valor_cobrado = $Pagamento->getVLR_Transacao(); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 //Informação capturada a partir do evento participante
-$valor_cobrado = $DadosEvento->getVLR_Total_Inscricao(); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
+if ($ID_PagtoParc <> 0 or $ID_PagtoParc <> NULL) {
+    $valor_cobrado = $Pagamento->getVLR_Transacao();
+} else {
+    $valor_cobrado = $DadosEvento->getVLR_Total_Inscricao();
+}
+// Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 $valor_cobrado = str_replace(",", ".", $valor_cobrado);
 $valor_boleto = number_format($valor_cobrado + $taxa_boleto, 2, ',', '');
 $nosso_numero = $Banco->getnumero_documento(); // Usaremos o mesmo campo para Nosso número e Número de Documento pois sempre serão números sequênciais.

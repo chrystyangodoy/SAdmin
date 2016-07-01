@@ -83,7 +83,7 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         return $this;
     }
 
-    public function geraInfoPagamento($Parcelas) {
+    public function geraInfoPagamento($Parcelas,$Valor_Pagar) {
         $this->setCOD_TipoFormaPagamento(0);
         $this->setCOD_Tipo_Situacao_Pagamento(0); //set igual a zero para Situação Aberto.
         $this->setDT_Pagamento('01-01-1980');
@@ -107,39 +107,20 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         $this->setVR_Pago(0);
         $this->insert();
         
-        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//        require_once './actions/aEvt_Evento.php';
-//        $Evento = new aEvt_Evento();
-//        require_once './actions/aBsc_Banco.php';
-//        $Banco = new aBsc_Banco();
-//
-//        $Evento->setID_EVT($this->getID_EVT_Evento());
-//        $Evento->load();
-//
-//        $Banco->setID($Evento->getID_Banco());
-//        $Banco->load();
-//        $nosso_Nro = $Banco->getnumero_documento() + 1;
-//        $Banco->setnumero_documento($nosso_Nro);
-//        $Banco->update();
-        
-        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//        require_once ('./actions/aEvt_Pagamento_Boleto.php');
-//        $PagtoBoleto = new aEvt_Pagamento_Boleto();
-//        $PagtoBoleto->geraParcelasPagto($id_Pagamento, $Parcelas);
-        
+        $valorParcela = round($Valor_Pagar/$Parcelas,2);
         for ($i = 0; $i < $Parcelas; $i++) {
-            $nroParcela = $i+1;
-            $this->geraInfoPagamentoParcela($id_Pagamento,$Parcelas,$nroParcela);
+            $nroParcela = $i+1;    
+            $this->geraInfoPagamentoParcela($id_Pagamento,$Parcelas,$nroParcela,$valorParcela);
         }
     }
 
-    public function geraInfoPagamentoParcela($id_PagamentoPai,$Parcelas,$nroParcela) {
+    private function geraInfoPagamentoParcela($id_PagamentoPai,$Parcelas,$nroParcela,$vlrParcela) {
         $this->setCOD_TipoFormaPagamento(0);
         $this->setCOD_Tipo_Situacao_Pagamento(0); //set igual a zero para Situação Aberto.
         $this->setDT_Pagamento('01-01-1980');
-        $data_atual = date("Y/m/d", strtotime("now"));
+        $data = date("Y/m/d", strtotime("now"));
         $this->setCOD_TipoOrigemInscricao(0);
-        $this->setDT_Transacao($data_atual);
+        $this->setDT_Transacao($data);
         //Set feito no metodo selectInner $pagamento->setID_EVT_Evento($ID_EVT_Evento);
         require_once ('./config/configs.php');
         $config = new configs();
@@ -155,6 +136,7 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         $this->setQTD_Parcelas_Pagas(0);
         //Set feito no metodo selectInner $pagamento->setVLR_Transacao($VLR_Transacao);
         $this->setVR_Pago(0);
+        $this->setVLR_Transacao($vlrParcela);
         $this->insert();
         
         require_once './actions/aEvt_Evento.php';
@@ -165,12 +147,15 @@ class aEvt_Pagamento extends mEvt_Pagamento {
 
         $Evento->setID_EVT($this->getID_EVT_Evento());
         $Evento->load();
-
-        $Banco->setID($Evento->getID_Banco());
+        $codBanco = $Evento->getID_Banco();
+        $Banco->setID($codBanco);
         $Banco->load();
-        $nosso_Nro = $Banco->getnumero_documento() + 1;
-        $Banco->setnumero_documento($nosso_Nro);
+        $nosso_Nro = $Banco->getnumero_documento();
+        $Banco->setnumero_documento($nosso_Nro+1);
         $Banco->update();
+        require_once './actions/aevt_pagamento_boleto.php';
+        $evtPagtParc  = new aEvt_Pagamento_Boleto();
+        $evtPagtParc->geraParcelasPagto($id_PagamentoParc, $nosso_Nro);
     }
 
     public function loadIDEvento() {

@@ -69,3 +69,32 @@ function OnclickAcompanhamento() {
     }
     $("#loadImg").css("display", "none").fadeOut();
 }
+
+function ListaBoletosPopUp(ID_EVT_Evento_Pariticipante, ID_EVT_Pagamento_Pai) {
+
+    $('#myModal').modal('show');
+    $('#conteudoTabelaBoletos').empty();
+    $('.modal-title').empty();
+    $('.modal-title').append("Lista de Boletos");
+
+    $.getJSON("getBoletoList.php", {ID_EVT_Evento_Pariticipante: ID_EVT_Evento_Pariticipante,ID_EVT_Pagamento_Pai: ID_EVT_Pagamento_Pai}, function (data) {
+        $.each(data, function (index, item) {
+            $('#conteudoTabelaBoletos')
+                    .append(
+                            "<tr>" +
+                            "<td>" + item.DSC_Nome + "</td>" +
+                            "<td>" + item.Num_Parcelas + "</td>" +
+                            "<td class='formatcurrency'>" + item.VLR_Transacao + "</td>" +
+                            "<td>" + "<a href='Boleto.php?ID_EVT_Evento_Pariticipante="
+                            + item.ID_EVT_Evento_Pariticipante + "&ID_EVT_Pagamento_Pai=" +
+                            item.ID_Pagamento + "' target='_blank' class='btn btn-primary' title='Clique para gerar o Boleto.'>" +
+                            "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
+                            "</a>" +
+                            "</tr>"
+                            );
+        });
+
+        $('.formatcurrency').formatCurrency();
+    });
+
+}

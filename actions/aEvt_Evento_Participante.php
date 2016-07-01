@@ -151,17 +151,15 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
     public function insertPartEvtId_Estrangeiro($id_Evt, $id_Partic, $ID_Categoria = null)
     {
         require_once ('./config/configs.php');
-        require_once ('./actions/aBsc_Participante.php');
-
         $config = new configs();
+        $NewIDEvtPartic = $config->idUnico();
+        require_once ('./actions/aBsc_Participante.php');
         $partic = new aBsc_Participante();
-
         $partic->setID_Participante($id_Partic);
         $partic->load();
-
-        $this->setID_EVT_Evento_Pariticipante($config->idUnico());
+        
+        $this->setID_EVT_Evento_Pariticipante($NewIDEvtPartic);
         $this->setID_EVT_Evento($id_Evt);
-
         $this->setID_EVT_Categoria($ID_Categoria);
         
         require_once ('./actions/aEvt_Evento_Categoria.php');
@@ -179,19 +177,16 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $Evento = new aEvt_Evento();
         $Evento->getID_EVT($id_Evt);
         $Evento->load();
-        
+        //$CodInscricao = $Evento->countEvt($id_Evt);
         $CodInscricao = $this->countInscricao($id_Evt);
-        //$Evento->countEvt($id_Evt);
         $Evento->setCtrl_Inscricao($CodInscricao);
         
         $this->setCOD_InscricaoExterno($CodInscricao);
-        //$CodInscricao2 = $this->countInscricao($id_Evt);
-                //NroInscricao($id_Evt);
         $this->setNum_Inscricao($CodInscricao);
         $data_atual = date("d/m/Y", strtotime("now"));
         $this->setDataInscricao($data_atual);
 
-        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Cracha(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno(),$this->getDataInscricao());
+        $sql = sprintf($this->sqlInsert, $this->getID_EVT_Evento_Pariticipante(), $this->getDSC_Nome_Cracha(), $this->getCOD_Barras_Cracha(), $this->getVLR_Total(), $this->getVLR_Total_Inscricao(), $this->getQTD_CargaHoraria_Realizada(), $this->getCOD_Nivel_Participante(), $this->getID_EVT_Pagamento(), $this->getID_EVT_Categoria(), $this->getID_EVT_Evento(), $this->getID_BSC_Participante(), $this->getID_EVT_Participante_Pai(), $this->getCOD_Tipo_SIT_Certificado(), $this->getDTM_Entrega_Certificado(), $this->getID_SEG_DetalheTransacao(), $this->getSIT_EH_Parcelado(), $this->getID_EVT_EventoGrupo(), $this->getCOD_TipoSituacao_Material(), $this->getDTM_EntregaMaterial(), $this->getCOD_InscricaoExterno(),$this->getNum_Inscricao(),$this->getDataInscricao());
         return $this->RunQuery($sql);
     }
     
@@ -329,7 +324,7 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
 
     
     private function countInscricao($id_Evt){
-     $rs = $this->RunSelect("SELECT COUNT(`Num_Inscricao`) as COUNT FROM `evt_evento_participante` WHERE 1=1 and ID_EVT_Evento='$id_Evt'");        
+     $rs = $this->RunSelect("SELECT COUNT('Num_Inscricao')+1 as COUNT FROM `evt_evento_participante` WHERE 1=1 and ID_EVT_Evento='$id_Evt'");        
      //return $this->RunSelect("SELECT COUNT(`Num_Inscricao`) FROM `evt_evento_participante` WHERE 1=1 and ID_EVT_Evento='$id_Evt'");        
      return $count = $rs[0]['COUNT'];
     }
