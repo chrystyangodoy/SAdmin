@@ -158,7 +158,7 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         $nosso_Nro = $Banco->getnumero_documento() + 1;
         $Banco->setnumero_documento($nosso_Nro);
         $Banco->update();
-        require_once './actions/aevt_pagamento_boleto.php';
+        require_once './actions/aEvt_Pagamento_Boleto.php';
         $evtPagtParc = new aEvt_Pagamento_Boleto();
         $evtPagtParc->geraParcelasPagto($id_PagamentoParc, $nosso_Nro);
     }
