@@ -83,7 +83,7 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         return $this;
     }
 
-    public function geraInfoPagamento($Parcelas,$Valor_Pagar) {
+    public function geraInfoPagamento($Parcelas, $Valor_Pagar) {
         $this->setCOD_TipoFormaPagamento(0);
         $this->setCOD_Tipo_Situacao_Pagamento(0); //set igual a zero para Situação Aberto.
         $this->setDT_Pagamento('01-01-1980');
@@ -106,15 +106,15 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         //Set feito no metodo selectInner $pagamento->setVLR_Transacao($VLR_Transacao);
         $this->setVR_Pago(0);
         $this->insert();
-        
-        $valorParcela = round($Valor_Pagar/$Parcelas,2);
+
+        $valorParcela = round($Valor_Pagar / $Parcelas, 2);
         for ($i = 0; $i < $Parcelas; $i++) {
-            $nroParcela = $i+1;    
-            $this->geraInfoPagamentoParcela($id_Pagamento,$Parcelas,$nroParcela,$valorParcela);
+            $nroParcela = $i + 1;
+            $this->geraInfoPagamentoParcela($id_Pagamento, $Parcelas, $nroParcela, $valorParcela);
         }
     }
 
-    private function geraInfoPagamentoParcela($id_PagamentoPai,$Parcelas,$nroParcela,$vlrParcela) {
+    private function geraInfoPagamentoParcela($id_PagamentoPai, $Parcelas, $nroParcela, $vlrParcela) {
         $this->setCOD_TipoFormaPagamento(0);
         $this->setCOD_Tipo_Situacao_Pagamento(0); //set igual a zero para Situação Aberto.
         $this->setDT_Pagamento('01-01-1980');
@@ -138,23 +138,28 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         $this->setVR_Pago(0);
         $this->setVLR_Transacao($vlrParcela);
         $this->insert();
-        
+
         require_once './actions/aEvt_Evento.php';
         $Evento = new aEvt_Evento();
-
+        require_once './actions/aEvt_Evento_Participante.php';
+        $EvtPartic = new aEvt_Evento_Participante();
+        $IDEVT = $this->getID_EVT_Evento();
+        $EvtPartic->setID_EVT_Evento_Pariticipante($IDEVT);
+        $EvtPartic->load();
+        
         require_once './actions/aBsc_Banco.php';
         $Banco = new aBsc_Banco();
-
-        $Evento->setID_EVT($this->getID_EVT_Evento());
+        
+        $Evento->setID_EVT($EvtPartic->getID_EVT_Evento());
         $Evento->load();
         $codBanco = $Evento->getID_Banco();
         $Banco->setID($codBanco);
         $Banco->load();
-        $nosso_Nro = $Banco->getnumero_documento();
-        $Banco->setnumero_documento($nosso_Nro+1);
+        $nosso_Nro = $Banco->getnumero_documento() + 1;
+        $Banco->setnumero_documento($nosso_Nro);
         $Banco->update();
         require_once './actions/aevt_pagamento_boleto.php';
-        $evtPagtParc  = new aEvt_Pagamento_Boleto();
+        $evtPagtParc = new aEvt_Pagamento_Boleto();
         $evtPagtParc->geraParcelasPagto($id_PagamentoParc, $nosso_Nro);
     }
 
@@ -176,7 +181,7 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         $this->setQTD_Parcelas_Pagas($rs[0]['QTD_Parcelas_Pagas']);
         return $this;
     }
-    
+
     public function loadIDPagto() {
         $rs = $this->select(sprintf(" and ID_Pagamento = '%s'", $this->getID_Pagamento()));
         $this->setID_Pagamento($rs[0]['ID_Pagamento']);
