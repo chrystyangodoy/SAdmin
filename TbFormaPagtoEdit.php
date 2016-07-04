@@ -15,7 +15,11 @@ $FormaPagto ->load();
 if(isset($_POST['Salvar'])){ 
     $FormaPagto->setDSC_Nome($_POST['DSC_Nome']);
     $FormaPagto->setDSC_Descricao($_POST['DSC_Descricao']);
-    $FormaPagto->setNro_Parcelas($_POST['Nro_Parcelas']);
+    if ($_POST['Nro_Parcelas'] == 0) {
+        $FormaPagto->setNro_Parcelas(1);
+    } else {
+        $FormaPagto->setNro_Parcelas($_POST['Nro_Parcelas']);
+    }
     $FormaPagto->setDias_Vencimento($_POST['Dias_Vencimento']);
     $FormaPagto->update();
     $FeedbackMessage->setMsg("Forma de Pagamento atualizada com sucesso!");
