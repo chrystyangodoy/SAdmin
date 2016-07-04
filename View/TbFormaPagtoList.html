@@ -8,6 +8,7 @@
             <tr>
                 <th>Nome</th>
                 <th>Descrição</th>
+                <th>Nro de Parcelas</th>
                 <th class="text-right">Ações</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
             <tr >
                 <td>{$row.DSC_Nome}</td>
                 <td>{$row.DSC_Descricao}</td>
+                <td>{$row.Nro_Parcelas}</td>
                 <td class="text-right">
                     <a title="Editar" href="TbFormaPagtoEdit.php?alt={$row.COD_Tipo_Forma_Pagamento}"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
                     <a title="Excluir" href="?exc={$row.COD_Tipo_Forma_Pagamento}"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a> 

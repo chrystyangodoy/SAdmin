@@ -17,6 +17,13 @@ if (isset($_POST['Cadastrar'])) {
     $FormaPagto->setCOD_Tipo_Forma_Pagamento($idUnico);
     $FormaPagto->setDSC_Nome($_POST['DSC_Nome']);
     $FormaPagto->setDSC_Descricao($_POST['DSC_Descricao']);
+    if ($_POST['Nro_Parcelas'] == 0) {
+        $FormaPagto->setNro_Parcelas(1);
+    } else {
+        $FormaPagto->setNro_Parcelas($_POST['Nro_Parcelas']);
+    }
+    $FormaPagto->setNro_Parcelas($_POST['Nro_Parcelas']);
+    $FormaPagto->setDias_Vencimento($_POST['Dias_Vencimento']);
     $FormaPagto->insert();
     $FeedbackMessage->setMsg("Forma de Pagamento inserida com sucesso!");
     header('location:TbFormaPagtoList.php');
