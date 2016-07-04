@@ -12,20 +12,21 @@ if (!isset($_GET['ID_EVT_Evento']) and ! isset($_GET['ID_Evento_Categoria'])) {
 session_start();
 require_once './smarty.php';
 require_once './config/FeedbackMessage.php';
-require_once './actions/aEvt_Pagamento.php';
 $FeedbackMessage = new FeedbackMessage();
+require_once './actions/aEvt_Pagamento.php';
 
 require_once './actions/aBsc_Empresa.php';
-require_once './actions/aBsc_Profissao.php';
-require_once './actions/atb_Tipo_Estado.php';
-require_once './actions/aEvt_Evento.php';
-require_once './actions/aEvt_Evento_Categoria.php';
-
 $emp = new aBsc_Empresa();
+require_once './actions/aBsc_Profissao.php';
 $prof = new aBsc_Profissao();
+require_once './actions/atb_Tipo_Estado.php';
 $estado = new atb_Tipo_Estado();
+require_once './actions/aEvt_Evento.php';
 $evento = new aEvt_Evento();
+require_once './actions/aEvt_Evento_Categoria.php';
 $categoria = new aEvt_Evento_Categoria();
+require_once './actions/aTb_Tipo_Forma_Pagamento.php';
+$FormaPagto = new aTb_Tipo_Forma_Pagamento();
 
 $ID_Evento = $_GET['ID_EVT_Evento'];
 $ID_Evento_Categoria = $_GET['ID_Evento_Categoria'];
@@ -122,16 +123,22 @@ if (isset($_POST['Cadastrar'])) {
                 } else {
                     $partic->update();
                 }
+                $FormaPagto->setCOD_Tipo_Forma_Pagamento($_POST['COD_Tipo_Forma_Pagamento']);
                 //Insere Evento_Participante
-                $evtPart->insertPartEvtId_Estrangeiro($ID_Evento, $id_Participante, $ID_Evento_Categoria);
+                $evtPart->insertPartEvtId_Estrangeiro($ID_Evento, $id_Participante, $ID_Evento_Categoria,$_POST['COD_Tipo_Forma_Pagamento']);
                 //Insere Informações para gerar o Boleto 
                 $pagamento = new aEvt_Pagamento();
                 $pagamento->selectInnerId_Estrangeiro($ID_Evento, $Id_Estrangeiro);
 
-                $nroParcelas = $_POST['NUM_Parcelas'];
+                $FormaPagto->load();
+                $nroParcelas = $FormaPagto->getNro_Parcelas();
+                if ($nroParcelas == 0) {
+                    $nroParcelas = 1;
+                }
+
                 $categoria->setID_Evento_Categoria($ID_Evento_Categoria);
                 $VlrTotalPag = $evtPart->getVLR_Total();
-                $pagamento->geraInfoPagamento($nroParcelas, $VlrTotalPag);
+                $pagamento->geraInfoPagamento($nroParcelas, $VlrTotalPag, $evento->getDT_Fim(True));
 
                 //Informações para gerar o Boleto 
                 $ass = '';
@@ -222,16 +229,23 @@ if (isset($_POST['Cadastrar'])) {
                     } else {
                         $partic->update();
                     }
+                    $FormaPagto->setCOD_Tipo_Forma_Pagamento($_POST['COD_Tipo_Forma_Pagamento']);
                     //Insere Evento_Participante
-                    $evtPart->insertPartEvt($ID_Evento, $id_Participante, $ID_Evento_Categoria);
+                    $evtPart->insertPartEvt($ID_Evento, $id_Participante, $ID_Evento_Categoria,$_POST['COD_Tipo_Forma_Pagamento']);
                     //Inserir Informações para gerar o Boleto 
                     $pagamento = new aEvt_Pagamento();
                     $pagamento->selectInner($ID_Evento, $cpf);
 
-                    $nroParcelas = $_POST['NUM_Parcelas'];
+
+                    $FormaPagto->load();
+                    $nroParcelas = $FormaPagto->getNro_Parcelas();
+                    if ($nroParcelas == 0) {
+                        $nroParcelas = 1;
+                    }
+
                     $categoria->setID_Evento_Categoria($ID_Evento_Categoria);
                     $VlrTotalPag = $evtPart->getVLR_Total();
-                    $pagamento->geraInfoPagamento($nroParcelas,$VlrTotalPag);
+                    $pagamento->geraInfoPagamento($nroParcelas, $VlrTotalPag, $evento->getDT_Fim(True));
 
                     $ass = '';
                     $msg = '';
@@ -285,6 +299,7 @@ $smarty->assign("DSC_Categoria", $categoria->getDSC_Nome());
 $smarty->assign("listEmp", $emp->select());
 $smarty->assign("listProf", $prof->select());
 $smarty->assign("listEstado", $estado->select());
+$smarty->assign("listFPagto", $FormaPagto->select());
 
 $smarty->assign("Titulo", " - Inserir Participante.");
 $smarty->assign("msg", $FeedbackMessage->getMsg());

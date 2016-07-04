@@ -83,11 +83,12 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         return $this;
     }
 
-    public function geraInfoPagamento($Parcelas, $Valor_Pagar) {
+    public function geraInfoPagamento($Parcelas, $Valor_Pagar,$DataVencimento) {
         $this->setCOD_TipoFormaPagamento(0);
         $this->setCOD_Tipo_Situacao_Pagamento(0); //set igual a zero para Situação Aberto.
         $this->setDT_Pagamento('01-01-1980');
-        $data_atual = date("Y/m/d", strtotime("now"));
+        //$data_atual = date("Y/m/d", strtotime("now"));
+        $data_atual = $DataVencimento;
         $this->setCOD_TipoOrigemInscricao(0);
         $this->setDT_Transacao($data_atual);
         //Set feito no metodo selectInner $pagamento->setID_EVT_Evento($ID_EVT_Evento);
@@ -110,17 +111,18 @@ class aEvt_Pagamento extends mEvt_Pagamento {
         $valorParcela = round($Valor_Pagar / $Parcelas, 2);
         for ($i = 0; $i < $Parcelas; $i++) {
             $nroParcela = $i + 1;
-            $this->geraInfoPagamentoParcela($id_Pagamento, $Parcelas, $nroParcela, $valorParcela);
+            $this->geraInfoPagamentoParcela($id_Pagamento, $Parcelas, $nroParcela, $valorParcela,$DataVencimento);
         }
     }
 
-    private function geraInfoPagamentoParcela($id_PagamentoPai, $Parcelas, $nroParcela, $vlrParcela) {
+    private function geraInfoPagamentoParcela($id_PagamentoPai, $Parcelas, $nroParcela, $vlrParcela,$DataVencimento) {
         $this->setCOD_TipoFormaPagamento(0);
         $this->setCOD_Tipo_Situacao_Pagamento(0); //set igual a zero para Situação Aberto.
         $this->setDT_Pagamento('01-01-1980');
-        $data = date("Y/m/d", strtotime("now"));
-        $this->setCOD_TipoOrigemInscricao(0);
+        //$data = date("Y/m/d", strtotime("now"));
+        $data = date("Y-m-d", strtotime("+".$nroParcela." month", strtotime($DataVencimento)));
         $this->setDT_Transacao($data);
+        $this->setCOD_TipoOrigemInscricao(0);
         //Set feito no metodo selectInner $pagamento->setID_EVT_Evento($ID_EVT_Evento);
         require_once ('./config/configs.php');
         $config = new configs();

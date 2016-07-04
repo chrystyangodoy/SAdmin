@@ -55,8 +55,8 @@ class aEvt_Pagamento_Boleto extends mEvt_Pagamento_Boleto {
         $config = new configs();
         $idNovo = $config->idUnico();
         
-        $this->setID($idNovo);
-        $this->setID_Pagamento_Boleto($id_Pagamento);
+        $this->setID_Pagamento_Boleto($idNovo);
+        $this->setID_EVT_Pagamento($id_Pagamento);
         $this->setNUM_Boleto($Nro_Documento);
         //Verificar onde implementar o Codigo de barras.
         $this->setCOD_Barras_Boleto(0);

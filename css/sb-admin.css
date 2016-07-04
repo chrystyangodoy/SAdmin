@@ -247,7 +247,7 @@ label.error {
 
 #alert {
     display: none;/* O alerta deve iniciar oculto */
-    width: 300px;
+    width: 400px;
     height: auto;
     border-radius:10px;
     font-family:Tahoma,Geneva,Arial,sans-serif;font-size:12px;
@@ -255,10 +255,10 @@ label.error {
     overflow: hidden;
     /*position: fixed;*/
     position: fixed;
-    left: 50%;
+    left: 46%;
     margin-left: -160px;
     z-index: 999999;
-    padding: 10px;
+    padding: 12px;
     color: #fff;
     cursor: pointer;
     top: 0;

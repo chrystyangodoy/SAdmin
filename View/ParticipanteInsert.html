@@ -91,7 +91,7 @@
                                     <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar"  disabled>Cadastrar</button>
                                     <a href="Index.php" class="btn btn-default">Cancelar</a>
                                     <h3 class="page-header">Dados Pessoais</h3>
-                                    
+
                                     <div class="form-group col-lg-4">
                                         <label>CPF</label>
                                         <input type="text" class="form-control" name="COD_CPF" placeholder="CPF" id="COD_CPF">
@@ -119,7 +119,7 @@
                                             <label >RG</label>
                                             <input type="text" class="form-control"  name="COD_RG"  id="COD_RG" placeholder="RG"  disabled>
                                         </div>
-                                        
+
                                     </div>
                                     <h3 class="page-header">Endereço</h3>
                                     <div class="form-group col-lg-3 row">
@@ -200,15 +200,20 @@
                                         <label>Nº Registro</label>
                                         <input type="text" class="form-control" name="NUM_Registro" id="NUM_Registro" placeholder="Número Registro" disabled>
                                     </div>
-                                    
+
                                     <h3 class="page-header">Informação de Pagamento</h3>
                                     <div class="form-group">
-                                        <label>Nro de Parcelas</label>
-                                        <select class="form-control col-lg-3" name="NUM_Parcelas" id="NUM_Parcelas">
+                                        <label>Condição de Pagamento</label>
+                                        <select class="form-control col-lg-3" name="COD_Tipo_Forma_Pagamento" id="COD_Tipo_Forma_Pagamento">
+                                            {foreach from=$listFPagto item=row}
+                                            <option value="{$row.COD_Tipo_Forma_Pagamento}">{$row.DSC_Descricao}</option>
+                                            {/foreach}
+                                            <!--
                                             <option value=1>Parcela Única</option>
                                             <option value=2>2 Parcelas</option>
                                             <option value=3>3 Parcelas</option>
                                             <option value=4>4 Parcelas</option>
+                                            -->
                                         </select>
                                     </div>
 

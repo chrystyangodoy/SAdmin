@@ -39,7 +39,7 @@ class mEvt_Pagamento_Boleto extends dbConnection {
         return $this->COD_Barras_Boleto;
     }
     
-    public function setID($ID_EVT_Pagamento)
+    public function setID_EVT_Pagamento($ID_EVT_Pagamento)
     {
         $this->ID_EVT_Pagamento = $ID_EVT_Pagamento;
     }

@@ -41,7 +41,6 @@ if ($ID_PagtoParc <> 0 or $ID_PagtoParc <> NULL) {
     $Pagamento->loadIDEvento();
 }
 
-
 $DadosEvento->SelectInfoBoleto($ID_Evt_Partic);
 
 $LocalEvento->setID_Local($Evento->getID_BSC_Local_Evento());
@@ -68,7 +67,17 @@ if ($ID_PagtoParc <> 0 or $ID_PagtoParc <> NULL) {
 // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 $valor_cobrado = str_replace(",", ".", $valor_cobrado);
 $valor_boleto = number_format($valor_cobrado + $taxa_boleto, 2, ',', '');
-$nosso_numero = $Banco->getnumero_documento(); // Usaremos o mesmo campo para Nosso número e Número de Documento pois sempre serão números sequênciais.
+
+require_once ('./actions/aEvt_Pagamento_Boleto.php');
+$evtPagtoBoleto = new aEvt_Pagamento_Boleto();
+
+if ($ID_PagtoParc <> 0 or $ID_PagtoParc <> NULL) {
+    $evtPagtoBoleto->setID_Pagamento_Boleto($ID_PagtoParc);
+    $evtPagtoBoleto->load();
+    $nosso_numero = $evtPagtoBoleto->getNUM_Boleto();
+} else {
+    $nosso_numero = $Banco->getnumero_documento(); // Usaremos o mesmo campo para Nosso número e Número de Documento pois sempre serão números sequênciais.    
+}
 
 $dadosboleto["nosso_numero"] = $nosso_numero;
 $dadosboleto["numero_documento"] = $nosso_numero; // Num do pedido ou do documento

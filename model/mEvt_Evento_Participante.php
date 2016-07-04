@@ -37,6 +37,7 @@ class mEvt_Evento_Participante extends dbConnection {
     private $COD_InscricaoExterno;
     private $Num_Inscricao;
     private $DataInscricao;
+    private $ID_FormaPagto;
     
     public function setID_EVT_Evento_Pariticipante($ID_EVT_Evento_Pariticipante) {
         $this->ID_EVT_Evento_Pariticipante = $ID_EVT_Evento_Pariticipante;
@@ -180,6 +181,13 @@ class mEvt_Evento_Participante extends dbConnection {
         {
             return $this->dateToBR($this->DataInscricao);
         }
+    }
+    public function setID_FormaPagto($ID_FormaPagto) {
+        $this->ID_FormaPagto = $ID_FormaPagto;
+    }
+    
+    public function getID_FormaPagto() {
+        return $this->ID_FormaPagto;
     }
     
 }
