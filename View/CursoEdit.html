@@ -1,0 +1,29 @@
+{include file="./Template/HeaderAdmin.html"}
+
+<form id="Salvar" form method="post">
+    <input type="hidden" class="form-control" name="ID_CURSO" id="ID_CURSO" value="{$ID_CURSO}">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Curso</label>
+        <input type="text" class="form-control"  name="Curso" id="Dsc_Banco" value="{$Curso}" placeholder="Curso">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Titulo</label>
+        <input type="text" class="form-control"  name="Titulo" id="Titulo" value="{$Titulo}" placeholder="Titulo">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Data</label>
+        <input type="text" class="form-control" name="Data_hora" id="Daata_Hora" value="{$Data_Hora}" placeholder="Data do Curso">
+    </div>
+    <div class="form-group">
+        <label>Evento</label>
+        <select name="ID_EVT" id="ID_EVT"  class="form-control" style="width: 400px;">
+            <option value="0">-</option>
+            {foreach from=$ListaEvt item=row}
+            <option value="{$row.ID_EVT}" {if $ID_EVT == $row.ID_EVT} selected {/if}>{$row.DSC_Nome}</option>
+            {/foreach}
+        </select>
+    </div>
+    <button type="submit" class="btn" name="Salvar" value="Salvar">Salvar</button>
+    <a href="CursoList.php" class="btn btn-default">Cancelar</a>
+</form>
+{include file="./Template/footer.html"}

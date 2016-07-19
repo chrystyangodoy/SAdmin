@@ -57,8 +57,9 @@ function OnclickAcompanhamento() {
                     showAlert('error', 'CPF não cadastrado para este Evento');
                 } else {
                     showAlert('', 'SUMIT');
-                    url = 'ParticipanteAcompanhamento.php?cpf='+cpf+'&ID_Evento='+$('#AcompanhamentoEVTID').val();;
-                    $(location).attr('href',url);
+                    url = 'ParticipanteAcompanhamento.php?cpf=' + cpf + '&ID_Evento=' + $('#AcompanhamentoEVTID').val();
+                    ;
+                    $(location).attr('href', url);
                 }
             }
         });
@@ -77,7 +78,7 @@ function ListaBoletosPopUp(ID_EVT_Evento_Pariticipante, ID_EVT_Pagamento_Pai) {
     $('.modal-title').empty();
     $('.modal-title').append("Lista de Boletos");
 
-    $.getJSON("getBoletoList.php", {ID_EVT_Evento_Pariticipante: ID_EVT_Evento_Pariticipante,ID_EVT_Pagamento_Pai: ID_EVT_Pagamento_Pai}, function (data) {
+    $.getJSON("getBoletoList.php", {ID_EVT_Evento_Pariticipante: ID_EVT_Evento_Pariticipante, ID_EVT_Pagamento_Pai: ID_EVT_Pagamento_Pai}, function (data) {
         $.each(data, function (index, item) {
             $('#conteudoTabelaBoletos')
                     .append(
@@ -90,6 +91,38 @@ function ListaBoletosPopUp(ID_EVT_Evento_Pariticipante, ID_EVT_Pagamento_Pai) {
                             item.ID_Pagamento + "' target='_blank' class='btn btn-primary' title='Clique para gerar o Boleto.'>" +
                             "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
                             "</a>" +
+                            "</tr>"
+                            );
+        });
+
+        $('.formatcurrency').formatCurrency();
+    });
+
+}
+
+function ListaArtigoPopUp(ID_EVT_Evento_Pariticipante) {
+
+    $('#myModal_Artigo').modal('show');
+    $('#conteudoTabelaArtigo').empty();
+    $('.modal-title').empty();
+    $('.modal-title').append("Submissão de Artigo");
+
+    $.getJSON("getArtigoList.php", {ID_EVT_Evento_Pariticipante: ID_EVT_Evento_Pariticipante}, function (data) {
+        $.each(data, function (index, item) {
+            $('#conteudoTabelaArtigo')
+                    .append(
+                            "<tr>" +
+                            "<td>" + item.Nome_Docto + "</td>" +
+                            "<td>" + item.Assunto + "</td>" +
+                            "<td>" + item.Parecer + "</td>" +
+                            "<td>" + item.Documento + "</td>" +
+                            "<td>" + item.Data_Envio + "</td>" +
+                            "<td>" + item.Idioma_Documento + "</td>" +
+                            //"<td>" + "<a href='Boleto.php?ID_EVT_Evento_Pariticipante="
+                            //+ item.ID_EVT_Evento_Pariticipante + "&ID_EVT_Pagamento_Pai=" +
+                            //item.ID_Pagamento + "' target='_blank' class='btn btn-primary' title='Clique para gerar o Boleto.'>" +
+                            //"<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
+                            //"</a>" +
                             "</tr>"
                             );
         });

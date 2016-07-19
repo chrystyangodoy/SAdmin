@@ -1,0 +1,31 @@
+{include file="./Template/HeaderAdmin.html"}
+<div style="padding-bottom: 10px;">
+    <a class="btn btn-primary" href="CursoInsert.php" role="button">Novo</a>    
+</div>
+<div>
+    <table id="myTable" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Curso</th>
+            <th>Titulo</th>
+            <th>Data</th>
+            <th class="text-right">Ações</th>
+        </tr>
+    </thead>
+    <tbody id="myTabContent">
+        {foreach from=$lista item=row}
+        <tr >
+            <td>{$row.Curso}</td>
+            <td>{$row.Titulo}</td>
+            <td>{$row.Data_Hora}</td>
+            <td class="text-right">
+                <a href="CursoEdit.php?alt={$row.ID_Curso}" class="col-md-offset-1" title="Editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="font-size: 30px;"></span></a>
+                <a href="?del={$row.ID_Curso}" title="Excluir"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="font-size: 30px;"></span></a>
+            </td>            
+        </tr>
+        {/foreach}
+    </tbody>
+</table>
+</div>
+
+{include file="./Template/footer.html"}
