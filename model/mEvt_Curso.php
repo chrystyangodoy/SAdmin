@@ -6,9 +6,11 @@ class mEvt_Curso extends dbConnection {
 
     private $ID_Curso;
     private $Curso;
-    private $Titulo;
+    private $TituloCurso;
     private $Data_Hora;
     private $ID_EVT;
+    private $Valor_Curso;
+    private $Status;
 
     public function setID_Curso($ID_Curso) {
         $this->ID_Curso = $ID_Curso;
@@ -26,20 +28,29 @@ class mEvt_Curso extends dbConnection {
         return $this->Curso;
     }
 
-    public function setTitulo($Titulo) {
-        $this->Titulo = $Titulo;
+    public function setTituloCurso($TituloCurso) {
+        $this->TituloCurso = $TituloCurso;
     }
 
-    public function getTitulo() {
-        return $this->Titulo;
+    public function getTituloCurso() {
+        return $this->TituloCurso;
     }
 
     public function setData_Hora($Data_Hora) {
-        $this->Data_Hora = $Data_Hora;
+        $this->Data_Hora = $this->dateToUS($Data_Hora);
+        //$this->Data_Hora = $Data_Hora;
     }
 
-    public function getData_Hora() {
-        return $this->Data_Hora;
+    public function getData_Hora($us = false) {
+        if ($us)
+        {
+            return $this->Data_Hora;
+        }
+        else
+        {
+            return $this->dateToBR($this->Data_Hora);
+        }
+        //return $this->Data_Hora;
     }
 
     public function setID_EVT($ID_EVT) {
@@ -48,6 +59,22 @@ class mEvt_Curso extends dbConnection {
 
     public function getID_EVT() {
         return $this->ID_EVT;
+    }
+
+    public function setValor_Curso($Valor_Curso) {
+        $this->Valor_Curso = $Valor_Curso;
+    }
+
+    public function getValor_Curso() {
+        return $this->Valor_Curso;
+    }
+
+    public function setStatus($Status) {
+        $this->Status = $Status;
+    }
+
+    public function getStatus() {
+        return $this->Status;
     }
 
 }

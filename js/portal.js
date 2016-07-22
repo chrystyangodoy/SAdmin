@@ -131,3 +131,32 @@ function ListaArtigoPopUp(ID_EVT_Evento_Pariticipante) {
     });
 
 }
+
+function ListaCursosPopUp(ID_EVT) {
+
+    $('#myModal_Cursos').modal('show');
+    $('#conteudoTabelaCursos').empty();
+    $('.modal-title').empty();
+    $('.modal-title').append("Cursos Disponíveis");
+
+    $.getJSON("getCursosList.php", {ID_EVT: ID_EVT}, function (data) {
+        $.each(data, function (index, item) {
+            $('#conteudoTabelaCursos')
+                    .append(
+                            "<tr>" +
+                            "<td hidden=''>" + item.ID_Curso + "</td>" +
+                            "<td>" + item.Curso + "</td>" +
+                            "<td>" + item.TituloCurso + "</td>" +
+                            "<td>" + item.Data_Hora + "</td>" +
+                            "<td class='formatcurrency'>" + item.Valor_Curso + "</td>" +
+                            "<td><a href='setCursos.php?DescCurso="
+                            + item.Curso + "&IDCurso=" + item.ID_Curso + "' target='' class='btn btn-primary' title='Inscrever-se'>" +
+                            "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
+                            "</a>" +
+                            "</tr>"
+                            );
+        });
+        $('.formatcurrency').formatCurrency();
+    });
+
+}

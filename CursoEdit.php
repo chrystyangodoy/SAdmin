@@ -23,9 +23,11 @@ if (isset($_POST['Salvar']))
 {
     $curso->setID_Curso($idUnico);
     $curso->setCurso($_POST['Curso']);
-    $curso->setTitulo($_POST['Titulo']);
+    $curso->setTituloCurso($_POST['TituloCurso']);
     $curso->setData_Hora($_POST['Data_Hora']);
     $curso->setID_EVT($_POST['ID_EVT']);
+    $curso->setValor_Curso($_POST['Valor_Curso']);
+    $curso->setStatus($_POST['Status']);
     $curso->update();
 
     $FeedbackMessage->setMsg("Curso atualizado com sucesso!");
@@ -39,8 +41,8 @@ $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("ListaEvt",$Evento->select());
 $smarty->assign("ID_Curso", $curso->getID_Curso());
 $smarty->assign("Curso",$curso->getCurso());
-$smarty->assign("Titulo", $curso->getTitulo());
-$smarty->assign("Data_Hota", $curso->setData_Hora());
-$smarty->assign("ID_EVT", $curso->setID_EVT());
+$smarty->assign("TituloCurso", $curso->getTituloCurso());
+$smarty->assign("Data_Hora", $curso->getData_Hora());
+$smarty->assign("ID_EVT", $curso->getID_EVT());
 $smarty->assign("Titulo", " - Editar Curso.");
 $smarty->display('./View/CursoEdit.html');

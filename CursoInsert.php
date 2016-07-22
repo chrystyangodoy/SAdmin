@@ -16,7 +16,7 @@ if (isset($_POST['Salvar'])) {
     $idUnico = $config->idUnico();
     $curso->setID_Curso($idUnico);
     $curso->setCurso($_POST['Curso']);
-    $curso->setTitulo($_POST['Titulo']);
+    $curso->setTituloCurso($_POST['TituloCurso']);
     $curso->setData_Hora($_POST['Data_Hora']);
     $curso->setID_EVT($_POST['ID_EVT']);
     $curso->insert();
