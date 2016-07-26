@@ -65,3 +65,28 @@ function OnclickAcompParticpante(ID_BSC_Participante, DSC_Nome) {
 
 
 }
+
+function ListaCursosParticPopUp(ID_EVT,ID_Participante) {
+
+    $('#myModal_Cursos').modal('show');
+    $('#CursosParticipante').empty();
+    $('.modal-title').empty();
+    $('.modal-title').append("Inscrições - Cursos");
+
+    $.getJSON("getCursoPartList.php", { ID_EVT:ID_EVT ,ID_Participante: ID_Participante}, function (data) {
+        $.each(data, function (index, item) {
+            $('#CursosParticipante')
+                    .append(
+                            "<tr>" +
+                            "<td hidden=''>" + item.ID_Curso + "</td>" +
+                            "<td>" + item.Curso + "</td>" +
+                            "<td>" + item.TituloCurso + "</td>" +
+                            "<td>" + item.Data_Hora + "</td>" +
+                            "<td class='formatcurrency'>" + item.Valor_Curso + "</td>" +
+                            "</tr>"
+                            );
+        });
+        $('.formatcurrency').formatCurrency();
+    });
+
+}

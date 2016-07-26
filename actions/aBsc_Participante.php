@@ -183,6 +183,16 @@ class aBsc_Participante extends mBsc_Participante {
             return $ex . error_get_last();
         }
     }
+    
+    public function SelectEventoParticipante()
+    {
+        //$idParticipante = $partic->getID_Participante();
+        try {
+            return $this->RunSelect("SELECT bsc_participante.ID_Participante, bsc_participante.Nome_Cracha as Nome_Cracha, bsc_participante.DSC_NOME AS DSC_Nome, bsc_participante.NUM_Celular AS NUM_Celular, evt_evento.DSC_Nome as DSC_NomeEv, evt_evento_participante.ID_EVT_Evento_Pariticipante, evt_evento.ID_EVT as ID_EVT, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL, evt_evento.Logo_Evento as Logo_Evento FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) INNER JOIN bsc_participante ON (bsc_participante.ID_Participante = evt_evento_participante.ID_BSC_Participante) WHERE 1=1");
+        } catch (Exception $ex) {
+            return $ex . error_get_last();
+        }
+    }
 
     public function countPartic()
     {

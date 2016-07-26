@@ -12,6 +12,9 @@ class aEvt_Curso extends mEvt_Curso {
     protected $sqlSelectEVT = "select * from evt_curso where evt_curso.ID_EVT = '%s' "
             . "AND evt_curso.ID_Curso NOT IN (SELECT evt_curso_participante.ID_Curso FROM evt_curso_participante "
             . "WHERE evt_curso_participante.ID_Participante = '%s')";
+    protected $sqlSelectCursoPart = "select * from evt_curso "
+            . " inner JOIN evt_curso_participante on evt_curso_participante.ID_Curso = evt_curso.ID_Curso "
+            . " where evt_curso.ID_EVT = '%s' AND evt_curso_participante.ID_Participante = '%s'";
 
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getID_Curso(), $this->getCurso(), $this->getTituloCurso(), $this->getData_Hora(), $this->getID_EVT(), $this->getValor_Curso(), $this->getStatus());
@@ -50,4 +53,8 @@ class aEvt_Curso extends mEvt_Curso {
         return $this;
     }
 
+    public function selectCursosPartic($ID_Participante) {
+        $sql = sprintf($this->sqlSelectCursoPart, $this->getID_EVT(),$ID_Participante);
+        return $this->RunSelect($sql);
+    }
 }

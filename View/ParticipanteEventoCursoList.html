@@ -7,8 +7,7 @@
                 <th>Nome</th>
                 <th>Nº Celular</th>
                 <th>Nome do Evento</th>
-                <th>Status Inscrição</th>
-                <th>Atualizar Status</th>
+                <th>Cursos</th>
             </tr>
         </thead>
         <tbody id="myTabContent">
@@ -18,23 +17,7 @@
                 <td>{$row.NUM_Celular}</td>
                 <td>{$row.DSC_NomeEv}</td>
                 <td>
-                    {if $row.COD_Tipo_Situacao_Pagamento eq 0}
-                    <div class="card-text text-center">
-                        <h5 class="bg-info">Inscrição não Confirmado</h5>
-                    </div>
-                    {elseif $row.COD_Tipo_Situacao_Pagamento eq 1}
-                    <div class="card-text text-center">
-                        <h5 class="bg-success">Inscrição Confirmada (Cortesia)</h5>
-                    </div>
-                    {else $row.COD_Tipo_Situacao_Pagamento eq 2}    
-                    <div class="card-text text-center">
-                        <h5 class="bg-success">Inscrição Confirmada</h5>
-                        <!--<h3 class="alert-success" style="font-style:italic;">{$row.COD_Tipo_Situacao_Pagamento} - Pago</h3>-->
-                    </div>
-                    {/if}
-                </td>
-                <td>
-                    <a href='#mywork' title="Situação Inscrição" onclick="OnclickAcompParticpante('{$row.ID_Participante}', '{$row.DSC_Nome}');"><span class="btn btn-default glyphicon glyphicon-credit-card" aria-hidden="true"></span></a>
+                    <a href='#mywork' title="Cursos" onclick="ListaCursosParticPopUp('{$row.ID_EVT}','{$row.ID_Participante}');"><span class="btn btn-default glyphicon glyphicon-credit-card" aria-hidden="true"></span></a>
                 </td>
             </tr>
             {/foreach}
@@ -42,7 +25,7 @@
     </table>
 </div>
 
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal_Cursos">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,21 +33,22 @@
                 <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body" id="corpoPopUp">
-                <table  class="table table-hover" id="TbConteudo">
+
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Evento</th>
-                            <th>Nro da Inscrição</th>
-                            <th>Valor da Inscrição</th>
-                            <th>Situação</th>
+                            <th hidden="">ID_Curso</th>
+                            <th>Curso</th>
+                            <th>Titulo do Curso</th>
+                            <th>Data</th>
+                            <th>Valor</th>
                         </tr>
                     </thead>
-                    <tbody id="conteudoPartic">
+                    <tbody id="CursosParticipante">
+
                     </tbody>
                 </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
