@@ -13,6 +13,25 @@ require_once './config/configs.php';
 $config = new configs();
 
 if (isset($_POST['Salvar'])) {
+    $arquiivo = $_FILES['arquivo']['tmp_name'];
+    $tamanho = $_FILES['arquivo']['size'];
+    $tipo = $_FILES['arquivo']['type'];
+    $nome = $_FILES['arquivo']['name'];
+    $titulo = $_POST['titulo'];
+
+    if ($arquivo != "none") {
+        $fp = fopen($arquivo, "rb");
+        $conteudo = fread($fp, $tamanho);
+        $conteudo = addslashes($conteudo);
+        fclose($fp);
+        //$qry = "INSERT INTO arquivos VALUES   (0,"$nome","$titulo","$conteudo","$tipo")";  
+        //mysql_query($qry);  
+        //if(mysql_affected_rows($conn) > 0)  
+        print "O arquivo foi gravado na base de dados.";
+        //else  print "Não foi possível gravar o arquivo na base de dados.";  
+    }
+//else  print "Não foi possível carregar o arquivo para o servidor.";
+
     $idUnico = $config->idUnico();
     $curso->setID_Curso($idUnico);
     $curso->setCurso($_POST['Curso']);
@@ -26,6 +45,6 @@ if (isset($_POST['Salvar'])) {
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
-$smarty->assign("ListaEvt",$Evento->select());
+$smarty->assign("ListaEvt", $Evento->select());
 $smarty->assign("Titulo", " - Inserir Curso.");
 $smarty->display('./View/CursoInsert.html');

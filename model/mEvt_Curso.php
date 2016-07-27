@@ -10,7 +10,6 @@ class mEvt_Curso extends dbConnection {
     private $Data_Hora;
     private $ID_EVT;
     private $Valor_Curso;
-    private $Status;
 
     public function setID_Curso($ID_Curso) {
         $this->ID_Curso = $ID_Curso;
@@ -67,14 +66,6 @@ class mEvt_Curso extends dbConnection {
 
     public function getValor_Curso() {
         return $this->Valor_Curso;
-    }
-
-    public function setStatus($Status) {
-        $this->Status = $Status;
-    }
-
-    public function getStatus() {
-        return $this->Status;
     }
 
 }

@@ -8,6 +8,7 @@ class mEvt_Curso_Participante extends dbConnection {
     private $Descricao;
     private $ID_Curso;
     private $ID_Participante;
+    private $Status;
 
     public function setID_EVT_Curso_Participante($ID_EVT_Curso_Participante) {
         $this->ID_EVT_Curso_Participante = $ID_EVT_Curso_Participante;
@@ -16,6 +17,7 @@ class mEvt_Curso_Participante extends dbConnection {
     public function getID_EVT_Curso_Participante() {
         return $this->ID_EVT_Curso_Participante;
     }
+
     public function setDescricao($Descricao) {
         $this->Descricao = $Descricao;
     }
@@ -23,6 +25,7 @@ class mEvt_Curso_Participante extends dbConnection {
     public function getDescricao() {
         return $this->Descricao;
     }
+
     public function setID_Curso($ID_Curso) {
         $this->ID_Curso = $ID_Curso;
     }
@@ -30,12 +33,21 @@ class mEvt_Curso_Participante extends dbConnection {
     public function getID_Curso() {
         return $this->ID_Curso;
     }
+
     public function setID_Participante($ID_Participante) {
         $this->ID_Participante = $ID_Participante;
     }
 
     public function getID_Participante() {
         return $this->ID_Participante;
+    }
+
+    public function setStatus($Status) {
+        $this->Status = $Status;
+    }
+
+    public function getStatus() {
+        return $this->Status;
     }
 
 }
