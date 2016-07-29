@@ -20,11 +20,11 @@
                 <td>
                     {if $row.COD_Tipo_Situacao_Pagamento eq 0}
                     <div class="card-text text-center">
-                        <h5 class="bg-info">Inscrição não Confirmado</h5>
+                        <h5 class="bg-info">Não Pago</h5>
                     </div>
                     {elseif $row.COD_Tipo_Situacao_Pagamento eq 1}
                     <div class="card-text text-center">
-                        <h5 class="bg-success">Inscrição Confirmada (Cortesia)</h5>
+                        <h5 class="bg-success">Baixa Parcial</h5>
                     </div>
                     {else $row.COD_Tipo_Situacao_Pagamento eq 2}    
                     <div class="card-text text-center">
@@ -57,6 +57,7 @@
                             <th>Nro da Inscrição</th>
                             <th>Valor da Inscrição</th>
                             <th>Situação</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody id="conteudoPartic">

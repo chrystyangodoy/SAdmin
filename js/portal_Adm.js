@@ -41,27 +41,44 @@ function OnclickAcompParticpante(ID_BSC_Participante, DSC_Nome) {
     $('.modal-title').append(DSC_Nome);
     $.getJSON("getPagtoParticipanteID.php", {ID_BSC_Participante: ID_BSC_Participante}, function (data) {
         $.each(data, function (index, item) {
-            if (item.Status == 0) {
-                $varStatus = "Inscrição não Confirmada";
-            } else if (item.Status == 1) {
-                $varStatus = "Inscrição Confirmada";
+            if (item.COD_Tipo_Situacao_Pagamento == 0) {
+                $varStatus = "Parcela não Confirmada";
+            } else if (item.COD_Tipo_Situacao_Pagamento == 1) {
+                $varStatus = "Parcela Confirmada";
+            } else if (item.COD_Tipo_Situacao_Pagamento == 2) {
+                $varStatus = "Parcela Cortesia";
             } else
-                $varStatus = "Inscrição Cancelada";
+                $varStatus = "Parcela Baixa Cancelada";
+            
             $('#conteudoPartic')
                     .append(
                             "<tr>" +
                             "<td>" + item.DSC_Nome + "</td>" +
                             "<td>" + item.Num_Inscricao + "</td>" +
-                            "<td class='formatcurrency'>" + item.VLR_Total_Inscricao + "</td>" +
-                            "<td>" +
-                            "<input type='hidden' class='form-control' name='ID_Pagamento' id='ID_Pagamento' value='" + item.ID_Pagamento + "'>" +
-                            "<select id='COD_Tipo_Situacao_Pagamento" + index + "' class='COD_Tipo_Situacao_Pagamento' onchange = updatePagto('" + item.ID_Pagamento + "','COD_Tipo_Situacao_Pagamento" + index + "')>" +
-                            "<option value='0'>--</option>" +
-                            "<option value='0'>0 - Não Pago</option>" +
-                            "<option value='1'>1 - Cortesia</option>" +
-                            "<option value='2'>2 - Baixa</option>" +
-                            "</select>" +
-                            "</td>" +
+                            "<td class='formatcurrency'>" + item.VLR_Transacao + "</td>" +
+                            "<td>" + $varStatus + "</td>" +
+                            "<td width='26%'><a margin='10px' href='setStatusPagamento.php?ID_Pagamento="
+                            + item.ID_Pagamento + "&Confirm=1'" +
+                            " class='btn btn-default' title='Baixa Normal.'>" +
+                            "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
+                            "</a>" +
+                            "<a href='setStatusPagamento.php?ID_Pagamento="
+                            + item.ID_Pagamento + "&Confirm=2'" +
+                            " class='btn btn-default' title='Baixa Cortesia.'>" +
+                            "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
+                            "</a>" +
+                            "<a href='setStatusPagamento.php?ID_Pagamento="
+                            + item.ID_Pagamento + "&Confirm=3'" +
+                            " class='btn btn-danger' title='Cancelar Baixa.'>" +
+                            "<span class='glyphicon glyphicon glyphicon-remove' aria-hidden='true'></span>" +
+                            "</a></td>" +
+                            //"<td><input type='hidden' class='form-control' name='ID_Pagamento' id='ID_Pagamento' value='" + item.ID_Pagamento + "'>" +
+                            //"<select id='COD_Tipo_Situacao_Pagamento" + index + "' class='COD_Tipo_Situacao_Pagamento' onchange = updatePagto('" + item.ID_Pagamento + "','COD_Tipo_Situacao_Pagamento" + index + "')>" +
+                            //"<option value='0'>--</option>" +
+                            //"<option value='0'>0 - Não Pago</option>" +
+                            //"<option value='1'>1 - Cortesia</option>" +
+                            //"<option value='2'>2 - Baixa</option>" +
+                            //"</select></td>" +
                             "</tr>"
                             );
 

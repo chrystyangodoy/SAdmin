@@ -16,32 +16,27 @@ class aBsc_Participante extends mBsc_Participante {
     protected $sqlSelectInfoEvt = "SELECT bsc_participante.ID_Participante, bsc_participante.DSC_Nome,bsc_participante.Nome_Cracha, bsc_participante.COD_CPF, bsc_participante.DSC_Email, bsc_participante.Cod_Participante FROM bsc_participante LEFT JOIN seg_usuario ON bsc_participante.ID_Usuario = seg_usuario.ID_Usuario WHERE seg_usuario.ID_Usuario = '%s'";
     protected $sqlSelectParticipanteEvento = "";
 
-    public function insert()
-    {
+    public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getID_Participante(), $this->getCOD_CPF(), $this->getCOD_RG(), $this->getId_Estrangeiro(), $this->getNome_Cracha(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Usuario(), $this->getCod_Participante());
         return $this->RunQuery($sql);
     }
 
-    public function update()
-    {
+    public function update() {
         $sql = sprintf($this->sqlUpdate, $this->getCOD_CPF(), $this->getCOD_RG(), $this->getId_Estrangeiro(), $this->getNome_Cracha(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Usuario(), $this->getCod_Participante(), $this->getID_Participante());
         return $this->RunQuery($sql);
     }
 
-    public function delete()
-    {
+    public function delete() {
         $sql = sprintf($this->sqlDelete, $this->getID_Participante());
         return $this->RunQuery($sql);
     }
 
-    public function select($where = '', $order = '')
-    {
+    public function select($where = '', $order = '') {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
 
-    public function load()
-    {
+    public function load() {
         $rs = $this->select(sprintf("and ID_Participante='%s'", $this->getID_Participante()));
         $this->setID_Participante($rs[0]['ID_Participante']);
         $this->setCOD_CPF($rs[0]['COD_CPF']);
@@ -67,70 +62,52 @@ class aBsc_Participante extends mBsc_Participante {
         return $this;
     }
 
-    public function insertPartUs()
-    {
+    public function insertPartUs() {
         $sql = sprintf($this->sqlinsertPartUs, $this->getCOD_CPF(), $this->getCOD_RG(), $this->getNome_Cracha(), $this->getDSC_Nome(), $this->getDSC_Endereco(), $this->getDSC_Bairro(), $this->getDSC_Cidade(), $this->getNUM_CEP(), $this->getNUM_Fone(), $this->getNUM_Celular(), $this->getNUM_FAX(), $this->getDSC_Profissao_Especialidade(), $this->getDSC_Email(), $this->getNUM_Registro(), $this->getCOD_Tipo_Estado(), $this->getID_BSC_Empresa(), $this->getID_BSC_Profissao(), $this->getID_Usuario(), $this->getCod_Participante());
         return $this->RunQuery($sql);
     }
 
-    public function selectNotExistsCPF($COD_CPF)
-    {
+    public function selectNotExistsCPF($COD_CPF) {
         $rs = $this->RunSelect(sprintf($this->sqlSelectExist, $COD_CPF));
         $count = $rs[0]['COUNTCPF'];
-        if ($count == 0)
-        {
+        if ($count == 0) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
-    public function selectNotExistsId_Estrangeiro($Id_Estrangeiro)
-    {
+    public function selectNotExistsId_Estrangeiro($Id_Estrangeiro) {
         $rs = $this->RunSelect(sprintf($this->sqlSelectExistIDEst, $Id_Estrangeiro));
         $count = $rs[0]['COUNTIDEst'];
-        if ($count == 0)
-        {
+        if ($count == 0) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
-    public function selectNotExistsCPFEdit($COD_CPF, $ID_Participante)
-    {
+    public function selectNotExistsCPFEdit($COD_CPF, $ID_Participante) {
         $rs = $this->RunSelect(sprintf($this->sqlSelectExistEdit, $COD_CPF, $ID_Participante));
         $count = $rs[0]['COUNTCPF'];
-        if ($count == 0)
-        {
+        if ($count == 0) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
-    public function selectNotExistsId_EstrangeiroEdit($Id_Estrangeiro, $ID_Participante)
-    {
+    public function selectNotExistsId_EstrangeiroEdit($Id_Estrangeiro, $ID_Participante) {
         $rs = $this->RunSelect(sprintf($this->sqlSelectExistEditIDEst, $Id_Estrangeiro, $ID_Participante));
         $count = $rs[0]['COUNTIDEst'];
-        if ($count == 0)
-        {
+        if ($count == 0) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
-    public function selectInfoPartic($ID_Usuario)
-    {
+    public function selectInfoPartic($ID_Usuario) {
         $rs = $this->RunSelect(sprintf($this->sqlSelectInfoEvt, $ID_Usuario));
         //$rs = sprintf($this->sqlSelectInfoEvt, $ID_Usuario);
         $this->setID_Participante($rs[0]['ID_Participante']);
@@ -143,49 +120,56 @@ class aBsc_Participante extends mBsc_Participante {
         return $this;
     }
 
-    public function selectParticPorCPF()
-    {
+    public function selectParticPorCPF() {
         $rs = $this->select(sprintf("and COD_CPF='%s'", $this->getCOD_CPF()));
         return $rs;
     }
 
-    public function selectParticPorID()
-    {
+    public function selectParticPorID() {
         $rs = $this->select(sprintf("and ID_Participante='%s'", $this->getID_Participante()));
         return $rs;
     }
 
-    public function getIDParticipantePeloIDUsuario($ID_Usuario)
-    {
+    public function getIDParticipantePeloIDUsuario($ID_Usuario) {
         $rs = $this->select(sprintf("and ID_Usuario='%s'", $ID_Usuario));
-        if (empty($rs))
-        {
+        if (empty($rs)) {
             return null;
-        }
-        else
-        {
+        } else {
             return $rs[0]['ID_Participante'];
         }
     }
 
-    public function getParticipanteEvente($eventoID)
-    {
+    public function getParticipanteEvente($eventoID) {
         $rs = $this->select(sprintf($this->sqlSelectParticipanteEvento));
         return $rs;
     }
 
-    public function SelectPartEvento()
-    {
+    public function SelectPartEvento() {
         //$idParticipante = $partic->getID_Participante();
         try {
-            return $this->RunSelect("SELECT bsc_participante.ID_Participante, bsc_participante.Nome_Cracha as Nome_Cracha, bsc_participante.DSC_NOME AS DSC_Nome, bsc_participante.NUM_Celular AS NUM_Celular, evt_evento.DSC_Nome as DSC_NomeEv, evt_evento_participante.ID_EVT_Evento_Pariticipante,evt_evento.ID_EVT as ID_EVT, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL,evt_evento.Logo_Evento as Logo_Evento, evt_pagamento.COD_Tipo_Situacao_Pagamento AS COD_Tipo_Situacao_Pagamento FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) INNER JOIN evt_pagamento ON (evt_evento_participante.ID_EVT_Evento_Pariticipante = evt_pagamento.ID_EVT_Evento) INNER JOIN bsc_participante ON (bsc_participante.ID_Participante = evt_evento_participante.ID_BSC_Participante) WHERE 1=1");
+            return $this->RunSelect("SELECT bsc_participante.ID_Participante, 
+                    bsc_participante.Nome_Cracha as Nome_Cracha, 
+                    bsc_participante.DSC_NOME AS DSC_Nome, bsc_participante.NUM_Celular AS NUM_Celular, 
+                    evt_evento.DSC_Nome as DSC_NomeEv, evt_evento_participante.ID_EVT_Evento_Pariticipante,
+                    evt_evento.ID_EVT as ID_EVT, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, 
+                    DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, 
+                    bsc_local_evento.DSC_Endereco as DSC_Endereco, 
+                    bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, 
+                    bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL,
+                    evt_evento.Logo_Evento as Logo_Evento, 
+                    evt_pagamento.COD_Tipo_Situacao_Pagamento AS COD_Tipo_Situacao_Pagamento 
+                    FROM evt_evento_participante 
+                    INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) 
+                    INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) 
+                    INNER JOIN evt_pagamento ON (evt_evento_participante.ID_EVT_Evento_Pariticipante = evt_pagamento.ID_EVT_Evento) 
+                    INNER JOIN bsc_participante ON (bsc_participante.ID_Participante = evt_evento_participante.ID_BSC_Participante) 
+                    WHERE 1=1 AND ID_EVT_Pagamento_Pai=0");
         } catch (Exception $ex) {
             return $ex . error_get_last();
         }
     }
-    
-    public function SelectEventoParticipante()
-    {
+
+    public function SelectEventoParticipante() {
         //$idParticipante = $partic->getID_Participante();
         try {
             return $this->RunSelect("SELECT bsc_participante.ID_Participante, bsc_participante.Nome_Cracha as Nome_Cracha, bsc_participante.DSC_NOME AS DSC_Nome, bsc_participante.NUM_Celular AS NUM_Celular, evt_evento.DSC_Nome as DSC_NomeEv, evt_evento_participante.ID_EVT_Evento_Pariticipante, evt_evento.ID_EVT as ID_EVT, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL, evt_evento.Logo_Evento as Logo_Evento FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) INNER JOIN bsc_participante ON (bsc_participante.ID_Participante = evt_evento_participante.ID_BSC_Participante) WHERE 1=1");
@@ -194,9 +178,9 @@ class aBsc_Participante extends mBsc_Participante {
         }
     }
 
-    public function countPartic()
-    {
+    public function countPartic() {
         $COUNT = $this->RunSelect("SELECT COUNT(ID_Participante)+1 as COUNT FROM bsc_participante");
         return $COUNT[0]['COUNT'];
     }
+
 }

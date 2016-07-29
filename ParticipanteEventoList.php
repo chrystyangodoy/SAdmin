@@ -1,5 +1,7 @@
 <?php
 session_start();
+$_SESSION['url'] = $_SERVER['PHP_SELF'];
+
 include_once './config/ValidaSessao.php';
 
 require_once 'smarty.php';
