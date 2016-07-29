@@ -37,7 +37,6 @@ class mEvt_Curso extends dbConnection {
 
     public function setData_Hora($Data_Hora) {
         $this->Data_Hora = $this->dateToUS($Data_Hora);
-        //$this->Data_Hora = $Data_Hora;
     }
 
     public function getData_Hora($us = false) {
@@ -48,8 +47,7 @@ class mEvt_Curso extends dbConnection {
         else
         {
             return $this->dateToBR($this->Data_Hora);
-        }
-        //return $this->Data_Hora;
+        }       
     }
 
     public function setID_EVT($ID_EVT) {

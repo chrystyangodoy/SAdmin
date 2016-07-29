@@ -5,7 +5,7 @@ function updatePagto(ID_Pagamento, COD_Tipo_Situacao_Pagamento) {
     $.getJSON("getStatusPagtoEventoID.php", {ID_Pagamento: ID_Pagamento, COD_Tipo_Situacao_Pagamento: CodSituacao}, function (data) {
         showAlert('', 'Atualizado!');
     });
-   // $('#conteudoParticEvento').re
+    // $('#conteudoParticEvento').re
 }
 
 function OnclickAcompanhamento(ID_EVT_Evento, DSC_Nome) {
@@ -41,7 +41,12 @@ function OnclickAcompParticpante(ID_BSC_Participante, DSC_Nome) {
     $('.modal-title').append(DSC_Nome);
     $.getJSON("getPagtoParticipanteID.php", {ID_BSC_Participante: ID_BSC_Participante}, function (data) {
         $.each(data, function (index, item) {
-
+            if (item.Status == 0) {
+                $varStatus = "Inscrição não Confirmada";
+            } else if (item.Status == 1) {
+                $varStatus = "Inscrição Confirmada";
+            } else
+                $varStatus = "Inscrição Cancelada";
             $('#conteudoPartic')
                     .append(
                             "<tr>" +
@@ -66,15 +71,22 @@ function OnclickAcompParticpante(ID_BSC_Participante, DSC_Nome) {
 
 }
 
-function ListaCursosParticPopUp(ID_EVT,ID_Participante) {
+function ListaCursosParticPopUp(ID_EVT, ID_Participante) {
 
     $('#myModal_Cursos').modal('show');
     $('#CursosParticipante').empty();
     $('.modal-title').empty();
     $('.modal-title').append("Inscrições - Cursos");
 
-    $.getJSON("getCursoPartList.php", { ID_EVT:ID_EVT ,ID_Participante: ID_Participante}, function (data) {
+    $.getJSON("getCursoPartList.php", {ID_EVT: ID_EVT, ID_Participante: ID_Participante}, function (data) {
         $.each(data, function (index, item) {
+            if (item.Status == 0) {
+                $varStatus = "Inscrição não Confirmada";
+            } else if (item.Status == 1) {
+                $varStatus = "Inscrição Confirmada";
+            } else
+                $varStatus = "Inscrição Cancelada";
+
             $('#CursosParticipante')
                     .append(
                             "<tr>" +
@@ -83,6 +95,17 @@ function ListaCursosParticPopUp(ID_EVT,ID_Participante) {
                             "<td>" + item.TituloCurso + "</td>" +
                             "<td>" + item.Data_Hora + "</td>" +
                             "<td class='formatcurrency'>" + item.Valor_Curso + "</td>" +
+                            "<td>" + $varStatus + "</td>" +
+                            "<td>" + "<a href='setStatusCursoParticipante.php?ID_EVT_Curso_Participante="
+                            + item.ID_EVT_Curso_Participante + "&Confirm=1'" +
+                            " class='btn btn-primary' title='Confirmar Inscrição.'>" +
+                            "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
+                            "</a></td>" +
+                            "<td>" + "<a href='setStatusCursoParticipante.php?ID_EVT_Curso_Participante="
+                            + item.ID_EVT_Curso_Participante + "&Confirm=2'" +
+                            " class='btn btn-primary' title='Cancelar Inscrição.'>" +
+                            "<span class='glyphicon glyphicon glyphicon-remove' aria-hidden='true'></span>" +
+                            "</a></td>" +
                             "</tr>"
                             );
         });
