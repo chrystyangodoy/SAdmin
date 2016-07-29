@@ -43,13 +43,26 @@ function OnclickAcompParticpante(ID_BSC_Participante, DSC_Nome) {
         $.each(data, function (index, item) {
             if (item.COD_Tipo_Situacao_Pagamento == 0) {
                 $varStatus = "Parcela não Confirmada";
+                $varDisableBN = "";
+                $varDisableBC = "";
+                $varDisableCB = "";
             } else if (item.COD_Tipo_Situacao_Pagamento == 1) {
                 $varStatus = "Parcela Confirmada";
+                $varDisableBN = "disabled";
+                $varDisableBC = "";
+                $varDisableCB = "";
             } else if (item.COD_Tipo_Situacao_Pagamento == 2) {
                 $varStatus = "Parcela Cortesia";
-            } else
+                $varDisableBN = "";
+                $varDisableBC = "disabled";
+                $varDisableCB = "";
+            } else {
                 $varStatus = "Parcela Baixa Cancelada";
-            
+                $varDisableBN = "";
+                $varDisableBC = "";
+                $varDisableCB = "disabled";
+            }
+
             $('#conteudoPartic')
                     .append(
                             "<tr>" +
@@ -59,17 +72,17 @@ function OnclickAcompParticpante(ID_BSC_Participante, DSC_Nome) {
                             "<td>" + $varStatus + "</td>" +
                             "<td width='26%'><a margin='10px' href='setStatusPagamento.php?ID_Pagamento="
                             + item.ID_Pagamento + "&Confirm=1'" +
-                            " class='btn btn-default' title='Baixa Normal.'>" +
+                            " class='btn btn-default' title='Baixa Normal.'"+$varDisableBN+">" +
                             "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
                             "</a>" +
                             "<a href='setStatusPagamento.php?ID_Pagamento="
                             + item.ID_Pagamento + "&Confirm=2'" +
-                            " class='btn btn-default' title='Baixa Cortesia.'>" +
+                            " class='btn btn-default' title='Baixa Cortesia.'"+$varDisableBC+">" +
                             "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
                             "</a>" +
                             "<a href='setStatusPagamento.php?ID_Pagamento="
                             + item.ID_Pagamento + "&Confirm=3'" +
-                            " class='btn btn-danger' title='Cancelar Baixa.'>" +
+                            " class='btn btn-danger' title='Cancelar Baixa.'"+$varDisableCB+">" +
                             "<span class='glyphicon glyphicon glyphicon-remove' aria-hidden='true'></span>" +
                             "</a></td>" +
                             //"<td><input type='hidden' class='form-control' name='ID_Pagamento' id='ID_Pagamento' value='" + item.ID_Pagamento + "'>" +
@@ -99,10 +112,19 @@ function ListaCursosParticPopUp(ID_EVT, ID_Participante) {
         $.each(data, function (index, item) {
             if (item.Status == 0) {
                 $varStatus = "Inscrição não Confirmada";
+                $varDisableConfirm = "";
+                $varDisableCancela = "";
+
             } else if (item.Status == 1) {
                 $varStatus = "Inscrição Confirmada";
-            } else
+                $varDisableConfirm = "disabled";
+                $varDisableCancela = "";
+            } else {
                 $varStatus = "Inscrição Cancelada";
+                $varDisableConfirm = "";
+                $varDisableCancela = "disabled";
+            }
+
 
             $('#CursosParticipante')
                     .append(
@@ -115,12 +137,13 @@ function ListaCursosParticPopUp(ID_EVT, ID_Participante) {
                             "<td>" + $varStatus + "</td>" +
                             "<td>" + "<a href='setStatusCursoParticipante.php?ID_EVT_Curso_Participante="
                             + item.ID_EVT_Curso_Participante + "&Confirm=1'" +
-                            " class='btn btn-primary' title='Confirmar Inscrição.'>" +
+                            " class='btn btn-primary' title='Confirmar Inscrição.'"
+                            + $varDisableConfirm + ">" +
                             "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
                             "</a></td>" +
                             "<td>" + "<a href='setStatusCursoParticipante.php?ID_EVT_Curso_Participante="
                             + item.ID_EVT_Curso_Participante + "&Confirm=2'" +
-                            " class='btn btn-primary' title='Cancelar Inscrição.'>" +
+                            " class='btn btn-primary' title='Cancelar Inscrição.'" + $varDisableCancela + ">" +
                             "<span class='glyphicon glyphicon glyphicon-remove' aria-hidden='true'></span>" +
                             "</a></td>" +
                             "</tr>"
