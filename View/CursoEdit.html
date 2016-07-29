@@ -1,7 +1,9 @@
 {include file="./Template/HeaderAdmin.html"}
+<script src="./js/jquery.validate.min.js" type="text/javascript"></script>
 <script src="./js/jquery.mask.js" type="text/javascript"></script>
+<script src="./js/Masks.js" type="text/javascript"></script>
 
-<form id="Salvar" form method="post">
+<form id="Salvar" form method="post" enctype="multipart/form-data">
     <input type="hidden" class="form-control" name="ID_CURSO" id="ID_CURSO" value="{$ID_CURSO}">
     <div class="form-group">
         <label for="exampleInputEmail1">Curso</label>
@@ -13,10 +15,15 @@
     </div>
     <div class="row">
         <div class="form-group col-md-3">
-        <label>Data</label>
-        <input type="text" class="form-control" name="Data_Hora" id="Data_Hora" value="{$Data_Hora}" placeholder="Data do Curso">
+            <label>Data</label>
+            <input type="text" class="form-control" name="Data_Hora" id="Data_Hora" value="{$Data_Hora}" placeholder="Data do Curso">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Valor</label>
+            <input type="text" class="form-control" name="Valor_Curso" id="Valor_Curso" placeholder="Valor do Curso">
         </div>
     </div>
+
     <div class="form-group">
         <label>Evento</label>
         <select name="ID_EVT" id="ID_EVT"  class="form-control" style="width: 400px;">
