@@ -49,6 +49,15 @@ class aEvt_Pagamento_Boleto extends mEvt_Pagamento_Boleto {
         $this->setID_EVT_Pagamento($rs[0]['ID_EVT_Pagamento']);
         return $this;
     }
+    
+    public function loadEvtPagto() {
+        $rs = $this->select(sprintf("and ID_EVT_Pagamento='%s'", $this->getID_EVT_Pagamento()));
+        $this->setID_Pagamento_Boleto($rs[0]['ID_Pagamento_Boleto']);
+        $this->setNUM_Boleto($rs[0]['NUM_Boleto']);
+        $this->setCOD_Barras_Boleto($rs[0]['COD_Barras_Boleto']);
+        $this->setID_EVT_Pagamento($rs[0]['ID_EVT_Pagamento']);
+        return $this;
+    }
 
     public function geraParcelasPagto($id_Pagamento, $Nro_Documento) {
         require_once ('./config/configs.php');

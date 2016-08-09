@@ -31,6 +31,9 @@ $FormaPagto = new aTb_Tipo_Forma_Pagamento();
 $ID_Evento = $_GET['ID_EVT_Evento'];
 $ID_Evento_Categoria = $_GET['ID_Evento_Categoria'];
 
+require_once './actions/aEvt_Curso.php';
+$Cursos = new aEvt_Curso();
+
 if (isset($_POST['Cadastrar'])) {
     require_once './actions/aEvt_Evento_Participante.php';
     require_once ('./config/configs.php');
@@ -300,6 +303,7 @@ $smarty->assign("listEmp", $emp->select());
 $smarty->assign("listProf", $prof->select());
 $smarty->assign("listEstado", $estado->select());
 $smarty->assign("listFPagto", $FormaPagto->select());
+$smarty->assign("listCursos",$Cursos->selectCursoID_EVT());
 
 $smarty->assign("Titulo", " - Inserir Participante.");
 $smarty->assign("msg", $FeedbackMessage->getMsg());

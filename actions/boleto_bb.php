@@ -10,7 +10,7 @@ require_once './actions/aEvt_Pagamento.php';
 
 $ID_Evt_Partic = $_SESSION['ID_Evt_Part'];
 //$ID_Evt_Partic = 'd12341f3a8ad02ead64066d7dc11feba';
-$ID_PagtoParc = $_SESSION['ID_PagtoParc'];
+$ID_PagtoParcela = $_SESSION['ID_PagtoParc'];
 
 $Evento = new aEvt_Evento();
 $DadosEvento = new aEvt_Evento_Participante();
@@ -33,8 +33,8 @@ if ($CodBanco == 0 || $CodBanco == NULL) {
 }
 $Banco->load();
 
-if ($ID_PagtoParc <> 0 or $ID_PagtoParc <> NULL) {
-    $Pagamento->setID_Pagamento($ID_PagtoParc);
+if ($ID_PagtoParcela <> 0 or $ID_PagtoParcela <> NULL) {
+    $Pagamento->setID_Pagamento($ID_PagtoParcela);
     $Pagamento->loadIDPagto();
 } else {
     $Pagamento->setID_EVT_Evento($ID_Evt_Partic);
@@ -56,10 +56,12 @@ $dias_de_prazo_para_pagamento = 5;
 $taxa_boleto = 0.00;
 $data_emissão = date("d/m/Y", strtotime("now"));
 //$data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006";
-$data_venc = $Evento->getDT_Fim();
+//Data de vencimento a partir da data do Fim do período de inscrição do Evento.
+//$data_venc = $Evento->getDT_Fim();
+$data_venc = $Pagamento->getDT_Transacao(False);
 //$valor_cobrado = $Pagamento->getVLR_Transacao(); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 //Informação capturada a partir do evento participante
-if ($ID_PagtoParc <> 0 or $ID_PagtoParc <> NULL) {
+if ($ID_PagtoParcela <> 0 or $ID_PagtoParcela <> NULL) {
     $valor_cobrado = $Pagamento->getVLR_Transacao();
 } else {
     $valor_cobrado = $DadosEvento->getVLR_Total_Inscricao();
@@ -71,16 +73,19 @@ $valor_boleto = number_format($valor_cobrado + $taxa_boleto, 2, ',', '');
 require_once ('./actions/aEvt_Pagamento_Boleto.php');
 $evtPagtoBoleto = new aEvt_Pagamento_Boleto();
 
-if ($ID_PagtoParc <> 0 or $ID_PagtoParc <> NULL) {
-    $evtPagtoBoleto->setID_Pagamento_Boleto($ID_PagtoParc);
-    $evtPagtoBoleto->load();
+if ($ID_PagtoParcela <> 0 or $ID_PagtoParcela <> NULL) {
+    $evtPagtoBoleto->setID_EVT_Pagamento($ID_PagtoParcela);
+    $evtPagtoBoleto->loadEvtPagto();
+    
     $nosso_numero = $evtPagtoBoleto->getNUM_Boleto();
 } else {
     $nosso_numero = $Banco->getnumero_documento(); // Usaremos o mesmo campo para Nosso número e Número de Documento pois sempre serão números sequênciais.    
 }
-
+//PEDIDO ATUAL - 
+$nroParcela = $Pagamento->getNUM_Parcelas();
+//PEDIDO ATUAL - FINAL
 $dadosboleto["nosso_numero"] = $nosso_numero;
-$dadosboleto["numero_documento"] = $nosso_numero; // Num do pedido ou do documento
+$dadosboleto["numero_documento"] = $nosso_numero." / ".$nroParcela; // Num do pedido ou do documento
 $dadosboleto["data_vencimento"] = $data_venc; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
 $dadosboleto["data_documento"] = $data_emissão; // Data de emissão do Boleto
 $dadosboleto["data_processamento"] = $data_emissão; // Data de processamento do boleto (opcional)
@@ -179,10 +184,13 @@ if ($nro_dig_NossoNumero <= 5) {
 $IsPromotora = $Evento->getisPromotora();
 
 if ($IsPromotora) {
+    $NomeEvento = $Evento->getDSC_Nome();
     $NomeEmpresa = $Evento->getDSC_Nome_Promotora();
     $cnpjEmpresa = $Evento->getCOD_CNPJ_Promotora();
     $Endereço = $LocalEvento->getDSC_Nome() . " - " . $LocalEvento->getDSC_Endereco() . " - " . $LocalEvento->getDSC_Bairro() . " Telefone: " . $LocalEvento->getNUM_Fone();
     $CidadeEstado = $LocalEvento->getDSC_Cidade();
+    $EndereçoEvento = $LocalEvento->getDSC_Nome() . " - " . $LocalEvento->getDSC_Endereco() . " - " . $LocalEvento->getDSC_Bairro() . " Telefone: " . $LocalEvento->getNUM_Fone();
+    $CidadeEstadoEvento = $LocalEvento->getDSC_Cidade();
 } else {
     $IDEmpresa = $Evento->getID_Empresa();
     $NomeEvento = $Evento->getDSC_Nome();

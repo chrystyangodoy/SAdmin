@@ -24,12 +24,12 @@ class aEvt_Pagamento extends mEvt_Pagamento {
     protected $sqlUpdateSituacao = "update evt_pagamento set COD_Tipo_Situacao_Pagamento='%s' WHERE ID_Pagamento='%s'";
 
     public function insert() {
-        $sql = sprintf($this->sqlInsert, $this->getID_Pagamento(), $this->getDT_Transacao(), $this->getDT_Pagamento(), $this->getVLR_Transacao(), $this->getVR_Pago(), $this->getNUM_Recibo(), $this->getCOD_TipoFormaPagamento(), $this->getCOD_TipoOrigemInscricao(), $this->getID_EVT_Evento(), $this->getID_EVT_Pagamento_Pai(), $this->getCOD_Tipo_Situacao_Pagamento(), $this->getQTD_Parcelas(), $this->getNUM_Parcelas(), $this->getQTD_Parcelas_Pagas());
+        $sql = sprintf($this->sqlInsert, $this->getID_Pagamento(), $this->getDT_Transacao(True), $this->getDT_Pagamento(True), $this->getVLR_Transacao(), $this->getVR_Pago(), $this->getNUM_Recibo(), $this->getCOD_TipoFormaPagamento(), $this->getCOD_TipoOrigemInscricao(), $this->getID_EVT_Evento(), $this->getID_EVT_Pagamento_Pai(), $this->getCOD_Tipo_Situacao_Pagamento(), $this->getQTD_Parcelas(), $this->getNUM_Parcelas(), $this->getQTD_Parcelas_Pagas());
         return $this->RunQuery($sql);
     }
 
     public function update() {
-        $sql = sprintf($this->sqlUpdate, $this->getDT_Transacao(), $this->getDT_Pagamento(), $this->getVLR_Transacao(), $this->getVR_Pago(), $this->getNUM_Recibo(), $this->getCOD_TipoFormaPagamento(), $this->getCOD_TipoOrigemInscricao(), $this->getID_EVT_Evento(), $this->getID_EVT_Pagamento_Pai(), $this->getCOD_Tipo_Situacao_Pagamento(), $this->getQTD_Parcelas(), $this->getNUM_Parcelas(), $this->getQTD_Parcelas_Pagas(), $this->getID_Pagamento());
+        $sql = sprintf($this->sqlUpdate, $this->getDT_Transacao(True), $this->getDT_Pagamento(True), $this->getVLR_Transacao(), $this->getVR_Pago(), $this->getNUM_Recibo(), $this->getCOD_TipoFormaPagamento(), $this->getCOD_TipoOrigemInscricao(), $this->getID_EVT_Evento(), $this->getID_EVT_Pagamento_Pai(), $this->getCOD_Tipo_Situacao_Pagamento(), $this->getQTD_Parcelas(), $this->getNUM_Parcelas(), $this->getQTD_Parcelas_Pagas(), $this->getID_Pagamento());
         return $this->RunQuery($sql);
     }
 

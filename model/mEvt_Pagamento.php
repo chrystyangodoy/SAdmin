@@ -38,22 +38,41 @@ class mEvt_Pagamento extends dbConnection {
     {
         return $this->ID_Pagamento;
     }
+    
     public function setDT_Transacao($DT_Transacao)
     {
-        $this->DT_Transacao = $DT_Transacao;
+        $this->DT_Transacao = $this->dateToUS($DT_Transacao);
     }
-    public function getDT_Transacao()
+
+    public function getDT_Transacao($us = false)
     {
-        return $this->DT_Transacao;
+        if ($us)
+        {
+            return $this->DT_Transacao;
+        }
+        else
+        {
+            return $this->dateToBR($this->DT_Transacao);
+        }
     }
+    
     public function setDT_Pagamento($DT_Pagamento)
     {
-        $this->DT_Transacao = $DT_Pagamento;
+        $this->DT_Pagamento = $this->dateToUS($DT_Pagamento);
     }
-    public function getDT_Pagamento()
+
+    public function getDT_Pagamento($us = false)
     {
-        return $this->DT_Pagamento;
+        if ($us)
+        {
+            return $this->DT_Pagamento;
+        }
+        else
+        {
+            return $this->dateToBR($this->DT_Pagamento);
+        }
     }
+    
     public function setVLR_Transacao($VLR_Transacao)
     {
         $this->VLR_Transacao = $VLR_Transacao;

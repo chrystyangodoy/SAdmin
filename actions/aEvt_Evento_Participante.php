@@ -248,7 +248,22 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $idParticipante = $partic->getID_Participante();
         try {
             //return $this->RunSelect("SELECT evt_evento_participante.ID_EVT_Evento_Pariticipante,evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL,evt_evento.Logo_Evento as Logo_Evento FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) WHERE 1=1 and ID_BSC_Participante='$idParticipante'");
-            return $this->RunSelect("SELECT evt_evento_participante.ID_EVT_Evento_Pariticipante,evt_evento_participante.Num_Inscricao as Num_Inscricao,evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL,evt_evento.Logo_Evento as Logo_Evento, evt_pagamento.COD_Tipo_Situacao_Pagamento AS COD_Tipo_Situacao_Pagamento, evt_pagamento.ID_Pagamento FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) INNER JOIN evt_pagamento ON (evt_evento_participante.ID_EVT_Evento_Pariticipante = evt_pagamento.ID_EVT_Evento) WHERE 1=1 and evt_pagamento.ID_EVT_Pagamento_Pai = '0' and ID_BSC_Participante='$idParticipante'");
+            return $this->RunSelect("SELECT evt_evento_participante.ID_EVT_Evento_Pariticipante,
+                    evt_evento_participante.Num_Inscricao as Num_Inscricao,evt_evento.ID_EVT as ID_EVT,
+                    evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, 
+                    DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, 
+                    bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, 
+                    bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, 
+                    bsc_local_evento.DSC_EMAIL as DSC_EMAIL,evt_evento.Logo_Evento as Logo_Evento, 
+                    evt_pagamento.COD_Tipo_Situacao_Pagamento AS COD_Tipo_Situacao_Pagamento, 
+                    evt_pagamento.ID_Pagamento 
+                    FROM evt_evento_participante 
+                    INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) 
+                    INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) 
+                    INNER JOIN evt_pagamento ON (evt_evento_participante.ID_EVT_Evento_Pariticipante = evt_pagamento.ID_EVT_Evento) 
+                    WHERE 1=1 
+                    and evt_pagamento.ID_EVT_Pagamento_Pai = '0' 
+                    and ID_BSC_Participante='$idParticipante'");
         } catch (Exception $ex) {
             return $ex . error_get_last();
         }
@@ -262,19 +277,22 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $idParticipante = $partic->getID_Participante();
         try {
             //return $this->RunSelect("SELECT evt_evento_participante.ID_EVT_Evento_Pariticipante,evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL,evt_evento.Logo_Evento as Logo_Evento FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) WHERE 1=1 and ID_BSC_Participante='$idParticipante'");
-            return $this->RunSelect("SELECT evt_evento_participante.ID_EVT_Evento_Pariticipante,"
-                    . "evt_evento_participante.Num_Inscricao as Num_Inscricao,evt_evento.ID_EVT as ID_EVT, "
-                    . "evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, "
-                    . "DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, "
-                    . "bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, "
-                    . "bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL,"
-                    . "evt_evento.Logo_Evento as Logo_Evento, evt_pagamento.COD_Tipo_Situacao_Pagamento AS COD_Tipo_Situacao_Pagamento, "
-                    . "evt_pagamento.Num_Parcelas, evt_pagamento.VLR_Transacao, evt_pagamento.ID_Pagamento "
-                    . "FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) "
-                    . "INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) "
-                    . "INNER JOIN evt_pagamento ON (evt_evento_participante.ID_EVT_Evento_Pariticipante = evt_pagamento.ID_EVT_Evento) "
-                    . "WHERE 1=1 and ID_EVT_Pagamento_Pai = '$idPagtoPai' and ID_EVT_Evento_Pariticipante='$ID_EvtPart' and ID_BSC_Participante='$idParticipante'"
-                    . "ORDER BY evt_pagamento.Num_Parcelas");
+            return $this->RunSelect("SELECT evt_evento_participante.ID_EVT_Evento_Pariticipante,
+                    evt_evento_participante.Num_Inscricao as Num_Inscricao,evt_evento.ID_EVT as ID_EVT, 
+                    evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, 
+                    DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco,
+                    bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade,
+                    bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL,
+                    evt_evento.Logo_Evento as Logo_Evento, evt_pagamento.COD_Tipo_Situacao_Pagamento AS COD_Tipo_Situacao_Pagamento,
+                    evt_pagamento.Num_Parcelas, evt_pagamento.VLR_Transacao, evt_pagamento.ID_Pagamento
+                    FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT)
+                    INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento)
+                    INNER JOIN evt_pagamento ON (evt_evento_participante.ID_EVT_Evento_Pariticipante = evt_pagamento.ID_EVT_Evento)
+                    WHERE 1=1
+                    and ID_EVT_Pagamento_Pai = '$idPagtoPai'
+                    and ID_EVT_Evento_Pariticipante='$ID_EvtPart'
+                    and ID_BSC_Participante='$idParticipante'
+                    ORDER BY evt_pagamento.Num_Parcelas");
         } catch (Exception $ex) {
             return $ex . error_get_last();
         }

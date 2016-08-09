@@ -15,6 +15,7 @@ class aEvt_Curso extends mEvt_Curso {
                                     Valor_Curso 
                                     from evt_curso where 1=1 %s %s";
     //protected $sqlSelectEVT = "select * from evt_curso where 1=1 and ID_EVT = '%s'";
+    protected $sqlSelectCursoEVT = "select * from evt_curso where evt_curso.ID_EVT = '%s'";
     protected $sqlSelectEVT = "select * from evt_curso where evt_curso.ID_EVT = '%s' AND evt_curso.ID_Curso NOT IN (SELECT evt_curso_participante.ID_Curso FROM evt_curso_participante WHERE evt_curso_participante.ID_Participante = '%s')";
     protected $sqlSelectCursoPart = "select * from evt_curso inner JOIN evt_curso_participante on evt_curso_participante.ID_Curso = evt_curso.ID_Curso where evt_curso.ID_EVT = '%s' AND evt_curso_participante.ID_Participante = '%s'";
 
@@ -37,11 +38,17 @@ class aEvt_Curso extends mEvt_Curso {
         $sql = sprintf($this->sqlSelect, $where, $order);
         return $this->RunSelect($sql);
     }
+    
+    public function selectCursoID_EVT() {
+        $sql = sprintf($this->sqlSelectCursoEVT, $this->getID_EVT());
+        return $this->RunSelect($sql);
+    }
 
     public function selectID_EVT($ID_Participante) {
         $sql = sprintf($this->sqlSelectEVT, $this->getID_EVT(), $ID_Participante);
         return $this->RunSelect($sql);
     }
+    
 
     public function load() {
         $rs = $this->select(sprintf(" and ID_Curso = '%s'", $this->getID_Curso()));
