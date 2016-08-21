@@ -1,5 +1,6 @@
 
 function desabilitaCampos() {
+    $('#ID_Curso').attr("disabled", true).val("");
     $('#DSC_Nome').attr("disabled", true).val("");
     $('#Nome_Cracha').attr("disabled", true).val("");
     $('#DSC_Email').attr("disabled", true).val("");
@@ -23,6 +24,7 @@ function desabilitaCampos() {
 }
 
 function habilitaCampos() {
+    $('#ID_Curso').attr("disabled", false).val("");
     $('#DSC_Nome').attr("disabled", false);
     $('#Nome_Cracha').attr("disabled", false);
     $('#DSC_Email').attr("disabled", false);

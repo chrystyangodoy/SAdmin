@@ -4,61 +4,52 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="mirchu team make this design. mirchu web and technology blog">
-        <meta name="author" content="Waqas Hussain">
-        <link rel="icon" href="portal/assets/icons/favicon.ico">
+        <link rel="icon" href="./portal/assets/icons/favicon.ico">
         <link href="./css/Card.css" rel="stylesheet" type="text/css"/>
         <title>Atual Eventos</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="portal/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./portal/assets/css/bootstrap.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>
         <!-- Custom styles for this template -->
-        <link href="portal/assets/MDicons/css/MDicon.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="portal/assets/css/animate.css">
-        <link rel="stylesheet" href="portal/assets/css/themes/default/default-nivo-theme.css" type="text/css">
-        <link rel="stylesheet" href="portal/assets/css/nivo-lightbox.css" type="text/css">
-        <link href="portal/assets/css/style.min.css" rel="stylesheet">
+        <link href="./portal/assets/MDicons/css/MDicon.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./portal/assets/css/animate.css">
+        <link rel="stylesheet" href="./portal/assets/css/themes/default/default-nivo-theme.css" type="text/css">
+        <link rel="stylesheet" href="./portal/assets/css/nivo-lightbox.css" type="text/css">
+        <link href="./portal/assets/css/style.min.css" rel="stylesheet">
         <link href="./css/Alert.css" rel="stylesheet" type="text/css"/>
         <link href="./css/ImgLoad.css" rel="stylesheet" type="text/css"/>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
               <script src="assets/js/html5shiv.min.js"></script>
               <script src="assets/js/respond.min.js"></script>
-        <![endif]-->
+        
         <script src="./js/jquery.mask.js" type="text/javascript"></script>
-        <script src="./js/ParticipanteEdit.js" type="text/javascript"></script>
         <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
         <script src="./js/additional-methods.min.js" type="text/javascript"></script>
         <script src="./js/Customizacoes.js" type="text/javascript"></script>
+        <![endif]-->
     </head>
     <body>
-
         <div id="alert"></div>
-
         <!-- Preloader -->
         <div id="preloader">
             <div id="status">&nbsp;</div>
         </div>
-
         <!-- Fixed navbar -->
         <div class="navbar main-menu navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                     <a class="navbar-brand" href="">
-                        <img src="./imagens/logoAtual.jpg" height="40px"/></a>
-                        <!--<img src="portal/assets/images/logo.png" alt="logo" title="logo" /></a>-->
+                        <img src="./imagens/logoAtual.jpg" height="40px"/>
+                    </a>
+                    <!--<img src="portal/assets/images/logo.png" alt="logo" title="logo" /></a>-->
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right" id="menu">
                         <li><a data-scroll data-options="easing: easeOutQuart" href="#banner">Home</a></li>
                         <li><a data-scroll data-options="easing: easeOutQuart" href="#mywork">Eventos</a></li>
-                        <!--
-                        <li><a data-scroll data-options="easing: easeOutQuart" href="#about">Sobre</a></li>
-                        <li><a data-scroll data-options="easing: easeOutQuart" href="#skills">Skills</a></li>
-                        <li><a data-scroll data-options="easing: easeOutQuart" href="#contact">Contato</a></li>
-                        -->
                         <li><a data-scroll data-options="easing: easeOutQuart" href="Login.php">Login</a></li>
                     </ul>
                 </div>
@@ -77,7 +68,7 @@
             <!-- Carousel -->
         </section>
 
-        <section id="mywork" class="section">
+        <section id="myWork" class="section">
             <div class="container">
                 <div class="row">
                     <h2 class="heading wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">Eventos Diponíveis</h2>
@@ -99,9 +90,9 @@
                                     <h4>{$row.DT_Inicio}</h4>
                                     <p>{$row.DSC_Endereco}, {$row.DSC_Cidade} - {$row.DSC_Bairro}</p>
                                 </div>
-                                <div class="card-footer">
-                                    <a href='Login.php'>Acompanhar</a>  
-                                    <a href='#mywork' onclick="ListaEventoCategoriaPopUp('{$row.ID_EVT}', '{$row.DSC_Nome}');">Participar</a>
+                                <div >
+                                    <a href='Login.php' class="btn btn-primary" >Acompanhar</a>  
+                                    <a href='#myWork' class="btn btn-primary" onclick="ListaEventoCategoriaPopUp('{$row.ID_EVT}', '{$row.DSC_Nome}');">Participar</a>
                                 </div>
                             </div>
                         </div>
@@ -112,151 +103,21 @@
                 </div>
             </div>
         </section>
-<!-- Layout Desprezado  -->
-<!--  
-        <section id="about">
-            <div class="sectionIcon wow bounceIn" data-wow-duration="0.8s" data-wow-delay="1s"><i class="fa fa-angle-down"></i></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">
-
-                        <h2 class="heading">Sobre</h2>
-                        <div class="col-md-6">
-                            <p class="text-left">
-                                I'm MaterialStrap, a New York based freelance web developer and designer. I passionately move pixels and lines of code to craft clean, responsive, and user-friendly websites. My current weapons of choice are PHP CodeIgniter, Ruby on Rails, jQuery, and MySQL.
-                                Being both an engineer and designer, I help clients bring their ideas into reality. <a href="#">Contact me</a> today and I would love to hear about your business
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="text-left">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="parallax-1" class="bgParallax" data-speed="15">
-            <div class="color-overlay">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
-                            <h2 class="heading">Founder of MaterialStrap!</h2>
-                            <a href="#" class="btn line-btn btn-lg">My Personal project!</a>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </section>
-        
-        <section id="skills">
-            <div class="container">
-                <h2 class="heading wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">Skills</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay="0.8s" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
-                                90% Adobe PhotoShop
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay="0.9s" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                60% Angular Js
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="contact">
-            <div class="container">
-                <div class="row">
-                    <h2 class="heading wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">Contato</h2>
-                    <div class="col-md-12">
-                        <form role="form" id="contact-form" class="contact-form">
-                            <div class="row">
-                                <div class="col-md-6 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="Name" autocomplete="off" id="Name" placeholder="Nome">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" name="email" autocomplete="off" id="email" placeholder="E-mail">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">
-                                    <div class="form-group">
-                                        <textarea class="form-control textarea" rows="3" name="Message" id="Message" placeholder="Menssagem"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn main-btn pull-right wow bounceIn" data-wow-duration="1s" data-wow-delay="1s">Enviar Mensagem</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </section>
--->
-<!-- FIM Layout Desprezado  -->
-
-        <section id="info">
-            <div class="container">
-                <div class="row">
-                    <!--
-                    <div class="col-md-4">
-                        <h4 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">Localização</h4>
-                        <address class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">
-                            <strong>The MaterialStrap Inc.</strong><br>
-                            48800 Main Road, Chakwal<br>
-                        </address>
-                        <address class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">
-                            <abbr title="Phone">P:</abbr> (92) 332-5903076
-                            <a href="mailto:#">waqashussain91@gmail.com</a>
-                        </address>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <h4 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">Redes Sociais</h4>
-                        <div class="clearfix"></div>
-                        <ul class="list-inline social">
-                            <li class="wow bounceIn" data-wow-duration="1.0s" data-wow-delay="0.8s"><a href="https://www.facebook.com/mirchu.net" class="fb"><i class="mdicon facebook"></i></a></li>
-                            <li class="wow bounceIn" data-wow-duration="1.0s" data-wow-delay="1.0s"><a href="https://twitter.com/mirchu_net" class="twt"><i class="mdicon twitter"></i></a></li>
-                            <li class="wow bounceIn" data-wow-duration="1.0s" data-wow-delay="1.2s"><a href="https://plus.google.com/+MirchuNet" class="dr"><i class="mdicon google-plus-fill"></i></a></li>
-                            <li class="wow bounceIn" data-wow-duration="1.0s" data-wow-delay="1.4s"><a href="#" class="be"><i class="mdicon linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">Sobre os Eventos</h4>
-                        <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.8s">I'm Freelancer, a New York based freelance web developer and designer. I passionately move pixels and lines of code to craft clean, responsive, and user-friendly websites.</p>
-                    </div>
-                     -->
-                </div>
-            </div>
-        </section>
-     
+        <!-- Botão Lateral para voltar ao Topo da Página -->
         <a href="#" class="back-to-top"><i class="mdicon up"></i></a>
-        <!-- /.modal -->
+        <!-- Fim Botão Lateral para voltar ao Topo da Página -->
+
+        <!-- Modal Partipicpar -->
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                         <h4 class="modal-title"></h4>
                     </div>
                     <div class="modal-body" id="corpoPopUp">
-
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -270,12 +131,11 @@
 
                             </tbody>
                         </table>
-
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
+        </div>
+        <!-- Fim Modal Partipicpar -->
 
         <!--Modal Acompanhamento-->
         <div class="modal fade" id="modalAcompanhamento">
@@ -305,38 +165,64 @@
         </div><!-- /.modal -->
         <!--Final Modal Acompanhamento-->
 
+        <!--Modal Cursos Disponíveis-->
+        <div class="modal fade" id="myModal_Cursos">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body" id="corpoPopUp">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th hidden="">ID_Curso</th>
+                                    <th>Curso</th>
+                                    <th>Titulo do Curso</th>
+                                    <th>Data</th>
+                                    <th>Valor</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="conteudoTabelaCursos">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- Final Modal Cursos Disnponíveis-->
+
         <div id="loadImg"></div>
         <!-- Bootstrap core JavaScript
-            ================================================== --> 
         <!-- Placed at the end of the document so the pages load faster --> 
-        <script src="portal/assets/js/jquery.min.js"></script> 
+        <script src="./portal/assets/js/jquery.min.js"></script> 
         <script src="./js/jquery.formatCurrency-1.4.0.min.js" type="text/javascript"></script>
-        <script src="portal/assets/js/bootstrap.min.js"></script>
+        <script src="./portal/assets/js/bootstrap.min.js"></script>
         <!-- smooth scrolling -->
-        <script src="portal/assets/js/smooth-scroll.js"></script>
-
+        <script src="./portal/assets/js/smooth-scroll.js"></script>
         <!-- animation scrolling -->
-        <script src="portal/assets/js/wow.min.js"></script>
-
+        <script src="./portal/assets/js/wow.min.js"></script>
         <!-- hover captions -->
-        <script src="portal/assets/js/jquery.hcaptions.js"></script>
-
+        <script src="./portal/assets/js/jquery.hcaptions.js"></script>
         <!-- hover detail page -->
-        <script src="portal/assets/js/nivo-lightbox.min.js"></script>
-
+        <script src="./portal/assets/js/nivo-lightbox.min.js"></script>
         <!-- Form Validation -->
-        <script src="portal/assets/js/bootstrapValidator.min.js"></script>
-
+        <script src="./portal/assets/js/bootstrapValidator.min.js"></script>
         <!-- animation scrolling -->
-        <script src="portal/assets/js/app.min.js"></script>
+        <script src="./portal/assets/js/app.min.js"></script>
         <script src="./js/jquery.dateFormat.js" type="text/javascript"></script>
         <script src="./js/Customizacoes.js" type="text/javascript"></script>
         <script src="./js/portal.js" type="text/javascript"></script>
-
         <script type="text/javascript">
                             $(document).ready(function () {
                                 showAlert('{$type}', '{$msg}');
                             });
         </script>
+
     </body>
 </html>

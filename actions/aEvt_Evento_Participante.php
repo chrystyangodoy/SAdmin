@@ -247,7 +247,6 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $partic->selectInfoPartic($id_User);
         $idParticipante = $partic->getID_Participante();
         try {
-            //return $this->RunSelect("SELECT evt_evento_participante.ID_EVT_Evento_Pariticipante,evt_evento.ID_EVT as ID_EVT, evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, DATE_FORMAT(evt_evento.DT_Fim , '%d/%m/%Y' ) as DT_Fim, bsc_local_evento.DSC_Endereco as DSC_Endereco, bsc_local_evento.DSC_Bairro as DSC_Bairro, bsc_local_evento.DSC_Cidade as DSC_Cidade, bsc_local_evento.NUM_Fone as NUM_Fone, bsc_local_evento.DSC_EMAIL as DSC_EMAIL,evt_evento.Logo_Evento as Logo_Evento FROM evt_evento_participante INNER JOIN evt_evento ON (evt_evento_participante.ID_EVT_Evento = evt_evento.ID_EVT) INNER JOIN bsc_local_evento ON (bsc_local_evento.ID_Local = evt_evento.ID_BSC_Local_Evento) WHERE 1=1 and ID_BSC_Participante='$idParticipante'");
             return $this->RunSelect("SELECT evt_evento_participante.ID_EVT_Evento_Pariticipante,
                     evt_evento_participante.Num_Inscricao as Num_Inscricao,evt_evento.ID_EVT as ID_EVT,
                     evt_evento.DSC_Nome as DSC_Nome, DATE_FORMAT(evt_evento.DT_Inicio , '%d/%m/%Y' ) as DT_Inicio, 

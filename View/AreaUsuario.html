@@ -20,13 +20,6 @@
         {if $row.COD_Tipo_Situacao_Pagamento eq 0}
         <div class="card-text text-center ">
             <h3 class="bg-info">Inscrição não Confirmado</h3>
-            <!--
-            <a href='Boleto.php?ID_EVT_Evento_Pariticipante={$row.ID_EVT_Evento_Pariticipante}' target="_blank">
-            <button type="button" class="btn btn-primary">Boleto</button>
-            </a>
-            
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Boletos</button>
-            -->
             <a href='#myWork' class="btn btn-primary" onclick="ListaBoletosPopUp('{$row.ID_EVT_Evento_Pariticipante}', '{$row.ID_Pagamento}');">Boletos</a>
             <a href='#myWork' class="btn btn-primary" onclick="ListaArtigoPopUp('{$row.ID_EVT_Evento_Pariticipante}');">Artigos</a>
             <a href='#myWork' class="btn btn-primary" onclick="ListaCursosPopUp('{$row.ID_EVT}');">Cursos</a>

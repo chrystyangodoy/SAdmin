@@ -5,14 +5,12 @@ include_once './smarty.php';
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 require_once './actions/aEvt_Curso.php';
-$Cursos = new aEvt_Curso();
+
+$ListCurso = new aEvt_Curso();
 
 $idUser = $_SESSION['ID_Usuario'];
 $ID_EVT = $_REQUEST['ID_EVT'];
+$ListCurso->setID_EVT($ID_EVT);
 
-$Cursos->setID_EVT($ID_EVT);
-require_once './actions/aBsc_Participante.php';
-$Partic = new aBsc_Participante();
-$id_Participante = $Partic->getIDParticipantePeloIDUsuario($idUser);
-$arr = $Cursos->selectID_EVT($id_Participante);
+$arr = $ListCurso->selectCursoID_EVT();
 echo json_encode($arr);

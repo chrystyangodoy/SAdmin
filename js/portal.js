@@ -1,10 +1,8 @@
 function ListaEventoCategoriaPopUp(ID_EVT_Evento, DSC_Nome) {
-
     $('#myModal').modal('show');
     $('#conteudoTabelaCategoria').empty();
     $('.modal-title').empty();
     $('.modal-title').append(DSC_Nome);
-
 
     $.getJSON("getEventoCategoriaPorEventoID.php", {ID_EVT_Evento: ID_EVT_Evento}, function (data) {
         $.each(data, function (index, item) {
@@ -20,7 +18,7 @@ function ListaEventoCategoriaPopUp(ID_EVT_Evento, DSC_Nome) {
                             + item.ID_Evento_Categoria + "&ID_EVT_Evento=" +
                             item.ID_EVT_Evento + "' class='btn btn-warning' title='Clique para selecionar esta Categoria'>" +
                             "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
-                            "</a>" +
+                            "</a>"+
                             "</tr>"
                             );
         });
@@ -133,7 +131,6 @@ function ListaArtigoPopUp(ID_EVT_Evento_Pariticipante) {
 }
 
 function ListaCursosPopUp(ID_EVT) {
-
     $('#myModal_Cursos').modal('show');
     $('#conteudoTabelaCursos').empty();
     $('.modal-title').empty();
@@ -151,6 +148,34 @@ function ListaCursosPopUp(ID_EVT) {
                             "<td class='formatcurrency'>" + item.Valor_Curso + "</td>" +
                             "<td><a href='setCursos.php?DescCurso="
                             + item.Curso + "&IDCurso=" + item.ID_Curso + "' target='' class='btn btn-primary' title='Inscrever-se'>" +
+                            "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
+                            "</a>" +
+                            "</tr>"
+                            );
+        });
+        $('.formatcurrency').formatCurrency();
+    });
+
+}
+
+function ListaCursos(ID_EVT) {
+    $('#myModal_Cursos').modal('show');
+    $('#conteudoTabelaCursos').empty();
+    $('.modal-title').empty();
+    $('.modal-title').append("Cursos Disponíveis");
+
+    $.getJSON("getCursos.php", {ID_EVT: ID_EVT}, function (data) {
+        $.each(data, function (index, item) {
+            $('#conteudoTabelaCursos')
+                    .append(
+                            "<tr>" +
+                            "<td hidden=''>" + item.ID_Curso + "</td>" +
+                            "<td>" + item.Curso + "</td>" +
+                            "<td>" + item.TituloCurso + "</td>" +
+                            "<td>" + item.Data_Hora + "</td>" +
+                            "<td class='formatcurrency'>" + item.Valor_Curso + "</td>" +
+                            "<td><a href='setCursos.php?DescCurso="
+                            + item.Curso + "&IDCurso=" + item.ID_Curso + "' class='btn btn-primary' title='Inscrever-se'>" +
                             "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
                             "</a>" +
                             "</tr>"
