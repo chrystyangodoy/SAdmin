@@ -129,14 +129,13 @@ class aEvt_Evento_Participante extends mEvt_Evento_Participante {
         $this->setVLR_Total_Inscricao($evt_catg->getVLR_Inscricao());
         $this->setID_BSC_Participante($partic->getID_Participante());
         $this->setDSC_Nome_Cracha($partic->getNome_Cracha());
+        //Verificar uma forma de o número ser dinamico aleatórios e que não se repete como o newguid();
         $this->setCOD_Barras_Cracha($partic->getCOD_CPF());
         
-        //Verificar uma forma de o número ser dinamico aleatórios e que não se repete como o newguid();
         require_once ('./actions/aEvt_Evento.php');
         $Evento = new aEvt_Evento();
         $Evento->getID_EVT($id_Evt);
         $Evento->load();
-        //$CodInscricao = $Evento->countEvt($id_Evt);
         $CodInscricao = $this->countInscricao($id_Evt);
         $Evento->setCtrl_Inscricao($CodInscricao);
         

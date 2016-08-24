@@ -1,6 +1,7 @@
 
 function desabilitaCampos() {
     $('#ID_Curso').attr("disabled", true).val("");
+    $('#ID_Evento_Categoria').attr("disabled", true).val("");
     $('#DSC_Nome').attr("disabled", true).val("");
     $('#Nome_Cracha').attr("disabled", true).val("");
     $('#DSC_Email').attr("disabled", true).val("");
@@ -25,6 +26,7 @@ function desabilitaCampos() {
 
 function habilitaCampos() {
     $('#ID_Curso').attr("disabled", false).val("");
+    $('#ID_Evento_Categoria').attr("disabled", false).val("");
     $('#DSC_Nome').attr("disabled", false);
     $('#Nome_Cracha').attr("disabled", false);
     $('#DSC_Email').attr("disabled", false);
@@ -152,9 +154,7 @@ $(document).ready(function () {
          $(element).tooltipster('hide');
          },*/
         submitHandler: function (form) {
-
             //var dados = $(form).serialize();
-
             $.ajax({
                 type: "POST",
                 url: "ParticipanteInsert.php",
@@ -174,15 +174,14 @@ $(document).ready(function () {
 
     $("#COD_CPF").on('keypress blur', function () {
         var CPFinfo = $("#COD_CPF").val();
+        
         if (CPFinfo != "" || CPFinfo != 0) {
             desabilitaId_Estrangeiro();
         } else {
             habilitaId_Estrangeiro();
         }
-
         cpf = $("#COD_CPF").val();
         cpf = jQuery.trim(cpf);
-
         cpf = cpf.replace('.', '');
         cpf = cpf.replace('.', '');
         cpf = cpf.replace('-', '');
@@ -191,11 +190,12 @@ $(document).ready(function () {
             console.log("CPF Válido!");
             console.log("Inicio do getJson");
             $("#loadImg").css("display", "block").fadeIn();
-            var CPFNaoCadastradoEvento = isCPFCadatradoEvento(cpf, getUrlParameter('ID_EVT_Evento'));
+
+            var CPFNaoCadastradoEvento = isCPFCadatradoEvento(cpf, getUrlParameter('ID_EVT_Evento')||getUrlParameter('ID_EVT'));
             console.log(CPFNaoCadastradoEvento);
             if (CPFNaoCadastradoEvento == 1) {
-
                 var CPFnaoCadastrado = isCPFCadastrado(cpf);
+                console.log('isCPFCadastrado '+ CPFnaoCadastrado);
                 if (CPFnaoCadastrado == 1) {
                     habilitaCampos();
                    //$('#DSC_Nome').focus();
@@ -203,10 +203,10 @@ $(document).ready(function () {
                 } else {
                     desabilitaCampos();
                     console.log("CPF Já Cadastrado.");
+                    console.log('Você já possui cadastro no sistema.');
                     showAlert('error', 'Você já possui cadastro no sistema.');
                     $('#modalLogin').modal('show');
                     cpf = jQuery.trim(cpf);
-
                     cpf = cpf.replace('.', '');
                     cpf = cpf.replace('.', '');
                     cpf = cpf.replace('-', '');
@@ -215,7 +215,8 @@ $(document).ready(function () {
                     $('#Password').focus();
                 }
             } else {
-                showAlert('error', 'CPF já cadastrado para este Evento');
+                console.log('CPF já cadastrado para este Evento!');
+                showAlert('error', 'CPF já cadastrado para este Evento!');
             }
             $("#loadImg").css("display", "none").fadeOut();
         }
@@ -235,11 +236,12 @@ $(document).ready(function () {
 //          console.log("ID Estrangeiro Válido!");
             console.log("Inicio do getJson. Imagem!");
             $("#loadImg").css("display", "block").fadeIn();
-            var Id_EstrangeiroNaoCadastradoEvento = isId_EstrangeiroCadatradoEvento(Id_Estrangeiro, getUrlParameter('ID_EVT_Evento'));
+                       
+            var Id_EstrangeiroNaoCadastradoEvento = isId_EstrangeiroCadatradoEvento(Id_Estrangeiro, getUrlParameter('Id_Estrangeiro'));
             console.log("Não cadastrardo: " + Id_EstrangeiroNaoCadastradoEvento);
             if (Id_EstrangeiroNaoCadastradoEvento == 1) {
                 var Id_EstrangeironaoCadastrado = isId_EstrangeiroCadastrado(Id_Estrangeiro);
-                console.log("Id_Estrangeiro cadastrardo: " + Id_EstrangeironaoCadastrado);
+                console.log("Id_Estrangeiro cadastrado: " + Id_EstrangeironaoCadastrado);
                 if (Id_EstrangeironaoCadastrado == 1) {
                     habilitaCampos();
                   // $('#DSC_Nome').focus();
@@ -285,19 +287,12 @@ $(document).ready(function () {
         username = $('#Username').val();
         password = $('#Password').val();
         console.log('Click no login');
-
         $.getJSON("getLoginParticipante.php", {Username: username, Password: password}, function (data) {
-
             console.log('Inicio get');
-
             $("#loadImg").css("display", "none").fadeOut();
-
             isSenhaCorreta = false;
-
             $.each(data, function (index, item) {
-
                 console.log('each');
-
                 $('#DSC_Nome').val(item.DSC_Nome);
                 $('#Nome_Cracha').val(item.Nome_Cracha);
                 $('#DSC_Email').val(item.DSC_Email);
@@ -318,31 +313,22 @@ $(document).ready(function () {
                 $('#ID_BSC_Profissao').val(item.ID_BSC_Profissao);
                 $('#ID_Participante').val(item.ID_Participante);
                 $('#ID_Usuario').val(item.ID_Usuario);
-
                 setCookie('ID_Participante', item.ID_Participante, 1);
                 setCookie('ID_Usuario', item.ID_Usuario, 1);
-
                 isSenhaCorreta = true;
-
             });
-
             if (isSenhaCorreta) {
-
                 habilitaCampos();
                 $('#modalLogin').modal('hide');
                 //$('#COD_CPF').attr("disabled", true);
                 showAlert('', 'Confirme seus dados');
             } else {
-
                 showAlert('error', 'Usuário ou senha incorreto');
             }
-
             $("#loadImg").css("display", "none").fadeOut();
             $('#Username').val('');
             $('#Password').val('');
         });
-
     });
-
 });
 

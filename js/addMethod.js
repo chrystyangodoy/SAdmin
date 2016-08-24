@@ -58,7 +58,7 @@ jQuery.validator.addMethod("cpfCadastradoEvento", function (value, element) {
     value = value.replace('.', '');
     cpf = value.replace('-', '');
 
-    eventoID = getUrlParameter('ID_EVT_Evento');
+    eventoID = getUrlParameter('ID_EVT_Evento')||getUrlParameter('ID_EVT');
 
     resultado = isCPFCadatradoEvento(cpf,eventoID);
 

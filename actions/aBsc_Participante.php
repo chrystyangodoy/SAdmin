@@ -8,6 +8,7 @@ class aBsc_Participante extends mBsc_Participante {
     protected $sqlUpdate = "UPDATE bsc_participante SET COD_CPF= '%s',COD_RG= '%s',Id_Estrangeiro= '%s', Nome_Cracha= '%s', DSC_Nome= '%s',DSC_Endereco= '%s',DSC_Bairro= '%s',DSC_Cidade= '%s',NUM_CEP= '%s',NUM_Fone= '%s',NUM_Celular= '%s',NUM_FAX= '%s',DSC_Profissao_Especialidade= '%s',DSC_Email= '%s',NUM_Registro= '%s',COD_Tipo_Estado= '%s',ID_BSC_Empresa= '%s',ID_BSC_Profissao ='%s',ID_Usuario ='%s', Cod_Participante='%s' WHERE ID_Participante = '%s'";
     protected $sqlDelete = "DELETE FROM bsc_participante WHERE ID_Participante = '%s'";
     protected $sqlSelect = "SELECT * FROM bsc_participante WHERE 1=1 %s %s";
+    //protected $sqlSelectExist = "SELECT count(0) AS COUNTCPF FROM bsc_participante INNER JOIN evt_evento_participante ON ID_BSC_Participante = ID_Participante WHERE 1=1 and COD_CPF='%s' and ID_EVT_Evento = '%s'";
     protected $sqlSelectExist = "SELECT count(0) AS COUNTCPF FROM bsc_participante WHERE 1=1 and COD_CPF='%s'";
     protected $sqlSelectExistIDEst = "SELECT count(0) AS COUNTIDEst FROM bsc_participante WHERE 1=1 and Id_Estrangeiro='%s'";
     protected $sqlSelectExistEdit = "SELECT count(0) AS COUNTCPF FROM bsc_participante WHERE 1=1 and COD_CPF='%s' and ID_Participante <> '%s'";

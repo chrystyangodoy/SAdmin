@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title> Cadastro para o Evento {$DSC_Evento} </title>
+        <!-- Bootstrap Core CSS -->
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="./css/sb-admin.css" rel="stylesheet">
+        <!-- Morris Charts CSS 
+        <link href="./css/plugins/morris.css" rel="stylesheet">
+        -->
+        <!-- Custom Fonts -->
+        <link href="./css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="./DataTables-1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
+        <script src="js/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- jQuery -->
+        <!-- Morris Charts JavaScript 
+        <script src="js/plugins/morris/raphael.min.js"></script>
+        <script src="js/plugins/morris/morris.min.js"></script>
+        <script src="js/plugins/morris/morris-data.js"></script>
+        -->
+        <!-- Custom JQuery -->
+        <script src="./DataTables-1.10.9/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="./js/jquery.mask.js" type="text/javascript"></script>
+        <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="./js/additional-methods.min.js" type="text/javascript"></script>
+        <script src="./js/addMethod.js" type="text/javascript"></script>
+        <script src="./js/Customizacoes.js" type="text/javascript"></script>
+        <script src="./js/ParticipanteInsert.js" type="text/javascript"></script>
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script>
+            window.onload = function () {
+                showAlert('{$type}', '{$msg}');
+            }
+        </script>
+    </head>
+    <body>
+
+        <div id="alert"></div>
+        <div >
+
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <!--Botão Home Administração-->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="Index.php">Siga Web </a>
+                </div>
+            </nav>
+
+
+            <div id="page-wrapper" class="container">
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            {$DSC_Evento} 
+                        </h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+
+                                <form id="Cadastrar" form method="post" action="">
+                                    <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar"  disabled>Cadastrar</button>
+                                    <a href="Index.php" class="btn btn-default">Cancelar</a>
+                                    <h3 class="page-header">Dados Pessoais</h3>
+
+                                    <div class="form-group col-lg-4">
+                                        <label>CPF</label>
+                                        <input type="text" class="form-control" name="COD_CPF" placeholder="CPF" id="COD_CPF">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Identidade Estrangeiro</label>
+                                        <input type="text" class="form-control" name="Id_Estrangeiro" placeholder="Identificação do Estrangeiro" id="Id_Estrangeiro">
+                                    </div>
+
+                                    <div class="form-group col-lg-12 row">
+                                        <label>Categória do Participante</label>
+                                        <select class="form-control col-lg-3" name="ID_Evento_Categoria" id="ID_Evento_Categoria">
+                                            {foreach from=$listCategoria item=row}
+                                            <option value="{$row.ID_Evento_Categoria}">{$row.DSC_Nome} - R$ {$row.VLR_Inscricao}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 row">
+                                        <label >Nome</label>
+                                        <input type="text" class="form-control col-lg-12" name="DSC_Nome" id="DSC_Nome" placeholder="Nome" disabled>
+                                    </div>
+                                    <div class="form-group col-lg-12 row">
+                                        <label >Nome Cracha</label>
+                                        <input type="text" class="form-control col-lg-12" name="Nome_Cracha" id="Nome_Cracha" placeholder="Nome do Cracha" disabled>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-6">
+                                            <label >Email</label>
+                                            <input type="email" class="form-control" id="DSC_Email" name="DSC_Email" placeholder="Email"  disabled>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label >RG</label>
+                                            <input type="text" class="form-control"  name="COD_RG"  id="COD_RG" placeholder="RG"  disabled>
+                                        </div>
+
+                                    </div>
+                                    <h3 class="page-header">Endereço</h3>
+                                    <div class="form-group col-lg-3 row">
+                                        <label >CEP</label>
+                                        <input type="text" id="NUM_CEP" class="form-control" name="NUM_CEP" placeholder="CEP"  disabled>
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        <label >Cidade</label>
+                                        <input type="text" class="form-control" id="DSC_Cidade" name="DSC_Cidade" placeholder="Cidade"  disabled>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label >Bairro</label>
+                                        <input type="text" class="form-control" id="DSC_Bairro" name="DSC_Bairro" placeholder="Bairro" disabled>
+                                    </div>
+                                    <div class="form-group col-lg-12 row">
+                                        <label>Endereço</label>
+                                        <input type="text" class="form-control" id="DSC_Endereco" name="DSC_Endereco" placeholder="Endereço " disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Estado</label>
+                                        <select name="COD_Tipo_Estado" id="COD_Tipo_Estado" class="form-control col-lg-3" disabled>
+                                            <option value="0">-</option>
+                                            {foreach from=$listEstado item=row}
+                                            <option value="{$row.COD_TIPOEstado}">{$row.DSC_Nome}</option>
+                                            {/foreach}
+                                        </select>
+
+                                    </div>
+
+                                    <h3 class="page-header">Contato</h3>
+                                    <div class="row">
+                                        <div class="form-group col-lg-3">
+                                            <label >Telefone Residencial</label>
+                                            <input type="text" class="form-control" name="NUM_Fone" id="NUM_Fone" placeholder="Telefone" disabled>
+                                        </div>
+                                        <div class="form-group col-lg-3">
+                                            <label >Celular</label>
+                                            <input type="text" class="form-control" name="NUM_Celular" id="NUM_Celular" placeholder="Celular" disabled>
+                                        </div>
+
+                                        <div class="form-group col-lg-3">
+                                            <label >Fax</label>
+                                            <input type="text" class="form-control" name="NUM_FAX" id="NUM_FAX" placeholder="Fax" disabled>
+                                        </div>
+                                        <div class="form-group col-lg-3">
+                                            <label >Nª Fax</label>
+                                            <input type="text" class="form-control" name="NUM_FAX_Promotora" id="NUM_FAX_Promotora" placeholder="Nº Fax Promotora" disabled>
+                                        </div>
+                                    </div>
+
+                                    <h3 class="page-header">Outros</h3>
+
+                                    <div class="form-group">
+                                        <label>Empresa</label>
+                                        <select name="ID_BSC_Empresa" id="ID_BSC_Empresa" class="form-control col-lg-3" disabled>
+                                            <option value="0">-</option>
+                                            {foreach from=$listEmp item=row}
+                                            <option value="{$row.ID_Empresa}">{$row.DSC_RazaoSocial}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Profissão</label>
+                                        <select name="ID_BSC_Profissao" id="ID_BSC_Profissao" class="form-control col-lg-3" disabled>
+                                            <option value="0">-</option>
+                                            {foreach from=$listProf item=row}
+                                            <option value="{$row.ID_Profissao}">{$row.DSC_Nome}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Especialidade</label>
+                                        <input type="text" class="form-control" name="DSC_Profissao_Especialidade" id="DSC_Profissao_Especialidade" placeholder="Especialidade" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Nº Registro</label>
+                                        <input type="text" class="form-control" name="NUM_Registro" id="NUM_Registro" placeholder="Número Registro" disabled>
+                                    </div>
+
+                                    <h3 class="page-header">Informação de Pagamento</h3>
+                                    <div class="form-group">
+                                        <label>Condição de Pagamento</label>
+                                        <select class="form-control col-lg-3" name="COD_Tipo_Forma_Pagamento" id="COD_Tipo_Forma_Pagamento">
+                                            {foreach from=$listFPagto item=row}
+                                            <option value="{$row.COD_Tipo_Forma_Pagamento}">{$row.DSC_Descricao}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+
+                                    <br/>
+                                    <input type="hidden" id="ID_Participante">
+                                    <input type="hidden" id="ID_Usuario">
+
+                                    <button type="submit" class="btn btn-primary" name="Cadastrar" value="Cadastrar"  disabled>Cadastrar</button>
+                                    <a href="Index.php" class="btn btn-default">Cancelar</a>
+                                </form>
+                                <!DOCTYPE html>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal-->
+        <div class="modal fade" id="modalLogin">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="NomeEventoAcompanhamento">Logar</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-inline">
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <!--USERNAME--><div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div><input name="Username" type="text" class="form-control" placeholder="Usuário" id="Username"/><!--END USERNAME-->
+                                </div>
+                                <div class="input-group">
+                                    <!--PASSWORD--><div class="input-group-addon"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></div><input name="Password" type="password" class="form-control" placeholder="Senha" id="Password"/><!--END PASSWORD-->
+                                </div>
+                                <div class="input-group">
+                                    <!--LOGIN BUTTON--><button name="btnLogin" value="Login" class="btn btn-success"  id="btnLogin">Login</button><!--END LOGIN BUTTON-->
+                                </div>
+                                <!--REGISTER BUTTON--><!--END REGISTER BUTTON-->
+                            </div>
+
+                            <!--END FOOTER-->
+
+                        </div>
+
+                        <!--END LOGIN FORM-->
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="EsqueciSenha.php">Esquici minha senha</a>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!--Final Modal-->
+
+        <div id="loadImg"></div>
+    </body>
+</html>

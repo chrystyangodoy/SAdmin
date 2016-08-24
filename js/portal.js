@@ -158,7 +158,7 @@ function ListaCursosPopUp(ID_EVT) {
 
 }
 
-function ListaCursos(ID_EVT) {
+function ListaCursos(ID_EVT, DSC_Nome) {
     $('#myModal_Cursos').modal('show');
     $('#conteudoTabelaCursos').empty();
     $('.modal-title').empty();
@@ -178,10 +178,15 @@ function ListaCursos(ID_EVT) {
                             + item.Curso + "&IDCurso=" + item.ID_Curso + "' class='btn btn-primary' title='Inscrever-se'>" +
                             "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
                             "</a>" +
+                            "<a href='ParticipanteInsert_Curso.php?ID_Curso="
+                            + item.ID_Curso + "&ID_EVT=" +
+                            item.ID_EVT + "' class='btn btn-warning' title='Clique para selecionar esta Categoria'>" +
+                            "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
+                            "</a>"+
                             "</tr>"
                             );
         });
-        $('.formatcurrency').formatCurrency();
+        //$('.formatcurrency').formatCurrency();
     });
 
 }
