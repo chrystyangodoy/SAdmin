@@ -192,7 +192,7 @@ $(document).ready(function () {
             $("#loadImg").css("display", "block").fadeIn();
 
             var CPFNaoCadastradoEvento = isCPFCadatradoEvento(cpf, getUrlParameter('ID_EVT_Evento')||getUrlParameter('ID_EVT'));
-            console.log(CPFNaoCadastradoEvento);
+            console.log("Não Existe no Evento? "+CPFNaoCadastradoEvento);
             if (CPFNaoCadastradoEvento == 1) {
                 var CPFnaoCadastrado = isCPFCadastrado(cpf);
                 console.log('isCPFCadastrado '+ CPFnaoCadastrado);
@@ -236,7 +236,6 @@ $(document).ready(function () {
 //          console.log("ID Estrangeiro Válido!");
             console.log("Inicio do getJson. Imagem!");
             $("#loadImg").css("display", "block").fadeIn();
-                       
             var Id_EstrangeiroNaoCadastradoEvento = isId_EstrangeiroCadatradoEvento(Id_Estrangeiro, getUrlParameter('Id_Estrangeiro'));
             console.log("Não cadastrardo: " + Id_EstrangeiroNaoCadastradoEvento);
             if (Id_EstrangeiroNaoCadastradoEvento == 1) {
