@@ -54,14 +54,14 @@ if (isset($_POST['Cadastrar'])) {
     $cpf = $config->limpaCPF($_POST['COD_CPF']);
     $email = $_POST['DSC_Email'];
 
-    $id_Participante = '';
-    if (isset($_COOKIE['ID_Participante'])) {
-        $id_Participante = $_COOKIE['ID_Participante'];
-    }
-    $idUnico = '';
-    if (isset($_COOKIE['ID_Usuario'])) {
-        $idUnico = $_COOKIE['ID_Usuario'];
-    }
+//    $id_Participante = '';
+//    if (isset($_COOKIE['ID_Participante'])) {
+//        $id_Participante = $_COOKIE['ID_Participante'];
+//    }
+//    $idUnico = '';
+//    if (isset($_COOKIE['ID_Usuario'])) {
+//        $idUnico = $_COOKIE['ID_Usuario'];
+//    }
 
     $isParticipanteNovo = TRUE;
     if ($id_Participante == '') {
@@ -332,7 +332,7 @@ $smarty->assign("DSC_Categoria", $categoria->getDSC_Nome());
 $smarty->assign("listEmp", $emp->select());
 $smarty->assign("listProf", $prof->select());
 $smarty->assign("listEstado", $estado->select());
-$smarty->assign("listFPagto", $FormaPagto->select());
+$smarty->assign("listFPagto", $FormaPagto->selectFPgtoEvt($ID_Evento));
 $smarty->assign("listCursos", $Cursos->selectCursoID_EVT());
 
 $smarty->assign("Titulo", " - Inserir Participante.");

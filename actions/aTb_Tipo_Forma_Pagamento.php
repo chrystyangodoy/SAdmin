@@ -8,6 +8,11 @@ class aTb_Tipo_Forma_Pagamento extends mTb_Tipo_Forma_Pagamento {
     protected $sqlUpdate = "UPDATE tb_tipo_forma_pagamento SET DSC_Nome='%s',DSC_Descricao = '%s',Nro_Parcelas = '%s',Dias_Vencimento = '%s' WHERE COD_Tipo_Forma_Pagamento = '%s'";
     protected $sqlDelete = "DELETE FROM tb_tipo_forma_pagamento WHERE COD_Tipo_Forma_Pagamento = '%s'";
     protected $sqlSelect = "select * from tb_tipo_forma_pagamento where 1=1 %s %s";
+    
+    protected $selectFPgtoEvt = "SELECT * FROM tb_tipo_forma_pagamento 
+                                 WHERE COD_Tipo_Forma_Pagamento IN (
+                                 SELECT Cod_TipoPagamento 
+                                 FROM evento_condpagamento WHERE ID_EVT = '%s')";
 
     public function insert() {
         $sql = sprintf($this->sqlInsert, $this->getCOD_Tipo_Forma_Pagamento(),$this->getDSC_Nome(), $this->getDSC_Descricao(),$this->getNro_Parcelas(),$this->getDias_Vencimento());
@@ -38,5 +43,9 @@ class aTb_Tipo_Forma_Pagamento extends mTb_Tipo_Forma_Pagamento {
         $this->setDias_Vencimento($rs[0]['Dias_Vencimento']);
         return $this;
     }
-
+    
+    public function selectFPgtoEvt($ID_EVT) {
+        $sql = sprintf($this->selectFPgtoEvt, $ID_EVT);
+        return $this->RunSelect($sql);
+    }
 }

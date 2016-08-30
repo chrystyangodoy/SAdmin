@@ -77,6 +77,11 @@ class aEvt_Evento extends mEvt_Evento {
                                                 localEvento.DSC_EMAIL
                                     FROM        evt_evento as evento left join bsc_local_evento as localEvento on (ID_BSC_Local_Evento = ID_BSC_Local_Evento) 
                                     WHERE       CURRENT_DATE() < DT_Fim and ID_EVT = '%s'";
+    protected $CheckVincEventoPagto =  
+            "SELECT ID_EVT, DSC_Nome FROM evt_evento 
+             WHERE evt_evento.ID_EVT not in (SELECT evento_condpagamento.ID_EVT
+                                            FROM evento_condpagamento 
+                        WHERE evento_condpagamento.Cod_TipoPagamento = '%s')";
     
     public function insert()
     {
@@ -224,4 +229,10 @@ class aEvt_Evento extends mEvt_Evento {
         return $this->RunQuery($sql);
         
     }
+    
+    public function CheckVincEventoPagto($CodFpgto) {
+        $sql = sprintf($this->CheckVincEventoPagto, $CodFpgto);
+        return $this->RunSelect($sql);
+    }
+    
 }

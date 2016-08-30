@@ -190,3 +190,27 @@ function ListaCursos(ID_EVT, DSC_Nome) {
     });
 
 }
+
+function ListaVincEventos(COD_Tipo_Forma_Pagamento) {
+    $('#myEventos').modal('show');
+    $('#conteudoEventos').empty();
+    $('.modal-title').empty();
+    $('.modal-title').append("Vincular ao Evento");
+
+    $.getJSON("getVincEventos.php", {COD_Tipo_Forma_Pagamento: COD_Tipo_Forma_Pagamento}, function (data) {
+        $.each(data, function (index, item) {
+            $('#conteudoEventos')
+                    .append(
+                            "<tr>" +
+                            "<td hidden=''>" + item.ID_EVT + "</td>" +
+                            "<td>" + item.DSC_Nome + "</td>" +
+                            "<td align='right'><a href='setVincEventos.php?ID_EVT="
+                            + item.ID_EVT + "&CodFPgto=" + COD_Tipo_Forma_Pagamento + "' title='Vincular ao Evento'>" +
+                            "<span class='btn btn-primary glyphicon glyphicon-ok' aria-hidden='true'></span>" +
+                            "</a></tr>"
+                            );
+        });
+        //$('.formatcurrency').formatCurrency();
+    });
+
+}

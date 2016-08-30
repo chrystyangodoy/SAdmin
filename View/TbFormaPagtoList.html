@@ -19,6 +19,7 @@
                 <td>{$row.DSC_Descricao}</td>
                 <td>{$row.Nro_Parcelas}</td>
                 <td class="text-right">
+                    <a href='#myWork' title="Eventos" class="btn btn-default glyphicon glyphicon-book" onclick="ListaVincEventos('{$row.COD_Tipo_Forma_Pagamento}');"></a>
                     <a title="Editar" href="TbFormaPagtoEdit.php?alt={$row.COD_Tipo_Forma_Pagamento}"><span class="btn btn-default glyphicon glyphicon-pencil" aria-hidden="true"></span></a> 
                     <a title="Excluir" href="?exc={$row.COD_Tipo_Forma_Pagamento}"><span class="btn btn-default glyphicon glyphicon-trash" aria-hidden="true"></span></a> 
                 </td>
@@ -27,5 +28,34 @@
         </tbody>
     </table>
 </div>
+
+        <!-- Modal Vincular ao Evento -->
+        <div class="modal fade" id="myEventos">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body" id="corpoPopUp">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th class="text-right">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="conteudoEventos">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <!-- Fim Modal Partipicpar -->
+        <script src="./js/portal.js" type="text/javascript"></script>
 
 {include file="./Template/footer.html"}
