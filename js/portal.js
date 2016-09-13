@@ -174,10 +174,11 @@ function ListaCursos(ID_EVT, DSC_Nome) {
                             "<td>" + item.TituloCurso + "</td>" +
                             "<td>" + item.Data_Hora + "</td>" +
                             "<td class='formatcurrency'>" + item.Valor_Curso + "</td>" +
-                            "<td><a href='setCursos.php?DescCurso="
-                            + item.Curso + "&IDCurso=" + item.ID_Curso + "' class='btn btn-primary' title='Inscrever-se'>" +
-                            "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
-                            "</a>" +
+                            "<td>"+
+                            //<a href='setCursos.php?DescCurso="
+                            //+ item.Curso + "&IDCurso=" + item.ID_Curso + "' class='btn btn-primary' title='Inscrever-se'>" +
+                            //"<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
+                            //"</a>" +
                             "<a href='ParticipanteInsert_Curso.php?ID_Curso="
                             + item.ID_Curso + "&ID_EVT=" +
                             item.ID_EVT + "' class='btn btn-warning' title='Clique para selecionar esta Categoria'>" +

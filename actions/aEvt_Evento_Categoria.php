@@ -64,8 +64,6 @@ class aEvt_Evento_Categoria extends mEvt_Evento_Categoria {
     }
 
     public function selectInner($where = '', $order = '') {
-        
-        
         $sql = "SELECT  evt_evento_categoria.ID_Evento_Categoria,
                                         evt_evento_categoria.DSC_Nome,
                                         evt_evento_categoria.VLR_Inscricao,

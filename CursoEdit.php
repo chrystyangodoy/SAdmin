@@ -26,6 +26,7 @@ if (isset($_POST['Salvar']))
     $curso->setData_Hora($_POST['Data_Hora']);
     $curso->setID_EVT($_POST['ID_EVT']);
     $curso->setValor_Curso($_POST['Valor_Curso']);
+    $curso->setNUM_Vagas($_POST['NUM_VAGAS']);
     $curso->update();
 
     $FeedbackMessage->setMsg("Curso atualizado com sucesso!");

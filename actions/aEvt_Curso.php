@@ -63,7 +63,7 @@ class aEvt_Curso extends mEvt_Curso {
         $this->setData_Hora($rs[0]['Data_Hora']);
         $this->setID_EVT($rs[0]['ID_EVT']);
         $this->setValor_Curso($rs[0]['Valor_Curso']);
-        $this->setNUM_Vagas($rs[0]['NUM_Vagas']);
+        $this->setNUM_Vagas($rs[0]['Num_Vagas']);
         return $this;
     }
 

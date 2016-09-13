@@ -102,7 +102,7 @@
 
                                     <div class="form-group col-lg-12 row">
                                         <label>Cursos Disponíveis</label>
-                                        <select class="form-control col-lg-3" name="ID_Curso" id="ID_Curso">
+                                        <select multiple class="form-control col-lg-3" name="ID_Curso[]" id="ID_Curso">
                                             {foreach from=$listCursos item=row}
                                             <option value="{$row.ID_Curso}">{$row.Curso}
                                             </option>

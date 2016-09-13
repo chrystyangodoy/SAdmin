@@ -107,7 +107,7 @@ $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("listLocal", $localevento->select());
 $smarty->assign("listTpUF", $tipoestado->select());
 $smarty->assign("listBanco", $banco->select());
-$smarty->assign("listFPagto", $FormaPagto->select());
+//$smarty->assign("listFPagto", $FormaPagto->select());
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
 $smarty->assign("Titulo", " - Inserir Evento.");

@@ -135,28 +135,31 @@ if (isset($_POST['Cadastrar'])) {
                 }
                 $categoria->setID_Evento_Categoria($ID_Evento_Categoria);
 //Inscrever no curso
-                $Cursos->setID_Curso($_POST['ID_Curso']);
-                $Cursos->load();
-                require_once './actions/aEvt_Curso_Participante.php';
-                $CursosPartic = new aEvt_Curso_Participante();
-                if ($_POST['ID_Curso'] != NULL) {
-                    $CursosPartic->setID_EVT_Curso_Participante($config->idUnico());
-                    $CursosPartic->setDescricao($Cursos->getCurso());
-                    $CursosPartic->setID_Curso($Cursos->getID_Curso());
-                    $CursosPartic->setID_Participante($id_Participante);
-                    $CursosPartic->insert();
-                }
+                foreach ($_POST['ID_Curso'] as $cadaCurso) {
+                    $Cursos->setID_Curso($cadaCurso);
+                    //$Cursos->setID_Curso($_POST['ID_Curso']);
+                    $Cursos->load();
+                    require_once './actions/aEvt_Curso_Participante.php';
+                    $CursosPartic = new aEvt_Curso_Participante();
+                    //if ($_POST['ID_Curso'] != NULL) {
+                    if ($cadaCurso != NULL) {
+                        $CursosPartic->setID_EVT_Curso_Participante($config->idUnico());
+                        $CursosPartic->setDescricao($Cursos->getCurso());
+                        $CursosPartic->setID_Curso($Cursos->getID_Curso());
+                        $CursosPartic->setID_Participante($id_Participante);
+                        $CursosPartic->insert();
+                    }
 //Fim Bloco inscrever no curso
-                $vlrCurso = $Cursos->getValor_Curso();
-                $vlr_Evento = $evtPart->getVLR_Total();
-                $evtPart->setVLR_Total($vlr_Evento + $vlrCurso);
-                $evtPart->update();
-                //Insere Informações para gerar o Boleto 
-                $pagamento = new aEvt_Pagamento();
-                $pagamento->selectInnerId_Estrangeiro($ID_Evento, $Id_Estrangeiro);
-                $VlrTotalPag = $evtPart->getVLR_Total();
-                $pagamento->geraInfoPagamento($nroParcelas, $VlrTotalPag, $evento->getDT_Fim(True));
-
+                    $vlrCurso = $Cursos->getValor_Curso();
+                    $vlr_Evento = $evtPart->getVLR_Total();
+                    $evtPart->setVLR_Total($vlr_Evento + $vlrCurso);
+                    $evtPart->update();
+//Insere Informações para gerar o Boleto 
+                    $pagamento = new aEvt_Pagamento();
+                    $pagamento->selectInnerId_Estrangeiro($ID_Evento, $Id_Estrangeiro);
+                    $VlrTotalPag = $evtPart->getVLR_Total();
+                    $pagamento->geraInfoPagamento($nroParcelas, $VlrTotalPag, $evento->getDT_Fim(True));
+                }
                 $ass = '';
                 $msg = '';
                 if ($isParticipanteNovo) {
@@ -256,28 +259,33 @@ if (isset($_POST['Cadastrar'])) {
                     }
                     $categoria->setID_Evento_Categoria($ID_Evento_Categoria);
 //Inscrever no curso
-                    $Cursos->setID_Curso($_POST['ID_Curso']);
-                    $Cursos->load();
-                    require_once './actions/aEvt_Curso_Participante.php';
-                    $CursosPartic = new aEvt_Curso_Participante();
-                    if ($_POST['ID_Curso'] != NULL) {
-                        $CursosPartic->setID_EVT_Curso_Participante($config->idUnico());
-                        $CursosPartic->setDescricao($Cursos->getCurso());
-                        $CursosPartic->setID_Curso($Cursos->getID_Curso());
-                        $CursosPartic->setID_Participante($id_Participante);
-                        $CursosPartic->insert();
-                    }
+                    //if ($_POST['ID_Curso']) {
+                    foreach ($_POST['ID_Curso'] as $cadaCurso) {
+                        $Cursos->setID_Curso($cadaCurso);
+                        //                $Cursos->setID_Curso($_POST['ID_Curso']);
+                        $Cursos->load();
+                        require_once './actions/aEvt_Curso_Participante.php';
+                        $CursosPartic = new aEvt_Curso_Participante();
+                        //if ($_POST['ID_Curso'] != NULL) {
+                        if ($cadaCurso != NULL) {
+                            $CursosPartic->setID_EVT_Curso_Participante($config->idUnico());
+                            $CursosPartic->setDescricao($Cursos->getCurso());
+                            $CursosPartic->setID_Curso($Cursos->getID_Curso());
+                            $CursosPartic->setID_Participante($id_Participante);
+                            $CursosPartic->insert();
+                        }
 //Fim Bloco Inscrever no curso
-                    $vlrCurso = $Cursos->getValor_Curso();
-                    $vlr_Evento = $evtPart->getVLR_Total();
-                    $evtPart->setVLR_Total($vlr_Evento + $vlrCurso);
-                    $evtPart->update();
-                    //Inserir Informações para gerar o Boleto 
-                    $pagamento = new aEvt_Pagamento();
-                    $pagamento->selectInner($ID_Evento, $cpf);
-                    $VlrTotalPag = $evtPart->getVLR_Total();
-                    $pagamento->geraInfoPagamento($nroParcelas, $VlrTotalPag, $evento->getDT_Fim(True));
-
+                        $vlrCurso = $Cursos->getValor_Curso();
+                        $vlr_Evento = $evtPart->getVLR_Total();
+                        $evtPart->setVLR_Total($vlr_Evento + $vlrCurso);
+                        $evtPart->update();
+//Inserir Informações para gerar o Boleto 
+                        $pagamento = new aEvt_Pagamento();
+                        $pagamento->selectInner($ID_Evento, $cpf);
+                        $VlrTotalPag = $evtPart->getVLR_Total();
+                        $pagamento->geraInfoPagamento($nroParcelas, $VlrTotalPag, $evento->getDT_Fim(True));
+////////FIM DO FOREACH DE CURSOS
+                    }
                     $ass = '';
                     $msg = '';
                     if ($isParticipanteNovo) {
