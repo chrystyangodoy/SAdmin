@@ -155,11 +155,14 @@ if (isset($_POST['Cadastrar'])) {
                     $evtPart->setVLR_Total($vlr_Evento + $vlrCurso);
                     $evtPart->update();
 //Insere Informações para gerar o Boleto 
+                    }
+                    
                     $pagamento = new aEvt_Pagamento();
                     $pagamento->selectInnerId_Estrangeiro($ID_Evento, $Id_Estrangeiro);
+                
                     $VlrTotalPag = $evtPart->getVLR_Total();
                     $pagamento->geraInfoPagamento($nroParcelas, $VlrTotalPag, $evento->getDT_Fim(True));
-                }
+                
                 $ass = '';
                 $msg = '';
                 if ($isParticipanteNovo) {
@@ -280,12 +283,13 @@ if (isset($_POST['Cadastrar'])) {
                         $evtPart->setVLR_Total($vlr_Evento + $vlrCurso);
                         $evtPart->update();
 //Inserir Informações para gerar o Boleto 
+                    }
                         $pagamento = new aEvt_Pagamento();
                         $pagamento->selectInner($ID_Evento, $cpf);
                         $VlrTotalPag = $evtPart->getVLR_Total();
                         $pagamento->geraInfoPagamento($nroParcelas, $VlrTotalPag, $evento->getDT_Fim(True));
 ////////FIM DO FOREACH DE CURSOS
-                    }
+                    
                     $ass = '';
                     $msg = '';
                     if ($isParticipanteNovo) {

@@ -18,7 +18,7 @@ function ListaEventoCategoriaPopUp(ID_EVT_Evento, DSC_Nome) {
                             + item.ID_Evento_Categoria + "&ID_EVT_Evento=" +
                             item.ID_EVT_Evento + "' class='btn btn-warning' title='Clique para selecionar esta Categoria'>" +
                             "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
-                            "</a>"+
+                            "</a>" +
                             "</tr>"
                             );
         });
@@ -113,14 +113,7 @@ function ListaArtigoPopUp(ID_EVT_Evento_Pariticipante) {
                             "<td>" + item.Nome_Docto + "</td>" +
                             "<td>" + item.Assunto + "</td>" +
                             "<td>" + item.Parecer + "</td>" +
-                            "<td>" + item.Documento + "</td>" +
                             "<td>" + item.Data_Envio + "</td>" +
-                            "<td>" + item.Idioma_Documento + "</td>" +
-                            //"<td>" + "<a href='Boleto.php?ID_EVT_Evento_Pariticipante="
-                            //+ item.ID_EVT_Evento_Pariticipante + "&ID_EVT_Pagamento_Pai=" +
-                            //item.ID_Pagamento + "' target='_blank' class='btn btn-primary' title='Clique para gerar o Boleto.'>" +
-                            //"<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
-                            //"</a>" +
                             "</tr>"
                             );
         });
@@ -174,7 +167,7 @@ function ListaCursos(ID_EVT, DSC_Nome) {
                             "<td>" + item.TituloCurso + "</td>" +
                             "<td>" + item.Data_Hora + "</td>" +
                             "<td class='formatcurrency'>" + item.Valor_Curso + "</td>" +
-                            "<td>"+
+                            "<td>" +
                             //<a href='setCursos.php?DescCurso="
                             //+ item.Curso + "&IDCurso=" + item.ID_Curso + "' class='btn btn-primary' title='Inscrever-se'>" +
                             //"<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
@@ -183,7 +176,7 @@ function ListaCursos(ID_EVT, DSC_Nome) {
                             + item.ID_Curso + "&ID_EVT=" +
                             item.ID_EVT + "' class='btn btn-warning' title='Clique para selecionar esta Categoria'>" +
                             "<span class='glyphicon glyphicon glyphicon-ok' aria-hidden='true'></span>" +
-                            "</a>"+
+                            "</a>" +
                             "</tr>"
                             );
         });

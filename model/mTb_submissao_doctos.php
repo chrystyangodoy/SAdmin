@@ -55,7 +55,7 @@ class mtb_submissao_doctos extends dbConnection {
         $this->Documento = $Documento;
     }
 
-    public function getData_Envio() {
+    public function getData_Envio($us = false) {
         //return $this->Data_Envio;
         if ($us)
         {

@@ -18,9 +18,7 @@ require_once './actions/aEvt_Evento_Categoria.php';
 $ID_Evento = $_GET['ID_Evento'];
 
 if (isset($_REQUEST['ID_Evento_Categoria']) and isset($_REQUEST['CPF_Participante'])) {
-
     $ID_Categoria = $_REQUEST['ID_Evento_Categoria'];
-
 
     $_SESSION['CPF_Participante'] = $_REQUEST['CPF_Participante'];
     $_SESSION['ID_Evento'] = $_REQUEST['ID_EVT_Evento'];

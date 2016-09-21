@@ -1,6 +1,4 @@
 <?php
-
-
 session_start();
 include_once './config/ValidaSessao.php';
 include_once './smarty.php';

@@ -1,0 +1,14 @@
+<script src="./js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="./js/jquery.mask.js" type="text/javascript"></script>
+<script src="./js/Masks.js" type="text/javascript"></script>
+
+<form action="ArtigoInsPopUp.php" method="post" enctype="multipart/form-data"> 								
+    <label>Descrição *</label><br>
+    <input id="descricao_documento" name="descricao_documento" type="text" class="input" size="40" maxlength="100"/> 			
+    <br>
+    <label >Arquivo *</label><br>	
+    <input name="dados_documento" type="file" class="input" size="45"/> 
+    <br>	
+    <!--Enviar -->
+    <button type="submit" class="btn" name="Enviar" value="Enviar" onclose="true">Enviar</button>
+</form>
