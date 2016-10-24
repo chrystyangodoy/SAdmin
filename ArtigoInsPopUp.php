@@ -6,7 +6,6 @@ require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();
 
 if (isset($_POST['Enviar'])) {
-    //$ID_EVT = $_REQUEST['ID_EVT_Evento_Pariticipante'];
     
     require_once './config/configs.php';
     $config = new configs();
@@ -14,44 +13,42 @@ if (isset($_POST['Enviar'])) {
     
     require_once './actions/aTb_submissao_doctos.php';
     $subDoctos = new aTb_submissao_doctos();
+    
+    $extensoes = array('pdf', 'doc', 'docx');
+    
+    $extensao = strtolower(end(explode('.', $_FILES["dados_documento"]["name"])));
+    
 
     $arquivo_temp = $_FILES["dados_documento"]["tmp_name"];
     $nome_arquivo = $_FILES["dados_documento"]["name"];
 
     $arquivo = isset($_FILES["dados_documento"]) ? $_FILES["dados_documento"] : FALSE;
 
-    if ($arquivo) {
+    if ($arquivo && in_array($extensao, $extensoes)) {
         $fp = fopen($arquivo_temp, "rb");
         $dados_documento = fread($fp, filesize($arquivo_temp));
         fclose($fp);
 
         $descricao = $nome_arquivo;
-        $dados = bin2hex($dados_documento);
+//        $dados = addslashes($dados_documento);
+        $dados = mysql_real_escape_string($dados_documento);
 
         $subDoctos->setCOD_Submissao($idUnico);
         $subDoctos->setNome_Docto($nome_arquivo);
-        $subDoctos->setAssunto($descricao);
-        $subDoctos->setParecer('');
+        $subDoctos->setAssunto($_POST['descricao']);
+        $subDoctos->setParecer(1);
         $subDoctos->setDocumento($dados);
-        $subDoctos->setData_Envio(date("Y/m/d"));
+        $subDoctos->setData_Envio(date("Y-m-d"));
         $subDoctos->setIdioma_Documento('');
-        $subDoctos->setID_Usuario('');
+        $subDoctos->setID_Usuario($_SESSION["ID_Usuario"]);
         $subDoctos->setCOD_Participante('');
-        $subDoctos->setID_EVT('$ID_EVT');
+        $subDoctos->setID_EVT($_POST['ID_EVT']);
         $subDoctos->insert();
         $codInsercao = $subDoctos->getCOD_Submissao();
-    }
-    if ($codInsercao != 0 or $codInsercao != NULL) {
-        $FeedbackMessage->setMsg("Artigo enviado com sucesso!");
-        //header('location:AreaUsuario.php');
         
+    }  else {
+        echo json_encode(array('erro'=>'Extensão iválida!'));
     }
 }
 
-$smarty->assign("dscUser", $_SESSION['DSC_Login']);
-$smarty->assign("msg", $FeedbackMessage->getMsg());
-$smarty->assign("type", $FeedbackMessage->getType());
-//$smarty->assign("lista",$Artigo->select());
 
-$smarty->assign("Titulo", " - Submeter de Artigo.");
-$smarty->display('./View/ArtInsPopUp.html');

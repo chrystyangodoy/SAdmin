@@ -15,7 +15,7 @@ if (isset($_GET['del'])) {
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
 $smarty->assign("type", $FeedbackMessage->getType());
-$smarty->assign("lista",$Artigo->select());
+$smarty->assign("lista",$Artigo->selectListAdmin());
 
 $smarty->assign("Titulo", " - Lista de Artigos.");
 $smarty->display('./View/ArtigosList.html');

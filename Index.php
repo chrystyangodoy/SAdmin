@@ -1,5 +1,7 @@
 <?php
+ini_set('upload_max_filesize', '20M');
 session_start();
+
 include 'smarty.php';
 require_once './config/FeedbackMessage.php';
 $FeedbackMessage = new FeedbackMessage();

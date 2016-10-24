@@ -12,6 +12,8 @@ $idUser = $_SESSION['ID_Usuario'];
 
 $lista = $evtPart->SelectEvtPartc($idUser);
 
+//$_SESSION['Evento'] = $lista;
+
 $smarty->assign("dscUser", $_SESSION['DSC_Login']);
 //$smarty->assign("dscUser", $idUser);
 $smarty->assign("msg", $FeedbackMessage->getMsg());
